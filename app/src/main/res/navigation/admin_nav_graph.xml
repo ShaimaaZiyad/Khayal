@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/addCategory">
+
+    <fragment
+        android:id="@+id/addCategory"
+        android:name="com.shaimaziyad.khayal.screens.AddCategory"
+        android:label="add_category"
+        tools:layout="@layout/add_category" />
+    <fragment
+        android:id="@+id/addNovel"
+        android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
+        android:label="add_novel"
+        tools:layout="@layout/add_edit_novel" />
+    <fragment
+        android:id="@+id/addPdf"
+        android:name="com.shaimaziyad.khayal.screens.AddPdf"
+        android:label="add_pdf"
+        tools:layout="@layout/add_pdf" />
+</navigation>

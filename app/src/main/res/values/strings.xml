@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">خـيـال</string>
+    <string name="size_text">جحم الملف</string>
+    <string name="sample_text">N/N</string>
+    <string name="welcome">أهلا بك</string>
+
+    <string name="adUnitId_home">ca-app-pub-8366065026867038/5227383433</string>
+    <string name="adUnitId_viewNovel">ca-app-pub-8366065026867038/7139230909</string>
+    <string name="ID_Interstitial">ca-app-pub-8366065026867038/5581810496</string>
+
+    <string name="search">ابحث</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    /* home */
+    <string name="login">تسجيل الدخول</string>
+    <string name="welcome_to_khayal">أهلا بك في خيال</string>
+
+    /* login */
+    <string name="new_user_please_register">مستخدم جديد ؟ يرجى التسجيل</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
+    <string name="password">كلمة المرور</string>
+    <string name="email">البريد الالكتروني</string>
+
+    /* register */
+    <string name="create_account">أنشئ حساب</string>
+    <string name="name">الاسم</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="register">انشاء الحساب</string>
+    <string name="you_have_an_account">لديك حساب بالفعل !!</string>
+
+    /* forgot password */
+    <string name="enter_you_registered_email">أدخل بريدك الالكتروني لتصلك بيانات استرجاع كلمة المرور</string>
+    <string name="send">ارسال</string>
+
+
+    /* adminControl */
+    <string name="email_ex">shaima@gmail.com</string>
+    <string name="adminControl">لوحة تحكم المسؤول</string>
+    <string name="add_novel">أضف رواية</string>
+    <string name="add_category">أضف فئة</string>
+
+    /* add category */
+    <string name="category_title">عنوان الفئة</string>
+
+    /* add novel */
+    <string name="novel_title">عنوان الرواية</string>
+    <string name="novel_des">وصف الرواية</string>
+    <string name="novel_type">نوع الرواية</string>
+    <string name="writer_name">اسم الكاتب</string>
+    <string name="add_pdf">أضف ملف pdf</string>
+    <string name="pdf_title">عنوان ملف pdf</string>
+
+    /* edit novel */
+    <string name="edit_novel">تعديل بيانات الرواية</string>
+    <string name="update">تعديل</string>
+    <string name="novel_details">تفاصيل الرواية</string>
+    <string name="date">التاريخ</string>
+    <string name="chapters">عدد الفصول</string>
+    <string name="views">عدد الزيارات</string>
+    <string name="go_chapters">اقرأ الفصول</string>
+    <string name="add_favorite">أضف للمفضلة</string>
+    <string name="chapters_of_novel">فصول الرواية</string>
+    <string name="number_of_chapter">رقم الفصل</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="full_name">الاسم بالكامل</string>
+    <string name="account">الحساب</string>
+    <string name="member">عضو منذ</string>
+    <string name="favorite_books">الكتب المفضلة</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+
+
+</resources>

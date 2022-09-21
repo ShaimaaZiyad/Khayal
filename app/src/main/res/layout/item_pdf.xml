@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="pdf"
+            type="com.shaimaziyad.khayal.data.PdfData" />
+
+
+
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:contentPadding="2dp">
+
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_pdf_gray" />
+
+            <ImageView
+                android:id="@+id/btn_Remove"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/ic_cancel"
+                app:tint="@color/red" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </FrameLayout>
+</layout>

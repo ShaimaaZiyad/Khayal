@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable-v24/ic_email_gray.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable-v24/ic_lock_gray.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable-v24/shape_button01.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable-v24/shape_edit_text01.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/bg01.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/bg02.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_pdf_colorful.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button01.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button02.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button03.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_edit_text01.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_rect01.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_rect02.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_toolbar01.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_toolbar02.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/splash_bg.xml" value="0.2565" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_background_selected.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_background_unselected.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_selector.xml" value="0.2165" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_category_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_dashboard_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_favorite.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novels_add.xml" value="0.35260416666666666" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novels_list_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_list_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_profile_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_saplash.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/dialog_comment_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_books_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_category.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_comment.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novels.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_favorite.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/khayal/app/src/main/res/menu/nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable-xxxhdpi/ic_left_arrow_white.xml" value="0.266" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/activity_dashboard_admin.xml" value="0.515" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/bg01.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/bg02.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/bottom_sheet_backgroung.xml" value="0.515" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_attach_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_back_black.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_back_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_book_white.xml" value="0.259" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_camera_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_category_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_comment_add_black.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_comment_add_white.xml" value="0.306" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_comment_black.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_delete_white.xml" value="0.259" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_down_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_download_black.xml" value="0.306" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_download_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_edit_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_email_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_favorite_black.xml" value="0.259" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_favorite_border_white.xml" value="0.259" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_favorite_filled_white.xml" value="0.259" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_home_black.xml" value="0.265" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_lock_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_logout_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_more_black.xml" value="0.116" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_more_white.xml" value="0.2835" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_novel_gray.xml" value="0.28" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_pdf_colorful.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_pdf_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_pdf_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_person_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_person_white.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/ic_search_gray.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button01.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button02.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_button03.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_edit_text01.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_rect01.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_rect02.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_toolbar01.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/shape_toolbar02.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_background_selected.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_background_unselected.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/drawable/tab_selector.xml" value="0.3065" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/font/fontkhayal.xml" value="0.396875" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_category_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_dashboard_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_details.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_details_novel.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel01.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel02.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel03.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel04.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel05.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel06.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel07.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel08.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel09.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel10.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel11.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel12.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel13.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel14.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel15.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel16.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel17.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel18.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel19.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel20.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel21.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel22.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel23.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel24.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel25.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel26.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel27.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel28.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel29.xml" value="0.36102564102564105" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel30.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novel_edit.xml" value="0.337037037037037" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_novels.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_comment.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_details.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_list_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_pdf_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_profile_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_show_novel.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_show_novel_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/activity_splash.xml" value="0.3009833262077811" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/add_category.xml" value="0.4296875" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/add_edit_novel.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/add_novel.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/add_pdf.xml" value="0.3806706114398422" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/admin_control.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/admin_home.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/admin_pdf.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/bottom_edit_profile_sheet.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/bottom_forgot_sheet.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/bottom_sheet.xml" value="0.34322916666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/dialog_comment_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/edit_novel.xml" value="0.3254637436762226" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/edit_profile.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/forgot_password.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_add_novel.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_admin_control.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_admin_panel.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_books_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_details_novel.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_forgot_password.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_home.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_login.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_novel_edit.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_register.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_splash.xml" value="0.40625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_splash2.xml" value="0.5458333333333333" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_user_home.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/fragment_view_novel.xml" value="0.43802083333333336" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/home.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.3669201520912547" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/login.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/novel_details.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/novel_pdf.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/profile.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/register.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_category.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_comment.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novel.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novel_admin.xml" value="0.1" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novel_favorite.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novel_user.xml" value="0.365625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_novels.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf.xml" value="0.55" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_favorite.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/row_pdf_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/splash.xml" value="0.5458333333333333" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/user_home.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/layout/view_pdf.xml" value="0.3625" />
+        <entry key="..\:/SH G/AndroidStudioProjects/khayal/app/src/main/res/menu/admin_nav_menu.xml" value="0.4125" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/activity_main.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/add_category.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/add_edit_novel.xml" value="0.264" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/add_pdf.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/admin_control.xml" value="0.264" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/home.xml" value="0.2" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/item_pdf.xml" value="0.4" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/novel_pdf.xml" value="0.264" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/row_novel_admin.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/Mamon Aburawi/Desktop/khayal/app/src/main/res/layout/row_novel_user.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

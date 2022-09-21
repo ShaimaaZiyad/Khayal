@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/splash">
+
+
+    <fragment
+        android:id="@+id/splash"
+        android:name="com.shaimaziyad.khayal.screens.auth.Splash"
+        android:label="fragment_splash"
+        tools:layout="@layout/splash" >
+        <action
+            android:id="@+id/action_splash_to_login"
+            app:destination="@id/login" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/viewPdf"
+        android:name="com.shaimaziyad.khayal.screens.viewPdf.ViewPdf"
+        android:label="fragment_view_novel"
+        tools:layout="@layout/view_pdf" >
+
+        <argument android:name="novelId" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.shaimaziyad.khayal.screens.auth.Login"
+        android:label="login"
+        tools:layout="@layout/login" >
+
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.shaimaziyad.khayal.screens.auth.Register"
+        android:label="register"
+        tools:layout="@layout/register" >
+
+        <action
+            android:id="@+id/action_register_to_userHome"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/home"
+        android:name="com.shaimaziyad.khayal.screens.home.Home"
+        android:label="Home"
+        tools:layout="@layout/home">
+        <action
+            android:id="@+id/action_userHome_to_novelDetails"
+            app:destination="@id/novelDetails" />
+        <action
+            android:id="@+id/action_userHome_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home_to_addEditNovel"
+            app:destination="@id/addEditNovel" />
+    </fragment>
+    <fragment
+        android:id="@+id/novelDetails"
+        android:name="com.shaimaziyad.khayal.screens.novelDetails.NovelDetails"
+        android:label="novel_details"
+        tools:layout="@layout/novel_details" >
+        <action
+            android:id="@+id/action_novelDetails_to_novelPdf"
+            app:destination="@id/novelPdf" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.shaimaziyad.khayal.screens.profile.Profile"
+        android:label="profile"
+        tools:layout="@layout/profile" />
+
+    <fragment
+        android:id="@+id/novelPdf"
+        android:name="com.shaimaziyad.khayal.screens.novelPdf.NovelPdf"
+        android:label="novel_pdf"
+        tools:layout="@layout/novel_pdf" >
+
+        <action
+            android:id="@+id/action_novelPdf_to_viewPdf"
+            app:destination="@id/viewPdf" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNovel"
+        android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
+        android:label="add_edit_novel"
+        tools:layout="@layout/add_edit_novel" />
+    <fragment
+        android:id="@+id/addPdf2"
+        android:name="com.shaimaziyad.khayal.screens.AddPdf"
+        android:label="add_pdf"
+        tools:layout="@layout/add_pdf" />
+
+</navigation>

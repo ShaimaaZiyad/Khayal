@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    tools:context=".screens.AdminHome">
+
+    <!--Toolbar-->
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/shape_toolbar02">
+
+        <!--ImageButton: Open profile-->
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:src="@drawable/ic_person_white"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/adminControl"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/titleTv"
+            android:text="@string/email_ex"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_logout_white"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name" />
+    </RelativeLayout>
+
+    <!--Search-->
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/searchEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarRl"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_edit_text01"
+        android:drawableStart="@drawable/ic_search_gray"
+        android:hint="@string/search"
+        android:padding="10dp"
+        android:textColorHint="@color/gray01" />
+
+    <!--Novels-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/novelsRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchEt"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row_novel_admin" />
+
+</RelativeLayout>

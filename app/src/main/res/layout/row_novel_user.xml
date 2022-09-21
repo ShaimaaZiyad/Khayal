@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="novel"
+            type="com.shaimaziyad.khayal.data.NovelData" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnItem"
+        android:layout_width="match_parent"
+        android:layoutDirection="rtl"
+        android:layout_height="140dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        app:contentPadding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/pdfRl"
+                android:layout_width="100dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    setNovelCover="@{novel.cover}"
+                    android:src="@drawable/icon" />
+
+
+            </RelativeLayout>
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/titleTv"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/pdfRl"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="@string/novel_title"
+                android:text="@{novel.title}"/>
+
+            <!--Description-->
+            <TextView
+                android:id="@+id/descriptionTv"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleTv"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/pdfRl"
+                android:ellipsize="end"
+                android:maxLines="4"
+                tools:text="@string/novel_des"
+                android:text="@{novel.description}"/>
+
+            <!--Category-->
+            <TextView
+                android:id="@+id/typeTv"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:maxLines="1"
+                tools:text="@string/novel_type"
+                android:text="@{novel.type}"/>
+
+            <!--Category-->
+            <TextView
+                android:id="@+id/writerTv"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@id/typeTv"
+                android:layout_toEndOf="@id/sizeTv"
+                android:maxLines="1"
+                android:text="@{novel.writer}"
+                android:textAlignment="center"
+                tools:text="@string/writer_name" />
+
+            <!--Size-->
+            <TextView
+                android:id="@+id/sizeTv"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/pdfRl"
+                android:maxLines="1"
+                tools:text="@string/size_text" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
