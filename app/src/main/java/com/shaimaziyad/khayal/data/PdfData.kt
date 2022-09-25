@@ -12,7 +12,6 @@ data class PdfData(
     var url: String = "",
     var novelId: String = "",
     var createDate: Date = getCurrentTime(),
-//    val idRead: Boolean = false
 
 ) : Parcelable{
     fun toHashMap(): HashMap<String, Any> {

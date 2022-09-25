@@ -17,7 +17,9 @@ import com.shaimaziyad.khayal.utils.UserType
 class Home : Fragment() {
 
     private lateinit var binding: HomeBinding
+
     private lateinit var viewModel: HomeViewModel
+
     private val novelAdapter by lazy { AdapterNovel() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -43,8 +45,6 @@ class Home : Fragment() {
     private fun setObserves() {
         viewModel.apply {
 
-
-
             /** novels live data **/
             novels.observe(viewLifecycleOwner){ novels->
                 if (!novels.isNullOrEmpty()){ // novel is exist.
@@ -52,10 +52,6 @@ class Home : Fragment() {
                     novelAdapter.submitList(novels)
                 }
             }
-
-
-
-
         }
     }
 
@@ -100,15 +96,6 @@ class Home : Fragment() {
             profileBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_userHome_to_profile)
             }
-
-
-
-
         }
     }
-
-
-
-
-
 }

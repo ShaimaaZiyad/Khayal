@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "963905573090",
+    "firebase_url": "https://khayal-5d9bb-default-rtdb.firebaseio.com",
+    "project_id": "khayal-5d9bb",
+    "storage_bucket": "khayal-5d9bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963905573090:android:439717742271676bd9cebb",
+        "android_client_info": {
+          "package_name": "com.shaimaziyad.khayal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963905573090-3vgi5q773rhctpuqkge3addllgip69e5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaimaziyad.khayal",
+            "certificate_hash": "6618debc4a0d4213a841287f23e0ad9daa120457"
+          }
+        },
+        {
+          "client_id": "963905573090-pea7os29punqneu3igv4ghp4gujtpl12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuMlsnUcYFFmTjWOR66FBVBG7rT-aD3lM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963905573090-pea7os29punqneu3igv4ghp4gujtpl12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

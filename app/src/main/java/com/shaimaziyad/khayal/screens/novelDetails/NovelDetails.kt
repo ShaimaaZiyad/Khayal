@@ -29,7 +29,7 @@ class NovelDetails : Fragment() {
 
     private fun setViews() {
         binding.apply {
-            goChaptersBtn.setOnClickListener {
+            readBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_novelDetails_to_novelPdf)
             }
             favoriteBtn.setOnClickListener {

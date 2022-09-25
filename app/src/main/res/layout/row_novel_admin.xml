@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layoutDirection="rtl"
     android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -90,6 +91,17 @@
             android:maxLines="1"
             android:text="@string/size_text" />
 
+<!--        &lt;!&ndash; numberOfPdfs &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/numberOfPdfsTv"-->
+<!--            style="@style/TextAppearance.MaterialComponents.Caption"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_toEndOf="@+id/pdfRl"-->
+<!--            android:maxLines="1"-->
+<!--            tools:text="@string/number_of_pdf" />-->
+
         <!--Show more options-->
         <ImageButton
             android:id="@+id/moreBtn"
@@ -97,9 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
             android:padding="5dp"
-            android:src="@drawable/ic_more_black"
-            android:contentDescription="@string/app_name" />
+            android:src="@drawable/ic_more_black" />
 
     </RelativeLayout>
 

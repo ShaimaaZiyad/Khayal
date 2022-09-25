@@ -33,10 +33,10 @@
 
                 <ImageView
                     android:id="@+id/cover"
+                    setNovelCover="@{novel.cover}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/app_name"
-                    setNovelCover="@{novel.cover}"
                     android:src="@drawable/icon" />
 
 
@@ -71,7 +71,7 @@
                 tools:text="@string/novel_des"
                 android:text="@{novel.description}"/>
 
-            <!--Category-->
+            <!--type-->
             <TextView
                 android:id="@+id/typeTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
@@ -83,7 +83,7 @@
                 tools:text="@string/novel_type"
                 android:text="@{novel.type}"/>
 
-            <!--Category-->
+            <!--writer-->
             <TextView
                 android:id="@+id/writerTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
@@ -98,7 +98,7 @@
                 android:textAlignment="center"
                 tools:text="@string/writer_name" />
 
-            <!--Size-->
+            <!-- size -->
             <TextView
                 android:id="@+id/sizeTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
@@ -108,6 +108,19 @@
                 android:layout_toEndOf="@+id/pdfRl"
                 android:maxLines="1"
                 tools:text="@string/size_text" />
+
+
+
+<!--            &lt;!&ndash; numberOfPdfs &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/numberOfPdfsTv"-->
+<!--                style="@style/TextAppearance.MaterialComponents.Caption"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_toEndOf="@+id/pdfRl"-->
+<!--                android:maxLines="1"-->
+<!--                tools:text="@string/number_of_pdf" />-->
 
         </RelativeLayout>
 

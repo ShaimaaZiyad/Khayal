@@ -11,31 +11,34 @@ data class NovelData(
     var novelId: String = "",
     var title: String = "",
     var description: String = "",
-    var type: String = "", // ......?
-    var category: String, // ....?
+    var type: String = "", // to save if novel فصحى ام عامية ام خليجية
+    var category: String = "", // to save if it رواية ام قصة ام نوفيلا
     var writer: String = "",
     var cover: String = "",
     var createDate: Date = getCurrentTime(),
-    var viewCount: Long = 0, // .. ?
-//    var isFavorite: Boolean = false,
-    var pdfs: List<PdfData> = ArrayList()
+    var viewCount: Long = 0, // عدد الزيارات او المشاهدات
+    var pdfs: List<PdfData> = ArrayList(),
 
-): Parcelable {
+    var pdfsCount: Int = 0, // i need it to show in the cardView in home screen >>>> numberOfChapters
+
+//    var continuousOrComplete: String,
+//    var seriesOrSolo: String
+
+) : Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "novelId" to novelId,
             "title" to title,
             "description" to description,
+            "type" to type,
+            "category" to category,
             "writer" to writer,
             "cover" to cover,
-//            "categoryId" to categoryId,
             "createDate" to createDate,
-//            "pdfsCount" to pdfsCount,
             "viewCount" to viewCount,
-//            "isFavorite" to isFavorite,
             "pdfs" to pdfs,
 
-        )
+            )
     }
 }
 

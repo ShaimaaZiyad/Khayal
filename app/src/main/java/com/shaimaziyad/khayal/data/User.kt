@@ -18,7 +18,6 @@ data class User (
     var timestamp: String = "",
     var likes: List<String> = ArrayList(), // id of novel data
     var reads: List<String> = ArrayList()
-//    var isRead: Boolean = false
 
 
 ): Parcelable {

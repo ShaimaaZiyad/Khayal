@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.PdfData
 import com.shaimaziyad.khayal.databinding.AddEditNovelBinding
@@ -68,14 +71,32 @@ class AddEditNovel : Fragment() {
                 Toast.makeText(requireContext(),"send data success", Toast.LENGTH_SHORT).show()
             }
 
+            addPdf.setOnClickListener {
+                showBottomSheet()
+            }
+
             /** button back **/
             backBtn.setOnClickListener{
                 findNavController().navigateUp()
             }
         }
     }
-
     // todo add bottom sheet for add pdf.
+
+    private fun showBottomSheet() {
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.setContentView(R.layout.bottom_add_pdf_sheet)
+        val submitBtn = dialog.findViewById<Button>(R.id.submitBtn)
+
+        submitBtn?.setOnClickListener {
+            // send pdf file
+            Toast.makeText(requireContext() , " تم الارسال بنجاح", Toast.LENGTH_SHORT).show()
+
+        }
+        dialog.show()
+    }
+
+
 
 
     fun setData(){

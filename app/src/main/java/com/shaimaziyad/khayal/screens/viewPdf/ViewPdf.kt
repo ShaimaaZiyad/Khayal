@@ -7,15 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import com.google.android.gms.ads.AdRequest
-//import com.google.android.gms.ads.AdView
-//import com.google.android.gms.ads.LoadAdError
-//import com.google.android.gms.ads.MobileAds
-//import com.google.android.gms.ads.interstitial.InterstitialAd
-//import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.storage.FirebaseStorage
 import com.shaimaziyad.khayal.utils.Constants
-import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.ViewPdfBinding
 
 class ViewPdf : Fragment() {

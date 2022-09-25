@@ -31,7 +31,7 @@ class Login : Fragment() {
         binding.apply {
 
             loginBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_login_to_home)
+               findNavController().navigate(R.id.action_login_to_home)
 //                Toast.makeText(requireContext(),"تم الدخول بنجاح",Toast.LENGTH_SHORT).show()
             }
             noAccountTv.setOnClickListener {

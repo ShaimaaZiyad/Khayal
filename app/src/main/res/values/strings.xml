@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">خـيـال</string>
-    <string name="size_text">جحم الملف</string>
+    <string name="size_text">حجم الملف</string>
     <string name="sample_text">N/N</string>
     <string name="welcome">أهلا بك</string>
 
@@ -70,6 +70,7 @@
     <string name="member">عضو منذ</string>
     <string name="favorite_books">الكتب المفضلة</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="number_of_pdf">عدد الفصول</string>
 
 
 </resources>

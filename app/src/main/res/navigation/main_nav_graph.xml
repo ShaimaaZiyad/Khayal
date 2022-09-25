@@ -87,7 +87,6 @@
         android:name="com.shaimaziyad.khayal.screens.novelPdf.NovelPdf"
         android:label="novel_pdf"
         tools:layout="@layout/novel_pdf" >
-
         <action
             android:id="@+id/action_novelPdf_to_viewPdf"
             app:destination="@id/viewPdf" />
@@ -97,10 +96,5 @@
         android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
         android:label="add_edit_novel"
         tools:layout="@layout/add_edit_novel" />
-    <fragment
-        android:id="@+id/addPdf2"
-        android:name="com.shaimaziyad.khayal.screens.AddPdf"
-        android:label="add_pdf"
-        tools:layout="@layout/add_pdf" />
 
 </navigation>
