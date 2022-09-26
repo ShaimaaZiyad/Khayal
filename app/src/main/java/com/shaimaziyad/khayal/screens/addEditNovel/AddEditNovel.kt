@@ -43,6 +43,8 @@ class AddEditNovel : Fragment() {
 
 
     private fun setAdapter() {
+
+        /** click listener **/
         pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener{
 
             override fun onRemove(pdf: PdfData, index: Int) {
