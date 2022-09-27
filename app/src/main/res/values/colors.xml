@@ -24,5 +24,6 @@
     <color name="gray01">#c5c5c5</color>
     <color name="gray02">#777777</color>
     <color name="gray03">#E1E0E0</color>
+    <color name="loader_background_color">#68AFA7A7</color>
 
 </resources>

@@ -32,19 +32,23 @@ class Register : Fragment() {
     private fun setViews() {
         binding.apply {
 
+
+            /** button register **/
             btnRegister.setOnClickListener {
                 Toast.makeText(requireContext(),"enter to app", Toast.LENGTH_SHORT).show()
             }
 
+
+            /** button have account **/
             btnHaveAccount.setOnClickListener {
                 findNavController().navigate(R.id.action_register_to_login)
             }
 
             /** button back **/
             backBtn.setOnClickListener{
-//                requireActivity().onBackPressed()
                 findNavController().navigateUp()
             }
+
 
         }
     }
