@@ -63,7 +63,7 @@ class DataBase {
         }
     }
 
-    suspend fun register(user: User, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
+    suspend fun signUpWithEmail(user: User, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
 
         return supervisorScope {
 
@@ -125,7 +125,7 @@ class DataBase {
     }
 
 
-    private suspend fun loginWithEmailAndPassword(email: String, password: String, onSuccess:(Task<AuthResult>)-> Unit, onError:(String)-> Unit) {
+    private suspend fun loginWithEmailAndPassword(email: String, password: String, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
         return supervisorScope {
             val task = async {
                 auth.signInWithEmailAndPassword(email, password)
@@ -137,22 +137,23 @@ class DataBase {
                             }else{
                                 val error = "email is not verified!"
                                 Log.d(TAG,"Login Error: $error")
-                                onError(error)
+                                onError(Exception(error))
                             }
                         }
                     }
                     .addOnFailureListener {
                         Log.d(TAG,"Login Error: ${it.message}")
-                        onError(it.message.toString())
+                        onError(it)
                     }
             }
             try {
                 task.await()
             }catch (ex: Exception){
                 Log.d(TAG,"Login Error: ${ex.message}")
-                onError(ex.message.toString())
+                onError(ex)
             }
         }
+
 //        try {
 //            auth.signInWithEmailAndPassword(email, password)
 //                .addOnSuccessListener {
@@ -169,8 +170,9 @@ class DataBase {
     suspend fun login(email: String,
                        password: String,
                        onSuccess:(Task<AuthResult>)-> Unit,
-                       onError:(String)-> Unit) =
+                       onError:(Exception)-> Unit) =
         loginWithEmailAndPassword(email, password,onSuccess, onError)
+
 
     suspend fun getUser(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
 

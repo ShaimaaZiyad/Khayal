@@ -1,9 +1,15 @@
 package com.shaimaziyad.khayal.utils
 
+import android.content.Context
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
+
+
+/**    this file for handling the UI elements in general   **/
 
 
 private const val TAG = "UI Extensions"
@@ -36,6 +42,9 @@ fun loadNovelSize(novelUrl: String , sizeTv: TextView) {
         }
 }
 
+fun Fragment.showMessage(message: String) {
+    Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+}
 
 fun View.hide(){ visibility = View.GONE }
 

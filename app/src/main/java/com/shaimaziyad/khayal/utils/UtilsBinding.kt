@@ -29,3 +29,15 @@ fun setHi(text: TextView, name: String) {
     val welcome = text.context.resources.getString(R.string.welcome) + name
     text.text = name
 }
+
+
+// todo: we can update this to translate any error at run time.
+@BindingAdapter("setError")
+fun setError(text: TextView, error: String?){
+    if (error != null){
+        text.show()
+        text.text = error
+    }else {
+        text.hide()
+    }
+}

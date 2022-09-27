@@ -9,9 +9,9 @@ class UserRepository() {
 
     private val remote = DataBase()
 
-    suspend fun register( user: User, onSuccess: (Task<AuthResult>) -> Unit, onError: (Exception) -> Unit) = remote.register(user, onSuccess, onError)
+    suspend fun signUpWithEmail(user: User, onSuccess: (Task<AuthResult>) -> Unit, onError: (Exception) -> Unit) = remote.signUpWithEmail(user, onSuccess, onError)
 
-    suspend fun loginWithEmail( email: String, password: String, onSuccess: (Task<AuthResult>) -> Unit, onError: (String) -> Unit) = remote.login(email, password, onSuccess, onError)
+    suspend fun loginWithEmail( email: String, password: String, onSuccess: (Task<AuthResult>) -> Unit, onError: (Exception) -> Unit) = remote.login(email, password, onSuccess, onError)
 
     suspend fun signOut() = remote.signOut()
 

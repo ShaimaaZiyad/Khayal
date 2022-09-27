@@ -158,7 +158,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/uthman_taha_regular"
                     android:padding="10dp"
-                    android:text="@string/new_user_please_register"
+                    android:text="@string/new_user_info"
                     android:textColor="@color/primaryColor" />
 
 

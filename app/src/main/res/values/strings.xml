@@ -19,17 +19,33 @@
     <string name="welcome_to_khayal">أهلا بك في خيال</string>
 
     /* login */
-    <string name="new_user_please_register">مستخدم جديد ؟ يرجى التسجيل</string>
+    <string name="new_user_info">New user, Create new Account</string>
     <string name="forgot_password">نسيت كلمة المرور</string>
-    <string name="password">كلمة المرور</string>
-    <string name="email">البريد الالكتروني</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter your password</string>
+
+    <string name="email">Email</string>
 
     /* register */
-    <string name="create_account">أنشئ حساب</string>
-    <string name="name">الاسم</string>
-    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="create_account">Create New Account</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm your password</string>
     <string name="register">انشاء الحساب</string>
-    <string name="you_have_an_account">لديك حساب بالفعل !!</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="name_empty_error">Name Required</string>
+    <string name="email_empty_error">Email Required</string>
+    <string name="password_empty_error">Password Required</string>
+    <string name="password_is_less_error">Require 6 characters at least</string>
+    <string name="password_mismatch_error">Password mismatch</string>
+    <string name="name_invalid_error">Please enter a valid name</string>
+    <string name="email_invalid_error">Please enter a valid email</string>
+
+    <string name="all_fields_empty_error">Please fill the fields</string>
+
+
+
+
+    <string name="you_have_account_text">Already have an account? Log In</string>
 
     /* forgot password */
     <string name="enter_you_registered_email">أدخل بريدك الالكتروني لتصلك بيانات استرجاع كلمة المرور</string>
@@ -71,6 +87,17 @@
     <string name="favorite_books">الكتب المفضلة</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
     <string name="number_of_pdf">عدد الفصول</string>
+
+    <string name="unknown_error">sorry error happen</string>
+    <string name="enter_name">Enter Your Name</string>
+
+
+
+
+    /* register screen */
+    <string name="message_verify_account">please verify your account</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_email">Enter your email</string>
 
 
 </resources>
