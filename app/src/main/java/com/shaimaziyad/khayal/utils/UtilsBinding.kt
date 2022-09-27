@@ -1,6 +1,7 @@
 package com.shaimaziyad.khayal.utils
 
 import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -40,4 +41,14 @@ fun setError(text: TextView, error: String?){
     }else {
         text.hide()
     }
+}
+
+
+@BindingAdapter("showLoading")
+fun showLoading(v: View, status: DataStatus){
+   when(status){
+       DataStatus.LOADING ->{v.show()}
+       DataStatus.SUCCESS ->{v.hide()}
+       DataStatus.ERROR ->{v.hide()}
+   }
 }

@@ -63,6 +63,12 @@ class DataBase {
         }
     }
 
+    suspend fun signWithEmailAndPassword(email: String, password: String): AuthResult? {
+        return auth.signInWithEmailAndPassword(email, password).await()
+    }
+
+    
+
     suspend fun signUpWithEmail(user: User, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
 
         return supervisorScope {
@@ -174,7 +180,7 @@ class DataBase {
         loginWithEmailAndPassword(email, password,onSuccess, onError)
 
 
-    suspend fun getUser(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
+    suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
 
     suspend fun signOut(): Result<Boolean> {
         return supervisorScope {

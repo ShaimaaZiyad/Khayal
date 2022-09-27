@@ -15,14 +15,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     /* home */
-    <string name="login">تسجيل الدخول</string>
-    <string name="welcome_to_khayal">أهلا بك في خيال</string>
+    <string name="login">Login</string>
+    <string name="login_welcome_text">Welcome back</string>
+
+
+    <string name="welcome_to_khayal">Welcome to khayal App</string>
 
     /* login */
     <string name="new_user_info">New user, Create new Account</string>
     <string name="forgot_password">نسيت كلمة المرور</string>
     <string name="password">Password</string>
     <string name="enter_password">Enter your password</string>
+    <string name="remember_text">Remember me</string>
+    <string name="login_forgot_text">Forgot Password?</string>
+    <string name="login_by_google">By Google</string>
+
+
+
 
     <string name="email">Email</string>
 

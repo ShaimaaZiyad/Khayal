@@ -40,12 +40,12 @@ class Register : Fragment() {
     private fun setViews() {
         binding.apply {
 
+            authViewModel = viewModel
 
             /** button register **/
             btnSignUp.setOnClickListener {
                 signUp()
             }
-
 
             /** button have account **/
             btnHaveAccount.setOnClickListener {
@@ -74,6 +74,8 @@ class Register : Fragment() {
                     showMessage(getString(R.string.message_verify_account))
                 }
             }
+
+
 
 
 
@@ -142,10 +144,6 @@ class Register : Fragment() {
 
 
             }
-
-
-
-
 
         }
     }
