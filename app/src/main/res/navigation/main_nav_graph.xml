@@ -13,7 +13,8 @@
         tools:layout="@layout/splash" >
         <action
             android:id="@+id/action_splash_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:popUpTo="@id/splash" />
     </fragment>
 
 
@@ -50,7 +51,8 @@
             app:destination="@id/home" />
         <action
             android:id="@+id/action_register_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:popUpTo="@id/register" />
     </fragment>
     <fragment
         android:id="@+id/home"

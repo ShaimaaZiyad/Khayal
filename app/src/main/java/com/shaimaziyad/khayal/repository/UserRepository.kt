@@ -5,8 +5,9 @@ import com.google.firebase.auth.AuthResult
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.remote.DataBase
 
-class UserRepository(private val remote: DataBase) {
+class UserRepository() {
 
+    private val remote = DataBase()
 
     suspend fun register( user: User, onSuccess: (Task<AuthResult>) -> Unit, onError: (Exception) -> Unit) = remote.register(user, onSuccess, onError)
 

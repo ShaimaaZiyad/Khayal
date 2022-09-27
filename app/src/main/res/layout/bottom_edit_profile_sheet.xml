@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomEditProfileSheet"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
-    android:layoutDirection="rtl"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--Title-->
-    <TextView
-        android:id="@+id/toolbarTitleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/edit_profile"
-        android:textColor="@color/primaryDarkColor"
-        android:textStyle="bold" />
+    <data>
 
-    <!--Shape ableImageView profile image-->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profileIv"
-        app:shapeAppearanceOverlay="@style/styleRoundedCornersImage"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_person_gray" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/bottomEditProfileSheet"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@drawable/bottom_sheet_background"
+        android:layoutDirection="rtl"
+        android:orientation="vertical">
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/toolbarTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/edit_profile"
+            android:textColor="@color/primaryDarkColor"
+            android:textStyle="bold" />
+
+        <!--Shape ableImageView profile image-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileIv"
+            app:shapeAppearanceOverlay="@style/styleRoundedCornersImage"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_person_gray" />
 
         <!--Name-->
         <com.google.android.material.textfield.TextInputLayout
@@ -53,9 +59,10 @@
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray01" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Register Button-->
+
         <Button
             android:id="@+id/updateBtn"
             android:layout_width="220dp"
@@ -66,4 +73,6 @@
             android:text="@string/update"
             android:textColor="@color/white" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</layout>

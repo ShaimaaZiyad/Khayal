@@ -36,9 +36,9 @@
                 android:padding="10dp"
                 android:src="@drawable/ic_person_white" />
 
+<!--            setName="@{homeViewModel.user.name}"-->
             <TextView
                 android:id="@+id/titleTv"
-                setName="@{homeViewModel.user.name}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -47,6 +47,8 @@
                 android:textStyle="bold"
                 tools:text="@string/welcome" />
 
+
+<!--            android:text="@{homeViewModel.user.email}"-->
             <TextView
                 android:id="@+id/subTitleTv"
                 android:layout_width="wrap_content"
@@ -54,7 +56,6 @@
                 android:layout_below="@id/titleTv"
                 android:layout_centerHorizontal="true"
                 tools:text="@string/email_ex"
-                android:text="@{homeViewModel.user.email}"
                 android:textColor="@color/white" />
 
             <ImageButton
