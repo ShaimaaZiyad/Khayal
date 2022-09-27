@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shaimaziyad.khayal.R
-import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.LoginBinding
-import com.shaimaziyad.khayal.utils.UserType
 import com.shaimaziyad.khayal.utils.showMessage
 
 class Login : Fragment() {
@@ -25,11 +22,11 @@ class Login : Fragment() {
 
     private var mEmail = ""
     private var mPassword = ""
+    private var mIsRememberMe = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-
 
 
         setViews()
@@ -42,6 +39,13 @@ class Login : Fragment() {
         viewModel.apply {
 
 
+            /** isLogged live data **/
+            isLogged.observe(viewLifecycleOwner){isLogged ->
+                if (isLogged == true) {
+                    showMessage("Login Success")
+//                    findNavController().navigate(R.id.action_login_to_home)
+                }
+            }
 
 
 
@@ -52,10 +56,40 @@ class Login : Fragment() {
         binding.apply {
 
             authViewModel = viewModel
+            lifecycleOwner = this@Login
 
             /** button login **/
             btnLogin.setOnClickListener {
-                login()
+                mEmail = email.text?.trim().toString()
+                mPassword = password.text?.trim().toString()
+                mIsRememberMe = btnSwitchRem.isChecked
+
+                // email
+                if (mEmail.isEmpty()) {
+                    email.error = getString(R.string.email_empty_error)
+                    email.requestFocus()
+                    return@setOnClickListener
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+                    email.error = getString(R.string.email_invalid_error)
+                    email.requestFocus()
+                    return@setOnClickListener
+                }
+                // password
+                if (mPassword.isEmpty()) {
+                    password.error = getString(R.string.password_empty_error)
+                    password.requestFocus()
+                    return@setOnClickListener
+                }
+                if (mPassword.length < 6) {
+                    password.error = getString(R.string.password_is_less_error)
+                    password.requestFocus()
+                    return@setOnClickListener
+                }
+                else {
+                    viewModel.login(mEmail,mPassword,mIsRememberMe)
+                }
+
             }
 
             /** button sign up **/
@@ -72,6 +106,7 @@ class Login : Fragment() {
             btnLoginByGoogle.setOnClickListener {
                 loginByGoogle()
             }
+
         }
     }
 
@@ -84,7 +119,7 @@ class Login : Fragment() {
 
         submitBtn?.setOnClickListener {
             // resetPassword()
-            Toast.makeText(requireContext(), " تم الارسال" , Toast.LENGTH_SHORT).show()
+
         }
 
         dialog.show()
@@ -97,44 +132,6 @@ class Login : Fragment() {
         // todo: add functionality for login by google
     }
 
-
-
-    private fun login() {
-        binding.apply {
-            mEmail = email.text?.trim().toString()
-            mPassword = password.text?.trim().toString()
-
-            if (isAllFieldsFilled()) { // all fields empty
-                showMessage(getString(R.string.all_fields_empty_error))
-            }else {
-
-                // email
-                if (mEmail.isEmpty()) {
-                    email.error = getString(R.string.email_empty_error)
-                    email.requestFocus()
-                }else if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
-                    email.error = getString(R.string.email_invalid_error)
-                    email.requestFocus()
-                }
-
-                // password
-                if (mPassword.isEmpty()) {
-                    password.error = getString(R.string.password_empty_error)
-                    password.requestFocus()
-                }else if (mPassword.length < 6) {
-                    password.error = getString(R.string.password_is_less_error)
-                    password.requestFocus()
-                }
-
-                else {
-                    viewModel.login(mEmail,mPassword)
-                }
-
-
-            }
-
-        }
-    }
 
 
     private fun isAllFieldsFilled(): Boolean {

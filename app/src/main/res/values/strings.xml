@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">خـيـال</string>
-    <string name="size_text">حجم الملف</string>
+    <string name="app_name">Khayal</string>
+    <string name="size_text">File size</string>
     <string name="sample_text">N/N</string>
     <string name="welcome">أهلا بك</string>
 
@@ -29,6 +29,7 @@
     <string name="remember_text">Remember me</string>
     <string name="login_forgot_text">Forgot Password?</string>
     <string name="login_by_google">By Google</string>
+    <string name="login_error_user_is_not_exist">User is not Exist</string>
 
 
 

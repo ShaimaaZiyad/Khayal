@@ -1,7 +1,6 @@
 package com.shaimaziyad.khayal.data
 
 import android.os.Parcelable
-import com.google.firebase.firestore.IgnoreExtraProperties
 import com.shaimaziyad.khayal.utils.UserType
 import com.shaimaziyad.khayal.utils.getCurrentTime
 import kotlinx.parcelize.Parcelize
@@ -17,7 +16,7 @@ data class User (
     var profileImage : String = "",
     var userType: String = UserType.USER.name,
     var password: String = "",
-    var timestamp: Date = getCurrentTime(),
+    var createData: Date = getCurrentTime(),
     var likes: List<String> = ArrayList(), // id of novel data
     var reads: List<String> = ArrayList()
 
@@ -30,7 +29,7 @@ data class User (
             "name" to name,
             "profileImage" to profileImage,
             "userType" to userType,
-            "timestamp" to timestamp,
+            "timestamp" to createData,
             "likes" to likes,
             "reads" to reads
         )

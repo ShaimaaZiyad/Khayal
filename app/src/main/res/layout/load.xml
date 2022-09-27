@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:visibility="visible"
         android:background="@color/loader_background_color"
         android:translationZ="2dp">
 

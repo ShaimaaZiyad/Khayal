@@ -8,10 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.DataStatus
+import com.shaimaziyad.khayal.utils.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class AuthViewModel:ViewModel(){
+class AuthViewModel: ViewModel(){
 
     companion object {
         private const val TAG = "AuthViewModel"
@@ -35,56 +38,78 @@ class AuthViewModel:ViewModel(){
     val error: LiveData<String?> = _error
 
 
+    init {
+        resetStatus()
 
+    }
 
     fun register(user: User) {
         resetStatus()
         _registerStatus.value = DataStatus.LOADING
         Log.d(TAG,"onRegister: Loading...")
         viewModelScope.launch {
-            userRepository.signUpWithEmail(user,
-            onSuccess = {
+            val res = userRepository.signUpWithEmail(user)
+            if (res is Result.Success){
                 Log.d(TAG,"onRegister: Registration have been success...")
                 _registerStatus.value = DataStatus.SUCCESS
                 _isRegister.value = true
-            },
-            onError = { error->
-                Log.d(TAG,"onRegister: Registration Failed due to ${error.message}")
+            }else if( res is Result.Error){
+                Log.d(TAG,"onRegister: Registration Failed due to ${res.exception.message}")
                 _isRegister.value = null
                 _registerStatus.value = DataStatus.ERROR
-                _error.value = error.message
-            })
+                _error.value = res.exception.message
+            }
         }
     }
 
 
 
-    fun login(email: String, password: String) {
+//    fun register(user: User) {
+//        resetStatus()
+//        _registerStatus.value = DataStatus.LOADING
+//        Log.d(TAG,"onRegister: Loading...")
+//        viewModelScope.launch {
+//            userRepository.signUpWithEmail(user,
+//            onSuccess = {
+//                Log.d(TAG,"onRegister: Registration have been success...")
+//                _registerStatus.value = DataStatus.SUCCESS
+//                _isRegister.value = true
+//            },
+//            onError = { error->
+//                Log.d(TAG,"onRegister: Registration Failed due to $error")
+//                _isRegister.value = null
+//                _registerStatus.value = DataStatus.ERROR
+//                _error.value = error
+//            })
+//        }
+//    }
+
+
+    fun login(email: String, password: String,isRemOn: Boolean) {
         resetStatus()
         _loginStatus.value = DataStatus.LOADING
-        Log.d(TAG,"onRegister: Loading...")
+        Log.d(TAG,"onLogin: Loading...")
         viewModelScope.launch {
-            userRepository.loginWithEmail(email,password,
-                onSuccess = {
-                    Log.d(TAG,"onRegister: Registration have been success...")
+            val res =  userRepository.loginWithEmail(email, password, isRemOn)
+            if (res is Result.Success) {
+                Log.d(TAG,"onLogin: Login have been success...")
                     _loginStatus.value = DataStatus.SUCCESS
                     _isLogged.value = true
-                },
-                onError = { error->
-                    Log.d(TAG,"onRegister: Registration Failed due to ${error.message}")
+            }
+            else if (res is Result.Error){
+                Log.d(TAG,"onLogin: Login Failed due to ${res.exception.message}")
                     _loginStatus.value = DataStatus.ERROR
                     _isLogged.value = null
-                    _error.value = error.message
-                })
+                    _error.value = res.exception.message
+            }
         }
     }
 
 
-    fun setError(message: String){
+
+    fun setError(message: String) {
         _error.value = message
     }
-
-
 
 
     private fun resetStatus(){

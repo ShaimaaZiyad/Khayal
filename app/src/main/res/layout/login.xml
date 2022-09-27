@@ -17,13 +17,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/load"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         showLoading="@{authViewModel.loginStatus}"
-        layout="@layout/load"/>
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/load"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/load"/>
+
+    </FrameLayout>
+
 
 
     <LinearLayout
@@ -168,6 +175,7 @@
 
                     </LinearLayout>
 
+
                     <TextView
                         android:id="@+id/btn_forgot_password"
                         android:layout_width="wrap_content"
@@ -217,8 +225,7 @@
 
                 <androidx.legacy.widget.Space
                     android:layout_width="wrap_content"
-                    android:layout_height="10dp"/>
-
+                    android:layout_height="20dp"/>
 
 
                 <LinearLayout

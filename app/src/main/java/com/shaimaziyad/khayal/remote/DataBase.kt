@@ -21,11 +21,14 @@ import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.tasks.await
 
 class DataBase {
+
+
     companion object{
         private const val TAG = "RemoteDataBase"
 
         private const val USERS_COLLECTION = "Users"
 
+        private const val FIELD_EMAIL = "email"
         private const val NOVELS_COLLECTION = "Novels"
         private const val PDFS_COUNT = "pdfsCount"
         private const val PDFS_FILED = "pdfs"
@@ -63,122 +66,18 @@ class DataBase {
         }
     }
 
+    suspend fun isUserExist(email: String) =  usersPath.whereEqualTo(FIELD_EMAIL, email).get().await().first().exists()
+
     suspend fun signWithEmailAndPassword(email: String, password: String): AuthResult? {
         return auth.signInWithEmailAndPassword(email, password).await()
     }
 
-    
-
-    suspend fun signUpWithEmail(user: User, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
-
-        return supervisorScope {
-
-            val task = async {
-                auth.createUserWithEmailAndPassword(user.email, user.password)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful){
-                            it.result.user?.sendEmailVerification()?.addOnCompleteListener { sendVerifyTask ->
-                                Log.d(TAG,"Registration Success: ${it.result}")
-                                onSuccess(it)
-                                addUser(user)
-                            }
-                        }
-                    }
-                    .addOnFailureListener {
-                        onError(it)
-                        Log.d(TAG,"Registration Failed: message: ${it.message}" )
-                    }
-            }
-            try {
-                task.await()
-            }catch (ex: Exception){
-                onError(ex)
-                Log.d(TAG,"Registration Failed: message: ${ex.message}" )
-            }
-        }
-
-//        try {
-//            auth.createUserWithEmailAndPassword(user.email,user.password)
-//                .addOnSuccessListener { auth->
-//                    val userId = auth.user?.uid!! // generic from firebase auth
-//                    user.uid = userId
-//                    addUser(user).addOnSuccessListener {
-//                        onSuccess(auth)
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    onError(it)
-//                }
-//        }catch (ex: Exception){
-//            onError(ex)
-//        }
-
-    }
-
-    private fun addUser(user: User) {
-        try {
-            usersPath.document(user.uid).set(user)
-                .addOnCompleteListener {
-                    Log.d(TAG,"adding User Success")
-                }
-                .addOnFailureListener {
-                    Log.d(TAG,"adding User Failed: message: ${it.message} \n cause: ${it.cause}" )
-                }
-        } catch ( ex: Exception){
-            Log.d(TAG,"Adding User Failed: message: ${ex.message} \n cause: ${ex.cause}" )
-            Result.Error(ex)
-        }
-    }
+    suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password).await()
 
 
-    private suspend fun loginWithEmailAndPassword(email: String, password: String, onSuccess:(Task<AuthResult>)-> Unit, onError:(Exception)-> Unit) {
-        return supervisorScope {
-            val task = async {
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful){
-                            if (it.result.user!!.isEmailVerified){
-                                Log.d(TAG,"Login Success: ${it.result}")
-                                onSuccess(it)
-                            }else{
-                                val error = "email is not verified!"
-                                Log.d(TAG,"Login Error: $error")
-                                onError(Exception(error))
-                            }
-                        }
-                    }
-                    .addOnFailureListener {
-                        Log.d(TAG,"Login Error: ${it.message}")
-                        onError(it)
-                    }
-            }
-            try {
-                task.await()
-            }catch (ex: Exception){
-                Log.d(TAG,"Login Error: ${ex.message}")
-                onError(ex)
-            }
-        }
 
-//        try {
-//            auth.signInWithEmailAndPassword(email, password)
-//                .addOnSuccessListener {
-//                    onSuccess(it)
-//                }
-//                .addOnFailureListener {
-//                    onError(it)
-//                }
-//        }catch (ex: Exception){
-//            onError(ex)
-//        }
-    }
-
-    suspend fun login(email: String,
-                       password: String,
-                       onSuccess:(Task<AuthResult>)-> Unit,
-                       onError:(Exception)-> Unit) =
-        loginWithEmailAndPassword(email, password,onSuccess, onError)
-
+    fun addUser(user: User) = usersPath.document(user.uid).set(user)
+    suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
 
     suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
 

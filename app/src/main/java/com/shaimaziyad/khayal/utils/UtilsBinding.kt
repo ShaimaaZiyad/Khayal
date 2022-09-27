@@ -10,11 +10,13 @@ import com.bumptech.glide.Glide
 import com.shaimaziyad.khayal.R
 
 @BindingAdapter("setNovelCover")
-fun setNovelCover(image: ImageView, uri: String){
-    Glide.with(image.context)
-        .load(uri.toUri())
-        .placeholder(R.drawable.icon)
-        .into(image)
+fun setNovelCover(image: ImageView, uri: String?){
+    if(uri != null){
+        Glide.with(image.context)
+            .load(uri.toUri())
+            .placeholder(R.drawable.icon)
+            .into(image)
+    }
 }
 
 
@@ -35,7 +37,7 @@ fun setHi(text: TextView, name: String) {
 // todo: we can update this to translate any error at run time.
 @BindingAdapter("setError")
 fun setError(text: TextView, error: String?){
-    if (error != null){
+    if (!error.isNullOrBlank()){
         text.show()
         text.text = error
     }else {
@@ -45,10 +47,12 @@ fun setError(text: TextView, error: String?){
 
 
 @BindingAdapter("showLoading")
-fun showLoading(v: View, status: DataStatus){
-   when(status){
-       DataStatus.LOADING ->{v.show()}
-       DataStatus.SUCCESS ->{v.hide()}
-       DataStatus.ERROR ->{v.hide()}
-   }
+fun showLoading(v: View, status: DataStatus?) {
+    if (status != null){
+        when(status){
+            DataStatus.LOADING ->{v.show()}
+            DataStatus.SUCCESS ->{v.hide()}
+            DataStatus.ERROR ->{v.hide()}
+        }
+    }
 }
