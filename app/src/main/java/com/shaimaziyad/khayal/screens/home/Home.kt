@@ -13,6 +13,7 @@ import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.databinding.HomeBinding
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.UserType
+import com.shaimaziyad.khayal.utils.showMessage
 
 class Home : Fragment() {
 
@@ -58,6 +59,41 @@ class Home : Fragment() {
     }
 
 
+    private fun setToolBar() {
+        binding.apply {
+
+
+            /** button profile **/
+            btnProfile.setOnClickListener {
+                navigateToProfile()
+            }
+
+            /** button options **/
+            btnOptions.setOnClickListener {
+
+            }
+
+            /** button notification **/
+            notify.btnNotify.setOnClickListener {
+                navigateToNotification()
+            }
+
+
+
+        }
+    }
+
+
+
+
+    private fun navigateToProfile() {
+        findNavController().navigate(R.id.action_userHome_to_profile)
+    }
+
+    fun navigateToNotification(){
+        showMessage("under development")
+    }
+
     private fun setAdapter(){
 
         novelAdapter.clickListener = object: AdapterNovel.NovelClickListener {
@@ -88,13 +124,10 @@ class Home : Fragment() {
             lifecycleOwner = this@Home
 
             setAdapter()
+            setToolBar()
 
 
 
-            /** button profile **/
-            btnProfile.setOnClickListener {
-                findNavController().navigate(R.id.action_userHome_to_profile)
-            }
 
         }
     }

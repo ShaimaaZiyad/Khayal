@@ -1,59 +1,114 @@
 <resources>
     <string name="app_name">Khayal</string>
-    <string name="welcome">Welcome</string>
-    <string name="search">Search</string>
-    <string name="login">Login</string>
+    <string name="size_text">File size</string>
     <string name="sample_text">N/N</string>
-    <string name="welcome_to_khayal">Welcome to Khayal</string>
-    <string name="new_user_please_register">New user ? please Register.</string>
-    <string name="forgot_password">Forgot password !!</string>
+
+
+    <string name="adUnitId_home">ca-app-pub-8366065026867038/5227383433</string>
+    <string name="adUnitId_viewNovel">ca-app-pub-8366065026867038/7139230909</string>
+    <string name="ID_Interstitial">ca-app-pub-8366065026867038/5581810496</string>
+
+    <string name="search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    /* home */
+    <string name="login">Login</string>
+    <string name="login_welcome_text">Welcome back</string>
+
+
+    <string name="welcome_to_khayal">Welcome to khayal App</string>
+
+    /* login */
+    <string name="new_user_info">New user, Create new Account</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
     <string name="password">Password</string>
-    <string name="email">Email</string>
-    <string name="create_account">Create  account</string>
-    <string name="name">Name</string>
-    <string name="confirm_password">Confirm password</string>
-    <string name="register">Register</string>
-    <string name="you_have_an_account">You have an account !!</string>
-    <string name="enter_you_registered_email">Enter your email to receive password recovery information</string>
-    <string name="send">Send</string>
-    <string name="add_novel">Add novel</string>
-    <string name="category_title">Category title</string>
-    <string name="novel_title">Novel title</string>
-    <string name="novel_des">Novel des</string>
-    <string name="novel_type">Novel type</string>
-    <string name="writer_name">Writer name</string>
-    <string name="add_pdf">Add pdf</string>
-    <string name="pdf_title">Pdf title</string>
-    <string name="edit_novel">Edit novel</string>
-    <string name="update">Update</string>
-    <string name="novel_details">Novel details</string>
-    <string name="date">Date</string>
-    <string name="chapters">Chapters</string>
-    <string name="views">Views</string>
-    <string name="go_chapters">Go to chapters</string>
-    <string name="add_favorite">Add favorite</string>
-    <string name="chapters_of_novel">Chapters of novel</string>
-    <string name="profile">Profile</string>
-    <string name="full_name">Full Name</string>
-    <string name="account">Account</string>
-    <string name="member">Member since</string>
-    <string name="favorite_books">Favorite books</string>
-    <string name="edit_profile">Edit profile</string>
-    <string name="number_of_pdf">Number of pdf</string>
-    <string name="file_size">File size</string>
-    <string name="login_welcome_text">Login</string>
+    <string name="enter_password">Enter your password</string>
     <string name="remember_text">Remember me</string>
-    <string name="unknown_error">Unknown error</string>
-    <string name="login_by_google">Login by google</string>
+    <string name="login_forgot_text">Forgot Password?</string>
+    <string name="login_by_google">By Google</string>
+    <string name="login_error_user_is_not_exist">User is not Exist</string>
+
+
+
+
+    <string name="email">Email</string>
+
+    /* register */
+    <string name="create_account">Create New Account</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm your password</string>
+    <string name="register">انشاء الحساب</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="name_empty_error">Name Required</string>
+    <string name="email_empty_error">Email Required</string>
+    <string name="password_empty_error">Password Required</string>
+    <string name="password_is_less_error">Require 6 characters at least</string>
+    <string name="password_mismatch_error">Password mismatch</string>
+    <string name="name_invalid_error">Please enter a valid name</string>
+    <string name="email_invalid_error">Please enter a valid email</string>
+
+    <string name="all_fields_empty_error">Please fill the fields</string>
+
+
+
+
+    <string name="you_have_account_text">Already have an account? Log In</string>
+
+    /* forgot password */
+    <string name="enter_you_registered_email">أدخل بريدك الالكتروني لتصلك بيانات استرجاع كلمة المرور</string>
+    <string name="send">ارسال</string>
+
+
+    /* adminControl */
     <string name="email_ex">shaima@gmail.com</string>
+    <string name="adminControl">لوحة تحكم المسؤول</string>
+    <string name="add_novel">أضف رواية</string>
+    <string name="add_category">أضف فئة</string>
+
+    /* add category */
+    <string name="category_title">عنوان الفئة</string>
+
+    /* add novel */
+    <string name="novel_title">عنوان الرواية</string>
+    <string name="novel_des">وصف الرواية</string>
+    <string name="novel_type">نوع الرواية</string>
+    <string name="writer_name">اسم الكاتب</string>
+    <string name="add_pdf">أضف ملف pdf</string>
+    <string name="pdf_title">عنوان ملف pdf</string>
+
+    /* edit novel */
+    <string name="edit_novel">تعديل بيانات الرواية</string>
+    <string name="update">تعديل</string>
+    <string name="novel_details">تفاصيل الرواية</string>
+    <string name="date">التاريخ</string>
+    <string name="chapters">عدد الفصول</string>
+    <string name="views">عدد الزيارات</string>
+    <string name="go_chapters">اقرأ الفصول</string>
+    <string name="add_favorite">أضف للمفضلة</string>
+    <string name="chapters_of_novel">فصول الرواية</string>
+    <string name="number_of_chapter">رقم الفصل</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="full_name">الاسم بالكامل</string>
+    <string name="account">الحساب</string>
+    <string name="member">عضو منذ</string>
+    <string name="favorite_books">الكتب المفضلة</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="number_of_pdf">عدد الفصول</string>
+
+    <string name="unknown_error">sorry error happen</string>
+    <string name="enter_name">Enter Your Name</string>
+
+
+
+
+    /* register screen */
+    <string name="message_verify_account">please verify your account</string>
     <string name="enter_your_name">Enter your name</string>
-    <string name="enter_password">Enter password</string>
-    <string name="enter_your_email">Enter your email</string>
-    <string name="email_empty_error">Email empty error</string>
-    <string name="email_invalid_error">Email invalid error</string>
-    <string name="password_empty_error">Password empty error</string>
-    <string name="password_is_less_error">Password is less error</string>
-    <string name="name_empty_error">Name empty error</string>
-    <string name="name_invalid_error">Name invalid error</string>
-    <string name="password_mismatch_error">Password mismatch error</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="no_data_text">No data found</string>
+
+
 </resources>

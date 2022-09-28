@@ -52,9 +52,20 @@ fun showLoading(v: View, status: DataStatus?) {
             DataStatus.LOADING ->{v.show()}
             DataStatus.SUCCESS ->{v.hide()}
             DataStatus.ERROR ->{v.hide()}
+
         }
     }
 }
+
+@BindingAdapter("showIfDataNotExist")
+fun showIfDataNotExist(v: View, b: Boolean?) {
+    if (b == true){ //data is not found
+        v.show()
+    }else { // data is exist
+        v.hide()
+    }
+}
+
 
 
 @BindingAdapter("hideViewIfCustomer")

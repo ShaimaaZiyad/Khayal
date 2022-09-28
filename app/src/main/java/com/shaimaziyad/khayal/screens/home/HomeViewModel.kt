@@ -40,6 +40,9 @@ class HomeViewModel: ViewModel() {
     private val _isCustomer = MutableLiveData<Boolean?>()
     val isCustomer: LiveData<Boolean?> = _isCustomer
 
+    private val _isDataExist = MutableLiveData<Boolean?>()
+    val isDataExist: LiveData<Boolean?> = _isDataExist
+
 
     init {
         loadUser()
@@ -67,15 +70,19 @@ class HomeViewModel: ViewModel() {
                 _novelsStatus.value = DataStatus.SUCCESS
                 val data = res.data
                 _novels.value = data
+                _isDataExist.value = _novels.value.isNullOrEmpty()
             }
             else if(res is Error) {
                 Log.d(TAG,"onError: error happen during fetching novels due to ${res.exception.message}")
                 _novelsStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
+                _isDataExist.value = null
             }
 
         }
     }
+
+
 
 
 

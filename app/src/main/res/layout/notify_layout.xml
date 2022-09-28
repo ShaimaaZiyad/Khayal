@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
 
         <RelativeLayout
-            android:id= "@+id/btnNotify"
-            android:layout_width = "wrap_content"
+            android:id="@+id/btnNotify"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop = "8dp" >
+            android:paddingTop="8dp">
 
             <ImageView
-                android:layout_width ="34dp"
+                android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:src="@drawable/ic_notifications"
                 app:tint="@color/gray01" />
@@ -34,4 +40,5 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
