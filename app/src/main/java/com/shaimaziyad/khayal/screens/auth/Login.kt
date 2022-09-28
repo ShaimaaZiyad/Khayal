@@ -67,8 +67,7 @@ class Login : Fragment() {
             /** isLogged live data **/
             isLogged.observe(viewLifecycleOwner){isLogged ->
                 if (isLogged == true) {
-                    showMessage("Login Success")
-//                    findNavController().navigate(R.id.action_login_to_home)
+                    findNavController().navigate(R.id.action_login_to_home)
                 }
             }
         }

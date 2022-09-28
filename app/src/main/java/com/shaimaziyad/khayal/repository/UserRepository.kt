@@ -56,7 +56,7 @@ class UserRepository() {
 
                 val loginTask = async {
                     val userId = remote.signWithEmailAndPassword(email,password)?.user!!.uid
-                    val user = remote.getUserById(userId)!!
+                    val user = remote.getUserById()!!
                 }
                 loginTask.await()
                 Success(true)
@@ -84,6 +84,6 @@ class UserRepository() {
                               onSuccess:( Task<Void>)-> Unit,
                               onError:(String)-> Unit) = remote.resetPassword(email, onSuccess, onError)
 
-    suspend fun loadUser(userId: String) = remote.getUserById(userId)!!
+    suspend fun loadUser() = remote.getUserById()!!
 
 }

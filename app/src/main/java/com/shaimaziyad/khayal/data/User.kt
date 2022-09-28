@@ -29,7 +29,7 @@ data class User (
             "name" to name,
             "profileImage" to profileImage,
             "userType" to userType,
-            "timestamp" to createData,
+            "createData" to createData,
             "likes" to likes,
             "reads" to reads
         )

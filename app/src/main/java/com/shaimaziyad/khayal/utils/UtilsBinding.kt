@@ -28,7 +28,7 @@ fun setSize(text: TextView, size: Int) {
 
 // todo : fix the welcome text by using xml file.
 @BindingAdapter("setName")
-fun setHi(text: TextView, name: String) {
+fun setHi(text: TextView, name: String?) {
     val welcome = text.context.resources.getString(R.string.welcome) + name
     text.text = name
 }

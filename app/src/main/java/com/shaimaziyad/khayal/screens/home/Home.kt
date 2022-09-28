@@ -83,6 +83,7 @@ class Home : Fragment() {
         binding.apply {
 
             homeViewModel = viewModel
+            lifecycleOwner = this@Home
 
             setAdapter()
 

@@ -35,7 +35,7 @@
                 android:padding="10dp"
                 android:src="@drawable/ic_person_white" />
 
-<!--            setName="@{homeViewModel.user.name}"-->
+
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
@@ -43,19 +43,20 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/white"
+                setName="@{homeViewModel.user.name}"
                 android:textStyle="bold"
                 tools:text="@string/welcome" />
 
-
-<!--            android:text="@{homeViewModel.user.email}"-->
             <TextView
                 android:id="@+id/subTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleTv"
+                android:text="@{homeViewModel.user.email}"
                 android:layout_centerHorizontal="true"
                 tools:text="@string/email_ex"
                 android:textColor="@color/white" />
+
 
             <ImageButton
                 android:id="@+id/logoutBtn"
@@ -108,7 +109,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/searchEt"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

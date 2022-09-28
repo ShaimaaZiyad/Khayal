@@ -41,6 +41,8 @@ class DataBase {
     private val usersPath = fireStore.collection(USERS_COLLECTION)
     private val novelsPath = fireStore.collection(NOVELS_COLLECTION)
 
+    private val userId = auth.currentUser?.uid!! // use this variable only after user login to firebase.
+
     // you can get the live data from here once the class is init
     private val _observeUsers = MutableLiveData<List<User>?>()
     val users: LiveData<List<User>?> = _observeUsers
@@ -74,10 +76,12 @@ class DataBase {
 
     suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password).await()
 
+
     fun addUser(user: User) = usersPath.document(user.uid).set(user)
+
     suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
 
-    suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
+    suspend fun getUserById() = usersPath.document(userId).get().await().toObject(User::class.java)
 
     suspend fun signOut(): Result<Boolean> {
         return supervisorScope {
