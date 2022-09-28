@@ -20,6 +20,8 @@ class AdapterNovel : ListAdapter<NovelData, AdapterNovel.ViewHolder>(NovelDiffCa
                 return ViewHolder(RowNovelUserBinding.inflate(LayoutInflater.from(parent.context)))
             }
         }
+
+
         // update ui
         fun onBind(data: NovelData, clickListener: NovelClickListener) {
             binding.novel = data
@@ -28,24 +30,34 @@ class AdapterNovel : ListAdapter<NovelData, AdapterNovel.ViewHolder>(NovelDiffCa
             binding.btnItem.setOnClickListener {
                 clickListener.onClick(data,adapterPosition)
             }
+
             binding.executePendingBindings()
         }
+
+
     }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.binding(parent)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
         holder.onBind(novel,clickListener)
     }
 
+
+
     companion object NovelDiffCallback: DiffUtil.ItemCallback<NovelData>(){
         override fun areItemsTheSame(oldItem: NovelData, newItem: NovelData): Boolean {
             return oldItem == newItem
         }
+
         override fun areContentsTheSame(oldItem: NovelData, newItem: NovelData): Boolean {
             return oldItem.novelId == newItem.novelId
         }
+
     }
 
 
@@ -56,6 +68,8 @@ class AdapterNovel : ListAdapter<NovelData, AdapterNovel.ViewHolder>(NovelDiffCa
 //    fun deleteNovel(){
 //
 //    }
+
+
     interface NovelClickListener {
         fun onClick(novel: NovelData, index: Int)
     }

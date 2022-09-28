@@ -134,7 +134,7 @@
                         android:hint="@string/email"
                         app:expandedHintEnabled="false"
                         app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
-                        app:placeholderText="@string/enter_your_email"
+                        app:placeholderText="Your Email"
                         app:startIconTint="@color/gray01"
                         app:startIconDrawable="@drawable/ic_email_gray"
                         app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/uthman_taha_regular"
-                        android:text="@string/you_have_an_account"
+                        android:text="@string/you_have_account_text"
                         android:layout_gravity="center"
                         android:textColor="@color/primaryColor" />
 
@@ -240,7 +240,7 @@
                         android:layout_marginTop="20dp"
                         android:background="@drawable/shape_button01"
                         android:fontFamily="@font/uthman_taha_regular"
-                        android:text="@string/register"
+                        android:text="@string/SignUp"
                         android:textColor="@color/white" />
 
 

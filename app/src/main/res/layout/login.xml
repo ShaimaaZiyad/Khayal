@@ -121,7 +121,7 @@
                     app:endIconMode="password_toggle"
                     app:expandedHintEnabled="false"
                     app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
-                    app:placeholderText="@string/password"
+                    app:placeholderText="@string/enter_password"
                     app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center"
-                        android:text="@string/forgot_password"
+                        android:text="@string/login_forgot_text"
                         android:textAppearance="@style/TextAppearance.MyTheme.Subtitle2"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@+id/login_remember_switch"

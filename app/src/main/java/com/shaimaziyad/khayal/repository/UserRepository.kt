@@ -19,9 +19,13 @@ import java.util.*
 
 class UserRepository() {
 
+
     companion object {
         private const val TAG = "UserRepository"
     }
+
+
+
 
     private val remote = DataBase()
 
@@ -50,6 +54,9 @@ class UserRepository() {
             }
         }
     }
+
+
+
     suspend fun loginWithEmail(email: String, password: String,isRemOn: Boolean): Result<Boolean> {
         return supervisorScope {
             try {
@@ -77,6 +84,41 @@ class UserRepository() {
             }
         }
     }
+
+
+//    suspend fun loginWithEmail(email: String, password: String,isRemOn: Boolean): Result<Boolean> {
+//        return supervisorScope {
+//            try {
+////                val signOutPref = async { sharePref.signOut() }
+//                val loginTask = async {
+//                    val userId = remote.signWithEmailAndPassword(email,password)?.user?.uid
+//                    if (userId != null){
+//                        val user = loadUser(userId) // todo: save the user in share pref
+//                        if (isRemOn){
+//                            // todo: keep user login
+//                        }else{ }
+//                    }
+//                }
+//                loginTask.await()
+//                Success(true)
+//            }catch (ex: FirebaseAuthInvalidUserException) {
+//                val message = "user is not exist"
+//                Log.d(TAG, message)
+//                Error(Exception(message))
+//            }catch (ex: FirebaseAuthInvalidCredentialsException) {
+//                val message = "incorrect password"
+//                Log.d(TAG, message)
+//                Error(Exception(message))
+//            }catch (ex: FirebaseNetworkException) {
+//                val message = "network connection required"
+//                Log.d(TAG, message)
+//                Error(Exception(message))
+//
+//            }
+//        }
+//    }
+
+
 
     suspend fun signOut() = remote.signOut()
 
