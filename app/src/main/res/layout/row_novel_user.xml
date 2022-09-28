@@ -13,7 +13,6 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/btnItem"
         android:layout_width="match_parent"
-        android:layoutDirection="rtl"
         android:layout_height="140dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="5dp"
@@ -107,7 +106,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/pdfRl"
                 android:maxLines="1"
-                tools:text="@string/size_text" />
+                tools:text="@string/file_size" />
 
 
 

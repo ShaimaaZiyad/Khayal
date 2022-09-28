@@ -46,9 +46,6 @@ class Login : Fragment() {
 //                    findNavController().navigate(R.id.action_login_to_home)
                 }
             }
-
-
-
         }
     }
 
@@ -106,7 +103,6 @@ class Login : Fragment() {
             btnLoginByGoogle.setOnClickListener {
                 loginByGoogle()
             }
-
         }
     }
 

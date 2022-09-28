@@ -9,8 +9,6 @@ import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.DataStatus
 import com.shaimaziyad.khayal.utils.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
@@ -61,30 +59,6 @@ class AuthViewModel: ViewModel(){
             }
         }
     }
-
-
-
-//    fun register(user: User) {
-//        resetStatus()
-//        _registerStatus.value = DataStatus.LOADING
-//        Log.d(TAG,"onRegister: Loading...")
-//        viewModelScope.launch {
-//            userRepository.signUpWithEmail(user,
-//            onSuccess = {
-//                Log.d(TAG,"onRegister: Registration have been success...")
-//                _registerStatus.value = DataStatus.SUCCESS
-//                _isRegister.value = true
-//            },
-//            onError = { error->
-//                Log.d(TAG,"onRegister: Registration Failed due to $error")
-//                _isRegister.value = null
-//                _registerStatus.value = DataStatus.ERROR
-//                _error.value = error
-//            })
-//        }
-//    }
-
-
     fun login(email: String, password: String,isRemOn: Boolean) {
         resetStatus()
         _loginStatus.value = DataStatus.LOADING
@@ -104,9 +78,6 @@ class AuthViewModel: ViewModel(){
             }
         }
     }
-
-
-
     fun setError(message: String) {
         _error.value = message
     }

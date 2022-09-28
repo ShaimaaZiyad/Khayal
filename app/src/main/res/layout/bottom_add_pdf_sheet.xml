@@ -4,8 +4,7 @@
     android:id="@+id/bottomAddPdfSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
-    android:layoutDirection="rtl">
+    android:background="@drawable/bottom_sheet_background">
 
     <!--Title-->
     <TextView

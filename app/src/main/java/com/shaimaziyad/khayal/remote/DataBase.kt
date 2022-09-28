@@ -74,8 +74,6 @@ class DataBase {
 
     suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password).await()
 
-
-
     fun addUser(user: User) = usersPath.document(user.uid).set(user)
     suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
 
