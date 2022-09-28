@@ -1,6 +1,8 @@
 package com.shaimaziyad.khayal.screens.auth
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +12,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.LoginBinding
 import com.shaimaziyad.khayal.utils.showMessage
@@ -19,6 +28,13 @@ class Login : Fragment() {
 
     private lateinit var binding: LoginBinding
     private lateinit var viewModel: AuthViewModel
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private companion object {
+        private const val RC_SIGN_IN = 100
+        private const val TAG = "GOOGLE_SIGN_IN_TAG"
+    }
+    //firebase auth
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private var mEmail = ""
     private var mPassword = ""
@@ -27,6 +43,15 @@ class Login : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
+
+        // Configure Google Sign In
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), googleSignInOptions)
 
 
         setViews()
@@ -124,21 +149,82 @@ class Login : Fragment() {
 
 
     private fun loginByGoogle(){
-        showMessage("Login by google")
+       // showMessage("Login by google")
         // todo: add functionality for login by google
+
+        // begin google sign in
+        Log.d(TAG, "onCreate : begin Google SignIn")
+        val intent = googleSignInClient.signInIntent
+        startActivityForResult(intent, RC_SIGN_IN)
     }
-
-
 
     private fun isAllFieldsFilled(): Boolean {
         return  mEmail.isEmpty() && mPassword.isEmpty()
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Log.d(TAG, "onActivityResult : Google SignIn intent result")
+
+            val accountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = accountTask.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogleAccount(account)
+            } catch (e: Exception) {
+                // Google Sign In failed, update UI appropriately
+                Log.d(TAG, "Google sign in failed : ${e.message}")
+            }
+
+        }
+    }
+
+    private fun firebaseAuthWithGoogleAccount(account: GoogleSignInAccount?) {
+
+        Log.d(TAG, "firebaseAuthWithGoogleAccount : begin firebase auth with google account")
+
+        val credential = GoogleAuthProvider.getCredential(account!!.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnSuccessListener { authResult ->
+                // login success
+
+                Log.d(TAG, "firebaseAuthWithGoogleAccount : LoggedIn")
+
+                // get loggedIn user
+                val firebaseUser = firebaseAuth.currentUser
+
+                // get user info
+                val uid = firebaseUser!!.uid
+                val email = firebaseUser.email
+
+                Log.d(TAG, "firebaseAuthWithGoogleAccount : Uid : $uid")
+                Log.d(TAG, "firebaseAuthWithGoogleAccount : Email : $email")
+
+                // check if user is new or existing
+                if (authResult.additionalUserInfo!!.isNewUser) {
+
+                    // user is new - account created
+                    Log.d(TAG, "firebaseAuthWithGoogleAccount : Account created ... : \n$email")
+                    Toast.makeText(context, " تم انشاء الحساب ...\n$email", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    // existing user - loggedIn
+                    Log.d(TAG, "firebaseAuthWithGoogleAccount : Existing user ... : \n$email")
+                    Toast.makeText(context, " تم تسجيل الدخول ...\n$email", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, " فشل تسجيل الدخول", Toast.LENGTH_SHORT).show()
+            }
+
+
+    }
 }
