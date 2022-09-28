@@ -33,7 +33,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    //enable view binding
+
     buildFeatures{
         dataBinding true
     }
@@ -88,8 +88,11 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:4.3.1"
     implementation "com.airbnb.android:epoxy-databinding:4.3.1"
 
-
     implementation 'com.google.firebase:firebase-auth:21.0.8'
+
+
+    // circular image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
 }

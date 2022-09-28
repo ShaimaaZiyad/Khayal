@@ -9,9 +9,9 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.shaimaziyad.khayal.R
 
-@BindingAdapter("setNovelCover")
-fun setNovelCover(image: ImageView, uri: String?){
-    if(uri != null){
+@BindingAdapter("setImage")
+fun setImage(image: ImageView, uri: String?){
+    if(!uri.isNullOrBlank()) {
         Glide.with(image.context)
             .load(uri.toUri())
             .placeholder(R.drawable.icon)
@@ -29,7 +29,6 @@ fun setSize(text: TextView, size: Int) {
 // todo : fix the welcome text by using xml file.
 @BindingAdapter("setName")
 fun setHi(text: TextView, name: String?) {
-    val welcome = text.context.resources.getString(R.string.welcome) + name
     text.text = name
 }
 
@@ -56,3 +55,23 @@ fun showLoading(v: View, status: DataStatus?) {
         }
     }
 }
+
+
+@BindingAdapter("hideViewIfCustomer")
+fun hideViewIfCustomer(v: View, b: Boolean?) {
+    if (b == true){
+        v.hide()
+    }else{
+        v.show()
+    }
+}
+
+@BindingAdapter("showViewIfCustomer")
+fun showViewIfCustomer(v: View, b: Boolean?) {
+    if (b != true){
+        v.hide()
+    }else{
+        v.show()
+    }
+}
+

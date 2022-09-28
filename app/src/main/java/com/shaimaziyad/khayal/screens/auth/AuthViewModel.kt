@@ -38,7 +38,6 @@ class AuthViewModel: ViewModel(){
 
     init {
         resetStatus()
-
     }
 
     fun register(user: User) {

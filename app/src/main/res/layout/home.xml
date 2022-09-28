@@ -11,110 +11,178 @@
 
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".screens.home.Home">
+        android:layout_height="match_parent">
 
-        <!--Toolbar-->
-        <RelativeLayout
-            android:id="@+id/toolbarRl"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@drawable/shape_toolbar02">
-
-            <!--ImageButton: Open profile-->
-            <ImageButton
-                android:id="@+id/profileBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                android:src="@drawable/ic_person_white" />
-
-
-            <TextView
-                android:id="@+id/titleTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/white"
-                setName="@{homeViewModel.user.name}"
-                android:textStyle="bold"
-                tools:text="@string/welcome" />
-
-            <TextView
-                android:id="@+id/subTitleTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/titleTv"
-                android:text="@{homeViewModel.user.email}"
-                android:layout_centerHorizontal="true"
-                tools:text="@string/email_ex"
-                android:textColor="@color/white" />
-
-
-            <ImageButton
-                android:id="@+id/logoutBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_logout_white"
-                android:contentDescription="@string/app_name" />
-
-        </RelativeLayout>
-
-<!--        &lt;!&ndash;Tabs: Show Book Categories&ndash;&gt;-->
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/toolbarRl"-->
-<!--            android:layout_marginStart="5dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_marginEnd="5dp"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:background="@android:color/transparent"-->
-<!--            app:tabBackground="@drawable/tab_selector"-->
-<!--            app:tabIndicatorFullWidth="false"-->
-<!--            app:tabIndicatorHeight="0dp"-->
-<!--            app:tabMode="scrollable" />-->
-
-        <!--Search-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/toolbarRl"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_edit_text01"
-            android:drawableStart="@drawable/ic_search_gray"
-            android:hint="@string/search"
-            android:padding="10dp"
-            android:textColorHint="@color/gray01" />
-
-        <!--Novels-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/novelsRv"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/searchEt"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_novel_user" />
+            android:orientation="vertical"
+            tools:context=".screens.home.Home">
+
+            <!--Toolbar-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:orientation="horizontal"
+                    android:gravity="center|start"
+                    android:background="@drawable/shape_toolbar02">
+
+                    <!--ImageButton: Open profile-->
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/btn_profile"
+                        android:layout_width="50dp"
+                        android:layout_margin="5dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_account"
+                        setImage="@{homeViewModel.user.profileImage}" />
 
 
-    </RelativeLayout>
+                    <androidx.legacy.widget.Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            setName="@{homeViewModel.user.name}"
+                            android:textStyle="bold"
+                            tools:text="Ahmed Abdo" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{homeViewModel.user.email}"
+                            showViewIfCustomer="@{homeViewModel.isCustomer()}"
+                            tools:text="@string/email_ex"
+                            android:textColor="@color/white" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="10dp">
+
+                    <include
+                        android:id="@+id/notify"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        layout="@layout/notify_layout"/>
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="8dp"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/btnOptions"
+                        android:layout_width="34dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_more"
+                        app:tint="@color/gray01" />
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </FrameLayout>
+
+
+
+            <!--Search-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_edit_text01"
+                android:drawableStart="@drawable/ic_search_gray"
+                android:hint="@string/search"
+                android:padding="10dp"
+                android:textColorHint="@color/gray01" />
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp">
+
+
+                <!--Novels-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/novelsRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_novel_user" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    showLoading="@{homeViewModel.novelsStatus}"
+                    android:visibility="gone">
+
+                    <include
+                        android:id="@+id/load"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        layout="@layout/load"/>
+
+
+                </FrameLayout>
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    app:tint="@color/white"
+                    hideViewIfCustomer="@{homeViewModel.isCustomer()}"
+                    app:backgroundTint="@color/primaryDarkColor"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_add"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_marginEnd="16dp" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </FrameLayout>
+
 </layout>

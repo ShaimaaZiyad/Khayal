@@ -46,6 +46,8 @@ fun Fragment.showMessage(message: String) {
     Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
 }
 
+fun isCustomer(type: String) = type == UserType.USER.name
+
 fun View.hide(){ visibility = View.GONE }
 
 fun View.show() {visibility = View.VISIBLE}

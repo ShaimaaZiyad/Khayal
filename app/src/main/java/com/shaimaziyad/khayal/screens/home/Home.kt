@@ -42,6 +42,8 @@ class Home : Fragment() {
 
     }
 
+
+
     private fun setObserves() {
         viewModel.apply {
 
@@ -87,16 +89,13 @@ class Home : Fragment() {
 
             setAdapter()
 
-            /** button sign out **/
-            logoutBtn.setOnClickListener {
-//                findNavController().navigateUp()
 
-            }
 
             /** button profile **/
-            profileBtn.setOnClickListener {
+            btnProfile.setOnClickListener {
                 findNavController().navigate(R.id.action_userHome_to_profile)
             }
+
         }
     }
 }

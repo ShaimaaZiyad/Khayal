@@ -32,7 +32,7 @@
 
                 <ImageView
                     android:id="@+id/cover"
-                    setNovelCover="@{novel.cover}"
+                    setImage="@{novel.cover}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/app_name"
