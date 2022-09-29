@@ -1,9 +1,9 @@
 package com.shaimaziyad.khayal.repository
 
+import android.content.Context
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseNetworkException
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -13,9 +13,9 @@ import kotlinx.coroutines.async
 import com.shaimaziyad.khayal.utils.Result
 import com.shaimaziyad.khayal.utils.Result.Error
 import com.shaimaziyad.khayal.utils.Result.Success
+import com.shaimaziyad.khayal.utils.SharePrefManager
 
 import kotlinx.coroutines.supervisorScope
-import java.util.*
 
 class UserRepository() {
 
@@ -25,11 +25,9 @@ class UserRepository() {
     }
 
 
-
-
     private val remote = DataBase()
 
-    suspend fun signUpWithEmail(user: User): Result<Boolean> {
+     suspend fun signUpWithEmail(user: User): Result<Boolean> {
         return supervisorScope {
             try {
                 val signUpTask  = async {
@@ -57,13 +55,14 @@ class UserRepository() {
 
 
 
-    suspend fun loginWithEmail(email: String, password: String,isRemOn: Boolean): Result<Boolean> {
+    suspend fun loginWithEmail(email: String, password: String, isRemOn: Boolean, context: Context): Result<Boolean> {
         return supervisorScope {
             try {
-
                 val loginTask = async {
                     val userId = remote.signWithEmailAndPassword(email,password)?.user!!.uid
-                    val user = remote.getUserById()!!
+                    val user = remote.getUserById(userId)!!
+                    val sharePref = SharePrefManager(context)
+                    sharePref.saveUser(user,isRemOn)
                 }
                 loginTask.await()
                 Success(true)
@@ -126,6 +125,6 @@ class UserRepository() {
                               onSuccess:( Task<Void>)-> Unit,
                               onError:(String)-> Unit) = remote.resetPassword(email, onSuccess, onError)
 
-    suspend fun loadUser() = remote.getUserById()!!
+    suspend fun loadUser(userId: String) = remote.getUserById(userId)!!
 
 }

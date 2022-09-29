@@ -30,7 +30,7 @@ class NovelPdf : Fragment() {
                 requireActivity().finish()
             }
             /** button back **/
-            backBtn.setOnClickListener{
+            btnBack.setOnClickListener{
                 requireActivity().onBackPressed()
             }
         }

@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomAddPdfSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
-    android:layoutDirection="rtl">
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@drawable/bottom_sheet_background">
 
-    <!--Title-->
-    <TextView
-        android:id="@+id/toolbarTitleTv"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/add_pdf"
-        android:textColor="@color/primaryDarkColor"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <!--Attach pdf button-->
-    <ImageButton
-        android:id="@+id/attachPdfBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/transparent"
-        android:padding="5dp"
-        android:src="@drawable/ic_attach_gray"
-        android:contentDescription="@string/app_name" />
+        <!--Attach pdf button-->
+        <ImageView
+            android:id="@+id/btnAttachPdf"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_attach_gray"
+            android:contentDescription="@string/app_name" />
+
+
+        <androidx.legacy.widget.Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"/>
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/toolbarTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_pdf"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/primaryDarkColor"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
 
     <!--Input title-->
     <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +58,7 @@
         android:layout_marginTop="20dp"
         app:hintEnabled="false">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titleEt"
+            android:id="@+id/pdfTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_edit_text01"
@@ -60,14 +73,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/submitBtn"
+        android:id="@+id/btnSubmitPdf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleTil"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/shape_button01"
         android:text="@string/send"
-        android:textColor="@color/white" />
-</RelativeLayout>
+        android:textColor="@color/black" />
+
+</LinearLayout>

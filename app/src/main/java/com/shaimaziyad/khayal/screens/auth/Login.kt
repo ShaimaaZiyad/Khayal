@@ -22,9 +22,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.LoginBinding
-import com.shaimaziyad.khayal.utils.showMessage
 
-class Login : Fragment() {
+class Login: Fragment() {
 
     private lateinit var binding: LoginBinding
     private lateinit var viewModel: AuthViewModel
@@ -76,6 +75,7 @@ class Login : Fragment() {
         }
     }
 
+
     private fun setViews() {
         binding.apply {
 
@@ -111,7 +111,7 @@ class Login : Fragment() {
                     return@setOnClickListener
                 }
                 else {
-                    viewModel.login(mEmail,mPassword,mIsRememberMe)
+                    viewModel.login(mEmail,mPassword,mIsRememberMe,requireContext())
                 }
 
             }
@@ -131,6 +131,7 @@ class Login : Fragment() {
                 loginByGoogle()
             }
 
+
         }
     }
 
@@ -139,7 +140,7 @@ class Login : Fragment() {
 
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(R.layout.bottom_forgot_sheet)
-        val submitBtn = dialog.findViewById<Button>(R.id.submitBtn)
+        val submitBtn = dialog.findViewById<Button>(R.id.btnSubmit)
 
         submitBtn?.setOnClickListener {
             // resetPassword()
@@ -163,11 +164,10 @@ class Login : Fragment() {
 
     private fun isAllFieldsFilled(): Boolean {
         return  mEmail.isEmpty() && mPassword.isEmpty()
+
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

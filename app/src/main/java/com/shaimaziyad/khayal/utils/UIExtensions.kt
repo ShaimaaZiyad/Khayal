@@ -1,5 +1,6 @@
 package com.shaimaziyad.khayal.utils
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -46,8 +47,13 @@ fun Fragment.showMessage(message: String) {
     Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
 }
 
+
+
 fun isCustomer(type: String) = type == UserType.USER.name
 
 fun View.hide(){ visibility = View.GONE }
 
-fun View.show() {visibility = View.VISIBLE}
+fun View.show() { visibility = View.VISIBLE}
+
+
+enum class NovelCategories{CATEGORY1 ,CATEGORY2, CATEGORY3 , CATEGORY4, CATEGORY5 }

@@ -66,7 +66,7 @@
                             android:layout_height="wrap_content"
                             android:text="@{homeViewModel.user.email}"
                             showViewIfCustomer="@{homeViewModel.isCustomer()}"
-                            tools:text="@string/email_ex"
+                            tools:text="example@gmail.com"
                             android:textColor="@color/white" />
 
 
@@ -175,6 +175,7 @@
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddNovel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
@@ -186,6 +187,7 @@
                     android:visibility="gone"
                     tools:visibility="visible"
                     android:layout_marginEnd="16dp" />
+
 
             </FrameLayout>
 

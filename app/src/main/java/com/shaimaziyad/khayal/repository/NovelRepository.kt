@@ -1,7 +1,9 @@
 package com.shaimaziyad.khayal.repository
 
+import android.net.Uri
 import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.remote.DataBase
+import com.shaimaziyad.khayal.utils.FileType
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import com.shaimaziyad.khayal.utils.Result.Success
@@ -14,11 +16,23 @@ class NovelRepository {
 
     val novels = remote.novels
 
-    suspend fun addNovel(novel: NovelData) = remote.addNovel(novel)
+    suspend fun addNovel(novel: NovelData): Result<Boolean> {
+        return supervisorScope {
+            val addTask = async {  remote.addNovel(novel) }
+            try {
+                addTask.await()
+                Success(true)
+            }catch (ex: Exception){
+                Error(ex)
+            }
+        }
+    }
 
     suspend fun updateNovel(novel: NovelData) = remote.updateNovel(novel)
 
     suspend fun deleteNovel(novel: NovelData) = remote.deleteNovel(novel)
+
+    suspend fun uploadCover(uri: Uri,fileName: String) = remote.uploadFile(uri,fileName,FileType.IMAGE.name)
 
 
     suspend fun loadNovels(): Result<List<NovelData>> {

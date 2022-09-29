@@ -46,12 +46,12 @@ class ViewPdf : Fragment() {
 //        loadMInterstitialAd()
 
         //handle click go back
-        binding.backBtn.setOnClickListener {
+        binding.btnBack.setOnClickListener {
 //            showMInterstitialAd()
 
         }
         /** button back **/
-       binding.backBtn.setOnClickListener{
+       binding.btnBack.setOnClickListener{
             requireActivity().onBackPressed()
         }
     }

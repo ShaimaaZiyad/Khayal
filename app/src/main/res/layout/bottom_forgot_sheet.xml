@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/uthman_taha_regular"
-        android:text="@string/enter_you_registered_email"
+        android:text="@string/enter_email"
         android:textAlignment="center"
         android:textColor="@color/primaryDarkColor" />
 
@@ -59,7 +59,7 @@
 
 
     <Button
-        android:id="@+id/submitBtn"
+        android:id="@+id/btnSubmit"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

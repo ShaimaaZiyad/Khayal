@@ -1,5 +1,6 @@
 package com.shaimaziyad.khayal.screens.auth
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,8 +10,6 @@ import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.DataStatus
 import com.shaimaziyad.khayal.utils.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
@@ -84,12 +83,12 @@ class AuthViewModel: ViewModel(){
 //    }
 
 
-    fun login(email: String, password: String,isRemOn: Boolean) {
+    fun login(email: String, password: String,isRemOn: Boolean,context: Context) {
         resetStatus()
         _loginStatus.value = DataStatus.LOADING
         Log.d(TAG,"onLogin: Loading...")
         viewModelScope.launch {
-            val res =  userRepository.loginWithEmail(email, password, isRemOn)
+            val res =  userRepository.loginWithEmail(email, password, isRemOn,context)
             if (res is Result.Success) {
                 Log.d(TAG,"onLogin: Login have been success...")
                     _loginStatus.value = DataStatus.SUCCESS

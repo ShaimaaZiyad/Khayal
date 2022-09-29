@@ -10,4 +10,8 @@ object Constants {
 
     const val PDF_KEY = "PdfKey"
     const val PDF_ID_KEY = "PdfIdKey"
+
+    const val FILE_NAME = "FileName"
+
+
 }

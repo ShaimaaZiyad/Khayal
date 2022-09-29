@@ -2,6 +2,7 @@ package com.shaimaziyad.khayal.utils
 
 import android.net.Uri
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -72,6 +73,7 @@ fun showIfDataNotExist(v: View, b: Boolean?) {
 fun hideViewIfCustomer(v: View, b: Boolean?) {
     if (b == true){
         v.hide()
+
     }else{
         v.show()
     }
@@ -86,3 +88,14 @@ fun showViewIfCustomer(v: View, b: Boolean?) {
     }
 }
 
+@BindingAdapter("updateSubmitStatus")
+fun updateSubmitStatus(button: Button, isEdit: Boolean?) {
+    if (isEdit == true){
+        button.setText(R.string.update)
+    }else{
+        button.setText(R.string.send)
+    }
+}
+
+
+// todo: dis enable send button during uploading novel data

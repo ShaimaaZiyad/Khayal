@@ -16,9 +16,8 @@ data class NovelData(
     var writer: String = "",
     var cover: String = "",
     var createDate: Date = getCurrentTime(),
-    var viewCount: Long = 0, // عدد الزيارات او المشاهدات
-    var pdfs: List<PdfData> = ArrayList(),
-
+    var viewCount: List<String> = ArrayList(), // عدد الزيارات او المشاهدات
+    var pdfs: List<String> = ArrayList(),
     var pdfsCount: Int = 0, // i need it to show in the cardView in home screen >>>> numberOfChapters
 
 //    var continuousOrComplete: String,

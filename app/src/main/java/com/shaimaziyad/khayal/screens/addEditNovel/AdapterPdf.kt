@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.shaimaziyad.khayal.data.PdfData
 import com.shaimaziyad.khayal.databinding.ItemPdfBinding
 
-class AdapterPdf : ListAdapter<PdfData, AdapterPdf.ViewHolder>(PdfDiffCallback) {
+class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
 
     lateinit var clickListener: PdfClickListener
 
@@ -23,8 +22,7 @@ class AdapterPdf : ListAdapter<PdfData, AdapterPdf.ViewHolder>(PdfDiffCallback) 
 
 
         // update ui
-        fun onBind(data: PdfData, clickListener: PdfClickListener) {
-            binding.pdf = data
+        fun onBind(data: String, clickListener: PdfClickListener) {
 
             // when click on novel item
             binding.btnRemove.setOnClickListener {
@@ -49,13 +47,13 @@ class AdapterPdf : ListAdapter<PdfData, AdapterPdf.ViewHolder>(PdfDiffCallback) 
 
 
 
-    companion object PdfDiffCallback: DiffUtil.ItemCallback<PdfData>(){
-        override fun areItemsTheSame(oldItem: PdfData, newItem: PdfData): Boolean {
+    companion object PdfDiffCallback: DiffUtil.ItemCallback<String>(){
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: PdfData, newItem: PdfData): Boolean {
-            return oldItem.novelId == newItem.novelId
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
 
     }
@@ -65,7 +63,7 @@ class AdapterPdf : ListAdapter<PdfData, AdapterPdf.ViewHolder>(PdfDiffCallback) 
 
 
     interface PdfClickListener {
-        fun onRemove(pdf: PdfData, index: Int)
+        fun onRemove(pdf: String, index: Int)
     }
 
 

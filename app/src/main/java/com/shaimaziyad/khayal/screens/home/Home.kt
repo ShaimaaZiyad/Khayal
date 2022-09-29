@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.databinding.HomeBinding
+
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.UserType
 import com.shaimaziyad.khayal.utils.showMessage
 
-class Home : Fragment() {
+class Home: Fragment() {
 
     private lateinit var binding: HomeBinding
 
@@ -39,6 +40,12 @@ class Home : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        val isFirstLoad = viewModel.novels.value.isNullOrEmpty()
+        if (isFirstLoad){ // show progress only for first time load
+
+        }
+        viewModel.loadNovels()
+
 //        viewModel.loadUser()
 
     }
@@ -55,6 +62,7 @@ class Home : Fragment() {
                     novelAdapter.submitList(novels)
                 }
             }
+
         }
     }
 
@@ -73,9 +81,15 @@ class Home : Fragment() {
 
             }
 
+
             /** button notification **/
             notify.btnNotify.setOnClickListener {
                 navigateToNotification()
+            }
+
+            /** button add novel **/
+            btnAddNovel.setOnClickListener {
+                navigateToAddEditNovel(isEdit = false, novel = null) // if isEdit false that means the user will add new novel else the user will edit old novel
             }
 
 
@@ -90,8 +104,13 @@ class Home : Fragment() {
         findNavController().navigate(R.id.action_userHome_to_profile)
     }
 
-    fun navigateToNotification(){
+    private fun navigateToNotification(){
         showMessage("under development")
+    }
+
+    private fun navigateToAddEditNovel(isEdit: Boolean, novel: NovelData?) {
+        val data = bundleOf(Constants.IS_EDIT_KEY to isEdit, Constants.NOVEL_KEY to novel)
+        findNavController().navigate(R.id.action_home_to_addEditNovel,data)
     }
 
     private fun setAdapter(){
@@ -106,10 +125,11 @@ class Home : Fragment() {
                     val data = bundleOf(Constants.NOVEL_KEY to novel)
                     findNavController().navigate(R.id.action_userHome_to_novelDetails,data)
 
-                }else{ // admin
+                }else { // admin
                     // we can set true for is edit bundle if we need to edit the novel only.
-                    val data = bundleOf(Constants.NOVEL_KEY to novel,Constants.IS_EDIT_KEY to true)
-                    findNavController().navigate(R.id.action_home_to_addEditNovel,data)
+//                    val data = bundleOf(Constants.NOVEL_KEY to novel,Constants.IS_EDIT_KEY to true)
+//                    findNavController().navigate(R.id.action_home_to_addEditNovel,data)
+                    navigateToAddEditNovel(true,novel)
                 }
             }
 
@@ -125,8 +145,6 @@ class Home : Fragment() {
 
             setAdapter()
             setToolBar()
-
-
 
 
         }

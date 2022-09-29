@@ -13,7 +13,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()  // Warning: this repository is going to shut down soon
-        gradlePluginPortal()
+        maven { url 'https://jitpack.io' }
 
     }
     rootProject.name = "khayal"

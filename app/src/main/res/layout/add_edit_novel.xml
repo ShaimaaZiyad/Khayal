@@ -4,239 +4,283 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-            name="novelData"
-            type="com.shaimaziyad.khayal.data.NovelData" />
+            name="addEditNovelViewModel"
+            type="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovelViewModel" />
+
+
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="rtl"
         tools:context=".screens.addEditNovel.AddEditNovel">
 
-        <!--Toolbar-->
-        <RelativeLayout
-            android:id="@+id/toolbarRl"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/shape_toolbar01">
 
-            <ImageButton
-                android:id="@+id/backBtn"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--Toolbar-->
+            <RelativeLayout
+                android:id="@+id/toolbarRl"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@drawable/shape_toolbar01">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_back_white" />
+
+                <ImageView
+                    android:id="@+id/iconIv"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/btnBack"
+                    android:src="@drawable/icon"
+                    setImage="@{addEditNovelViewModel.novel.cover}"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iconIv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/add_novel"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+
+                <!--Attach Cover button-->
+                <ImageButton
+                    android:id="@+id/btnAddCover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_camera_white"
+                    android:contentDescription="@string/app_name" />
+
+            </RelativeLayout>
+
+            <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/ic_back_white"
-                android:contentDescription="@string/app_name" />
+                android:layout_height="20dp"/>
 
-            <ImageView
-                android:id="@+id/iconIv"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/backBtn"
-                android:src="@drawable/icon"
-                android:contentDescription="@string/app_name" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iconIv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="@string/add_novel"
-                android:textColor="@color/white"
-                android:textSize="28sp" />
-
-
-            <!--Attach Cover button-->
-            <ImageButton
-                android:id="@+id/attachCoverBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/ic_camera_white"
-                android:contentDescription="@string/app_name" />
-
-        </RelativeLayout>
-
-        <!--Input title-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/titleTil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="240dp"
-            app:hintEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/titleEt"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_edit_text01"
-                android:drawableStart="@drawable/ic_pdf_gray"
-                android:drawablePadding="10dp"
-                android:hint="@string/novel_title"
-                android:text="@{novelData.title}"
-                android:inputType="textPersonName|textCapSentences"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray01" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <!--Input des-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/desTil"
+                    <!--Input title-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/titleTil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text01"
+                            android:drawableStart="@drawable/ic_pdf_gray"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/novel_title"
+                            android:text="@{addEditNovelViewModel.novel.title}"
+                            android:inputType="textPersonName|textCapSentences"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray01" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Input des-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/desTil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
+                        android:layout_marginTop="10dp"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text01"
+                            android:drawableStart="@drawable/ic_pdf_gray"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/novel_des"
+                            android:text="@{addEditNovelViewModel.novel.description}"
+                            android:inputType="textPersonName|textCapSentences"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray01" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Input writer-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/writerTil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_marginTop="10dp"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/writerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text01"
+                            android:drawableStart="@drawable/ic_pdf_gray"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/writer_name"
+                            android:text="@{addEditNovelViewModel.novel.writer}"
+                            android:inputType="textPersonName|textCapSentences"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray01" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Input type-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/typeTil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_marginTop="10dp"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text01"
+                            android:drawableStart="@drawable/ic_pdf_gray"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/novel_type"
+                            android:text="@{addEditNovelViewModel.novel.type}"
+                            android:inputType="textPersonName|textCapSentences"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray01" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/btnCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_edit_text01"
+                        android:drawablePadding="10dp"
+                        android:text="@{addEditNovelViewModel.novel.category}"
+                        android:gravity="center_vertical"
+                        android:hint="@string/category_title"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray01"
+                        android:textSize="16sp"
+                        app:drawableEndCompat="@drawable/ic_down_gray"
+                        app:drawableStartCompat="@drawable/ic_category_gray" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvPdfs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_pdf" />
+
+                    <Button
+                        android:id="@+id/btnAddPdf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_button01"
+                        android:text="@string/add_pdf"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_button01"
+                        android:text="@string/send"
+                        updateSubmitStatus="@{addEditNovelViewModel.isEdit()}"
+                        android:textColor="@color/white" />
+
+
+                    <Button
+                        android:id="@+id/btnDelete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_button03"
+                        android:text="@string/delete"
+                        showViewIfCustomer="@{addEditNovelViewModel.isEdit()}"
+                        android:textColor="@color/white" />
+
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_below="@+id/titleTil"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            app:hintEnabled="false">
+            android:layout_height="match_parent"
+            showLoading="@{addEditNovelViewModel.novelStatus}"
+            android:visibility="gone">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/desEt"
+            <include
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_edit_text01"
-                android:drawableStart="@drawable/ic_pdf_gray"
-                android:drawablePadding="10dp"
-                android:hint="@string/novel_des"
-                android:text="@{novelData.description}"
-                android:inputType="textPersonName|textCapSentences"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray01" />
+                android:layout_height="match_parent"
+                layout="@layout/load"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Input writer-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/writerTil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_below="@+id/desTil"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            app:hintEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/writerEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_edit_text01"
-                android:drawableStart="@drawable/ic_pdf_gray"
-                android:drawablePadding="10dp"
-                android:hint="@string/writer_name"
-                android:text="@{novelData.writer}"
-                android:inputType="textPersonName|textCapSentences"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray01" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Input type-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/typeTil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_below="@+id/writerTil"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            app:hintEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/typeEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_edit_text01"
-                android:drawableStart="@drawable/ic_pdf_gray"
-                android:drawablePadding="10dp"
-                android:hint="@string/novel_type"
-                android:text="@{novelData.type}"
-                android:inputType="textPersonName|textCapSentences"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray01" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Pick category from dialog-->
-        <TextView
-            android:id="@+id/categoryTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/typeTil"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_edit_text01"
-            android:drawablePadding="10dp"
-            android:text="@{novelData.category}"
-            android:gravity="center_vertical"
-            android:hint="@string/category_title"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
-            android:textSize="16sp"
-            app:drawableEndCompat="@drawable/ic_down_gray"
-            app:drawableStartCompat="@drawable/ic_category_gray" />
+        </FrameLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPdfs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/categoryTv"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_pdf" />
-
-        <Button
-            android:id="@+id/addPdf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rvPdfs"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_button01"
-            android:text="@string/add_pdf"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/submitBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/addPdf"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_button01"
-            android:text="@string/send"
-            android:textColor="@color/white" />
-
-
-    </RelativeLayout>
+    </FrameLayout>
 </layout>

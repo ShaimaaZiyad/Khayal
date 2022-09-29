@@ -36,7 +36,7 @@ class NovelDetails : Fragment() {
                 Toast.makeText(requireContext(),"تمت الاضافة الى المفضلة", Toast.LENGTH_SHORT).show()
             }
             /** button back **/
-            backBtn.setOnClickListener{
+            btnBack.setOnClickListener{
                 requireActivity().onBackPressed()
             }
         }

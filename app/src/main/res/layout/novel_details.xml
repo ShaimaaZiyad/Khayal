@@ -23,7 +23,7 @@
 
         <!--Back button-->
         <ImageButton
-            android:id="@+id/backBtn"
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -125,7 +125,7 @@
                             android:text="@string/category_title" />
 
                         <TextView
-                            android:id="@+id/categoryTv"
+                            android:id="@+id/category"
                             style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
