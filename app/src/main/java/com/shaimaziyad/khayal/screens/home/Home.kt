@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.shaimaziyad.khayal.databinding.HomeBinding
 
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.UserType
+import com.shaimaziyad.khayal.utils.hideKeyboard
 import com.shaimaziyad.khayal.utils.showMessage
 
 class Home: Fragment() {
@@ -46,7 +48,7 @@ class Home: Fragment() {
         }
         viewModel.loadNovels()
 
-//        viewModel.loadUser()
+
 
     }
 
@@ -78,7 +80,7 @@ class Home: Fragment() {
 
             /** button options **/
             btnOptions.setOnClickListener {
-
+                showMessage("under development")
             }
 
 
@@ -87,10 +89,17 @@ class Home: Fragment() {
                 navigateToNotification()
             }
 
-            /** button add novel **/
-            btnAddNovel.setOnClickListener {
-                navigateToAddEditNovel(isEdit = false, novel = null) // if isEdit false that means the user will add new novel else the user will edit old novel
+
+            /** button search **/
+            search.setOnEditorActionListener { textView, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    val query = textView.text.trim().toString()
+                    novelAdapter.submitList(viewModel.searchByNovelTitle(query))
+                    hideKeyboard()
+                    true
+                } else { false }
             }
+
 
 
 
@@ -104,9 +113,10 @@ class Home: Fragment() {
         findNavController().navigate(R.id.action_userHome_to_profile)
     }
 
-    private fun navigateToNotification(){
+    private fun navigateToNotification() {
         showMessage("under development")
     }
+
 
     private fun navigateToAddEditNovel(isEdit: Boolean, novel: NovelData?) {
         val data = bundleOf(Constants.IS_EDIT_KEY to isEdit, Constants.NOVEL_KEY to novel)
@@ -127,8 +137,6 @@ class Home: Fragment() {
 
                 }else { // admin
                     // we can set true for is edit bundle if we need to edit the novel only.
-//                    val data = bundleOf(Constants.NOVEL_KEY to novel,Constants.IS_EDIT_KEY to true)
-//                    findNavController().navigate(R.id.action_home_to_addEditNovel,data)
                     navigateToAddEditNovel(true,novel)
                 }
             }
@@ -145,6 +153,12 @@ class Home: Fragment() {
 
             setAdapter()
             setToolBar()
+
+            /** button add novel **/
+            btnAddNovel.setOnClickListener {
+                navigateToAddEditNovel(isEdit = false, novel = null) // if isEdit false that means the user will add new novel else the user will edit old novel
+            }
+
 
 
         }

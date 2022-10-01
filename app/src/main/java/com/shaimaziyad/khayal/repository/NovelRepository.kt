@@ -28,9 +28,32 @@ class NovelRepository {
         }
     }
 
-    suspend fun updateNovel(novel: NovelData) = remote.updateNovel(novel)
+    suspend fun updateNovel(novel: NovelData): Result<Boolean> {
+        return supervisorScope {
+            val addTask = async { remote.updateNovel(novel) }
+            try {
+                addTask.await()
+                Success(true)
+            } catch (ex: Exception) {
+                Error(ex)
+            }
+        }
+    }
 
-    suspend fun deleteNovel(novel: NovelData) = remote.deleteNovel(novel)
+
+    // todo: we need to delete files before delete the data
+    suspend fun deleteNovel(novel: NovelData): Result<Boolean> {
+        return supervisorScope {
+            val addTask = async { remote.deleteNovel(novel) }
+            try {
+                addTask.await()
+                Success(true)
+            } catch (ex: Exception) {
+                Error(ex)
+            }
+        }
+    }
+
 
     suspend fun uploadCover(uri: Uri,fileName: String) = remote.uploadFile(uri,fileName,FileType.IMAGE.name)
 

@@ -33,6 +33,8 @@ class AddEditNovelViewModel(): ViewModel() {
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
+    private val _info = MutableLiveData<String?>()
+    val info: LiveData<String?> = _info
 
     private val _navigateToHome = MutableLiveData<Boolean?>()
     val navigateToHome: LiveData<Boolean?> = _navigateToHome
@@ -40,8 +42,6 @@ class AddEditNovelViewModel(): ViewModel() {
 
     val novel = MutableLiveData<NovelData?>()
     val isEdit = MutableLiveData<Boolean?>()
-
-
 
 
 
@@ -61,12 +61,13 @@ class AddEditNovelViewModel(): ViewModel() {
             novel.pdfsCount = pdfIds.size // for pdf count
 
             val res = novelRepository.addNovel(novel)
-            if (res is Result.Success){
+            if (res is Result.Success) {
                 Log.d(TAG,"onUploadNovel: upload has been success")
+                _info.value = "Uploaded"
                 _novelStatus.value = DataStatus.SUCCESS
                 _navigateToHome.value = true
             }
-            else if (res is Result.Error){
+            else if (res is Result.Error) {
                 Log.d(TAG,"onUploadNovel: upload failed due to ${res.exception.message}")
                 _error.value = res.exception.message
                 _novelStatus.value = DataStatus.ERROR
@@ -76,18 +77,54 @@ class AddEditNovelViewModel(): ViewModel() {
 
 
 
-    fun updateNovel(novel: NovelData) {
+    fun updateNovel(novel: NovelData, pdfsUri: ArrayList<Uri>) {
+        Log.d(TAG,"onUpdateNovel: Loading..")
+        resetStatus()
+        _novelStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-            // TODO: still under working
+            val cover = novel.cover.toUri()
+            val coverName = Calendar.getInstance().time.toString()
+            val pdfIds = pdfRepository.uploadPdfs(pdfsUri)  // here we will upload the pdfs then we will return the ids of pdfs
+            val coverId = novelRepository.uploadCover(cover,coverName) // here we will upload the cover then we will return the cover id.
+            novel.cover = coverId
+            novel.pdfs = pdfIds
+            novel.pdfsCount = pdfIds.size // for pdf count
+            val res = novelRepository.updateNovel(novel)
+            if (res is Result.Success) {
+                Log.d(TAG,"onUpdateNovel: update has been success")
+                _info.value = "Updated"
+                _novelStatus.value = DataStatus.SUCCESS
+                _navigateToHome.value = true
+            }
+            else if (res is Result.Error){
+                Log.d(TAG,"onUpdateNovel: update failed due to ${res.exception.message}")
+                _error.value = res.exception.message
+                _novelStatus.value = DataStatus.ERROR
+            }
         }
     }
 
 
-    fun deleteNovel (novel: NovelData) {
+    fun deleteNovel(novel: NovelData) {
+        Log.d(TAG,"onDeleteNovel: Loading..")
+        resetStatus()
+        _novelStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-            // TODO: still under working
+           val res = novelRepository.deleteNovel(novel)
+            if (res is Result.Success) {
+                Log.d(TAG,"onDeleteNovel: delete has been success")
+                _info.value = "Delete"
+                _novelStatus.value = DataStatus.SUCCESS
+                _navigateToHome.value = true
+            }
+            else if(res is Result.Error) {
+                Log.d(TAG,"onDeleteNovel: delete failed due to ${res.exception.message}")
+                _error.value = res.exception.message
+                _novelStatus.value = DataStatus.ERROR
+            }
         }
     }
+
 
 
     fun navigateToHomeDone() {
@@ -99,6 +136,7 @@ class AddEditNovelViewModel(): ViewModel() {
         _navigateToHome.value = null
         _novelStatus.value = null
         _error.value = null
+        _info.value = null
     }
 
 }

@@ -37,6 +37,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val _novelsStatus = MutableLiveData<DataStatus?>()
     val novelsStatus: LiveData<DataStatus?> = _novelsStatus
 
+    private val _info = MutableLiveData<String?>()
+    val info: LiveData<String?> = _info
+
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
@@ -90,13 +93,18 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
 
 
-
-
-    fun resetStatus(){
+    private fun resetStatus(){
         _novelsStatus.value = null
     }
 
-
+    fun searchByNovelTitle(query: String): List<NovelData> { // return list of novels
+        val result = if (query.isNotEmpty()) {
+            _novels.value?.filter { it.title.contains(query) }
+        }else {
+            _novels.value
+        }
+        return result!!
+    }
 
 
 }

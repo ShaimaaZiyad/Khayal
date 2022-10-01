@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -82,7 +83,13 @@ class AddEditNovel : Fragment() {
                     findNavController().navigate(R.id.action_addEditNovel_to_home)
                     viewModel.navigateToHomeDone()
                 }
+            }
 
+            /** info live data **/
+            info.observe(viewLifecycleOwner){ info ->
+                if (info != null){
+                    showMessage(info)
+                }
             }
 
 
@@ -97,6 +104,7 @@ class AddEditNovel : Fragment() {
 
             setAdapter()
 
+            /** button submit **/
             btnSubmit.setOnClickListener {
                 mtitle = title.text?.trim().toString()
                 mDescription = description.text?.trim().toString()
@@ -145,6 +153,7 @@ class AddEditNovel : Fragment() {
             btnAddCover.setOnClickListener {
                 imagePicker.pickFromStorage { imageResult ->
                     imageCallBack(imageResult)
+
                 }
             }
 
@@ -158,13 +167,16 @@ class AddEditNovel : Fragment() {
                 findNavController().navigateUp()
             }
 
+
             /** button add category **/
             btnCategory.setOnClickListener {
                 selectCategory(it)
             }
 
+
+            /** button delete **/
             btnDelete.setOnClickListener {
-                showMessage("delete feature under development")
+                viewModel.deleteNovel(novel!!)
             }
 
 
@@ -183,9 +195,17 @@ class AddEditNovel : Fragment() {
         if (!isEdit){ // add new novel
             val novel = NovelData(getNovelId(),mtitle,mDescription,mtype,mCategory,mWriter,mCover)
             viewModel.uploadNovel(novel,mPdfs)
+            Log.d(TAG,"newUri: $mCover")
         }else { // update old novel
-//            viewModel.updateNovel(novel!!)
-            showMessage("update feature under development")
+            novel?.title = mtitle
+            novel?.description = mDescription
+            novel?.type = mtype
+            novel?.category = mCategory
+            novel?.writer = mWriter
+            novel?.cover = mCover
+            Log.d(TAG,"oldUri: $mCover")
+            viewModel.updateNovel(novel!!,mPdfs)
+
         }
     }
 
@@ -221,7 +241,6 @@ class AddEditNovel : Fragment() {
 
             }
 
-
             true
         }
         popupMenu.show()
@@ -234,11 +253,11 @@ class AddEditNovel : Fragment() {
         pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
-                showMessage("under working")
-//                val pdfs = novel?.pdfs?.toMutableList()
-//                pdfs?.remove(pdf)
-//                pdfAdapter.submitList(pdfs?.toList())
-//                pdfAdapter.notifyItemRemoved(index)
+                val pdfs = novel?.pdfs?.toMutableList()
+                pdfs?.remove(pdf)
+                mPdfs = pdfs?.map { it.toUri() } as ArrayList
+                pdfAdapter.submitList(pdfs)
+                pdfAdapter.notifyItemRemoved(index)
             }
 
         }
@@ -342,8 +361,7 @@ class AddEditNovel : Fragment() {
         if (novel != null){
             mCategory = novel!!.category
             mCover = novel!!.cover
-            val x = novel!!.pdfs.map { it.toUri() } as ArrayList
-            mPdfs = x
+            mPdfs = novel!!.pdfs.map { it.toUri() } as ArrayList
             pdfAdapter.submitList(novel!!.pdfs)
         }
     }

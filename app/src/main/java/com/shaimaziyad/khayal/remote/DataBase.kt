@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.load.HttpException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,7 @@ import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.tasks.await
+import java.io.FileNotFoundException
 import java.util.*
 
 class DataBase {
@@ -143,6 +145,7 @@ class DataBase {
     // TODO: delete the pdf files before delete the novel data.
     suspend fun deleteNovel(novelData: NovelData)  = novelsPath.document(novelData.novelId).delete()
 
+
     suspend fun getNovelById(id: String): NovelData? {
         val ref = novelsPath.document(id).get().await()
         return ref.toObject(NovelData::class.java)
@@ -167,7 +170,7 @@ class DataBase {
                 .update(PDFS_FILED, FieldValue.arrayRemove(pdfId))
 
             // update total pdfs count in folder
-            if (folder != null){
+            if (folder != null) {
                 folder.pdfsCount.plus(-1)
                 updateNovel(folder)
             }
@@ -176,19 +179,23 @@ class DataBase {
     }
 
 
-
     // you can upload file or image (category could be image or file)
     suspend fun uploadFile(uri: Uri, fileName: String, fileType: String): String {
         val filePath = storage.reference.child("$fileType/$fileName")
-        val uploadTask = filePath.putFile(uri)
-        val uriRef = uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let { throw it }
+        return if (uri.toString().contains("content")) { // upload new file
+            val uriRef = filePath.putFile(uri).continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let { throw it }
+                }
+                filePath.downloadUrl
             }
-            filePath.downloadUrl
+            uriRef.await().toString()
+        }else{ // keep the old file as it is
+            uri.toString()
         }
-        return uriRef.await().toString()
     }
+
+
 
 
     suspend fun insertFiles(filesUri: List<Uri>,fileType: String): List<String> {
@@ -198,7 +205,7 @@ class DataBase {
             val fileName = uniId + uri.lastPathSegment?.split("/")?.last()
             try {
                 val downloadUrl = uploadFile(uri, fileName,fileType)
-                urlList.add(downloadUrl.toString())
+                urlList.add(downloadUrl)
             } catch (e: Exception) {
                 Log.d(TAG, "Upload file error due to: $e")
 //                revertUpload(fileName)

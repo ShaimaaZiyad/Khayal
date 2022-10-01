@@ -111,19 +111,37 @@
 
 
 
-            <!--Search-->
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchEt"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchOutlinedTextLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape_edit_text01"
-                android:drawableStart="@drawable/ic_search_gray"
-                android:hint="@string/search"
-                android:padding="10dp"
-                android:textColorHint="@color/gray01" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:focusable="false"
+                app:boxStrokeColor="@color/primaryDarkColor"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/primaryDarkColor"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_search_gray"
+                app:startIconTint="@color/primaryDarkColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:hint="@string/search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textAppearance="@style/TextAppearance.MyTheme.Subtitle1"
+                    android:textColor="@color/gray01"
+                    android:textColorHint="@color/gray01" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <FrameLayout
