@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.ProfileBinding
+import com.shaimaziyad.khayal.utils.showMessage
 
 
 class Profile : Fragment() {
@@ -77,15 +78,12 @@ class Profile : Fragment() {
 
         updateBtn?.setOnClickListener {
             // updateProfile()
-            Toast.makeText(requireContext(), " تم التحديث" , Toast.LENGTH_SHORT).show()
+           showMessage("update")
         }
 
         dialog.show()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-    }
 
 }

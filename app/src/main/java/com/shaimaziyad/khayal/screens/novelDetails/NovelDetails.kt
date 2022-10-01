@@ -8,44 +8,77 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.R
+import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.databinding.NovelDetailsBinding
+import com.shaimaziyad.khayal.utils.Constants
+import com.shaimaziyad.khayal.utils.showMessage
 
 
 class NovelDetails : Fragment() {
 
     private lateinit var binding: NovelDetailsBinding
+    private var novel: NovelData? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         // Inflate the layout for this fragment
         binding = NovelDetailsBinding.inflate(layoutInflater)
 
+        setData()
         setViews()
+
+
 
         return binding.root
     }
 
+    private fun setData() {
+        novel = try { arguments?.get(Constants.NOVEL_KEY) as NovelData }
+        catch (ex: Exception) { null }
+    }
+
     private fun setViews() {
         binding.apply {
-            readBtn.setOnClickListener {
+
+            novelData = novel
+            lifecycleOwner = this@NovelDetails
+
+
+            setAppBar()
+
+            /** button read **/
+            btnRead.setOnClickListener {
                 findNavController().navigate(R.id.action_novelDetails_to_novelPdf)
             }
-            favoriteBtn.setOnClickListener {
-                Toast.makeText(requireContext(),"تمت الاضافة الى المفضلة", Toast.LENGTH_SHORT).show()
-            }
-            /** button back **/
-            btnBack.setOnClickListener{
-                requireActivity().onBackPressed()
-            }
+
         }
     }
 
+    private fun setAppBar() {
+        binding.apply {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+            /** button like **/
+            btnLike.setOnClickListener {
+                showMessage("favorite")
+            }
 
+            /** button back **/
+            btnBack.setOnClickListener{
+                findNavController().navigateUp()
+            }
+
+            /** button options **/
+            btnOptions.setOnClickListener {
+                showMessage("options")
+            }
+
+            /** button share **/
+            btnShare.setOnClickListener {
+                showMessage("share")
+            }
+
+        }
     }
+
 
 }

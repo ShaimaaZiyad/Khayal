@@ -15,7 +15,7 @@
     <color name="primaryLightColor">#37909F</color>
     <color name="primaryDarkColor">#0B4953</color>
 
-
+    <color name="red_600">#b00020</color>
     <color name="secondaryColor">#E4B77B</color>
     <color name="secondaryLightColor">#D8C1A2</color>
     <color name="secondaryDarkColor">#A37333</color>
