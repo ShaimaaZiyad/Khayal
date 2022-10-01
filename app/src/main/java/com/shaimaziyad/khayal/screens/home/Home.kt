@@ -125,9 +125,9 @@ class Home: Fragment() {
 
     private fun setAdapter(){
 
+        /** onNovelClick listener **/
         novelAdapter.clickListener = object: AdapterNovel.NovelClickListener {
 
-            // todo: check if user is admin or normal user then go to specific screen.
             override fun onClick(novel: NovelData, index: Int) {
                 val userType = viewModel.user.value?.userType
 
@@ -140,8 +140,8 @@ class Home: Fragment() {
                     navigateToAddEditNovel(true,novel)
                 }
             }
-
         }
+
         binding.novelsRv.adapter = novelAdapter
     }
 
@@ -157,6 +157,13 @@ class Home: Fragment() {
             /** button add novel **/
             btnAddNovel.setOnClickListener {
                 navigateToAddEditNovel(isEdit = false, novel = null) // if isEdit false that means the user will add new novel else the user will edit old novel
+            }
+
+
+            /** swipe to refresh novels **/
+            refreshNovels.setOnRefreshListener {
+                viewModel.loadNovels()
+                viewModel.loadUser()
             }
 
 

@@ -131,7 +131,7 @@
                     android:id="@+id/search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:hint="@string/search"
+                    android:hint="@string/search"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:paddingTop="12dp"
@@ -143,71 +143,88 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <FrameLayout
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refreshNovels"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                swipeToRefresh="@{homeViewModel.novelsStatus}">
 
-
-                <!--Novels-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/novelsRv"
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/row_novel_user" />
+                    android:layout_height="match_parent">
 
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    showLoading="@{homeViewModel.novelsStatus}"
-                    android:visibility="gone">
-
-                    <include
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        layout="@layout/load"/>
-
-                </FrameLayout>
+                        android:layout_marginTop="10dp">
 
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    showIfDataNotExist="@{homeViewModel.isDataExist()}"
-                    android:visibility="gone">
-
-                    <include
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        layout="@layout/no_data_found_layout"/>
-
-                </FrameLayout>
+                        <!--Novels-->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/novelsRv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/row_novel_user" />
 
 
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            showLoading="@{homeViewModel.novelsStatus}"
+                            android:visibility="gone">
+
+                            <include
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                layout="@layout/load"/>
+
+                        </FrameLayout>
 
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnAddNovel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    app:tint="@color/white"
-                    hideViewIfCustomer="@{homeViewModel.isCustomer()}"
-                    app:backgroundTint="@color/primaryDarkColor"
-                    android:layout_marginBottom="16dp"
-                    android:src="@drawable/ic_add"
-                    android:visibility="gone"
-                    tools:visibility="visible"
-                    android:layout_marginEnd="16dp" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            showIfDataNotExist="@{homeViewModel.isDataExist()}"
+                            android:visibility="gone">
+
+                            <include
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                layout="@layout/no_data_found_layout"/>
+
+                        </FrameLayout>
 
 
-            </FrameLayout>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/btnAddNovel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            app:tint="@color/white"
+                            hideViewIfCustomer="@{homeViewModel.isCustomer()}"
+                            app:backgroundTint="@color/primaryDarkColor"
+                            android:layout_marginBottom="16dp"
+                            android:src="@drawable/ic_add"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            android:layout_marginEnd="16dp" />
+
+
+                    </FrameLayout>
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
 
 
         </LinearLayout>

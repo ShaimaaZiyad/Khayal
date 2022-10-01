@@ -26,6 +26,7 @@ class Profile : Fragment() {
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
 
+
         setViews()
         setObserves()
 
@@ -47,6 +48,9 @@ class Profile : Fragment() {
 
     private fun setViews() {
         binding.apply {
+
+            profileViewModel = viewModel
+            lifecycleOwner = this@Profile
 
 
             /** button edit profile **/

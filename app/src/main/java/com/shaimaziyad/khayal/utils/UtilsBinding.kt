@@ -7,8 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.shaimaziyad.khayal.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("setImage")
 fun setImage(image: ImageView, uri: String?){
@@ -96,6 +99,27 @@ fun updateSubmitStatus(button: Button, isEdit: Boolean?) {
         button.setText(R.string.send)
     }
 }
+
+@BindingAdapter("swipeToRefresh")
+fun swipeToRefresh(refreshLayout: SwipeRefreshLayout, status: DataStatus?) {
+    if (status != null){
+        when(status){
+            DataStatus.LOADING ->{ } // do nothing
+            DataStatus.SUCCESS ->{ refreshLayout.isRefreshing = false}
+            DataStatus.ERROR ->{ refreshLayout.isRefreshing = false}
+        }
+    }
+}
+
+
+@BindingAdapter("joinedAt")
+fun joinedAt(tv: TextView, date: Date?) {
+    if (date != null){
+        val date = SimpleDateFormat("dd/MM/yyyy").format(date)
+        tv.text = date.toString()
+    }
+}
+
 
 
 // todo: dis enable send button during uploading novel data

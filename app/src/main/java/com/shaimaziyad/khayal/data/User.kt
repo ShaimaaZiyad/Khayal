@@ -16,7 +16,7 @@ data class User (
     var profileImage : String = "",
     var userType: String = UserType.USER.name,
     var password: String = "",
-    var createData: Date = getCurrentTime(),
+    var createData: Date? = getCurrentTime(),
     var likes: List<String> = ArrayList(), // id of novel data
     var reads: List<String> = ArrayList()
 
@@ -29,7 +29,7 @@ data class User (
             "name" to name,
             "profileImage" to profileImage,
             "userType" to userType,
-            "createData" to createData,
+            "createData" to createData!!,
             "likes" to likes,
             "reads" to reads
         )

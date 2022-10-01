@@ -11,7 +11,6 @@
     <string name="create_account">أنشئ حساب</string>
     <string name="name">الاسم</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
-    <string name="register">انشاء الحساب</string>
     <string name="SignUp">انشاء حساب جديد</string>
     <string name="you_have_account_text">لديك حساب بالفعل؟</string>
     <string name="send">ارسال</string>
@@ -61,4 +60,6 @@
     <string name="new_user_info">مستخدم جديد, انشاء حساب جديد</string>
     <string name="size_text">حجم الملف</string>
     <string name="go_chapters">اذهب الى الفصل</string>
+    <string name="delete">مسح</string>
+    <string name="sign_out">تسجيل خروج</string>
 </resources>
