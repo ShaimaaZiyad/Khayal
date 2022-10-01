@@ -19,7 +19,8 @@
         <action
             android:id="@+id/action_splash_to_home"
             app:destination="@id/home"
-            app:popUpTo="@id/splash" />
+            app:popUpTo="@id/splash"
+            app:popUpToInclusive="true" />
     </fragment>
 
 

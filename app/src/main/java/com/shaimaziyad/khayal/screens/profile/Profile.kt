@@ -59,7 +59,7 @@ class Profile : Fragment() {
             }
             /** button back **/
             btnBack.setOnClickListener{
-                requireActivity().onBackPressed()
+                findNavController().navigateUp()
             }
 
             /** button sign Out **/
