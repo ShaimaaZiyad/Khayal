@@ -1,6 +1,6 @@
 package com.shaimaziyad.khayal.utils
 
-import android.net.Uri
+
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -123,3 +123,15 @@ fun joinedAt(tv: TextView, date: Date?) {
 
 
 // todo: dis enable send button during uploading novel data
+
+
+@BindingAdapter("setButtonStatus")
+fun buttonStatus(button: Button, status: DataStatus?){
+    if (status != null){
+        when(status){
+            DataStatus.LOADING -> { button.isEnabled = false }
+            DataStatus.SUCCESS -> {button.isEnabled = true }
+            DataStatus.ERROR -> { button.isEnabled = true}
+        }
+    }
+}

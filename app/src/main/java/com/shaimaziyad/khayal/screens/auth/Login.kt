@@ -28,6 +28,7 @@ class Login: Fragment() {
     private lateinit var binding: LoginBinding
     private lateinit var viewModel: AuthViewModel
     private lateinit var googleSignInClient: GoogleSignInClient
+
     private companion object {
         private const val RC_SIGN_IN = 100
         private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -64,7 +65,7 @@ class Login: Fragment() {
 
 
             /** isLogged live data **/
-            isLogged.observe(viewLifecycleOwner){isLogged ->
+            isLogged.observe(viewLifecycleOwner){ isLogged ->
                 if (isLogged == true) {
                     findNavController().navigate(R.id.action_login_to_home)
                 }
@@ -153,8 +154,6 @@ class Login: Fragment() {
 
 
     private fun loginByGoogle(){
-       // showMessage("Login by google")
-        // todo: add functionality for login by google
 
         // begin google sign in
         Log.d(TAG, "onCreate : begin Google SignIn")

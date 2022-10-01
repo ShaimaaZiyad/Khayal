@@ -238,6 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        setButtonStatus="@{authViewModel.registerStatus}"
                         android:background="@drawable/shape_button01"
                         android:fontFamily="@font/uthman_taha_regular"
                         android:text="@string/SignUp"
