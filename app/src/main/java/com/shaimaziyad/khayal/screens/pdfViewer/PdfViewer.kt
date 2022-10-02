@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.databinding.PdfViewerBinding
 import com.shaimaziyad.khayal.utils.Constants
@@ -13,30 +15,64 @@ import com.shaimaziyad.khayal.utils.Constants
 class PdfViewer : Fragment() {
 
     private lateinit var binding : PdfViewerBinding
+    private lateinit var viewModel: PdfViewerViewModel
 
     private var novelUri = ""
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = PdfViewerBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this)[PdfViewerViewModel::class.java]
 
 
         setData()
 
         setViews()
+        setObserves()
 
         return binding.root
     }
 
+    private fun setObserves() {
+
+        viewModel.apply {
+
+            /** pdf data **/
+            pdf.observe(viewLifecycleOwner){ data ->
+                if (data != null) {
+                    binding.pdfView.fromBytes(data)
+                        .swipeHorizontal(false)//set false to scroll vertical, set tru to scroll horizontal
+                        .onPageChange { page, pageCount ->
+                            //set current and total pages in toolbar subtitle
+                            val currentPage = page + 1 //page starts from 0 so do +1 to start from 1
+                            binding.toolbarSubTitleTv.text = "$currentPage/$pageCount"
+                        }
+                        .onError { error -> }
+                        .onPageError { page, error -> }
+                        .load()
+
+                }
+            }
+
+
+        }
+    }
+
+
     private fun setViews() {
         binding.apply {
+
+            pdfViewerViewModel = viewModel
+            lifecycleOwner = this@PdfViewer
+
 
 
             /** button back **/
             btnBack.setOnClickListener{
                 findNavController().navigateUp()
             }
+
+
 
 
         }
@@ -48,7 +84,9 @@ class PdfViewer : Fragment() {
         novelUri = try {arguments?.get(Constants.PDF_KEY).toString() }
         catch (ex: Exception){""}
 
-//        loadNovelFromUrl(novelUri)
+        viewModel.loadPdf(novelUri)
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

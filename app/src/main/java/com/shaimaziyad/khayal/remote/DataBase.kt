@@ -4,7 +4,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.load.HttpException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +19,6 @@ import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.tasks.await
-import java.io.FileNotFoundException
 import java.util.*
 
 class DataBase {
@@ -196,6 +194,36 @@ class DataBase {
     }
 
 
+     suspend fun loadPdf(url: String): ByteArray = storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
+
+
+
+//    reference.addOnSuccessListener { bytes->
+//        Log.d(ContentValues.TAG, "loadNovelFromUrl: pdf got from url")
+//
+//        //load pdf
+//        binding.pdfView.fromBytes(bytes)
+//            .swipeHorizontal(false)//set false to scroll vertical, set tru to scroll horizontal
+//            .onPageChange { page, pageCount ->
+//                //set current and total pages in toolbar subtitle
+//                val currentPage = page+1 //page starts from 0 so do +1 to start from 1
+//                binding.toolbarSubTitleTv.text = "$currentPage/$pageCount"
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: $currentPage/$pageCount")
+//            }
+//            .onError { t->
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
+//            }
+//            .onPageError { page, t ->
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
+//            }
+//            .load()
+//        binding.progressBar.visibility = View.GONE
+//
+//    }
+//    .addOnFailureListener { e->
+//        Log.d(ContentValues.TAG, "loadNovelFromUrl: Failed to get pdf due to ${e.message}")
+//        binding.progressBar.visibility = View.GONE
+//    }
 
 
     suspend fun insertFiles(filesUri: List<Uri>,fileType: String): List<String> {

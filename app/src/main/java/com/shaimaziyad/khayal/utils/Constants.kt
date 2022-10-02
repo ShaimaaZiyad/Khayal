@@ -5,6 +5,7 @@ object Constants {
 
     const val IS_EDIT_KEY = "isEdit"
     const val NOVEL_KEY = "NovelKey"
+
     const val NOVEL_ID_KEY = "NovelIdKey"
     const val NOVEL_NOVEL = "Novel"
 
@@ -12,6 +13,7 @@ object Constants {
     const val PDF_ID_KEY = "PdfIdKey"
 
     const val FILE_NAME = "FileName"
+
 
 
 }

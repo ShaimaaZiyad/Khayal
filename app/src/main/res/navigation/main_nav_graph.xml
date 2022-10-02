@@ -26,9 +26,9 @@
 
     <fragment
         android:id="@+id/viewPdf"
-        android:name="com.shaimaziyad.khayal.screens.viewPdf.ViewPdf"
+        android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
         android:label="fragment_view_novel"
-        tools:layout="@layout/view_pdf" >
+        tools:layout="@layout/pdf_viewer" >
 
         <argument android:name="novelId" />
     </fragment>
@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_novelDetails_to_novelPdf"
             app:destination="@id/novelPdf" />
+        <action
+            android:id="@+id/action_novelDetails_to_viewPdf"
+            app:destination="@id/viewPdf" />
     </fragment>
     <fragment
         android:id="@+id/profile"
