@@ -13,6 +13,7 @@
 
     </data>
 
+
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +22,6 @@
 
     <!--Toolbar-->
     <FrameLayout
-        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:orientation="horizontal"
@@ -90,10 +90,9 @@
     </FrameLayout>
 
     <!--All content under scrollview-->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="95dp"
         android:layout_marginTop="?actionBarSize"
         android:padding="10dp">
 
@@ -136,6 +135,19 @@
                 tools:text="Little Women"/>
 
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:text="@string/novel_des"/>
+
+
+
 <!--            description-->
             <TextView
                 android:layout_width="wrap_content"
@@ -149,40 +161,54 @@
 
 
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:text="@string/chapters"/>
+
+
+
+
+
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/rvChapters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_chapter"
+                tools:itemCount="5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="10dp"/>
+
         </LinearLayout>
 
 
-    </ScrollView>
-
-    <!--Bottom buttons for book options-->
-    <LinearLayout
-        android:id="@+id/bookOptionsLL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@android:color/transparent"
-        android:orientation="horizontal">
+    </androidx.core.widget.NestedScrollView>
 
 
-    </LinearLayout>
 
-    <!--Button: Read book-->
-    <Button
-        android:id="@+id/btnRead"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/shape_button01"
-        android:drawableTop="@drawable/ic_book_white"
-        android:text="@string/go_chapters"
-        android:textColor="@color/white" />
+
+<!--    &lt;!&ndash;Button: Read book&ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btnRead"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:background="@drawable/shape_button01"-->
+<!--        android:drawableTop="@drawable/ic_book_white"-->
+<!--        android:text="@string/go_chapters"-->
+<!--        android:textColor="@color/white" />-->
 
 
 </FrameLayout>
+
+
 </layout>
