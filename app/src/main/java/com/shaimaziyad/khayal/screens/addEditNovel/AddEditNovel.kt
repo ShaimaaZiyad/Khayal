@@ -22,22 +22,23 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.NovelData
-import com.shaimaziyad.khayal.databinding.AddEditNovelBinding
 import dev.ronnie.github.imagepicker.ImagePicker
 import dev.ronnie.github.imagepicker.ImageResult
 import com.karumi.dexter.listener.PermissionRequest
+import com.shaimaziyad.khayal.databinding.AddEditNovelBinding
 import com.shaimaziyad.khayal.utils.*
 import com.shaimaziyad.khayal.utils.getNovelId
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
 class AddEditNovel : Fragment() {
 
-    companion object{
+    companion object {
         const val TAG = "AddEditNovel"
     }
 
     private lateinit var binding: AddEditNovelBinding
-    private lateinit var viewModel: AddEditNovelViewModel
+    private val viewModel by sharedViewModel<AddEditNovelViewModel>()
 
     private var isEdit = false
 
@@ -45,7 +46,7 @@ class AddEditNovel : Fragment() {
     private var mtitle = ""
     private var mDescription = ""
     private var mWriter = ""
-    private var mtype = ""
+    private var mType = ""
     private var mCategory = ""
     private var mCover = ""
     private var mPdfs = ArrayList<Uri>()
@@ -54,15 +55,16 @@ class AddEditNovel : Fragment() {
     private var pdfFile: Uri? = null
     private lateinit var bottomSheetPdf: BottomSheetDialog
     private lateinit var imagePicker: ImagePicker
-
+    private lateinit var novelFilter: NovelFilter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = AddEditNovelBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[AddEditNovelViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[AddEditNovelViewModel::class.java]
         imagePicker = ImagePicker(this)
         bottomSheetPdf = BottomSheetDialog(requireContext())
+        novelFilter = NovelFilter(requireContext())
 
         setData()
         setViews()
@@ -70,9 +72,18 @@ class AddEditNovel : Fragment() {
         setObserves()
 
 
-
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        // set the lists
+        setListToAutoComplete(requireContext(),novelFilter.novelCategories,binding.btnSelectCategory) // set categories list
+        setListToAutoComplete(requireContext(),novelFilter.novelType,binding.btnSelectType) // set types list
+
+    }
+
 
     private fun setObserves() {
         viewModel.apply {
@@ -85,10 +96,14 @@ class AddEditNovel : Fragment() {
                 }
             }
 
+
+
+
             /** info live data **/
             info.observe(viewLifecycleOwner){ info ->
                 if (info != null){
                     showMessage(info)
+                    viewModel.resetStatus()
                 }
             }
 
@@ -100,6 +115,7 @@ class AddEditNovel : Fragment() {
     private fun setViews() {
         binding.apply {
 
+
             updateViews()
 
             setAdapter()
@@ -108,7 +124,6 @@ class AddEditNovel : Fragment() {
             btnSubmit.setOnClickListener {
                 mtitle = title.text?.trim().toString()
                 mDescription = description.text?.trim().toString()
-                mtype = type.text?.trim().toString()
                 mWriter = writerName.text?.trim().toString()
 
 
@@ -127,15 +142,11 @@ class AddEditNovel : Fragment() {
                     writerName.requestFocus()
                     return@setOnClickListener
                 }
-                if (mtype.isEmpty()) {
-                    type.error = "type required"
-                    type.requestFocus()
-                    return@setOnClickListener
+                if (mType.isEmpty()) {
+                    showMessage("type required")
                 }
                 if (mCategory.isEmpty()) {
-                    btnCategory.error = "category required"
-                    btnCategory.requestFocus()
-                    return@setOnClickListener
+                   showMessage("category required")
                 }
                 if (mCover.isEmpty()) {
                     showMessage("cover required")
@@ -168,9 +179,14 @@ class AddEditNovel : Fragment() {
             }
 
 
-            /** button add category **/
-            btnCategory.setOnClickListener {
-                selectCategory(it)
+            /** select category **/
+            btnSelectCategory.setOnItemClickListener { adapterView, view, index, l ->
+                mCategory = index.toString()
+            }
+
+            /** select type **/
+            btnSelectType.setOnItemClickListener { adapterView, view, index, l ->
+                mType = index.toString()
             }
 
 
@@ -193,13 +209,13 @@ class AddEditNovel : Fragment() {
 
     private fun submit() {
         if (!isEdit){ // add new novel
-            val novel = NovelData(getNovelId(),mtitle,mDescription,mtype,mCategory,mWriter,mCover)
+            val novel = NovelData(getNovelId(),mtitle,mDescription,mType,mCategory,mWriter,mCover)
             viewModel.uploadNovel(novel,mPdfs)
             Log.d(TAG,"newUri: $mCover")
         }else { // update old novel
             novel?.title = mtitle
             novel?.description = mDescription
-            novel?.type = mtype
+            novel?.type = mType
             novel?.category = mCategory
             novel?.writer = mWriter
             novel?.cover = mCover
@@ -207,43 +223,6 @@ class AddEditNovel : Fragment() {
             viewModel.updateNovel(novel!!,mPdfs)
 
         }
-    }
-
-
-    // todo: the categories values with translations inside categories menu file.
-
-    private fun selectCategory(v: View) {
-        val popupMenu = PopupMenu(requireContext(),v)
-        popupMenu.menuInflater.inflate(R.menu.categories_menu,popupMenu.menu)
-//        popupMenu.setForceShowIcon(true) // this require android 10 and above
-        popupMenu.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.item_category1-> {
-                    mCategory = NovelCategories.CATEGORY1.name
-                    binding.btnCategory.text = mCategory
-                }
-                R.id.item_category2-> {
-                    mCategory = NovelCategories.CATEGORY2.name
-                    binding.btnCategory.text = mCategory
-                }
-                R.id.item_category3-> {
-                    mCategory = NovelCategories.CATEGORY3.name
-                    binding.btnCategory.text = mCategory
-                }
-                R.id.item_category4-> {
-                    mCategory = NovelCategories.CATEGORY4.name
-                    binding.btnCategory.text = mCategory
-                }
-                R.id.item_category5-> {
-                    mCategory = NovelCategories.CATEGORY5.name
-                    binding.btnCategory.text = mCategory
-                }
-
-            }
-
-            true
-        }
-        popupMenu.show()
     }
 
 
@@ -322,48 +301,23 @@ class AddEditNovel : Fragment() {
             }).check()
     }
 
-//    private fun addPdfSheet() {
-//
-//        bottomSheetPdf.setContentView(R.layout.bottom_add_pdf_sheet)
-//        val submitBtn = bottomSheetPdf.findViewById<Button>(R.id.btnSubmitPdf)
-//        val btnAttachPdf = bottomSheetPdf.findViewById<ImageView>(R.id.btnAttachPdf)
-//        val pdfTitle = bottomSheetPdf.findViewById<TextInputEditText>(R.id.pdfTitle)
-//
-//        /** button attach pdf **/
-//        btnAttachPdf?.setOnClickListener {
-//            pdfPickIntent()
-//        }
-//
-//        /** button submit pdf **/
-//        submitBtn?.setOnClickListener {
-//            val title = pdfTitle?.text?.trim().toString()
-//            if (title.isNotEmpty()) {
-//                val pdf = PdfData(getPdfId(),pdfTitle?.text?.trim().toString(),pdfFile.toString(),novel!!.novelId)
-//                val mPdfs = novel?.pdfs?.toMutableList()
-//                    mPdfs?.add(pdf)
-//                    pdfAdapter.submitList(mPdfs)
-//                    novel!!.pdfs = mPdfs!!
-//
-//            }
-//        }
-//        bottomSheetPdf.show()
-//
-//    }
 
-
-
-
-    fun setData() {
+    private fun setData() {
         isEdit = arguments?.get(Constants.IS_EDIT_KEY) as Boolean
         novel = try { arguments?.get(Constants.NOVEL_KEY) as NovelData } catch (ex: Exception){ null }
         viewModel.novel.value = novel
         viewModel.isEdit.value = isEdit
         if (novel != null){
             mCategory = novel!!.category
+            mType = novel!!.type
             mCover = novel!!.cover
             mPdfs = novel!!.pdfs.map { it.toUri() } as ArrayList
             pdfAdapter.submitList(novel!!.pdfs)
+
+
+
         }
+
     }
 
 

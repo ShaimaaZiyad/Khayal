@@ -15,11 +15,13 @@ import com.shaimaziyad.khayal.databinding.RegisterBinding
 import com.shaimaziyad.khayal.utils.UserType
 import com.shaimaziyad.khayal.utils.getCurrentTime
 import com.shaimaziyad.khayal.utils.showMessage
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class Register : Fragment() {
 
     private lateinit var binding: RegisterBinding
-    private lateinit var viewModel: AuthViewModel
+//    private lateinit var viewModel: AuthViewModel
+    private val viewModel by sharedViewModel<AuthViewModel>()
     private var mName = ""
     private var mEmail = ""
     private var mPassword = ""
@@ -28,7 +30,7 @@ class Register : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = RegisterBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
 
         setViews()

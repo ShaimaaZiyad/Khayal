@@ -6,18 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shaimaziyad.khayal.repository.PdfRepository
-import com.shaimaziyad.khayal.screens.auth.AuthViewModel
 import com.shaimaziyad.khayal.utils.DataStatus
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.launch
 
-class PdfViewerViewModel(): ViewModel() {
+class PdfViewerViewModel(private val pdfRepo: PdfRepository): ViewModel() {
 
     companion object {
         private const val TAG = "PdfViewerViewModel"
     }
 
-    private val pdfRepository = PdfRepository()
+//    private val pdfRepository = PdfRepository()
 
     private val _pdf = MutableLiveData<ByteArray?>()
     val pdf: LiveData<ByteArray?> = _pdf
@@ -34,7 +33,7 @@ class PdfViewerViewModel(): ViewModel() {
         resetStatus()
         _pdfStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-            val res = pdfRepository.loadPdf(uri)
+            val res = pdfRepo.loadPdf(uri)
             if (res is Result.Success) {
                 Log.d(TAG,"onLoadPdf: load pdf success")
                 _pdfStatus.value = DataStatus.SUCCESS

@@ -10,11 +10,10 @@ import com.shaimaziyad.khayal.utils.Result.Success
 import com.shaimaziyad.khayal.utils.Result.Error
 import com.shaimaziyad.khayal.utils.Result
 
-class NovelRepository {
+class NovelRepository(private val remote: DataBase) {
 
-    private val remote = DataBase()
+//    private val remote = DataBase()
 
-    val novels = remote.novels
 
     suspend fun addNovel(novel: NovelData): Result<Boolean> {
         return supervisorScope {

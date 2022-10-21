@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,24 +16,32 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.LoginBinding
+import com.shaimaziyad.khayal.screens.profile.ProfileViewModel
+import com.shaimaziyad.khayal.sheets.ResetPasswordSheet
+import com.shaimaziyad.khayal.utils.DataStatus
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class Login: Fragment() {
 
     private lateinit var binding: LoginBinding
-    private lateinit var viewModel: AuthViewModel
+
+    private val viewModel by sharedViewModel<AuthViewModel>()
+    private val profileViewModel by sharedViewModel<ProfileViewModel>()
+
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private companion object {
         private const val RC_SIGN_IN = 100
         private const val TAG = "GOOGLE_SIGN_IN_TAG"
     }
-    //firebase auth
+
+
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var resetPassSheet: ResetPasswordSheet
 
     private var mEmail = ""
     private var mPassword = ""
@@ -42,7 +49,8 @@ class Login: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        resetPassSheet = ResetPasswordSheet(binding.resetSheet,this)
 
 
         // Configure Google Sign In
@@ -65,9 +73,28 @@ class Login: Fragment() {
 
 
             /** isLogged live data **/
-            isLogged.observe(viewLifecycleOwner){ isLogged ->
-                if (isLogged == true) {
+            isLogged.observe(viewLifecycleOwner){ user ->
+                if (user != null) {
+                    profileViewModel.refreshUser(user)
                     findNavController().navigate(R.id.action_login_to_home)
+                    viewModel.resetStatus()
+                }
+            }
+
+            /** reset password **/
+            resetPasswordStatus.observe(viewLifecycleOwner){ status ->
+                if (status != null){
+                    when(status){
+                        DataStatus.LOADING->{
+
+                        }
+                        DataStatus.SUCCESS -> {
+                            resetPassSheet.hideSheet()
+                        }
+                        DataStatus.ERROR -> {
+
+                        }
+                    }
                 }
             }
 
@@ -83,6 +110,9 @@ class Login: Fragment() {
             authViewModel = viewModel
             lifecycleOwner = this@Login
 
+
+            resetPassSheetStatus()
+
             /** button login **/
             btnLogin.setOnClickListener {
                 mEmail = email.text?.trim().toString()
@@ -95,7 +125,7 @@ class Login: Fragment() {
                     email.requestFocus()
                     return@setOnClickListener
                 }
-                if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+                if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()) {
                     email.error = getString(R.string.email_invalid_error)
                     email.requestFocus()
                     return@setOnClickListener
@@ -124,7 +154,7 @@ class Login: Fragment() {
 
             /** button forgot password **/
             btnForgotPassword.setOnClickListener {
-                showBottomSheet()
+                resetPassSheet.showSheet()
             }
 
             /** button login by google **/
@@ -137,21 +167,13 @@ class Login: Fragment() {
     }
 
 
-    private fun showBottomSheet() {
-
-        val dialog = BottomSheetDialog(requireContext())
-        dialog.setContentView(R.layout.bottom_forgot_sheet)
-        val submitBtn = dialog.findViewById<Button>(R.id.btnSubmit)
-
-        submitBtn?.setOnClickListener {
-            // resetPassword()
-
+    private fun resetPassSheetStatus(){
+        resetPassSheet.resetPassStatus = object: ResetPasswordSheet.ResetPasswordStatus{
+            override fun onSend(email: String) {
+                viewModel.resetPassword(email)
+            }
         }
-
-        dialog.show()
-
     }
-
 
     private fun loginByGoogle(){
 
@@ -161,10 +183,6 @@ class Login: Fragment() {
         startActivityForResult(intent, RC_SIGN_IN)
     }
 
-    private fun isAllFieldsFilled(): Boolean {
-        return  mEmail.isEmpty() && mPassword.isEmpty()
-
-    }
 
 
 

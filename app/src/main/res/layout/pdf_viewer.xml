@@ -49,8 +49,8 @@
                 android:layout_height="wrap_content"/>
 
 
-
         </FrameLayout>
+
 
         <com.github.barteksc.pdfviewer.PDFView
             android:id="@+id/pdfView"

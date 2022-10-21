@@ -18,7 +18,9 @@ data class User (
     var password: String = "",
     var createData: Date? = getCurrentTime(),
     var likes: List<String> = ArrayList(), // id of novel data
-    var reads: List<String> = ArrayList()
+    var reads: List<String> = ArrayList(),
+    var notifications: List<String>? = ArrayList(),
+    var token: String? = ""
 
 
 ): Parcelable {
@@ -31,7 +33,9 @@ data class User (
             "userType" to userType,
             "createData" to createData!!,
             "likes" to likes,
-            "reads" to reads
+            "reads" to reads,
+            "token" to token!!,
+            "notifications" to notifications!!
         )
     }
 }

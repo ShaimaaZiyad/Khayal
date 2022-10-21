@@ -4,6 +4,7 @@
     package="com.shaimaziyad.khayal">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -13,7 +14,7 @@
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:name="com.shaimaziyad.BaseApplication"
         android:theme="@style/Theme.Khayal">
         <activity
             android:name=".MainActivity"
@@ -25,9 +26,23 @@
             </intent-filter>
         </activity>
 
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8366065026867038~2393983995" />
+
+
+
+        <!-- notification server-->
+        <service android:name=".notification.NotifyService"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
 
     </application>
 

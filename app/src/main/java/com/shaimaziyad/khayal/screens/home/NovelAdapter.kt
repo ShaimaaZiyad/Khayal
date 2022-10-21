@@ -6,18 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.shaimaziyad.khayal.data.NovelData
-import com.shaimaziyad.khayal.databinding.RowNovelUserBinding
+import com.shaimaziyad.khayal.databinding.ItemNovelBinding
 
 
-class AdapterNovel : ListAdapter<NovelData, AdapterNovel.ViewHolder>(NovelDiffCallback) {
+
+class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCallback) {
 
     lateinit var clickListener: NovelClickListener
 
-    class ViewHolder(private val binding:  RowNovelUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding:  ItemNovelBinding) : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
-                return ViewHolder(RowNovelUserBinding.inflate(LayoutInflater.from(parent.context)))
+                return ViewHolder(ItemNovelBinding.inflate(LayoutInflater.from(parent.context)))
             }
         }
 
@@ -61,19 +62,9 @@ class AdapterNovel : ListAdapter<NovelData, AdapterNovel.ViewHolder>(NovelDiffCa
     }
 
 
-//    fun updateNovel(novel: NovelData, position: Int) {
-//        notifyItemChanged(position)
-//    }
-//
-//    fun deleteNovel(){
-//
-//    }
-
-
     interface NovelClickListener {
         fun onClick(novel: NovelData, index: Int)
     }
-
 
 
 }

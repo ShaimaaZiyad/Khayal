@@ -110,7 +110,6 @@
                             android:id="@+id/title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_edit_text01"
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/novel_title"
@@ -136,7 +135,6 @@
                             android:id="@+id/description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_edit_text01"
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/novel_des"
@@ -161,7 +159,6 @@
                             android:id="@+id/writerName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_edit_text01"
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/writer_name"
@@ -173,49 +170,57 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!--Input type-->
+
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/typeTil"
+                        android:id="@+id/typeLabel"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                        android:layout_marginTop="10dp"
-                        app:hintEnabled="false">
+                        android:hint="@string/novel_type"
+                        android:textColorHint="@color/gray01"
+                        app:boxStrokeColor="@color/primaryDarkColor">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/type"
+                        <AutoCompleteTextView
+                            android:id="@+id/btnSelectType"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_edit_text01"
-                            android:drawableStart="@drawable/ic_pdf_gray"
-                            android:drawablePadding="10dp"
-                            android:hint="@string/novel_type"
-                            android:text="@{addEditNovelViewModel.novel.type}"
-                            android:inputType="textPersonName|textCapSentences"
-                            android:padding="10dp"
+                            android:dropDownHeight="240dp"
+                            android:inputType="none"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/gray01" />
+                            android:labelFor="@id/typeLabel"
+                            android:paddingTop="12dp"
+                            setNovelType="@{addEditNovelViewModel.novel.type}"
+                            android:paddingBottom="12dp"
+                            android:textStyle="bold" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-
-                    <TextView
-                        android:id="@+id/btnCategory"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/categoryLabel"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_edit_text01"
-                        android:drawablePadding="10dp"
-                        android:text="@{addEditNovelViewModel.novel.category}"
-                        android:gravity="center_vertical"
                         android:hint="@string/category_title"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
                         android:textColorHint="@color/gray01"
-                        android:textSize="16sp"
-                        app:drawableEndCompat="@drawable/ic_down_gray"
-                        app:drawableStartCompat="@drawable/ic_category_gray" />
+                        app:boxStrokeColor="@color/primaryDarkColor">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/btnSelectCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:dropDownHeight="240dp"
+                            android:inputType="none"
+                            android:textColor="@color/black"
+                            android:labelFor="@id/categoryLabel"
+                            android:paddingTop="12dp"
+                            setNovelCategory="@{addEditNovelViewModel.novel.category}"
+                            android:paddingBottom="12dp"
+                            android:textStyle="bold" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
                     <androidx.recyclerview.widget.RecyclerView

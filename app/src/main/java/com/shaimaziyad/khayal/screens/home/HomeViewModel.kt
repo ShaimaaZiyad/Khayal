@@ -1,9 +1,7 @@
 package com.shaimaziyad.khayal.screens.home
 
-import android.app.Application
-import android.content.Context
+
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,23 +11,20 @@ import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.NovelRepository
 import com.shaimaziyad.khayal.repository.UserRepository
-import com.shaimaziyad.khayal.utils.DataStatus
-import com.shaimaziyad.khayal.utils.isCustomer
+import com.shaimaziyad.khayal.utils.*
 import kotlinx.coroutines.launch
-import com.shaimaziyad.khayal.utils.Result
 import com.shaimaziyad.khayal.utils.Result.Success
 import com.shaimaziyad.khayal.utils.Result.Error
-import com.shaimaziyad.khayal.utils.SharePrefManager
 
-class HomeViewModel(application: Application): AndroidViewModel(application) {
+class HomeViewModel(private val userRepo: UserRepository,
+                    private val novelRepo: NovelRepository): ViewModel() {
 
     companion object{
         private const val TAG = "HomeViewModel"
     }
 
-    private val userRepository = UserRepository()
-    private val novelRepository = NovelRepository()
-    private val userType = SharePrefManager(application).loadUser().userType
+    private val localUser = userRepo.user!!
+
 
     private val _novels = MutableLiveData<List<NovelData>?>()
     val novels: LiveData<List<NovelData>?> = _novels
@@ -43,28 +38,14 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-    private val _user = MutableLiveData<User?>()
-    val user: LiveData<User?> = _user
 
-    private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(userType))
+
+    private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
     val isCustomer: LiveData<Boolean?> = _isCustomer
 
     private val _isDataExist = MutableLiveData<Boolean?>()
     val isDataExist: LiveData<Boolean?> = _isDataExist
 
-
-    init {
-        loadUser()
-    }
-
-
-    fun loadUser() {
-        viewModelScope.launch {
-            val userId = FirebaseAuth.getInstance().currentUser?.uid!!
-            _user.value = userRepository.loadUser(userId)
-            _isCustomer.value = isCustomer(_user.value!!.userType)
-        }
-    }
 
 
     fun loadNovels() {
@@ -72,19 +53,21 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
         resetStatus()
         _novelsStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-            val res = novelRepository.loadNovels()
+            val res = novelRepo.loadNovels()
             if (res is Success){
-                Log.d(TAG,"onSuccess: novels size: ${res.data}")
+                Log.d(TAG,"onSuccess: novels size: ${res.data.size}")
                 _novelsStatus.value = DataStatus.SUCCESS
                 val data = res.data
-                _novels.value = data
+                _novels.value = data.sortedBy { it.createDate }
                 _isDataExist.value = _novels.value.isNullOrEmpty()
+//                resetStatus()
             }
             else if(res is Error) {
                 Log.d(TAG,"onError: error happen during fetching novels due to ${res.exception.message}")
                 _novelsStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 _isDataExist.value = null
+                resetStatus()
             }
 
         }
@@ -93,13 +76,15 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
 
 
-    private fun resetStatus(){
+    fun resetStatus(){
         _novelsStatus.value = null
+        _info.value = null
+        _error.value = null
     }
 
     fun searchByNovelTitle(query: String): List<NovelData> { // return list of novels
         val result = if (query.isNotEmpty()) {
-            _novels.value?.filter { it.title.contains(query) }
+            _novels.value?.filter { it.title.lowercase().contains(query.lowercase()) }
         }else {
             _novels.value
         }

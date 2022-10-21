@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize">
+
+
+                    <ImageView
+                        android:id="@+id/btn_close"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="10dp"
+                        android:background="@color/white"
+                        android:src="@drawable/ic_cancel"
+                        app:tint="@color/red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/push_notification"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+
+                </FrameLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/notification_title"
+                            app:expandedHintEnabled="false"
+                            app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
+                            app:placeholderText="@string/notification_title"
+                            app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
+
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:paddingBottom="12dp" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <androidx.legacy.widget.Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"/>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/description"
+                            app:expandedHintEnabled="false"
+                            app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
+                            app:placeholderText="@string/description"
+                            app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
+
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/description"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:lines="15"
+                                android:minLines="5"
+                                android:gravity="top|left"
+                                android:maxLines="20"
+                                android:inputType="text"
+                                android:paddingBottom="12dp" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <RadioGroup
+                            android:id="@+id/radio_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/choose_the_path"
+                                android:textStyle="bold"
+                                android:textSize="20sp"/>
+
+                            <androidx.legacy.widget.Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"/>
+
+                            <RadioButton
+                                android:id="@+id/external"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="@string/external_link" />
+
+
+                            <RadioButton
+                                android:id="@+id/internal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/internal_link" />
+
+                            <RadioButton
+                                android:id="@+id/nothing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_thing" />
+
+
+                        </RadioGroup>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/externalLinkField"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/external_link"
+                            app:expandedHintEnabled="false"
+                            android:layout_marginTop="20dp"
+                            app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
+                            app:placeholderText="@string/external_link"
+                            app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
+
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/exLink"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:paddingBottom="12dp" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/internalLinkField"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/internal_link"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            android:textColorHint="@color/gray02"
+                            app:boxStrokeColor="@color/primaryDarkColor">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/inLink"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:dropDownHeight="240dp"
+                                android:inputType="none"
+                                android:labelFor="@id/internalLinkField"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                android:textStyle="bold" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.legacy.widget.Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"/>
+
+                        <TextView
+                            android:id="@+id/notify_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:drawablePadding="4dp"
+                            android:textAppearance="@style/TextAppearance.MyTheme.Subtitle2"
+                            android:textColor="?attr/colorError"
+                            app:drawableStartCompat="@android:drawable/stat_notify_error"
+                            app:drawableTint="?attr/colorError"
+                            tools:text="@string/info_notify_for_user" />
+
+                        <Button
+                            android:id="@+id/btn_Send"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:backgroundTint="@color/primaryDarkColor"
+                            android:padding="16dp"
+                            android:layout_marginTop="40dp"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/send" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </ScrollView>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

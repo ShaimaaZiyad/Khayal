@@ -11,16 +11,19 @@
         android:name="com.shaimaziyad.khayal.screens.auth.Splash"
         android:label="fragment_splash"
         tools:layout="@layout/splash" >
-        <action
-            android:id="@+id/action_splash_to_login"
-            app:destination="@id/login"
-            app:popUpTo="@id/splash"
-            app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_splash_to_home"
             app:destination="@id/home"
             app:popUpTo="@id/splash"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_splash_to_Login"
+            app:destination="@id/Login"
+            app:popUpTo="@id/splash"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
 
@@ -34,7 +37,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/login"
+        android:id="@+id/Login"
         android:name="com.shaimaziyad.khayal.screens.auth.Login"
         android:label="login"
         tools:layout="@layout/login" >
@@ -42,7 +45,7 @@
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/home"
-            app:popUpTo="@id/login"
+            app:popUpTo="@id/Login"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_login_to_register"
@@ -56,7 +59,7 @@
 
         <action
             android:id="@+id/action_register_to_login"
-            app:destination="@id/login"
+            app:destination="@id/Login"
             app:popUpTo="@id/register"
             app:popUpToInclusive="true" />
     </fragment>
@@ -69,11 +72,18 @@
             android:id="@+id/action_userHome_to_novelDetails"
             app:destination="@id/novelDetails" />
         <action
-            android:id="@+id/action_userHome_to_profile"
-            app:destination="@id/profile" />
-        <action
             android:id="@+id/action_home_to_addEditNovel"
             app:destination="@id/addEditNovel" />
+        <action
+            android:id="@+id/action_home_to_users"
+            app:destination="@id/users" />
+        <action
+            android:id="@+id/action_home_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile" />
+
     </fragment>
     <fragment
         android:id="@+id/novelDetails"
@@ -82,7 +92,7 @@
         tools:layout="@layout/novel_details" >
         <action
             android:id="@+id/action_novelDetails_to_novelPdf"
-            app:destination="@id/novelPdf" />
+            app:destination="@id/pdfViewer" />
         <action
             android:id="@+id/action_novelDetails_to_viewPdf"
             app:destination="@id/viewPdf" />
@@ -92,19 +102,18 @@
         android:name="com.shaimaziyad.khayal.screens.profile.Profile"
         android:label="profile"
         tools:layout="@layout/profile" >
-
         <action
-            android:id="@+id/action_profile_to_login"
-            app:destination="@id/login"
+            android:id="@+id/action_profile_to_Login"
+            app:destination="@id/Login"
             app:popUpTo="@id/profile"
             app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
-        android:id="@+id/novelPdf"
-        android:name="com.shaimaziyad.khayal.screens.novelPdf.NovelPdf"
+        android:id="@+id/pdfViewer"
+        android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
         android:label="novel_pdf"
-        tools:layout="@layout/novel_pdf" >
+        tools:layout="@layout/pdf_viewer" >
         <action
             android:id="@+id/action_novelPdf_to_viewPdf"
             app:destination="@id/viewPdf" />
@@ -120,5 +129,20 @@
             app:popUpTo="@id/addEditNovel"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/users"
+        android:name="com.shaimaziyad.khayal.screens.users.Users"
+        android:label="Users"
+        tools:layout="@layout/users">
+        <action
+            android:id="@+id/action_users_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notifications"
+        android:name="com.shaimaziyad.khayal.screens.notifications.Notifications"
+        android:label="Notifications"
+        tools:layout="@layout/notifications"/>
 
 </navigation>

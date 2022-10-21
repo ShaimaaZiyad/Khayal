@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    def koin_version = "2.0.1"
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -53,16 +55,25 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // firebase storage
-    implementation 'com.google.firebase:firebase-storage-ktx:20.0.2'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
 
     // firebase fire store
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.3.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
+
+
+    // FireBase Cloud Messaging..
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
 
     // gson
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -90,7 +101,7 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:4.3.1"
     implementation "com.airbnb.android:epoxy-databinding:4.3.1"
 
-    implementation 'com.google.firebase:firebase-auth:21.0.8'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
 
 
     // circular image view
@@ -101,6 +112,16 @@ dependencies {
 
     // check permissions
     implementation 'com.karumi:dexter:6.2.3'
+
+    // country picker
+    implementation "com.hbb20:ccp:2.6.1"
+
+
+    // koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    implementation "org.koin:koin-android-ext:$koin_version"
 
 
 }

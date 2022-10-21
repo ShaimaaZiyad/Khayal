@@ -5,12 +5,17 @@
 
     <data>
 
+<!--        <variable-->
+<!--            name="profileViewModel"-->
+<!--            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />-->
+
         <variable
-            name="profileViewModel"
-            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />
+            name="userModel"
+            type="com.shaimaziyad.khayal.data.User" />
+
     </data>
 
-<LinearLayout
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,7 +24,7 @@
 
 
     <!--Toolbar-->
-    <RelativeLayout
+    <FrameLayout
         android:background="@drawable/shape_toolbar02"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize">
@@ -29,42 +34,42 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
+            android:layout_gravity="center|start"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:padding="10dp"
+            android:minWidth="35dp"
+            android:minHeight="35dp"
+            android:padding="2dp"
             android:src="@drawable/ic_back_white" />
+
 
         <!--Title-->
         <TextView
             android:id="@+id/toolbarTitleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:text="@string/profile"
+            android:textSize="18sp"
+            android:layout_gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
-        <!--Profile edit button-->
-        <ImageButton
-            android:id="@+id/profileEditBtn"
+        <ImageView
+            android:id="@+id/btnOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_edit_white" />
+            android:minWidth="35dp"
+            android:minHeight="35dp"
+            android:padding="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="end|center"
+            android:src="@drawable/ic_more"
+            app:tint="@color/white" />
 
 
-    </RelativeLayout>
+
+    </FrameLayout>
 
 
 
@@ -72,37 +77,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="?actionBarSize"
                 android:orientation="vertical">
 
-                <!--Shape able ImageView with rounded corners-->
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profileTv"
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageProfile"
                     android:layout_marginTop="20dp"
                     android:background="@color/white"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_person_gray"
                     android:layout_width="120dp"
-                    setImage="@{profileViewModel.user.profileImage}"
+                    tools:src="@drawable/ic_profile_test"
+                    setImage="@{userModel.profileImage}"
                     app:shapeAppearanceOverlay="@style/styleRoundedCornersImage"
                     android:layout_height="120dp"/>
+
 
                 <!--Name-->
                 <TextView
                     android:id="@+id/nameTv"
                     android:layout_marginTop="8dp"
-                    android:text="@{profileViewModel.user.name}"
+                    android:text="@{userModel.name}"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="User Name"
+                    tools:text="Ahmed Mohamed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <!--Email-->
                 <TextView
                     android:layout_marginTop="5dp"
-                    tools:text="@string/email"
-                    android:text="@{profileViewModel.user.email}"
+                    tools:text="test@gmail.com"
+                    android:text="@{userModel.email}"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:layout_width="wrap_content"
@@ -135,7 +143,7 @@
 
                         <TextView
                             android:id="@+id/accountTypeTv"
-                            android:text="@{profileViewModel.user.userType.toLowerCase()}"
+                            android:text="@{userModel.userType.toLowerCase()}"
                             android:textColor="@color/black"
                             tools:text="@string/sample_text"
                             android:layout_width="wrap_content"
@@ -162,7 +170,7 @@
 
                         <TextView
                             android:textColor="@color/black"
-                            joinedAt="@{profileViewModel.user.createData}"
+                            joinedAt="@{userModel.createData}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="28/02/2022"/>
@@ -188,7 +196,7 @@
                         <TextView
                             android:id="@+id/favoriteBookCountTv"
                             tools:text="@string/sample_text"
-                            android:text="@{String.valueOf(profileViewModel.user.likes.size)}"
+                            android:text="@{String.valueOf(userModel.likes.size)}"
                             android:textColor="@color/black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -197,23 +205,23 @@
 
                 </LinearLayout>
 
-
-                <Button
-                    android:id="@+id/btnSignOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginStart="50dp"
-                    android:background="@drawable/shape_button01"
-                    android:text="@string/sign_out"
-                    android:textColor="@color/white" />
-
-
             </LinearLayout>
 
 
-</LinearLayout>
+    <include
+        android:id="@+id/profileSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/edit_profile_sheet"/>
+
+    <include
+        android:id="@+id/pushNotifySheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/push_notification_sheet"/>
+
+
+</FrameLayout>
 
 
 </layout>

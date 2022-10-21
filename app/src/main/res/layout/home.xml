@@ -9,11 +9,33 @@
             name="homeViewModel"
             type="com.shaimaziyad.khayal.screens.home.HomeViewModel" />
 
+        <variable
+            name="profileModel"
+            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />
+
+
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddNovel"
+            hideViewIfCustomer="@{homeViewModel.isCustomer()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_add"
+            android:visibility="gone"
+            app:backgroundTint="@color/primaryDarkColor"
+            app:tint="@color/white"
+            tools:visibility="visible" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +62,7 @@
                         android:layout_margin="5dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_account"
-                        setImage="@{homeViewModel.user.profileImage}" />
+                        setImage="@{profileModel.user.profileImage}" />
 
 
                     <androidx.legacy.widget.Space
@@ -56,7 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            setName="@{homeViewModel.user.name}"
+                            setName="@{profileModel.user.name}"
                             android:textStyle="bold"
                             tools:text="Ahmed Abdo" />
 
@@ -64,8 +86,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{homeViewModel.user.email}"
-                            showViewIfCustomer="@{homeViewModel.isCustomer()}"
+                            android:text="@{profileModel.user.email}"
+                            showViewIfCustomer="@{profileModel.isCustomer()}"
                             tools:text="example@gmail.com"
                             android:textColor="@color/white" />
 
@@ -101,8 +123,6 @@
 
 
                 </LinearLayout>
-
-
 
 
 
@@ -154,80 +174,75 @@
                     android:layout_height="match_parent">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="3dp"
                         android:layout_marginTop="10dp">
 
 
-                        <!--Novels-->
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/novelsRv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            tools:listitem="@layout/row_novel_user" />
-
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            showLoading="@{homeViewModel.novelsStatus}"
-                            android:visibility="gone">
-
-                            <include
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                layout="@layout/load"/>
-
-                        </FrameLayout>
-
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            showIfDataNotExist="@{homeViewModel.isDataExist()}"
-                            android:visibility="gone">
-
-                            <include
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                layout="@layout/no_data_found_layout"/>
-
-                        </FrameLayout>
-
-
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:id="@+id/btnAddNovel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            app:tint="@color/white"
-                            hideViewIfCustomer="@{homeViewModel.isCustomer()}"
-                            app:backgroundTint="@color/primaryDarkColor"
-                            android:layout_marginBottom="16dp"
-                            android:src="@drawable/ic_add"
-                            android:visibility="gone"
-                            tools:visibility="visible"
-                            android:layout_marginEnd="16dp" />
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_anchor="@+id/frameLayout"
+                            app:layout_anchorGravity="center"
+                            app:spanCount="3"
+                            tools:listitem="@layout/item_novel" />
 
 
                     </FrameLayout>
 
-                </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 
-
-
         </LinearLayout>
+
+
+
+
+        <FrameLayout
+            showLoading="@{homeViewModel.novelsStatus}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            android:visibility="gone">
+
+            <include
+                layout="@layout/load"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            showIfDataNotExist="@{homeViewModel.isDataExist()}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            android:visibility="gone">
+
+            <include
+                layout="@layout/no_data_found_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+
+        <include
+            android:id="@+id/novelSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/filter_novel_sheet"/>
+
 
 
 

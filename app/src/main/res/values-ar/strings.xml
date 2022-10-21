@@ -16,7 +16,7 @@
     <string name="send">ارسال</string>
     <string name="add_novel">أضف رواية</string>
     <string name="category_title">عنوان الفئة</string>
-    <string name="novel_title">غنوان الرواية</string>
+    <string name="novel_title">عنوان الرواية</string>
     <string name="novel_des">وصف الرواية</string>
     <string name="novel_type">نوع الرواية</string>
     <string name="writer_name">اسم الكاتب</string>
@@ -51,7 +51,7 @@
     <string name="name_invalid_error">اسم غير مقبول</string>
     <string name="password_mismatch_error">كلمة المرور غير متطابقة</string>
     <string name="message_verify_account">الرجاء مصادقة حسابك أولا</string>
-    <string name="enter_email">الرجاء ادخال البريد الالكتروني</string>
+    <string name="enter_email">ادخل البريد الالكتروني</string>
     <string name="no_data_text">لا توجد بيانات</string>
     <string name="number_of_chapter">رقم الفصل</string>
     <string name="add_category">أضف فئة</string>
@@ -62,4 +62,62 @@
     <string name="go_chapters">اذهب الى الفصل</string>
     <string name="delete">مسح</string>
     <string name="sign_out">تسجيل خروج</string>
+    <string name="users">المستخدمين</string>
+    <string name="likes">المفضلات</string>
+    <string name="reads">المقروء</string>
+    <string name="filter">فلترة</string>
+
+    <string name="apply">تطبيق</string>
+    <string name="results">النتائج: %s</string>
+    <string name="clear_filter">مسح الفلترة</string>
+
+
+    <string name="fosha">فصحى</string>
+    <string name="slang">عامية</string>
+    <string name="gulf">خليجية</string>
+
+    <string name="novel">رواية</string>
+    <string name="story">قصة</string>
+    <string name="novella">نوفيلا</string>
+
+
+    <string name="error_require_title">العنوان مطلوب</string>
+    <string name="error_require_description">الوصف مطلوب</string>
+    <string name="error_require_external_link">الرابط مطلوب</string>
+    <string name="error_require_internal_link">الرجاء تحديد وجهة المستخدم</string>
+
+    <string name="info_notify_for_user">ملاحظة: سيتم إرسال هذا الإشعار فقط لهذا المستخدم</string>
+    <string name="info_notify_for_all_user">ملاحظة: سيتم إرسال هذا الإشعار لكافة المستخدمين</string>
+
+    <string name="notification">الإشعار</string>
+    <string name="error_no_token">هذا المستخدم ليس لديه رمز مميز</string>
+    <string name="notify_send">تم إرسال الإشعار</string>
+
+
+    <string name="notifications">الإشعارات</string>
+    <string name="description">الوصف</string>
+    <string name="notification_title">العنوان</string>
+    <string name="link">رابط</string>
+    <string name="choose_the_path">اختر المسار</string>
+    <string name="external_link">رابط خارجي</string>
+    <string name="internal_link">رابط داخلي</string>
+    <string name="push_notification">دفع اشعار</string>
+    <string name="no_thing">لا شئ</string>
+
+
+    <string name="unread">غير مقروء</string>
+    <string name="read">مقروء</string>
+    <string name="system">نظام</string>
+    <string name="mark_as_read">تحديد كمقروء</string>
+    <string name="mark_as_unread">تحديد كغير مقروء</string>
+    <string name="reset_password">تعيين كلمة المرور</string>
+
+    <string name="home">الواجهة الرئيسية</string>
+
+
+    <string name="reset_pass_info">ستصلك رسالة في بريدك الإلكتروني تحتوي على رابط ، اضغط عليه ثم قم بتعيين كلمة المرور</string>
+
+
+
+
 </resources>

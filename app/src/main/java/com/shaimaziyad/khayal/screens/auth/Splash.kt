@@ -12,11 +12,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.SplashBinding
 import com.shaimaziyad.khayal.utils.SharePrefManager
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
 class Splash : Fragment() {
 
     private lateinit var binding: SplashBinding
+    private val viewModel by sharedViewModel<AuthViewModel>()
     private lateinit var sharePrefManager: SharePrefManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -26,12 +28,10 @@ class Splash : Fragment() {
 
 
         Handler(Looper.myLooper()!!).postDelayed({
-//            findNavController().navigate(R.id.action_splash_to_login)
+//            findNavController().navigate(R.id.action_splash_to_Login)
              isLogged()
 
         } , 3000)
-
-
 
 
 
@@ -40,21 +40,15 @@ class Splash : Fragment() {
     }
 
 
-    fun isLogged(){
-        val isUserLogged = sharePrefManager.isLogged()
+    private fun isLogged() {
+        val isUserLogged = viewModel.userRepo.isLogged
         if (isUserLogged) {
             findNavController().navigate(R.id.action_splash_to_home)
         }else{
-            findNavController().navigate(R.id.action_splash_to_login)
+            findNavController().navigate(R.id.action_splash_to_Login)
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//
-//
-//
-//    }
 
 
 

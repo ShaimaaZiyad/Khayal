@@ -1,7 +1,9 @@
 package com.shaimaziyad.khayal.utils
 
 
+import android.content.Context
 import android.view.View
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,6 +24,9 @@ fun setImage(image: ImageView, uri: String?){
             .into(image)
     }
 }
+
+
+
 
 
 @BindingAdapter("setSize")
@@ -111,6 +116,14 @@ fun swipeToRefresh(refreshLayout: SwipeRefreshLayout, status: DataStatus?) {
     }
 }
 
+@BindingAdapter("notifyFormat")
+fun notifyFormat(tv: TextView, date: Date?) {
+    if (date != null){
+        val date = SimpleDateFormat("h:mm:aa").format(date)
+        tv.text = date.toString()
+    }
+}
+
 
 @BindingAdapter("joinedAt")
 fun joinedAt(tv: TextView, date: Date?) {
@@ -119,6 +132,54 @@ fun joinedAt(tv: TextView, date: Date?) {
         tv.text = date.toString()
     }
 }
+
+@BindingAdapter("setLikes")
+fun setLikes(tv: TextView, v: Int){
+    tv.text = "Likes: $v"
+}
+
+@BindingAdapter("setReads")
+fun setReads(tv: TextView, v: Int){
+    tv.text = "Reads: $v"
+}
+
+@BindingAdapter("setNovelCategory")
+fun setNovelCategory(t: AutoCompleteTextView,value: String?){
+    if (!value.isNullOrEmpty()){
+        val v = value.toInt()
+        t.setText(getNovelCategoryKey(t.context, v))
+    }
+}
+
+
+@BindingAdapter("setNovelType")
+fun setNovelType(t: AutoCompleteTextView,value: String?){
+    if (!value.isNullOrEmpty()){
+        val v = value.toInt()
+        t.setText(getNovelTypeKey(t.context, v))
+    }
+}
+
+@BindingAdapter("setNovelCategory")
+fun setNovelCategory(t: TextView,value: String?){
+    if (!value.isNullOrEmpty()){
+        val v = value.toInt()
+        t.text = getNovelCategoryKey(t.context, v)
+    }
+}
+
+
+
+@BindingAdapter("setNovelType")
+fun setNovelType(t: TextView,value: String?){
+    if (!value.isNullOrEmpty()){
+        val v = value.toInt()
+        t.text = getNovelTypeKey(t.context, v)
+    }
+}
+
+
+
 
 
 

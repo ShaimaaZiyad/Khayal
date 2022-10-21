@@ -9,9 +9,9 @@ import com.shaimaziyad.khayal.utils.Result.Success
 import com.shaimaziyad.khayal.utils.Result.Error
 import com.shaimaziyad.khayal.utils.Result
 
-class PdfRepository {
+class PdfRepository(private val remote: DataBase){
 
-    private val remote = DataBase()
+//    private val remote = DataBase()
 
 //    suspend fun addPdf(pdfData: PdfData) = remote.addPdf(pdfData)
 

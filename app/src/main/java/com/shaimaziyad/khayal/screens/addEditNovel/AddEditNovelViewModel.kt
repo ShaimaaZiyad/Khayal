@@ -11,21 +11,20 @@ import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.repository.NovelRepository
 import com.shaimaziyad.khayal.repository.PdfRepository
 import com.shaimaziyad.khayal.utils.DataStatus
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import com.shaimaziyad.khayal.utils.Result
 import java.util.Calendar
 
-class AddEditNovelViewModel(): ViewModel() {
+class AddEditNovelViewModel(private val novelRepo: NovelRepository,
+                            private val pdfRepo: PdfRepository): ViewModel() {
 
     companion object{
         private const val TAG = "AddEditViewModel"
     }
 
 
-    private val novelRepository = NovelRepository()
-    private val pdfRepository = PdfRepository()
+//    private val novelRepository = NovelRepository()
+//    private val pdfRepository = PdfRepository()
 
     private val _novelStatus = MutableLiveData<DataStatus?>()
     val novelStatus: LiveData<DataStatus?> = _novelStatus
@@ -45,6 +44,10 @@ class AddEditNovelViewModel(): ViewModel() {
 
 
 
+    init {
+        resetStatus()
+    }
+
 
 
     fun uploadNovel(novel: NovelData, pdfsUri: ArrayList<Uri>) {
@@ -54,13 +57,13 @@ class AddEditNovelViewModel(): ViewModel() {
         viewModelScope.launch {
             val cover = novel.cover.toUri()
             val coverName = Calendar.getInstance().time.toString()
-            val pdfIds = pdfRepository.uploadPdfs(pdfsUri)  // here we will upload the pdfs then we will return the ids of pdfs
-            val coverId = novelRepository.uploadCover(cover,coverName) // here we will upload the cover then we will return the cover id.
+            val pdfIds = pdfRepo.uploadPdfs(pdfsUri)  // here we will upload the pdfs then we will return the ids of pdfs
+            val coverId = novelRepo.uploadCover(cover,coverName) // here we will upload the cover then we will return the cover id.
             novel.cover = coverId
             novel.pdfs = pdfIds
             novel.pdfsCount = pdfIds.size // for pdf count
 
-            val res = novelRepository.addNovel(novel)
+            val res = novelRepo.addNovel(novel)
             if (res is Result.Success) {
                 Log.d(TAG,"onUploadNovel: upload has been success")
                 _info.value = "Uploaded"
@@ -84,12 +87,12 @@ class AddEditNovelViewModel(): ViewModel() {
         viewModelScope.launch {
             val cover = novel.cover.toUri()
             val coverName = Calendar.getInstance().time.toString()
-            val pdfIds = pdfRepository.uploadPdfs(pdfsUri)  // here we will upload the pdfs then we will return the ids of pdfs
-            val coverId = novelRepository.uploadCover(cover,coverName) // here we will upload the cover then we will return the cover id.
+            val pdfIds = pdfRepo.uploadPdfs(pdfsUri)  // here we will upload the pdfs then we will return the ids of pdfs
+            val coverId = novelRepo.uploadCover(cover,coverName) // here we will upload the cover then we will return the cover id.
             novel.cover = coverId
             novel.pdfs = pdfIds
             novel.pdfsCount = pdfIds.size // for pdf count
-            val res = novelRepository.updateNovel(novel)
+            val res = novelRepo.updateNovel(novel)
             if (res is Result.Success) {
                 Log.d(TAG,"onUpdateNovel: update has been success")
                 _info.value = "Updated"
@@ -110,7 +113,7 @@ class AddEditNovelViewModel(): ViewModel() {
         resetStatus()
         _novelStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-           val res = novelRepository.deleteNovel(novel)
+           val res = novelRepo.deleteNovel(novel)
             if (res is Result.Success) {
                 Log.d(TAG,"onDeleteNovel: delete has been success")
                 _info.value = "Delete"
@@ -132,7 +135,7 @@ class AddEditNovelViewModel(): ViewModel() {
     }
 
 
-    private fun resetStatus() {
+    fun resetStatus() {
         _navigateToHome.value = null
         _novelStatus.value = null
         _error.value = null

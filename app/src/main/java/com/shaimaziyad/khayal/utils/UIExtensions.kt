@@ -1,10 +1,13 @@
 package com.shaimaziyad.khayal.utils
 
+import android.R
 import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -71,3 +74,25 @@ fun View.show() { visibility = View.VISIBLE}
 
 
 enum class NovelCategories{CATEGORY1 ,CATEGORY2, CATEGORY3 , CATEGORY4, CATEGORY5 }
+
+
+fun setListToAutoComplete(context: Context,list: HashMap<String,Int>,v: AutoCompleteTextView) {
+    val sortedList = list.toList().sortedBy { (_, value)-> value}.toMap().keys.toList() // sort the list depending on the values
+    val adapter = ArrayAdapter(context, R.layout.simple_list_item_1,sortedList)
+    v.setAdapter(adapter)
+}
+
+fun getNovelCategoryKey(context: Context, value: Int): String {
+    val filter = NovelFilter(context)
+    return getKeyByValue(filter.novelCategories, value) ?:""
+}
+
+fun getNovelTypeKey(context: Context, value: Int): String {
+    val filter = NovelFilter(context)
+    return getKeyByValue(filter.novelType, value) ?:""
+}
+
+private fun getKeyByValue(list: HashMap<String, Int>, value: Int): String{
+    val reversed = list.entries.associate{(k,v)-> v to k}
+    return reversed[value] ?:""
+}

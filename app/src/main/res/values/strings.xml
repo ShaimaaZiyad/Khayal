@@ -52,11 +52,6 @@
     <string name="no_data_text">No data found</string>
     <string name="forgot_password">Forget password?</string>
     <string name="go_chapters">Go to chapter</string>
-
-
-
-
-
     <string name="add_favorite">Add to favorite</string>
     <string name="chapters_of_novel">Chapters of novel</string>
     <string name="number_of_chapter">number of chapter</string>
@@ -69,6 +64,56 @@
     <string name="number_of_pdf">number of chapters</string>
     <string name="delete">Delete</string>
     <string name="sign_out">SignOut</string>
+
+
+    <string name="users">Users</string>
+    <string name="likes">Likes</string>
+    <string name="reads">Reads</string>
+    <string name="filter">Filter</string>
+
+    <string name="apply">Apply</string>
+    <string name="results">Results: %s</string>
+
+
+
+    <string name="fosha">Fosha</string>
+    <string name="slang">Slang</string>
+    <string name="gulf">Gulf</string>
+
+    <string name="novel">novel</string>
+    <string name="story">Story</string>
+    <string name="novella">Novella</string>
+    <string name="clear_filter">Clear Filter</string>
+
+    <string name="error_require_title">Required Title</string>
+    <string name="error_require_description">Required Description</string>
+    <string name="error_require_external_link">Required Link</string>
+    <string name="error_require_internal_link">Required User Destination</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="description">Description</string>
+    <string name="notification_title">Title</string>
+    <string name="link">Link</string>
+    <string name="choose_the_path">Choose the Path</string>
+    <string name="external_link">External Link</string>
+    <string name="internal_link">Internal Link</string>
+    <string name="push_notification">Push Notification</string>
+    <string name="no_thing">No thing</string>
+    <string name="info_notify_for_user">Note: This notification will only be sent to this user</string>
+    <string name="info_notify_for_all_user">Note: This notice will be sent to all users</string>
+    <string name="notification">Notification</string>
+
+    <string name="error_no_token">This user does not have token</string>
+    <string name="notify_send">notify send</string>
+    <string name="unread">UnRead</string>
+    <string name="read">Read</string>
+    <string name="system">System</string>
+    <string name="mark_as_read">Mark as Read</string>
+    <string name="mark_as_unread">Mark as Unread</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset_pass_info">You will receive a message in your E-Mail containing a link, click on it and then set the password</string>
+
+    <string name="home">Home</string>
 
 
 </resources>

@@ -63,6 +63,7 @@ class NovelDetails : Fragment() {
             setChapterAdapter()
             setAppBar()
 
+            // todo: add favorite feature
 
         }
     }

@@ -11,23 +11,27 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.ERR_UPLOAD
+import com.shaimaziyad.khayal.utils.NotifyType
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.tasks.await
 import java.util.*
 
-class DataBase {
+class DataBase() {
 
-    companion object{
+    companion object {
         private const val TAG = "RemoteDataBase"
 
         private const val USERS_COLLECTION = "Users"
+        private const val NOTIFICATION_COLLECTION = "Notifications"
 
+        private const val FIELD_TARGET_USER = "targetUser"
         private const val FIELD_EMAIL = "email"
         private const val NOVELS_COLLECTION = "Novels"
         private const val PDFS_COUNT = "pdfsCount"
@@ -40,6 +44,7 @@ class DataBase {
 
     private val usersPath = fireStore.collection(USERS_COLLECTION)
     private val novelsPath = fireStore.collection(NOVELS_COLLECTION)
+    private val notificationsPath = fireStore.collection(NOTIFICATION_COLLECTION)
 
 //    private val userId = auth.currentUser?.uid!! // use this variable only after user login to firebase.
 
@@ -50,10 +55,16 @@ class DataBase {
     private val _observeNovels = MutableLiveData<List<NovelData>?>()
     val novels: MutableLiveData<List<NovelData>?> = _observeNovels
 
+    private val _observeNotification = MutableLiveData<List<Notification>?>()
+    val observeNotification: MutableLiveData<List<Notification>?> = _observeNotification
+
+
     init {
+        observeNotification()
+
         /** get the live data of folders data from firebase **/
-        observeUsers ()
-        observeNovels ()
+//        observeUsers ()
+//        observeNovels ()
     }
 
 
@@ -68,25 +79,47 @@ class DataBase {
         }
     }
 
-    suspend fun isUserExist(email: String) =  usersPath.whereEqualTo(FIELD_EMAIL, email).get().await().first().exists()
+
+
+
+    private fun observeNotification() {
+        notificationsPath.addSnapshotListener { value, error ->
+            if (error == null) {
+                if (value != null) {
+                    val notifications = value.toObjects(Notification::class.java)
+                    _observeNotification.value = notifications
+                }else {
+                    _observeNotification.value = emptyList()
+                }
+            }else {
+                _observeNotification.value = emptyList()
+            }
+        }
+    }
+
+
+
 
     suspend fun signWithEmailAndPassword(email: String, password: String): AuthResult? {
         return auth.signInWithEmailAndPassword(email, password).await()
     }
 
-    suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password).await()
+
+
+    suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password)
 
 
     fun addUser(user: User) = usersPath.document(user.uid).set(user)
 
     suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
 
-    suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java)
+    suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java) ?: User()
 
 
-    suspend fun getUser() {
-        usersPath.get().await()
-    }
+
+    suspend fun updateUser(user: User) = usersPath.document(user.uid).update(user.toHashMap())
+
+    suspend fun getUsers(): List<User> = usersPath.get().await().toObjects(User::class.java).filter { it.uid != Constants.ADMIN_ID }
 
     suspend fun signOut(): Result<Boolean> {
         return supervisorScope {
@@ -100,27 +133,7 @@ class DataBase {
         }
     }
 
-    suspend fun resetPassword(email: String,
-                              onSuccess:( Task<Void>)-> Unit,
-                              onError:(String)-> Unit) {
-        return supervisorScope {
-            val remoteRes = async { auth.sendPasswordResetEmail(email)
-                .addOnCompleteListener {
-                    Log.d(TAG,"onResetPassword: Email is successfully sent")
-                    onSuccess(it)
-                }
-                .addOnFailureListener {
-                    Log.d(TAG,"onResetPassword: Failed to sent email: cause -> ${it.message}")
-                    onError(it.message.toString())
-                }
-            }
-            try {
-                remoteRes.await()
-            }catch (ex: Exception){
-                Log.d(TAG,"onResetPassword: Failed to sent email: cause -> ${ex.message}")
-            }
-        }
-    }
+    suspend fun resetPassword(email: String) = auth.sendPasswordResetEmail(email)
 
     private fun observeNovels() {
         novelsPath.addSnapshotListener { value, error ->
@@ -133,21 +146,30 @@ class DataBase {
         }
     }
 
+
+
+
+
+    suspend fun getNotifications(): List<Notification> = notificationsPath.get().await().toObjects(Notification::class.java)
+
+    suspend fun addNotify(data : Notification) = notificationsPath.document(data.id).set(data)
+
+    suspend fun updateNotify(data: Notification) = notificationsPath.document(data.id).update(data.toHashMap())
+
+    suspend fun removeNotify(data: Notification) = notificationsPath.document(data.id).delete()
+
+
+
     suspend fun getNovels():List<NovelData> = novelsPath.get().await().toObjects(NovelData::class.java)
 
-    suspend fun addNovel(data : NovelData) = novelsPath.document(data.novelId).set(data).await()
+    suspend fun addNovel(data: NovelData) = novelsPath.document(data.novelId).set(data)
 
     suspend fun updateNovel(data: NovelData) = novelsPath.document(data.novelId).update(data.toHashMap())
-
 
     // TODO: delete the pdf files before delete the novel data.
     suspend fun deleteNovel(novelData: NovelData)  = novelsPath.document(novelData.novelId).delete()
 
 
-    suspend fun getNovelById(id: String): NovelData? {
-        val ref = novelsPath.document(id).get().await()
-        return ref.toObject(NovelData::class.java)
-    }
 
 
     suspend fun addPdf(novelData: NovelData,pdfId: String) = novelsPath.document(pdfId).update(PDFS_FILED, FieldValue.arrayUnion(pdfId)).addOnSuccessListener {

@@ -33,12 +33,13 @@
             android:layout_alignTop="@+id/btnNotify"
             android:layout_alignEnd="@id/btnNotify"
             android:background="@drawable/item_count"
-            tools:text="24"
+            tools:text="41"
             android:visibility="gone"
             tools:visibility="visible"
             android:textColor="#FFF"
             android:textSize="16sp"
             android:textStyle="bold" />
+
 
     </RelativeLayout>
 </layout>
