@@ -10,13 +10,15 @@ import com.shaimaziyad.khayal.databinding.PushNotificationSheetBinding
 import com.shaimaziyad.khayal.utils.*
 import com.shaimaziyad.khayal.utils.getNovelId
 
-class PushNotificationSheet(private val context: Context,
-                            private val binding: PushNotificationSheetBinding,
-                            private val fragment: Fragment) {
+class PushNotificationSheet(
+    private val context: Context,
+    private val binding: PushNotificationSheetBinding,
+    private val fragment: Fragment
+) {
 
     lateinit var notifyStatus: NotifyStatus
 
-//    var userToken: String? = null // this user token
+    //    var userToken: String? = null // this user token
     var userId: String? = null
     private val sheet = BottomSheetBehavior.from(binding.sheet)
 
@@ -35,7 +37,7 @@ class PushNotificationSheet(private val context: Context,
 
         if (userId != null) {
             binding.notifyInfo.text = context.getString(R.string.info_notify_for_user)
-        }else{
+        } else {
             binding.notifyInfo.text = context.getString(R.string.info_notify_for_all_user)
         }
 
@@ -51,13 +53,14 @@ class PushNotificationSheet(private val context: Context,
             val description = binding.description.text?.trim().toString()
             val externalLink = binding.exLink.text?.trim().toString()
             val internalLink = binding.inLink.text.trim().toString()
-            val notification = Notification(getNovelId(),title,description,"",externalLink, internalLink,null)
+            val notification =
+                Notification(getNovelId(), title, description, "", externalLink, internalLink, null)
             if (userId != null) { // push notification to specific user
                 notification.targetUser = userId
 
             }
 
-            if (title.isEmpty()){
+            if (title.isEmpty()) {
                 binding.title.error = context.getString(R.string.error_require_title)
                 binding.title.requestFocus()
                 return@setOnClickListener
@@ -73,24 +76,23 @@ class PushNotificationSheet(private val context: Context,
                     binding.exLink.error = context.getString(R.string.error_require_external_link)
                     binding.exLink.requestFocus()
                     return@setOnClickListener
-                }else{
+                } else {
                     notifyStatus.onSend(notification)
                 }
             }
 
-            if (binding.internal.isChecked){
-                if (internalLink.isEmpty()){
-                    fragment.showMessage( context.getString(R.string.error_require_internal_link))
-                }else{
+            if (binding.internal.isChecked) {
+                if (internalLink.isEmpty()) {
+                    fragment.showMessage(context.getString(R.string.error_require_internal_link))
+                } else {
                     notifyStatus.onSend(notification)
                 }
             }
 
 
-            if (!binding.external.isChecked && !binding.internal.isChecked){
+            if (!binding.external.isChecked && !binding.internal.isChecked) {
                 notifyStatus.onSend(notification)
             }
-
 
 
         }
@@ -116,7 +118,7 @@ class PushNotificationSheet(private val context: Context,
 
     }
 
-    private fun resetViews(){
+    private fun resetViews() {
         binding.apply {
             title.setText("")
             description.setText("")

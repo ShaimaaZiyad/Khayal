@@ -19,7 +19,7 @@ import com.shaimaziyad.khayal.utils.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 @SuppressLint("ResourceAsColor")
-class Notifications: Fragment() {
+class Notifications : Fragment() {
 
 
     private val viewModel by sharedViewModel<NotificationsViewModel>()
@@ -27,8 +27,12 @@ class Notifications: Fragment() {
     private val notifyAdapter by lazy { NotifyAdapter() }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = NotificationsBinding.inflate(inflater,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = NotificationsBinding.inflate(inflater, container, false)
 
 
         setViews()
@@ -50,10 +54,6 @@ class Notifications: Fragment() {
         binding.apply {
 
             setAdapter()
-
-
-
-
 
 
             /** back button **/
@@ -87,15 +87,15 @@ class Notifications: Fragment() {
 
     private fun setAdapter() {
         /** onNovelClick listener **/
-        notifyAdapter.clickListener = object: NotifyAdapter.NotifyClickListener {
+        notifyAdapter.clickListener = object : NotifyAdapter.NotifyClickListener {
 
             override fun onClick(notify: Notification, index: Int) {
                 showMessage("onClick")
             }
 
             override fun onLongClick(notify: Notification, index: Int, v: View) {
-                if (notify.type == NotifyType.Direct.name){
-                    setNotifyItemMenu(notify,v)
+                if (notify.type == NotifyType.Direct.name) {
+                    setNotifyItemMenu(notify, v)
                 }
 
             }
@@ -108,10 +108,10 @@ class Notifications: Fragment() {
 
 
     private fun setNotifyItemMenu(notify: Notification, v: View) {
-        val popupMenu = PopupMenu(requireContext(),v)
-        popupMenu.menuInflater.inflate(R.menu.item_notify_menu,popupMenu.menu)
+        val popupMenu = PopupMenu(requireContext(), v)
+        popupMenu.menuInflater.inflate(R.menu.item_notify_menu, popupMenu.menu)
 
-        when(notify.type){
+        when (notify.type) {
             NotifyType.Direct.name -> {
                 if (notify.isRead == false) { // unRead
                     popupMenu.menu.removeItem(R.id.item_unRead)
@@ -151,8 +151,6 @@ class Notifications: Fragment() {
     }
 
 
-
-
     private fun unReadSelected() {
         resetStatus()
 
@@ -162,7 +160,7 @@ class Notifications: Fragment() {
             tvUnRead.setTextColor(Color.parseColor("#FFFFFF"))
             tvUnRead.typeface = Typeface.DEFAULT_BOLD
         }
-        notifyAdapter.submitList(viewModel.filter(NotifyType.Direct.name,isRead = false))
+        notifyAdapter.submitList(viewModel.filter(NotifyType.Direct.name, isRead = false))
     }
 
     private fun readSelected() {
@@ -174,7 +172,7 @@ class Notifications: Fragment() {
             tvRead.setTextColor(Color.parseColor("#FFFFFF"))
             tvRead.typeface = Typeface.DEFAULT_BOLD
         }
-        notifyAdapter.submitList(viewModel.filter(NotifyType.Direct.name,isRead = true))
+        notifyAdapter.submitList(viewModel.filter(NotifyType.Direct.name, isRead = true))
 
     }
 
@@ -186,7 +184,7 @@ class Notifications: Fragment() {
             tvSystem.setTextColor(Color.parseColor("#FFFFFF"))
             tvSystem.typeface = Typeface.DEFAULT_BOLD
         }
-        notifyAdapter.submitList(viewModel.filter(NotifyType.System.name,isRead = null))
+        notifyAdapter.submitList(viewModel.filter(NotifyType.System.name, isRead = null))
     }
 
     private fun resetStatus() {
@@ -205,9 +203,6 @@ class Notifications: Fragment() {
         }
 
     }
-
-
-
 
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -53,8 +53,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="@string/users"
-                        android:textSize="18sp"
                         android:textColor="@color/white"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -101,9 +101,9 @@
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/refreshUsers"
+                swipeToRefresh="@{usersViewModel.usersStatus}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                swipeToRefresh="@{usersViewModel.usersStatus}">
+                android:layout_height="match_parent">
 
                 <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:layout_width="match_parent"
@@ -127,31 +127,30 @@
 
 
                         <FrameLayout
+                            showLoading="@{usersViewModel.usersStatus}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            showLoading="@{usersViewModel.usersStatus}"
                             android:visibility="gone">
 
                             <include
+                                layout="@layout/load"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                layout="@layout/load"/>
+                                android:layout_height="match_parent" />
 
                         </FrameLayout>
 
                         <FrameLayout
+                            showIfDataNotExist="@{usersViewModel.isDataExist()}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            showIfDataNotExist="@{usersViewModel.isDataExist()}"
                             android:visibility="gone">
 
                             <include
+                                layout="@layout/no_data_found_layout"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                layout="@layout/no_data_found_layout"/>
+                                android:layout_height="match_parent" />
 
                         </FrameLayout>
-
 
 
                     </FrameLayout>
@@ -165,16 +164,16 @@
 
         <include
             android:id="@+id/userFilterSheet"
+            layout="@layout/filter_user_sheet"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/filter_user_sheet"/>
+            android:layout_height="match_parent" />
 
 
         <include
             android:id="@+id/pushNotifySheet"
+            layout="@layout/push_notification_sheet"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/push_notification_sheet"/>
+            android:layout_height="match_parent" />
 
 
     </FrameLayout>

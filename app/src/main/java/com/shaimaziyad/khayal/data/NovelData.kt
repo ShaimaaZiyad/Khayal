@@ -36,7 +36,7 @@ data class NovelData(
             "createDate" to createDate,
             "viewCount" to viewCount,
             "pdfs" to pdfs,
-            )
+        )
     }
 }
 

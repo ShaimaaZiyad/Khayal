@@ -21,7 +21,11 @@ class Splash : Fragment() {
     private val viewModel by sharedViewModel<AuthViewModel>()
     private lateinit var sharePrefManager: SharePrefManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = SplashBinding.inflate(layoutInflater)
         sharePrefManager = SharePrefManager(requireContext())
@@ -29,9 +33,9 @@ class Splash : Fragment() {
 
         Handler(Looper.myLooper()!!).postDelayed({
 //            findNavController().navigate(R.id.action_splash_to_Login)
-             isLogged()
+            isLogged()
 
-        } , 3000)
+        }, 3000)
 
 
 
@@ -44,13 +48,10 @@ class Splash : Fragment() {
         val isUserLogged = viewModel.userRepo.isLogged
         if (isUserLogged) {
             findNavController().navigate(R.id.action_splash_to_home)
-        }else{
+        } else {
             findNavController().navigate(R.id.action_splash_to_Login)
         }
     }
-
-
-
 
 
 }

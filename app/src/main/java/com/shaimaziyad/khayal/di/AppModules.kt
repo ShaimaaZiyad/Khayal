@@ -21,26 +21,26 @@ import org.koin.dsl.module
 
 
 val viewModelModules = module {
-    viewModel { HomeViewModel(userRepo = get(), novelRepo = get() ) }
-    viewModel { AuthViewModel(userRepo = get())  }
+    viewModel { HomeViewModel(userRepo = get(), novelRepo = get()) }
+    viewModel { AuthViewModel(userRepo = get()) }
     viewModel { NotificationsViewModel(notifyRepo = get(), userRepo = get()) }
     viewModel { PdfViewerViewModel(pdfRepo = get()) }
     viewModel { ProfileViewModel(userRepo = get()) }
     viewModel { UsersViewModel(userRepo = get()) }
-    viewModel { AddEditNovelViewModel(novelRepo = get(), pdfRepo = get() ) }
+    viewModel { AddEditNovelViewModel(novelRepo = get(), pdfRepo = get()) }
 }
 
 
 val repoModules = module {
     single { UserRepository(remote = get(), sharePref = get()) }
     single { NovelRepository(remote = get()) }
-    single { NotifyRepository(remote = get() , userRepo = get()) }
+    single { NotifyRepository(remote = get(), userRepo = get()) }
     single { PdfRepository(remote = get()) }
 }
 
 
 val extraModules = module {
-    single { SharePrefManager( context = androidContext() ) }
+    single { SharePrefManager(context = androidContext()) }
     single { DataBase() }
 }
 

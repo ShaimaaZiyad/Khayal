@@ -9,12 +9,12 @@ import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.databinding.ItemNovelBinding
 
 
-
 class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCallback) {
 
     lateinit var clickListener: NovelClickListener
 
-    class ViewHolder(private val binding:  ItemNovelBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemNovelBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -29,7 +29,7 @@ class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCa
 
             // when click on novel item
             binding.btnItem.setOnClickListener {
-                clickListener.onClick(data,adapterPosition)
+                clickListener.onClick(data, adapterPosition)
             }
 
             binding.executePendingBindings()
@@ -45,12 +45,11 @@ class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCa
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel,clickListener)
+        holder.onBind(novel, clickListener)
     }
 
 
-
-    companion object NovelDiffCallback: DiffUtil.ItemCallback<NovelData>(){
+    companion object NovelDiffCallback : DiffUtil.ItemCallback<NovelData>() {
         override fun areItemsTheSame(oldItem: NovelData, newItem: NovelData): Boolean {
             return oldItem == newItem
         }

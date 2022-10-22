@@ -7,7 +7,7 @@ import java.util.Date
 import java.util.HashMap
 
 @Parcelize
-data class Notification (
+data class Notification(
     val id: String = "",
     val title: String = "",
     val body: String = "",
@@ -19,7 +19,7 @@ data class Notification (
     @field:JvmField
     var isRead: Boolean? = false,
     val createDate: Date = getCurrentTime()
-): Parcelable {
+) : Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "id" to id,

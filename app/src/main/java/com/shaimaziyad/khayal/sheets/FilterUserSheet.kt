@@ -10,9 +10,11 @@ import com.shaimaziyad.khayal.databinding.FilterNovelSheetBinding
 import com.shaimaziyad.khayal.databinding.FilterUserSheetBinding
 import com.shaimaziyad.khayal.utils.*
 
-class FilterUserSheet(private val context: Context,
-                      private val binding: FilterUserSheetBinding,
-                      private val fragment: Fragment) {
+class FilterUserSheet(
+    private val context: Context,
+    private val binding: FilterUserSheetBinding,
+    private val fragment: Fragment
+) {
 
     lateinit var filterStatus: FilterStatus
     lateinit var users: List<User>
@@ -34,7 +36,6 @@ class FilterUserSheet(private val context: Context,
         var country: String? = null
 
 
-
         /** button clear Filter **/
         binding.btnClearFilter.setOnClickListener {
             country = null
@@ -42,7 +43,7 @@ class FilterUserSheet(private val context: Context,
         }
 
         binding.selectCountry.setOnClickListener {
-            country =  binding.selectCountry.selectedCountryName
+            country = binding.selectCountry.selectedCountryName
             updateBtnApplyInfo(filter(country).size)
         }
 
@@ -61,8 +62,6 @@ class FilterUserSheet(private val context: Context,
     }
 
 
-
-
     private fun clearFilter() {
         binding.btnApply.text = context.getString(R.string.apply)
 
@@ -70,8 +69,8 @@ class FilterUserSheet(private val context: Context,
     }
 
 
-    private fun updateBtnApplyInfo(value: Int){
-        binding.btnApply.text = context.getString(R.string.results,value.toString())
+    private fun updateBtnApplyInfo(value: Int) {
+        binding.btnApply.text = context.getString(R.string.results, value.toString())
     }
 
 
@@ -88,7 +87,6 @@ class FilterUserSheet(private val context: Context,
         fun onFilter(filtered: List<User>)
         fun clearFilter()
     }
-
 
 
 }

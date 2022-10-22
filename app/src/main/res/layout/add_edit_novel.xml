@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".screens.addEditNovel.AddEditNovel">
-
 
 
         <LinearLayout
@@ -46,13 +45,13 @@
 
                 <ImageView
                     android:id="@+id/iconIv"
+                    setImage="@{addEditNovelViewModel.novel.cover}"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@id/btnBack"
-                    android:src="@drawable/icon"
-                    setImage="@{addEditNovelViewModel.novel.cover}"
-                    android:contentDescription="@string/app_name" />
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,15 +76,15 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
                     android:padding="5dp"
-                    android:src="@drawable/ic_camera_white"
-                    android:contentDescription="@string/app_name" />
+                    android:src="@drawable/ic_camera_white" />
 
             </RelativeLayout>
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
+                android:layout_height="20dp" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -101,9 +100,9 @@
                     <!--Input title-->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/titleTil"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -113,9 +112,9 @@
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/novel_title"
-                            android:text="@{addEditNovelViewModel.novel.title}"
                             android:inputType="textPersonName|textCapSentences"
                             android:padding="10dp"
+                            android:text="@{addEditNovelViewModel.novel.title}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray01" />
 
@@ -124,9 +123,9 @@
                     <!--Input des-->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/desTil"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
 
                         android:layout_marginTop="10dp"
                         app:hintEnabled="false">
@@ -138,9 +137,9 @@
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/novel_des"
-                            android:text="@{addEditNovelViewModel.novel.description}"
                             android:inputType="textPersonName|textCapSentences"
                             android:padding="10dp"
+                            android:text="@{addEditNovelViewModel.novel.description}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray01" />
 
@@ -149,9 +148,9 @@
                     <!--Input writer-->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/writerTil"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_marginTop="10dp"
                         app:hintEnabled="false">
 
@@ -162,9 +161,9 @@
                             android:drawableStart="@drawable/ic_pdf_gray"
                             android:drawablePadding="10dp"
                             android:hint="@string/writer_name"
-                            android:text="@{addEditNovelViewModel.novel.writer}"
                             android:inputType="textPersonName|textCapSentences"
                             android:padding="10dp"
+                            android:text="@{addEditNovelViewModel.novel.writer}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray01" />
 
@@ -182,15 +181,15 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/btnSelectType"
+                            setNovelType="@{addEditNovelViewModel.novel.type}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:dropDownHeight="240dp"
                             android:inputType="none"
-                            android:textColor="@color/black"
                             android:labelFor="@id/typeLabel"
                             android:paddingTop="12dp"
-                            setNovelType="@{addEditNovelViewModel.novel.type}"
                             android:paddingBottom="12dp"
+                            android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -207,29 +206,27 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/btnSelectCategory"
+                            setNovelCategory="@{addEditNovelViewModel.novel.category}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:dropDownHeight="240dp"
                             android:inputType="none"
-                            android:textColor="@color/black"
                             android:labelFor="@id/categoryLabel"
                             android:paddingTop="12dp"
-                            setNovelCategory="@{addEditNovelViewModel.novel.category}"
                             android:paddingBottom="12dp"
+                            android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvPdfs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_pdf" />
@@ -245,25 +242,24 @@
 
                     <Button
                         android:id="@+id/btnSubmit"
+                        updateSubmitStatus="@{addEditNovelViewModel.isEdit()}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/shape_button01"
                         android:text="@string/send"
-                        updateSubmitStatus="@{addEditNovelViewModel.isEdit()}"
                         android:textColor="@color/white" />
 
 
                     <Button
                         android:id="@+id/btnDelete"
+                        showViewIfCustomer="@{addEditNovelViewModel.isEdit()}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/shape_button03"
                         android:text="@string/delete"
-                        showViewIfCustomer="@{addEditNovelViewModel.isEdit()}"
                         android:textColor="@color/white" />
-
 
 
                 </LinearLayout>
@@ -274,15 +270,15 @@
 
 
         <FrameLayout
+            showLoading="@{addEditNovelViewModel.novelStatus}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            showLoading="@{addEditNovelViewModel.novelStatus}"
             android:visibility="gone">
 
             <include
+                layout="@layout/load"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                layout="@layout/load"/>
+                android:layout_height="match_parent" />
 
         </FrameLayout>
 

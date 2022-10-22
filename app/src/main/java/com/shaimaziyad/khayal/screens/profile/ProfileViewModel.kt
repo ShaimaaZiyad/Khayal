@@ -9,7 +9,7 @@ import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.*
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
+class ProfileViewModel(private val userRepo: UserRepository) : ViewModel() {
 
     companion object {
         private const val TAG = "ProfileViewModel"
@@ -28,7 +28,7 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     val updateUserState: LiveData<DataStatus?> = _updateUserState
 
 
-    private val _isLoggedOut= MutableLiveData<Boolean?>()
+    private val _isLoggedOut = MutableLiveData<Boolean?>()
     val isLoggedOut: LiveData<Boolean?> = _isLoggedOut
 
 //    val user = MutableLiveData<User>()
@@ -41,11 +41,10 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     val error: LiveData<String> = _error
 
 
-
     fun signOut() {
         viewModelScope.launch {
             val res = userRepo.signOut()
-            if (res is Result.Success){
+            if (res is Result.Success) {
                 _isLoggedOut.value = true
                 _user.value = null
             }
@@ -56,42 +55,40 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     fun loadUser() {
         viewModelScope.launch {
             val userId = FirebaseAuth.getInstance().currentUser?.uid!!
-            Log.d(TAG,"user name: ${localUser.name}")
+            Log.d(TAG, "user name: ${localUser.name}")
             _user.value = userRepo.loadUser(userId)
             _isCustomer.value = isCustomer(_user.value!!.userType)
         }
     }
 
 
-    fun refreshUser(user: User){
+    fun refreshUser(user: User) {
         _user.value = user
     }
 
 
-
     fun update(oldUser: User) {
-        Log.d(TAG,"onUpdating..")
+        Log.d(TAG, "onUpdating..")
         resetStatus()
         _updateUserState.value = DataStatus.LOADING
         viewModelScope.launch {
             val image = oldUser.profileImage.toUri()
             val fileName = getCurrentTime().toString()
-            val imageProfile = userRepo.uploadProfile(image,fileName)
+            val imageProfile = userRepo.uploadProfile(image, fileName)
             oldUser.profileImage = imageProfile
             val res = userRepo.update(oldUser)
             if (res is Result.Success) {
-                Log.d(TAG,"onUpdating: user has been updated")
+                Log.d(TAG, "onUpdating: user has been updated")
                 _updateUserState.value = DataStatus.SUCCESS
                 _user.value = oldUser
 
-            }else if (res is Result.Error) {
-                Log.d(TAG,"onUpdating: faild to update due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(TAG, "onUpdating: faild to update due to ${res.exception.message}")
                 _updateUserState.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
         }
     }
-
 
 
     fun resetStatus() {

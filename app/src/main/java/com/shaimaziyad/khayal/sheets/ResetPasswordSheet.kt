@@ -11,7 +11,8 @@ import com.shaimaziyad.khayal.utils.show
 
 class ResetPasswordSheet(
     private val binding: ResetPasswordSheetBinding,
-    private val fragment: Fragment) {
+    private val fragment: Fragment
+) {
 
     lateinit var resetPassStatus: ResetPasswordStatus
 
@@ -60,7 +61,7 @@ class ResetPasswordSheet(
     }
 
 
-    interface ResetPasswordStatus{
+    interface ResetPasswordStatus {
         fun onSend(email: String)
     }
 

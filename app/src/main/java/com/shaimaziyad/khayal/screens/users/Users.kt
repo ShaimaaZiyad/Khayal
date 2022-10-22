@@ -28,10 +28,11 @@ import com.shaimaziyad.khayal.utils.showMessage
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
-class Users: Fragment() {
+class Users : Fragment() {
 
-    private lateinit var binding : UsersBinding
-//    private lateinit var viewModel : UsersViewModel
+    private lateinit var binding: UsersBinding
+
+//        private lateinit var viewModel : UsersViewModel
     private val viewModel by sharedViewModel<UsersViewModel>()
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
 
@@ -40,13 +41,17 @@ class Users: Fragment() {
 
     private val userAdapter by lazy { UserAdapter() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
 
         binding = UsersBinding.inflate(layoutInflater)
 //        viewModel = ViewModelProvider(this)[UsersViewModel::class.java]
-        pushNotifySheet = PushNotificationSheet(requireContext(),binding.pushNotifySheet, this)
-        filterUser = FilterUserSheet(requireContext(),binding.userFilterSheet,this)
+        pushNotifySheet = PushNotificationSheet(requireContext(), binding.pushNotifySheet, this)
+        filterUser = FilterUserSheet(requireContext(), binding.userFilterSheet, this)
 
         setViews()
         setObserves()
@@ -59,13 +64,12 @@ class Users: Fragment() {
 
 
             /** users live data **/
-            users.observe(viewLifecycleOwner) { users->
+            users.observe(viewLifecycleOwner) { users ->
                 if (!users.isNullOrEmpty()) {
                     userAdapter.submitList(users)
                     binding.refreshUsers.isRefreshing = false
                 }
             }
-
 
 
         }
@@ -102,38 +106,42 @@ class Users: Fragment() {
                     userAdapter.submitList(viewModel.searchByUserName(query))
                     hideKeyboard()
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
-
 
 
         }
     }
 
-   private fun setUserOptions(){
-       val popupMenu = PopupMenu(requireContext(),binding.btnOptions)
-       popupMenu.menuInflater.inflate(R.menu.users_menu,popupMenu.menu)
+    private fun setUserOptions() {
+        val popupMenu = PopupMenu(requireContext(), binding.btnOptions)
+        popupMenu.menuInflater.inflate(R.menu.users_menu, popupMenu.menu)
 
-       popupMenu.setOnMenuItemClickListener { item ->
-           when (item.itemId) {
-               R.id.item_filter -> {
-                   filterUser.users = viewModel.users.value ?: emptyList()
-                   filterUser.showSheet()
-               }
-               R.id.item_pushNotification ->{ pushNotifySheet.showSheet() }
-           }
-           true
-       }
-       popupMenu.show()
-   }
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.item_filter -> {
+                    filterUser.users = viewModel.users.value ?: emptyList()
+                    filterUser.showSheet()
+                }
+                R.id.item_pushNotification -> {
+                    pushNotifySheet.showSheet()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
 
     private fun filterSheetStatus() {
 
         filterUser.filterStatus = object : FilterUserSheet.FilterStatus {
-            override fun onFilter(filtered: List<User>){
+            override fun onFilter(filtered: List<User>) {
                 userAdapter.submitList(filtered)
             }
-            override fun clearFilter(){
+
+            override fun clearFilter() {
                 userAdapter.submitList(viewModel.users.value ?: emptyList())
             }
 
@@ -141,12 +149,11 @@ class Users: Fragment() {
     }
 
 
-
     private fun notifySheetStatus() {
 
         pushNotifySheet.notifyStatus = object : PushNotificationSheet.NotifyStatus {
             override fun onSend(notify: Notification) {
-                notifyViewModel.pushNotify(notify,NotifyType.System.name)
+                notifyViewModel.pushNotify(notify, NotifyType.System.name)
                 showMessage("notify send")
                 pushNotifySheet.hideSheet()
             }
@@ -158,22 +165,17 @@ class Users: Fragment() {
     private fun setAdapter() {
 
         /** onNovelClick listener **/
-        userAdapter.clickListener = object: UserAdapter.UserClickListener {
+        userAdapter.clickListener = object : UserAdapter.UserClickListener {
 
             override fun onClick(user: User, index: Int) {
-                val data = bundleOf(Constants.IS_USER_NOTIFY to true,Constants.USER_KEY to user)
-                findNavController().navigate(R.id.action_users_to_profile,data)
+                val data = bundleOf(Constants.IS_USER_NOTIFY to true, Constants.USER_KEY to user)
+                findNavController().navigate(R.id.action_users_to_profile, data)
 
             }
 
         }
         binding.usersRv.adapter = userAdapter
     }
-
-
-
-
-
 
 
 }

@@ -10,19 +10,17 @@ import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 
-class NotifyRepository(private val remote: DataBase,
-                       private val userRepo: UserRepository) {
+class NotifyRepository(
+    private val remote: DataBase,
+    private val userRepo: UserRepository
+) {
 
 
 //    private val user = userRepo.user
 //    private val remote = DataBase()
 
 
-
-
     fun notifications() = remote.observeNotification
-
-
 
 
     suspend fun loadNotifications(): Result<List<Notification>> {
@@ -30,7 +28,7 @@ class NotifyRepository(private val remote: DataBase,
             val loadTask = async { remote.getNotifications() }
             try {
                 Result.Success(loadTask.await())
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Result.Error(ex)
             }
         }
@@ -38,11 +36,11 @@ class NotifyRepository(private val remote: DataBase,
 
     suspend fun pushNotify(notify: Notification): Result<Boolean> {
         return supervisorScope {
-            val addTask = async {  remote.addNotify(notify) }
+            val addTask = async { remote.addNotify(notify) }
             try {
                 addTask.await()
                 Result.Success(true)
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Result.Error(ex)
             }
         }
@@ -73,8 +71,6 @@ class NotifyRepository(private val remote: DataBase,
             }
         }
     }
-
-
 
 
 }

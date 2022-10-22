@@ -16,10 +16,12 @@ import kotlinx.coroutines.launch
 import com.shaimaziyad.khayal.utils.Result.Success
 import com.shaimaziyad.khayal.utils.Result.Error
 
-class HomeViewModel(private val userRepo: UserRepository,
-                    private val novelRepo: NovelRepository): ViewModel() {
+class HomeViewModel(
+    private val userRepo: UserRepository,
+    private val novelRepo: NovelRepository
+) : ViewModel() {
 
-    companion object{
+    companion object {
         private const val TAG = "HomeViewModel"
     }
 
@@ -39,7 +41,6 @@ class HomeViewModel(private val userRepo: UserRepository,
     val error: LiveData<String?> = _error
 
 
-
     private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
     val isCustomer: LiveData<Boolean?> = _isCustomer
 
@@ -47,23 +48,24 @@ class HomeViewModel(private val userRepo: UserRepository,
     val isDataExist: LiveData<Boolean?> = _isDataExist
 
 
-
     fun loadNovels() {
-        Log.d(TAG,"onLoading.. Novels")
+        Log.d(TAG, "onLoading.. Novels")
         resetStatus()
         _novelsStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = novelRepo.loadNovels()
-            if (res is Success){
-                Log.d(TAG,"onSuccess: novels size: ${res.data.size}")
+            if (res is Success) {
+                Log.d(TAG, "onSuccess: novels size: ${res.data.size}")
                 _novelsStatus.value = DataStatus.SUCCESS
                 val data = res.data
                 _novels.value = data.sortedBy { it.createDate }
                 _isDataExist.value = _novels.value.isNullOrEmpty()
 //                resetStatus()
-            }
-            else if(res is Error) {
-                Log.d(TAG,"onError: error happen during fetching novels due to ${res.exception.message}")
+            } else if (res is Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during fetching novels due to ${res.exception.message}"
+                )
                 _novelsStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 _isDataExist.value = null
@@ -74,9 +76,7 @@ class HomeViewModel(private val userRepo: UserRepository,
     }
 
 
-
-
-    fun resetStatus(){
+    fun resetStatus() {
         _novelsStatus.value = null
         _info.value = null
         _error.value = null
@@ -85,7 +85,7 @@ class HomeViewModel(private val userRepo: UserRepository,
     fun searchByNovelTitle(query: String): List<NovelData> { // return list of novels
         val result = if (query.isNotEmpty()) {
             _novels.value?.filter { it.title.lowercase().contains(query.lowercase()) }
-        }else {
+        } else {
             _novels.value
         }
         return result!!

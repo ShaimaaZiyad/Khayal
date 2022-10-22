@@ -3,10 +3,10 @@
 
     <item
         android:id="@+id/item_filter"
-        android:title="@string/filter"/>
+        android:title="@string/filter" />
 
     <item
         android:id="@+id/item_pushNotification"
-        android:title="@string/push_notification"/>
+        android:title="@string/push_notification" />
 
 </menu>

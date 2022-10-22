@@ -13,9 +13,10 @@ import dev.ronnie.github.imagepicker.ImagePicker
 import dev.ronnie.github.imagepicker.ImageResult
 import java.util.logging.XMLFormatter
 
-class EditProfileSheet(private val binding: EditProfileSheetBinding,
-                       private val fragment: Fragment) {
-
+class EditProfileSheet(
+    private val binding: EditProfileSheetBinding,
+    private val fragment: Fragment
+) {
 
 
     lateinit var editProfileStatus: EditProfileStatus
@@ -41,7 +42,7 @@ class EditProfileSheet(private val binding: EditProfileSheetBinding,
         binding.btnUpdate.setOnClickListener {
             val name = binding.name.text?.trim().toString()
             oldUser.name = name
-            if (imgProfile != null){ // update profile
+            if (imgProfile != null) { // update profile
                 oldUser.profileImage = imgProfile.toString() // set the image uri as string
             }
             editProfileStatus.update(oldUser)
@@ -63,11 +64,11 @@ class EditProfileSheet(private val binding: EditProfileSheetBinding,
     }
 
 
-    fun showProgress(){
+    fun showProgress() {
         binding.loader.root.show()
     }
 
-    fun hideProgress(){
+    fun hideProgress() {
         binding.loader.root.hide()
     }
 

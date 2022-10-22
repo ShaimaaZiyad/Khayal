@@ -15,35 +15,57 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp">
 
 
-        <!--Button: Read book-->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{onChapterClick}"
-            android:background="@drawable/shape_button01"
-            android:drawableTop="@drawable/ic_book_white"
-            android:text="@string/go_chapters"
-            android:textColor="@color/white" />
+        <!--        &lt;!&ndash;Button: Read book&ndash;&gt;-->
+        <!--        <Button-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:onClick="@{onChapterClick}"-->
+        <!--            android:background="@drawable/shape_button01"-->
+        <!--            android:drawableTop="@drawable/ic_book_white"-->
+        <!--            android:text="@string/go_chapters"-->
+        <!--            android:textColor="@color/white" />-->
 
 
         <TextView
+            android:id="@+id/chapterNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:onClick="@{onChapterClick}"
             android:text="@{chapterNumber}"
             android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_gravity="center|end"
             tools:text="Part 1" />
 
+        <ImageView
+            android:id="@+id/download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_download_gray" />
 
-    </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/chapterNumber"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray03" />
+
+
+    </RelativeLayout>
 </layout>

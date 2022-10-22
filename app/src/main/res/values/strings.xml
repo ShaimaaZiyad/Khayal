@@ -75,7 +75,6 @@
     <string name="results">Results: %s</string>
 
 
-
     <string name="fosha">Fosha</string>
     <string name="slang">Slang</string>
     <string name="gulf">Gulf</string>
@@ -114,6 +113,11 @@
     <string name="reset_pass_info">You will receive a message in your E-Mail containing a link, click on it and then set the password</string>
 
     <string name="home">Home</string>
+    <string name="category1">category1</string>
+    <string name="category2">category2</string>
+    <string name="category3">category3</string>
+    <string name="category4">category4</string>
+    <string name="category5">category5</string>
 
 
 </resources>

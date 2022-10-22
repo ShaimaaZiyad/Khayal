@@ -9,11 +9,11 @@ import kotlin.collections.ArrayList
 
 
 @Parcelize
-data class User (
+data class User(
     var uid: String = "",
-    var email : String = "",
-    var name : String = "",
-    var profileImage : String = "",
+    var email: String = "",
+    var name: String = "",
+    var profileImage: String = "",
     var userType: String = UserType.USER.name,
     var password: String = "",
     var createData: Date? = getCurrentTime(),
@@ -23,7 +23,7 @@ data class User (
     var token: String? = ""
 
 
-): Parcelable {
+) : Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "uid" to uid,

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -17,16 +16,16 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            showLoading="@{authViewModel.registerStatus}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            showLoading="@{authViewModel.registerStatus}"
             android:visibility="gone">
 
             <include
                 android:id="@+id/load"
+                layout="@layout/load"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                layout="@layout/load"/>
+                android:layout_height="match_parent" />
 
         </FrameLayout>
 
@@ -36,8 +35,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".screens.auth.Register">
-
-
 
 
             <!-- Toolbar -->
@@ -89,15 +86,14 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="40dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
 
 
                     <!--  Email-->
@@ -107,9 +103,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:hint="@string/name"
-                        app:startIconTint="@color/gray01"
                         app:expandedHintEnabled="false"
-                        app:startIconDrawable="@drawable/ic_person_gray">
+                        app:startIconDrawable="@drawable/ic_person_gray"
+                        app:startIconTint="@color/gray01">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name"
@@ -124,7 +120,7 @@
 
                     <androidx.legacy.widget.Space
                         android:layout_width="wrap_content"
-                        android:layout_height="10dp"/>
+                        android:layout_height="10dp" />
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -135,9 +131,9 @@
                         app:expandedHintEnabled="false"
                         app:hintTextAppearance="@style/TextAppearance.MyTheme.Subtitle2"
                         app:placeholderText="Your Email"
-                        app:startIconTint="@color/gray01"
+                        app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2"
                         app:startIconDrawable="@drawable/ic_email_gray"
-                        app:placeholderTextAppearance="@style/TextAppearance.MyTheme.Body2">
+                        app:startIconTint="@color/gray01">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/email"
@@ -152,7 +148,7 @@
 
                     <androidx.legacy.widget.Space
                         android:layout_width="wrap_content"
-                        android:layout_height="10dp"/>
+                        android:layout_height="10dp" />
 
                     <!-- Password-->
                     <com.google.android.material.textfield.TextInputLayout
@@ -179,7 +175,7 @@
 
                     <androidx.legacy.widget.Space
                         android:layout_width="wrap_content"
-                        android:layout_height="10dp"/>
+                        android:layout_height="10dp" />
 
 
                     <!--  Confirm Password-->
@@ -205,17 +201,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
                     <TextView
                         android:id="@+id/btnHaveAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/uthman_taha_regular"
                         android:text="@string/you_have_account_text"
-                        android:layout_gravity="center"
                         android:textColor="@color/primaryColor" />
 
                     <TextView
@@ -235,10 +228,10 @@
 
                     <Button
                         android:id="@+id/btnSignUp"
+                        setButtonStatus="@{authViewModel.registerStatus}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        setButtonStatus="@{authViewModel.registerStatus}"
                         android:background="@drawable/shape_button01"
                         android:fontFamily="@font/uthman_taha_regular"
                         android:text="@string/SignUp"
@@ -251,9 +244,7 @@
         </LinearLayout>
 
 
-
     </FrameLayout>
-
 
 
 </layout>

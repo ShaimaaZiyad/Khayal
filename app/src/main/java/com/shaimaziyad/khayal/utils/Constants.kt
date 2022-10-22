@@ -7,8 +7,6 @@ object Constants {
     const val ADMIN_ID = "okUrmh9Q1Sc9mvQEjeNtIVwrKHd2"
 
 
-
-
     const val MAX_BYTES_PDF: Long = 5000000 //50MB,
 
     const val IS_EDIT_KEY = "isEdit"
@@ -23,7 +21,6 @@ object Constants {
     const val PDF_ID_KEY = "PdfIdKey"
 
     const val FILE_NAME = "FileName"
-
 
 
 }

@@ -17,11 +17,11 @@ class NovelRepository(private val remote: DataBase) {
 
     suspend fun addNovel(novel: NovelData): Result<Boolean> {
         return supervisorScope {
-            val addTask = async {  remote.addNovel(novel) }
+            val addTask = async { remote.addNovel(novel) }
             try {
                 addTask.await()
                 Success(true)
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Error(ex)
             }
         }
@@ -54,20 +54,20 @@ class NovelRepository(private val remote: DataBase) {
     }
 
 
-    suspend fun uploadCover(uri: Uri,fileName: String) = remote.uploadFile(uri,fileName,FileType.IMAGE.name)
+    suspend fun uploadCover(uri: Uri, fileName: String) =
+        remote.uploadFile(uri, fileName, FileType.IMAGE.name)
 
 
     suspend fun loadNovels(): Result<List<NovelData>> {
         return supervisorScope {
             val loadTask = async { remote.getNovels() }
             try {
-                Success( loadTask.await())
-            }catch (ex: Exception){
+                Success(loadTask.await())
+            } catch (ex: Exception) {
                 Error(ex)
             }
         }
     }
-
 
 
 }

@@ -20,6 +20,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class Register : Fragment() {
 
     private lateinit var binding: RegisterBinding
+
 //    private lateinit var viewModel: AuthViewModel
     private val viewModel by sharedViewModel<AuthViewModel>()
     private var mName = ""
@@ -27,7 +28,11 @@ class Register : Fragment() {
     private var mPassword = ""
     private var mConfPassword = ""
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         // Inflate the layout for this fragment
         binding = RegisterBinding.inflate(layoutInflater)
 //        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
@@ -61,7 +66,7 @@ class Register : Fragment() {
                     return@setOnClickListener
 
                 }
-                if (mName.length < 2){
+                if (mName.length < 2) {
                     name.error = getString(R.string.name_invalid_error)
                     name.requestFocus()
                     return@setOnClickListener
@@ -73,7 +78,7 @@ class Register : Fragment() {
                     email.requestFocus()
                     return@setOnClickListener
                 }
-                if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+                if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()) {
                     email.error = getString(R.string.email_invalid_error)
                     email.requestFocus()
                     return@setOnClickListener
@@ -101,8 +106,8 @@ class Register : Fragment() {
                     confirmPassword.error = getString(R.string.password_mismatch_error)
                     confirmPassword.requestFocus()
                     return@setOnClickListener
-                } else{
-                    val user = User("",mEmail,mName,"",UserType.USER.name,mPassword)
+                } else {
+                    val user = User("", mEmail, mName, "", UserType.USER.name, mPassword)
                     viewModel.register(user)
 
                 }
@@ -115,7 +120,7 @@ class Register : Fragment() {
             }
 
             /** button back **/
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 findNavController().navigateUp()
             }
 
@@ -129,23 +134,20 @@ class Register : Fragment() {
 
 
             /** isRegister live data **/
-            isRegister.observe(viewLifecycleOwner){ isRegister ->
-                if (isRegister == true){
+            isRegister.observe(viewLifecycleOwner) { isRegister ->
+                if (isRegister == true) {
                     navigateToLogin()
 //                    showMessage(getString(R.string.message_verify_account))
                 }
             }
 
 
-
         }
     }
 
-    private fun navigateToLogin(){
+    private fun navigateToLogin() {
         findNavController().navigate(R.id.action_register_to_login)
     }
-
-
 
 
     private fun isAllFieldsFilled(): Boolean {

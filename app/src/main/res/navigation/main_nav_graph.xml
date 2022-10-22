@@ -10,7 +10,7 @@
         android:id="@+id/splash"
         android:name="com.shaimaziyad.khayal.screens.auth.Splash"
         android:label="fragment_splash"
-        tools:layout="@layout/splash" >
+        tools:layout="@layout/splash">
 
         <action
             android:id="@+id/action_splash_to_home"
@@ -31,7 +31,7 @@
         android:id="@+id/viewPdf"
         android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
         android:label="fragment_view_novel"
-        tools:layout="@layout/pdf_viewer" >
+        tools:layout="@layout/pdf_viewer">
 
         <argument android:name="novelId" />
     </fragment>
@@ -40,7 +40,7 @@
         android:id="@+id/Login"
         android:name="com.shaimaziyad.khayal.screens.auth.Login"
         android:label="login"
-        tools:layout="@layout/login" >
+        tools:layout="@layout/login">
 
         <action
             android:id="@+id/action_login_to_home"
@@ -55,7 +55,7 @@
         android:id="@+id/register"
         android:name="com.shaimaziyad.khayal.screens.auth.Register"
         android:label="register"
-        tools:layout="@layout/register" >
+        tools:layout="@layout/register">
 
         <action
             android:id="@+id/action_register_to_login"
@@ -89,7 +89,7 @@
         android:id="@+id/novelDetails"
         android:name="com.shaimaziyad.khayal.screens.novelDetails.NovelDetails"
         android:label="novel_details"
-        tools:layout="@layout/novel_details" >
+        tools:layout="@layout/novel_details">
         <action
             android:id="@+id/action_novelDetails_to_novelPdf"
             app:destination="@id/pdfViewer" />
@@ -101,7 +101,7 @@
         android:id="@+id/profile"
         android:name="com.shaimaziyad.khayal.screens.profile.Profile"
         android:label="profile"
-        tools:layout="@layout/profile" >
+        tools:layout="@layout/profile">
         <action
             android:id="@+id/action_profile_to_Login"
             app:destination="@id/Login"
@@ -113,7 +113,7 @@
         android:id="@+id/pdfViewer"
         android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
         android:label="novel_pdf"
-        tools:layout="@layout/pdf_viewer" >
+        tools:layout="@layout/pdf_viewer">
         <action
             android:id="@+id/action_novelPdf_to_viewPdf"
             app:destination="@id/viewPdf" />
@@ -122,7 +122,7 @@
         android:id="@+id/addEditNovel"
         android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
         android:label="add_edit_novel"
-        tools:layout="@layout/add_edit_novel" >
+        tools:layout="@layout/add_edit_novel">
         <action
             android:id="@+id/action_addEditNovel_to_home"
             app:destination="@id/home"
@@ -143,6 +143,6 @@
         android:id="@+id/notifications"
         android:name="com.shaimaziyad.khayal.screens.notifications.Notifications"
         android:label="Notifications"
-        tools:layout="@layout/notifications"/>
+        tools:layout="@layout/notifications" />
 
 </navigation>

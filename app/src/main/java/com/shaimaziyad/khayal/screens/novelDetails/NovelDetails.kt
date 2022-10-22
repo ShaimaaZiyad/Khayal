@@ -21,7 +21,11 @@ class NovelDetails : Fragment() {
     private var novel: NovelData? = null
     private val chapterController by lazy { ChapterController() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = NovelDetailsBinding.inflate(layoutInflater)
 
@@ -33,20 +37,23 @@ class NovelDetails : Fragment() {
     }
 
     private fun setData() {
-        novel = try { arguments?.get(Constants.NOVEL_KEY) as NovelData }
-        catch (ex: Exception) { null }
+        novel = try {
+            arguments?.get(Constants.NOVEL_KEY) as NovelData
+        } catch (ex: Exception) {
+            null
+        }
     }
 
-    private fun setChapterAdapter(){
+    private fun setChapterAdapter() {
 
         // init data
         chapterController.setData(novel?.pdfs)
 
         /** on chapter click **/
-        chapterController.clickListener = object: ChapterController.OnClickListener {
+        chapterController.clickListener = object : ChapterController.OnClickListener {
             override fun onChapterClicked(pdfUri: String) {
                 val data = bundleOf(Constants.PDF_KEY to pdfUri)
-                findNavController().navigate(R.id.action_novelDetails_to_viewPdf,data)
+                findNavController().navigate(R.id.action_novelDetails_to_viewPdf, data)
 
             }
         }
@@ -77,7 +84,7 @@ class NovelDetails : Fragment() {
             }
 
             /** button back **/
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 findNavController().navigateUp()
             }
 

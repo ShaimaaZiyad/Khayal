@@ -9,26 +9,27 @@ import com.shaimaziyad.khayal.data.User
 
 class SharePrefManager(val context: Context) {
 
-    private val userSession = context.getSharedPreferences(Constants.FILE_NAME, Context.MODE_PRIVATE)
+    private val userSession =
+        context.getSharedPreferences(Constants.FILE_NAME, Context.MODE_PRIVATE)
     private val editor = userSession.edit()
 
-    fun saveUser(user: User,isRemOn: Boolean?) {
+    fun saveUser(user: User, isRemOn: Boolean?) {
         val gson = Gson()
         val json = gson.toJson(user)
-        editor.putString(KEY_USER,json)
-        if (isRemOn != null){
+        editor.putString(KEY_USER, json)
+        if (isRemOn != null) {
             editor.putBoolean(KEY_REMEMBER_ME, isRemOn)
         }
         editor.commit()
     }
 
-    fun loadUser(): User{
+    fun loadUser(): User {
         val gson = Gson()
         val json = userSession.getString(KEY_USER, "")
         return gson.fromJson(json, User::class.java) ?: User()
     }
 
-    fun isLogged() = userSession.getBoolean(KEY_REMEMBER_ME,false)
+    fun isLogged() = userSession.getBoolean(KEY_REMEMBER_ME, false)
 
 
     fun signOut() {
