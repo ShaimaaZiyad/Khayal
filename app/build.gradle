@@ -124,4 +124,10 @@ dependencies {
     implementation "org.koin:koin-android-ext:$koin_version"
 
 
+
+    // adapter delegates
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
+
+
 }

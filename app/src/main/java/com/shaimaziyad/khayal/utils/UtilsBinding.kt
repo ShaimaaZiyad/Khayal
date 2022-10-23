@@ -1,7 +1,6 @@
 package com.shaimaziyad.khayal.utils
 
 
-import android.content.Context
 import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -34,12 +33,6 @@ fun setSize(text: TextView, size: Int) {
     text.text = ""
 }
 
-
-// todo : fix the welcome text by using xml file.
-@BindingAdapter("setName")
-fun setHi(text: TextView, name: String?) {
-    text.text = name
-}
 
 
 // todo: we can update this to translate any error at run time.
@@ -133,21 +126,25 @@ fun joinedAt(tv: TextView, date: Date?) {
     }
 }
 
-@BindingAdapter("setLikes")
-fun setLikes(tv: TextView, v: Int){
-    tv.text = "Likes: $v"
+@BindingAdapter("setCount")
+fun setCount(tv: TextView, v: Int){
+    tv.text = tv.context.getString(R.string.count,v.toString())
 }
 
-@BindingAdapter("setReads")
-fun setReads(tv: TextView, v: Int){
-    tv.text = "Reads: $v"
+@BindingAdapter("setReviews")
+fun setReviews(tv: TextView, v: Int){
+    tv.text = tv.context.getString(R.string.reviews,v.toString())
+}
+
+fun setPages(tv: TextView, v:Int){
+
 }
 
 @BindingAdapter("setNovelCategory")
 fun setNovelCategory(t: AutoCompleteTextView,value: String?){
     if (!value.isNullOrEmpty()){
         val v = value.toInt()
-        t.setText(getNovelCategoryKey(t.context, v))
+        t.setText(getNovelCategoryByKey(t.context, v))
     }
 }
 
@@ -164,7 +161,7 @@ fun setNovelType(t: AutoCompleteTextView,value: String?){
 fun setNovelCategory(t: TextView,value: String?){
     if (!value.isNullOrEmpty()){
         val v = value.toInt()
-        t.text = getNovelCategoryKey(t.context, v)
+        t.text = getNovelCategoryByKey(t.context, v)
     }
 }
 

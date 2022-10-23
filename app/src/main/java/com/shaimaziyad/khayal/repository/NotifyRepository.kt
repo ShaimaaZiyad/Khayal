@@ -1,14 +1,11 @@
 package com.shaimaziyad.khayal.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.shaimaziyad.khayal.data.Notification
-import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.remote.DataBase
-import com.shaimaziyad.khayal.screens.notifications.Notifications
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
+
 
 class NotifyRepository(private val remote: DataBase,
                        private val userRepo: UserRepository) {

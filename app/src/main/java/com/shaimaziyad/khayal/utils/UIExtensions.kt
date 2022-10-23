@@ -82,7 +82,7 @@ fun setListToAutoComplete(context: Context,list: HashMap<String,Int>,v: AutoComp
     v.setAdapter(adapter)
 }
 
-fun getNovelCategoryKey(context: Context, value: Int): String {
+fun getNovelCategoryByKey(context: Context, value: Int): String {
     val filter = NovelFilter(context)
     return getKeyByValue(filter.novelCategories, value) ?:""
 }

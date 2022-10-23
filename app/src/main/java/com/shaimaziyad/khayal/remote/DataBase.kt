@@ -4,7 +4,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -12,11 +11,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shaimaziyad.khayal.data.Notification
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.ERR_UPLOAD
-import com.shaimaziyad.khayal.utils.NotifyType
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
@@ -52,8 +50,8 @@ class DataBase() {
     private val _observeUsers = MutableLiveData<List<User>?>()
     val users: LiveData<List<User>?> = _observeUsers
 
-    private val _observeNovels = MutableLiveData<List<NovelData>?>()
-    val novels: MutableLiveData<List<NovelData>?> = _observeNovels
+    private val _observeNovels = MutableLiveData<List<Novel>?>()
+    val novels: MutableLiveData<List<Novel>?> = _observeNovels
 
     private val _observeNotification = MutableLiveData<List<Notification>?>()
     val observeNotification: MutableLiveData<List<Notification>?> = _observeNotification
@@ -139,7 +137,7 @@ class DataBase() {
         novelsPath.addSnapshotListener { value, error ->
             if (error == null){
                 if (value != null){
-                    val novelData = value.toObjects(NovelData::class.java)
+                    val novelData = value.toObjects(Novel::class.java)
                     _observeNovels.value = novelData
                 }
             }
@@ -160,22 +158,22 @@ class DataBase() {
 
 
 
-    suspend fun getNovels():List<NovelData> = novelsPath.get().await().toObjects(NovelData::class.java)
+    suspend fun getNovels():List<Novel> = novelsPath.get().await().toObjects(Novel::class.java)
 
-    suspend fun addNovel(data: NovelData) = novelsPath.document(data.novelId).set(data)
+    suspend fun addNovel(data: Novel) = novelsPath.document(data.novelId).set(data)
 
-    suspend fun updateNovel(data: NovelData) = novelsPath.document(data.novelId).update(data.toHashMap())
+    suspend fun updateNovel(data: Novel) = novelsPath.document(data.novelId).update(data.toHashMap())
 
     // TODO: delete the pdf files before delete the novel data.
-    suspend fun deleteNovel(novelData: NovelData)  = novelsPath.document(novelData.novelId).delete()
+    suspend fun deleteNovel(novel: Novel)  = novelsPath.document(novel.novelId).delete()
 
 
 
 
-    suspend fun addPdf(novelData: NovelData,pdfId: String) = novelsPath.document(pdfId).update(PDFS_FILED, FieldValue.arrayUnion(pdfId)).addOnSuccessListener {
+    suspend fun addPdf(novel: Novel, pdfId: String) = novelsPath.document(pdfId).update(PDFS_FILED, FieldValue.arrayUnion(pdfId)).addOnSuccessListener {
                 // update pdf count
                 novelsPath.document(pdfId).get().addOnSuccessListener {
-                    val pdfsCount = it.toObject(NovelData::class.java)?.pdfsCount!!
+                    val pdfsCount = it.toObject(Novel::class.java)?.pdfsCount!!
                     novelsPath.document(pdfId).update(PDFS_COUNT,pdfsCount + 1)
                 }
             }
@@ -183,7 +181,7 @@ class DataBase() {
     suspend fun deletePdf(pdfId: String) {
         val ref = novelsPath.document(pdfId).get().await()
         if (ref != null){
-            val folder = ref.toObject(NovelData::class.java)
+            val folder = ref.toObject(Novel::class.java)
 
             // delete pdf
             novelsPath.document(pdfId)

@@ -83,31 +83,9 @@
                 tools:text="20 / 10 / 2022"
                 joinedAt="@{user.createData}"/>
 
-                <!--likes-->
-                <TextView
-                    android:id="@+id/likesTv"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    tools:text="Likes: 20"
-                    setLikes="@{user.likes.size()}"/>
 
-                <!--reads-->
-                <TextView
-                    android:id="@+id/readsTv"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    tools:text="Reads: 50"
-                    setReads="@{user.reads.size()}" />
+
+
 
             </LinearLayout>
 

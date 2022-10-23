@@ -19,6 +19,8 @@ object Constants {
     const val NOVEL_NOVEL = "Novel"
     const val USER_KEY = "Novel"
 
+    const val CATEGORY_KEY = "Category"
+
     const val PDF_KEY = "PdfKey"
     const val PDF_ID_KEY = "PdfIdKey"
 

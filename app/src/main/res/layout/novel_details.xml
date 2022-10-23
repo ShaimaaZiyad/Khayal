@@ -9,7 +9,7 @@
 
         <variable
             name="novelData"
-            type="com.shaimaziyad.khayal.data.NovelData" />
+            type="com.shaimaziyad.khayal.data.Novel" />
 
     </data>
 

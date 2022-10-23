@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.repository.NovelRepository
 import com.shaimaziyad.khayal.repository.PdfRepository
 import com.shaimaziyad.khayal.utils.DataStatus
@@ -39,7 +39,7 @@ class AddEditNovelViewModel(private val novelRepo: NovelRepository,
     val navigateToHome: LiveData<Boolean?> = _navigateToHome
 
 
-    val novel = MutableLiveData<NovelData?>()
+    val novel = MutableLiveData<Novel?>()
     val isEdit = MutableLiveData<Boolean?>()
 
 
@@ -50,7 +50,7 @@ class AddEditNovelViewModel(private val novelRepo: NovelRepository,
 
 
 
-    fun uploadNovel(novel: NovelData, pdfsUri: ArrayList<Uri>) {
+    fun uploadNovel(novel: Novel, pdfsUri: ArrayList<Uri>) {
         Log.d(TAG,"onUploadNovel: Loading..")
         resetStatus()
         _novelStatus.value = DataStatus.LOADING
@@ -80,7 +80,7 @@ class AddEditNovelViewModel(private val novelRepo: NovelRepository,
 
 
 
-    fun updateNovel(novel: NovelData, pdfsUri: ArrayList<Uri>) {
+    fun updateNovel(novel: Novel, pdfsUri: ArrayList<Uri>) {
         Log.d(TAG,"onUpdateNovel: Loading..")
         resetStatus()
         _novelStatus.value = DataStatus.LOADING
@@ -108,7 +108,7 @@ class AddEditNovelViewModel(private val novelRepo: NovelRepository,
     }
 
 
-    fun deleteNovel(novel: NovelData) {
+    fun deleteNovel(novel: Novel) {
         Log.d(TAG,"onDeleteNovel: Loading..")
         resetStatus()
         _novelStatus.value = DataStatus.LOADING

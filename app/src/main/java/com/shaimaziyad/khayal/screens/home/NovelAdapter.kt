@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.ItemNovelBinding
 
 
 
-class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCallback) {
+class NovelAdapter : ListAdapter<Novel, NovelAdapter.ViewHolder>(NovelDiffCallback) {
 
-    lateinit var clickListener: NovelClickListener
+    lateinit var clickListener: ClickListener
 
     class ViewHolder(private val binding:  ItemNovelBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -22,12 +22,10 @@ class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCa
             }
         }
 
-
-        // update ui
-        fun onBind(data: NovelData, clickListener: NovelClickListener) {
+        fun onBind(data: Novel, clickListener: ClickListener) {
             binding.novel = data
 
-            // when click on novel item
+            /** on item clicked **/
             binding.btnItem.setOnClickListener {
                 clickListener.onClick(data,adapterPosition)
             }
@@ -50,20 +48,20 @@ class NovelAdapter : ListAdapter<NovelData, NovelAdapter.ViewHolder>(NovelDiffCa
 
 
 
-    companion object NovelDiffCallback: DiffUtil.ItemCallback<NovelData>(){
-        override fun areItemsTheSame(oldItem: NovelData, newItem: NovelData): Boolean {
+    companion object NovelDiffCallback: DiffUtil.ItemCallback<Novel>() {
+        override fun areItemsTheSame(oldItem: Novel, newItem: Novel): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: NovelData, newItem: NovelData): Boolean {
+        override fun areContentsTheSame(oldItem: Novel, newItem: Novel): Boolean {
             return oldItem.novelId == newItem.novelId
         }
 
     }
 
 
-    interface NovelClickListener {
-        fun onClick(novel: NovelData, index: Int)
+    interface ClickListener {
+        fun onClick(novel: Novel, index: Int)
     }
 
 

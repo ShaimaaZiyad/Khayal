@@ -1,13 +1,14 @@
 package com.shaimaziyad.khayal.data
 
 import android.os.Parcelable
+import com.shaimaziyad.khayal.utils.DisplayableHomeItem
 import com.shaimaziyad.khayal.utils.getCurrentTime
 import kotlinx.parcelize.Parcelize
 import java.util.*
 import kotlin.collections.ArrayList
 
 @Parcelize
-data class NovelData(
+data class Novel(
     var novelId: String = "",
     var title: String = "",
     var description: String = "",
@@ -23,7 +24,7 @@ data class NovelData(
 //    var continuousOrComplete: String,
 //    var seriesOrSolo: String
 
-) : Parcelable {
+) : Parcelable, DisplayableHomeItem {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "novelId" to novelId,

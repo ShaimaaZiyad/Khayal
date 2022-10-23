@@ -9,11 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
@@ -21,11 +19,12 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.shaimaziyad.khayal.R
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import dev.ronnie.github.imagepicker.ImagePicker
 import dev.ronnie.github.imagepicker.ImageResult
 import com.karumi.dexter.listener.PermissionRequest
 import com.shaimaziyad.khayal.databinding.AddEditNovelBinding
+import com.shaimaziyad.khayal.screens.home.HomeViewModel
 import com.shaimaziyad.khayal.utils.*
 import com.shaimaziyad.khayal.utils.getNovelId
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -38,11 +37,13 @@ class AddEditNovel : Fragment() {
     }
 
     private lateinit var binding: AddEditNovelBinding
+
     private val viewModel by sharedViewModel<AddEditNovelViewModel>()
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
 
     private var isEdit = false
 
-    private var novel: NovelData? = null
+    private var novel: Novel? = null
     private var mtitle = ""
     private var mDescription = ""
     private var mWriter = ""
@@ -92,6 +93,7 @@ class AddEditNovel : Fragment() {
             navigateToHome.observe(viewLifecycleOwner) {
                 if (it == true){
                     findNavController().navigate(R.id.action_addEditNovel_to_home)
+                    homeViewModel.loadNovels()
                     viewModel.navigateToHomeDone()
                 }
             }
@@ -209,7 +211,7 @@ class AddEditNovel : Fragment() {
 
     private fun submit() {
         if (!isEdit){ // add new novel
-            val novel = NovelData(getNovelId(),mtitle,mDescription,mType,mCategory,mWriter,mCover)
+            val novel = Novel(getNovelId(),mtitle,mDescription,mType,mCategory,mWriter,mCover)
             viewModel.uploadNovel(novel,mPdfs)
             Log.d(TAG,"newUri: $mCover")
         }else { // update old novel
@@ -304,7 +306,7 @@ class AddEditNovel : Fragment() {
 
     private fun setData() {
         isEdit = arguments?.get(Constants.IS_EDIT_KEY) as Boolean
-        novel = try { arguments?.get(Constants.NOVEL_KEY) as NovelData } catch (ex: Exception){ null }
+        novel = try { arguments?.get(Constants.NOVEL_KEY) as Novel } catch (ex: Exception){ null }
         viewModel.novel.value = novel
         viewModel.isEdit.value = isEdit
         if (novel != null){

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.R
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.NovelDetailsBinding
 
 import com.shaimaziyad.khayal.utils.Constants
@@ -18,7 +18,7 @@ import com.shaimaziyad.khayal.utils.showMessage
 class NovelDetails : Fragment() {
 
     private lateinit var binding: NovelDetailsBinding
-    private var novel: NovelData? = null
+    private var novel: Novel? = null
     private val chapterController by lazy { ChapterController() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -33,7 +33,7 @@ class NovelDetails : Fragment() {
     }
 
     private fun setData() {
-        novel = try { arguments?.get(Constants.NOVEL_KEY) as NovelData }
+        novel = try { arguments?.get(Constants.NOVEL_KEY) as Novel }
         catch (ex: Exception) { null }
     }
 
