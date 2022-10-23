@@ -1,19 +1,24 @@
 package com.shaimaziyad.khayal.sheets
 
 
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import android.app.AlertDialog
+import android.widget.EditText
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
+import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.HomeOptionSheetBinding
 import com.shaimaziyad.khayal.screens.home.Home
 import com.shaimaziyad.khayal.utils.*
 
+
 class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
                       private val fragment: Home) {
 
     private val sheet = BottomSheetBehavior.from(binding.sheet)
+    lateinit var sheetStatus: SheetStatus
+
+    private val alert = AlertDialog.Builder(fragment.context)
 
     var notifyCounts: Int = 0
     var user: User? = null
@@ -32,6 +37,7 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
         sheet.state = BottomSheetBehavior.STATE_COLLAPSED
         fragment.hideKeyboard()
         binding.sheet.hide()
+        sheetStatus.onClose()
     }
 
     fun showSheet() {
@@ -45,21 +51,21 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
         /** button profile **/
         binding.btnProfile.setOnClickListener {
             fragment.navigateToProfile()
-//            fragment.findNavController().navigate(R.id.action_home_to_profile)
             hideSheet()
         }
 
         /** button  notifications **/
         binding.btnUsers.setOnClickListener {
-//            fragment.findNavController().navigate(R.id.action_home_to_users)
             fragment.navigateToUsers()
             hideSheet()
         }
 
+        binding.btnBannerManager.setOnClickListener {
+
+        }
 
         /** button  notifications **/
         binding.btnNotifications.setOnClickListener {
-//            fragment.findNavController().navigate(R.id.action_home_to_notifications)
             fragment.navigateToNotification()
             hideSheet()
         }
@@ -76,7 +82,7 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
 
         /** button report **/
         binding.btnReport.setOnClickListener {
-            fragment.showMessage("report")
+            showReportDialog()
         }
 
         /** button help & feedback **/
@@ -104,9 +110,53 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
             }
         }else{
             binding.btnUsers.hide()
+            binding.btnBannerManager.hide()
         }
     }
 
+
+    private fun showReportDialog(){
+
+        val title = fragment.context?.getString(R.string.report)
+        var builder: AlertDialog? = null
+        val edittext = EditText(fragment.context)
+        edittext.background = null
+        edittext.hint = fragment.context?.getString(R.string.hint_report)
+        alert.setTitle(title)
+        alert.setIcon(R.drawable.ic_report)
+
+        alert.setCancelable(false)
+
+        alert.setView(edittext)
+
+        alert.setPositiveButton(fragment.context?.getString(R.string.send)) { dialog, whichButton ->
+            val report = edittext.text.trim().toString()
+            if (report.isNotEmpty()){
+                val notify = Notification(getNotifyId(),title!!,report,"","","","")
+                notify.pattern = NotifyPattern.Report.name
+                notify.type = NotifyType.Direct.name
+                notify.targetUser = Constants.ADMIN_ID
+                sheetStatus.onReportSend(notify)
+                builder?.dismiss()
+            }
+        }
+
+        alert.setNegativeButton("cancel") { dialog, whichButton ->
+            // what ever you want to do with No option.
+            builder?.dismiss()
+        }
+
+        builder = alert.create()
+        builder.show()
+
+    }
+
+
+
+    interface SheetStatus {
+        fun onClose()
+        fun onReportSend(notify: Notification)
+    }
 
 
 }
