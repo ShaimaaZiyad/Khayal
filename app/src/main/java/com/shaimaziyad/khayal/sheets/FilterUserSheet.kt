@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
-import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.User
-import com.shaimaziyad.khayal.databinding.FilterNovelSheetBinding
 import com.shaimaziyad.khayal.databinding.FilterUserSheetBinding
 import com.shaimaziyad.khayal.utils.*
 

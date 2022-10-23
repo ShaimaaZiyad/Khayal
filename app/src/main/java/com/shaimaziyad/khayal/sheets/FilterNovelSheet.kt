@@ -4,19 +4,20 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
-import com.shaimaziyad.khayal.data.NovelData
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.FilterNovelSheetBinding
 import com.shaimaziyad.khayal.utils.*
 
-class FilterNovelSheet(private val context: Context,
-                       private val binding: FilterNovelSheetBinding,
+class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
                        private val fragment: Fragment) {
 
     lateinit var filterStatus: FilterStatus
-    lateinit var novels: List<NovelData>
-    private val novelFilter = NovelFilter(context)
+    lateinit var novels: List<Novel>
+    private val novelFilter = NovelFilter(fragment.requireContext())
     private val sheet = BottomSheetBehavior.from(binding.sheet)
 
+    private var category: String? = null
+    private var type: String? = null
 
     fun hideSheet() {
         sheet.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -31,8 +32,7 @@ class FilterNovelSheet(private val context: Context,
         binding.sheet.show()
         sheet.state = BottomSheetBehavior.STATE_EXPANDED
 
-        var category: String? = null
-        var type: String? = null
+
 
         setFilters()
 
@@ -57,8 +57,8 @@ class FilterNovelSheet(private val context: Context,
 
         /** button apply **/
         binding.btnApply.setOnClickListener {
-            val filtered = filter(category, type)
-            filterStatus.onFilter(filtered)
+           filter(category, type)
+//            filterStatus.onFilter(filtered)
             hideSheet()
         }
 
@@ -78,8 +78,10 @@ class FilterNovelSheet(private val context: Context,
     }
 
 
-    private fun clearFilter() {
-        binding.btnApply.text = context.getString(R.string.apply)
+    fun clearFilter() {
+        category = null
+        type = null
+        binding.btnApply.text = fragment.requireContext().getString(R.string.apply)
         binding.btnSelectCategory.setText(R.string.category_title)
         binding.btnSelectType.setText(R.string.novel_type)
         setFilters()
@@ -88,28 +90,33 @@ class FilterNovelSheet(private val context: Context,
 
 
     private fun updateBtnApplyInfo(value: Int){
-        binding.btnApply.text = context.getString(R.string.results,value.toString())
+        binding.btnApply.text = fragment.requireContext().getString(R.string.results,value.toString())
     }
 
 
     // filter = novel category || novel type
-    fun filter(category: String?, type: String?): List<NovelData> {
+    fun filter(category: String?, type: String?): List<Novel> {
         var filtered = novels
         if (category != null) {
             filtered = novels.filter { it.category == category }
+            filterStatus.onFilter(filtered)
         }
         if (type != null){
             filtered = novels.filter { it.type == type }
+            filterStatus.onFilter(filtered)
+        }
+        if (category == null && type == null){
+            clearFilter()
         }
         return filtered
     }
 
 
     interface FilterStatus {
-        fun onFilter(filtered: List<NovelData>)
+        fun onFilter(filtered: List<Novel>)
         fun clearFilter()
-        fun onSheetOpen()
-        fun onSheetClose()
+        fun onSheetOpen(){}
+        fun onSheetClose(){}
     }
 
 
