@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/search" />
 
     </fragment>
     <fragment
@@ -144,5 +147,10 @@
         android:name="com.shaimaziyad.khayal.screens.notifications.Notifications"
         android:label="Notifications"
         tools:layout="@layout/notifications"/>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.shaimaziyad.khayal.screens.search.Search"
+        android:label="Search"
+        tools:layout="@layout/search"/>
 
 </navigation>
