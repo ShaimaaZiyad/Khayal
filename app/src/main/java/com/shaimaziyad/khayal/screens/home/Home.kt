@@ -10,8 +10,10 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.shaimaziyad.khayal.R
+import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.HomeBinding
+import com.shaimaziyad.khayal.notification.sendNotification
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal.screens.profile.ProfileViewModel
 import com.shaimaziyad.khayal.sheets.HomeOptionSheet
@@ -65,6 +67,13 @@ class Home: Fragment() {
         notifyViewModel.loadNotificationsByUserId()
 
     }
+
+//    override fun onPause() {
+//        super.onPause()
+//
+//        notifyViewModel.loadNotificationsByUserId()
+//
+//    }
 
 
     private fun setViews() {
@@ -134,6 +143,8 @@ class Home: Fragment() {
 
 
 
+
+
         }
     }
 
@@ -164,8 +175,26 @@ class Home: Fragment() {
 
 
 
+    private fun setHomeOptionSheetStatus(){
+        optionSheet.sheetStatus = object: HomeOptionSheet.SheetStatus{
+            override fun onClose() {
+                if (profileViewModel.user.value?.userType == UserType.ADMIN.name){
+                    binding.btnAddNovel.show()
+                }
+            }
+
+            override fun onReportSend(notify: Notification) {
+                notify.from = profileViewModel.user.value?.uid ?:""
+                notifyViewModel.pushNotify(notify)
+                showMessage(resources.getString(R.string.success_report))
+            }
+        }
+    }
+
     private fun setToolBar() {
         binding.searchLayout.apply {
+
+            setHomeOptionSheetStatus()
 
             user = profileViewModel.user.value!!
 
@@ -173,6 +202,7 @@ class Home: Fragment() {
             btnProfile.setOnClickListener {
                 optionSheet.notifyCounts = notifyViewModel.unRead.value!!.size
                 optionSheet.user = profileViewModel.user.value!!
+                binding.btnAddNovel.hide()
                 optionSheet.showSheet()
 //                navigateToProfile()
             }
@@ -230,27 +260,6 @@ class Home: Fragment() {
     }
 
 
-//    private fun setHomeOption() {
-//        val popupMenu = PopupMenu(requireContext(),binding.btnOptions)
-//        popupMenu.menuInflater.inflate(R.menu.home_menu,popupMenu.menu)
-//
-//        if (!viewModel.isCustomer.value!!) { // if admin
-//            popupMenu.menu.add(Menu.NONE, ITEM_USERS,Menu.NONE,R.string.users) // add item to menu
-//
-//        }
-//
-//        popupMenu.setOnMenuItemClickListener { item ->
-//            when (item.itemId) {
-//                R.id.item_filter -> {
-//                    filterNovel.novels = viewModel.novels.value ?: emptyList()
-//                    filterNovel.showSheet()
-//                }
-//                ITEM_USERS -> { navigateToUsers() }
-//            }
-//            true
-//        }
-//        popupMenu.show()
-//    }
 
 
 
@@ -271,7 +280,7 @@ class Home: Fragment() {
     }
 
 
-//    private fun setAdapter(){
+//    private fun setAdapter() {
 //
 //        /** onNovelClick listener **/
 //        novelAdapter.clickListener = object: NovelAdapter.ClickListener {

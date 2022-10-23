@@ -151,6 +151,13 @@
         android:id="@+id/search"
         android:name="com.shaimaziyad.khayal.screens.search.Search"
         android:label="Search"
-        tools:layout="@layout/search"/>
+        tools:layout="@layout/search">
+        <action
+            android:id="@+id/action_search_to_novelDetails"
+            app:destination="@id/novelDetails" />
+        <action
+            android:id="@+id/action_search_to_addEditNovel"
+            app:destination="@id/addEditNovel" />
+    </fragment>
 
 </navigation>

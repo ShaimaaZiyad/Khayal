@@ -8,6 +8,8 @@ import com.shaimaziyad.khayal.repository.PdfRepository
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovelViewModel
 import com.shaimaziyad.khayal.screens.auth.AuthViewModel
+import com.shaimaziyad.khayal.screens.bannerManager.BannerManager
+import com.shaimaziyad.khayal.screens.bannerManager.BannerMangerViewModel
 import com.shaimaziyad.khayal.screens.home.HomeViewModel
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal.screens.pdfViewer.PdfViewerViewModel
@@ -23,6 +25,7 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { HomeViewModel(context = androidContext(),userRepo = get(), novelRepo = get() ) }
     viewModel { AuthViewModel(userRepo = get())  }
+    viewModel { BannerMangerViewModel() }
     viewModel { NotificationsViewModel(notifyRepo = get(), userRepo = get()) }
     viewModel { PdfViewerViewModel(pdfRepo = get()) }
     viewModel { ProfileViewModel(userRepo = get()) }

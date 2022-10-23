@@ -120,6 +120,11 @@
     <string name="rate_us">Rate us</string>
     <string name="reviews">Reviews: %s</string>
     <string name="count">Count: %s</string>
+    <string name="banners_manager">Banners Manager</string>
+    <string name="error_require_report">Report required</string>
+    <string name="hint_report">How we can help you?</string>
+    <string name="success_report">Thanks for reporting</string>
+
 
 
 </resources>

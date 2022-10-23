@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
+import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.SearchBinding
 import com.shaimaziyad.khayal.screens.home.HomeViewModel
+import com.shaimaziyad.khayal.screens.profile.ProfileViewModel
 import com.shaimaziyad.khayal.sheets.FilterNovelSheet
 import com.shaimaziyad.khayal.utils.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -17,6 +20,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class Search : Fragment() {
 
     private val homeViewModel by sharedViewModel<HomeViewModel>()
+    private val profileViewModel by sharedViewModel<ProfileViewModel>()
 
     private lateinit var binding: SearchBinding
 
@@ -66,10 +70,28 @@ class Search : Fragment() {
     private fun setAdapter() {
         searchAdapter.clickListener = object: SearchAdapter.ClickListener{
             override fun onClick(novel: Novel, index: Int) {
-                showMessage(novel.title)
+                val userType = profileViewModel.user.value?.userType
+                if (userType == UserType.USER.name){
+                    navigateToNovelDetails(novel)
+                }else{
+                    navigateToAddEditNovel(isEdit = true,novel)
+                }
+
+//                showMessage(novel.title)
             }
         }
         binding.rvNovels.adapter = searchAdapter
+    }
+
+
+    private fun navigateToNovelDetails(novel: Novel){
+        val data = bundleOf(Constants.NOVEL_KEY to novel)
+        findNavController().navigate(R.id.action_search_to_novelDetails,data)
+    }
+
+    private fun navigateToAddEditNovel(isEdit: Boolean,novel: Novel){
+        val data = bundleOf(Constants.NOVEL_KEY to novel, Constants.IS_EDIT_KEY to isEdit)
+        findNavController().navigate(R.id.action_search_to_addEditNovel,data)
     }
 
 

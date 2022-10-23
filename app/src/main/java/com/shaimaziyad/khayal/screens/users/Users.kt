@@ -21,10 +21,7 @@ import com.shaimaziyad.khayal.screens.home.Home
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal.sheets.FilterUserSheet
 import com.shaimaziyad.khayal.sheets.PushNotificationSheet
-import com.shaimaziyad.khayal.utils.Constants
-import com.shaimaziyad.khayal.utils.NotifyType
-import com.shaimaziyad.khayal.utils.hideKeyboard
-import com.shaimaziyad.khayal.utils.showMessage
+import com.shaimaziyad.khayal.utils.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
@@ -146,7 +143,9 @@ class Users: Fragment() {
 
         pushNotifySheet.notifyStatus = object : PushNotificationSheet.NotifyStatus {
             override fun onSend(notify: Notification) {
-                notifyViewModel.pushNotify(notify,NotifyType.System.name)
+                notify.pattern = NotifyPattern.Alert.name
+                notify.type = NotifyType.System.name
+                notifyViewModel.pushNotify(notify)
                 showMessage("notify send")
                 pushNotifySheet.hideSheet()
             }

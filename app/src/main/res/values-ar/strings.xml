@@ -81,6 +81,7 @@
     <string name="novella">نوفيلا</string>
 
 
+    <string name="error_require_report">التقرير مطلوب</string>
     <string name="error_require_title">العنوان مطلوب</string>
     <string name="error_require_description">الوصف مطلوب</string>
     <string name="error_require_external_link">الرابط مطلوب</string>
@@ -124,6 +125,9 @@
     <string name="reviews">المراجعات %s</string>
 
     <string name="count">العدد %s</string>
+    <string name="banners_manager">مدير الإعلانات</string>
+    <string name="hint_report">كيف يمكن ان نساعدك؟</string>
+    <string name="success_report">شكرا على الإبلاغ</string>
 
 
 

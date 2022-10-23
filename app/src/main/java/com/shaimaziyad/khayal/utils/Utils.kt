@@ -15,6 +15,8 @@ enum class FileType {PDF, IMAGE,IMAGE_PROFILE, IMAGE_NOTIFICATION}
 
 enum class NotifyType {System, Direct}
 
+enum class NotifyPattern {Message, Report, Alert}
+
 enum class SelectedSection {UnRead, Read, System}
 
 

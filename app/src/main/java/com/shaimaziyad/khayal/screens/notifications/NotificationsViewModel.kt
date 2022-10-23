@@ -146,12 +146,11 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 
 
 
-    fun pushNotify(notify: Notification, notifyType: String) {
+    fun pushNotify(notify: Notification) {
         resetStatus()
         _notifyStatus.value = DataStatus.LOADING
         Log.d(TAG,"onPushNotify: Loading...")
         viewModelScope.launch {
-            notify.type = notifyType
             val res = notifyRepo.pushNotify(notify)
             if (res is Result.Success) {
                 Log.d(TAG,"onPushNotify: push notify have been success...")

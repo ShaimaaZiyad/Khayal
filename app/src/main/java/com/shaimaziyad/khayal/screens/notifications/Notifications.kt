@@ -40,7 +40,6 @@ class Notifications: Fragment() {
     override fun onResume() {
         super.onResume()
 
-
         unReadSelected()
 
     }

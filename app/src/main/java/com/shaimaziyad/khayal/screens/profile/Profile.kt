@@ -158,7 +158,9 @@ class Profile : Fragment() {
 
                 if (!user?.token.isNullOrEmpty()) {
                     sendNotification(notify,user?.token!!)
-                    notifyViewModel.pushNotify(notify,NotifyType.Direct.name)
+                    notify.type = NotifyType.Direct.name
+                    notify.pattern = NotifyPattern.Alert.name
+                    notifyViewModel.pushNotify(notify)
                 }else {
                     showMessage(resources.getString(R.string.error_no_token))
                 }

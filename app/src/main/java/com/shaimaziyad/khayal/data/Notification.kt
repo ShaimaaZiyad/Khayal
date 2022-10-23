@@ -14,10 +14,12 @@ data class Notification (
     val icon: String = "",
     var externalLink: String = "", // if you want to send the user to any website , blog or facebook
     var internalLink: String = "", // if you want to send the user to any screen inside the app
-    var targetUser: String? = null, // user id
-    var type: String = "",
+    var targetUser: String? = "", // recipient id
+    var type: String = "", // system , direct
     @field:JvmField
     var isRead: Boolean? = false,
+    var pattern: String? = "",
+    var from: String? = "", // sender id
     val createDate: Date = getCurrentTime()
 ): Parcelable {
     fun toHashMap(): HashMap<String, Any> {
@@ -31,6 +33,8 @@ data class Notification (
             "targetUser" to targetUser!!,
             "type" to type,
             "isRead" to isRead!!,
+            "pattern" to pattern!!,
+            "from" to from!!,
             "createDate" to createDate
         )
     }
