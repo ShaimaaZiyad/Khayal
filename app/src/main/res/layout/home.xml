@@ -18,7 +18,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".screens.home.Home">
 
 
 
@@ -37,89 +38,39 @@
             tools:visibility="visible" />
 
 
-        <LinearLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".screens.home.Home">
+            android:layout_height="wrap_content">
 
-            <!--Toolbar-->
-            <FrameLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:orientation="horizontal"
-                    android:gravity="center|start"
-                    android:background="@drawable/shape_toolbar02">
-
-                    <!--ImageButton: Open profile-->
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/btnProfile"
-                        android:layout_width="50dp"
-                        android:layout_margin="5dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_account"
-                        setImage="@{profileModel.user.profileImage}" />
-
-
-                    <androidx.legacy.widget.Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            setName="@{profileModel.user.name}"
-                            android:textStyle="bold"
-                            tools:text="Ahmed Abdo" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{profileModel.user.email}"
-                            showViewIfCustomer="@{profileModel.isCustomer()}"
-                            tools:text="example@gmail.com"
-                            android:textColor="@color/white" />
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_marginEnd="10dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <include
-                        android:id="@+id/notify"
+                        android:id="@+id/search_layout"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        layout="@layout/notify_layout"/>
+                        layout="@layout/item_main_search"/>
 
-                    <androidx.legacy.widget.Space
-                        android:layout_width="8dp"
-                        android:layout_height="wrap_content"/>
 
-                    <ImageView
-                        android:id="@+id/btnOptions"
-                        android:layout_width="34dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_more"
-                        app:tint="@color/gray01" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/novelsRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        tools:listitem="@layout/item_novels_with_category"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_anchor="@+id/frameLayout" />
 
 
                 </LinearLayout>
@@ -127,99 +78,25 @@
 
 
 
-            </FrameLayout>
+            </androidx.core.widget.NestedScrollView>
 
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/searchOutlinedTextLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:focusable="false"
-                app:boxStrokeColor="@color/primaryDarkColor"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/primaryDarkColor"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_search_gray"
-                app:startIconTint="@color/primaryDarkColor">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/search"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
-                    android:textAppearance="@style/TextAppearance.MyTheme.Subtitle1"
-                    android:textColor="@color/gray01"
-                    android:textColorHint="@color/gray01" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/refreshNovels"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                swipeToRefresh="@{homeViewModel.novelsStatus}">
-
-                <androidx.coordinatorlayout.widget.CoordinatorLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <FrameLayout
-                        android:id="@+id/frameLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginTop="10dp">
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/novelsRv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_anchor="@+id/frameLayout"
-                            app:layout_anchorGravity="center"
-                            app:spanCount="3"
-                            tools:listitem="@layout/item_novel" />
-
-
-                    </FrameLayout>
-
-
-                </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-
-        </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 
 
-        <FrameLayout
+        <com.google.android.material.progressindicator.CircularProgressIndicator
             showLoading="@{homeViewModel.novelsStatus}"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?actionBarSize"
-            android:visibility="gone">
-
-            <include
-                layout="@layout/load"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primaryDarkColor"
+            app:indicatorDirectionCircular="clockwise"
+            app:trackColor="@color/white"
+            app:trackThickness="6dp" />
 
 
         <FrameLayout
@@ -237,16 +114,13 @@
         </FrameLayout>
 
 
+
+
         <include
-            android:id="@+id/novelSheet"
+            android:id="@+id/optionsSheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/filter_novel_sheet"/>
-
-
-
-
-
+            layout="@layout/home_option_sheet"/>
 
 
     </FrameLayout>
