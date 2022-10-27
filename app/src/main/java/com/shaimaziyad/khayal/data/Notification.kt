@@ -19,6 +19,7 @@ data class Notification(
     @field:JvmField
     var isRead: Boolean? = false,
     val createDate: Date = getCurrentTime()
+
 ) : Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(

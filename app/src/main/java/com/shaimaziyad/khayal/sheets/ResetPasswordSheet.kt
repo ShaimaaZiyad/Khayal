@@ -33,7 +33,6 @@ class ResetPasswordSheet(
 
         var email = ""
 
-
         /** button apply **/
         binding.btnSend.setOnClickListener {
             email = binding.email.text?.trim().toString()
@@ -51,15 +50,12 @@ class ResetPasswordSheet(
             resetPassStatus.onSend(email)
 
         }
-
-
         /** button close **/
         binding.btnClose.setOnClickListener {
             hideSheet()
         }
 
     }
-
 
     interface ResetPasswordStatus {
         fun onSend(email: String)

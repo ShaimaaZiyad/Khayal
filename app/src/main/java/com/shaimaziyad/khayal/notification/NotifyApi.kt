@@ -1,7 +1,5 @@
 package com.shaimaziyad.khayal.notification
 
-
-import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.PushNotificationData
 import okhttp3.ResponseBody
 import retrofit2.Response

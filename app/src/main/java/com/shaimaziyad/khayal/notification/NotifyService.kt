@@ -39,9 +39,6 @@ class NotifyService() : FirebaseMessagingService() {
             // cast the notification data
             val title = it.data["title"]
             val body = it.data["body"]
-//           /
-////
-////            Log.d(TAG,message.toString())
 
             notificationManager.createNotification(message, applicationContext)
 

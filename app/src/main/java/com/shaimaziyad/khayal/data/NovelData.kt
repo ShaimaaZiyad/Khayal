@@ -20,9 +20,6 @@ data class NovelData(
     var pdfs: List<String> = ArrayList(),
     var pdfsCount: Int = 0, // i need it to show in the cardView in home screen >>>> numberOfChapters
 
-//    var continuousOrComplete: String,
-//    var seriesOrSolo: String
-
 ) : Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(

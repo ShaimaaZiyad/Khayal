@@ -62,7 +62,6 @@ class PdfViewer : Fragment() {
         }
     }
 
-
     private fun setViews() {
         binding.apply {
 
@@ -78,8 +77,6 @@ class PdfViewer : Fragment() {
 
         }
     }
-
-
     private fun setData() {
         novelUri = try {
             arguments?.get(Constants.PDF_KEY).toString()
@@ -91,32 +88,5 @@ class PdfViewer : Fragment() {
 
 
     }
-
-
-//    private fun showMInterstitialAd() {
-//        if (mInterstitialAd != null) {
-//            mInterstitialAd?.show(this@ViewPdf.requireActivity())
-//        } else {
-//            Log.d("TAG", "The interstitial ad wasn't ready yet.")
-//        }
-//    }
-//
-//    private fun loadMInterstitialAd() {
-//        val adRequest = AdRequest.Builder().build()
-//
-//        InterstitialAd.load(
-//            this@ViewPdf.requireContext(),
-//            getString(R.string.ID_Interstitial),
-//            adRequest,
-//            object : InterstitialAdLoadCallback() {
-//                override fun onAdFailedToLoad(adError: LoadAdError) {
-//                    mInterstitialAd = null
-//                }
-//
-//                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-//                    mInterstitialAd = interstitialAd
-//                }
-//            })
-//    }
 
 }

@@ -18,7 +18,6 @@ class PushNotificationSheet(
 
     lateinit var notifyStatus: NotifyStatus
 
-    //    var userToken: String? = null // this user token
     var userId: String? = null
     private val sheet = BottomSheetBehavior.from(binding.sheet)
 
@@ -40,7 +39,6 @@ class PushNotificationSheet(
         } else {
             binding.notifyInfo.text = context.getString(R.string.info_notify_for_all_user)
         }
-
 
         /** button close **/
         binding.btnClose.setOnClickListener {
@@ -93,10 +91,7 @@ class PushNotificationSheet(
             if (!binding.external.isChecked && !binding.internal.isChecked) {
                 notifyStatus.onSend(notification)
             }
-
-
         }
-
         /** radio buttons **/
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
@@ -114,8 +109,6 @@ class PushNotificationSheet(
                 }
             }
         }
-
-
     }
 
     private fun resetViews() {
@@ -129,6 +122,4 @@ class PushNotificationSheet(
     interface NotifyStatus {
         fun onSend(notify: Notification)
     }
-
-
 }

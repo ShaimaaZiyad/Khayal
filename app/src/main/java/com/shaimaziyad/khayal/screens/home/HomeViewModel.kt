@@ -6,9 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
 import com.shaimaziyad.khayal.data.NovelData
-import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.NovelRepository
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.*

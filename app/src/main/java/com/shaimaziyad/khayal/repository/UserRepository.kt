@@ -34,13 +34,10 @@ class UserRepository(
     val isLogged = sharePref.isLogged()
     val user = sharePref.loadUser()
 
-//    private val remote = DataBase()
-
     suspend fun update(user: User): Result<Boolean> {
         return supervisorScope {
             val task = async {
                 remote.updateUser(user)
-//                sharePref.saveUser(user,null)
             }
             try {
                 task.await()
@@ -109,8 +106,6 @@ class UserRepository(
             try {
                 loginTask.await()
                 Success(mUser!!)
-//                if (isVerified == true) Success(true) else Error(Exception("Email is not verified")) // we will use this after verification function
-
 
             } catch (ex: FirebaseAuthInvalidUserException) {
                 val message = "user is not exist"
@@ -130,7 +125,6 @@ class UserRepository(
         }
     }
 
-
     suspend fun signOut(): Result<Boolean> {
         return supervisorScope {
             val remoteSignOut = async { remote.signOut() }
@@ -145,7 +139,6 @@ class UserRepository(
         }
     }
 
-
     suspend fun resetPassword(email: String): Result<Boolean> {
         return supervisorScope {
             val task = async { remote.resetPassword(email) }
@@ -157,9 +150,6 @@ class UserRepository(
             }
         }
     }
-
-
-//    suspend fun loadUser(userId: String) = remote.getUserById(userId)!!
 
     suspend fun loadUser(userId: String) = remote.getUserById(userId)
 

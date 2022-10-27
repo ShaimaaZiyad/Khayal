@@ -34,6 +34,7 @@ class Home : Fragment() {
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
 
     private val novelAdapter by lazy { NovelAdapter() }
+
     private lateinit var filterNovel: FilterNovelSheet
 
     override fun onCreateView(

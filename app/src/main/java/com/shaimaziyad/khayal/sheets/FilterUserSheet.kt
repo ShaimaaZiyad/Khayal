@@ -58,9 +58,7 @@ class FilterUserSheet(
         binding.btnClose.setOnClickListener {
             hideSheet()
         }
-
     }
-
 
     private fun clearFilter() {
         binding.btnApply.text = context.getString(R.string.apply)
@@ -68,11 +66,9 @@ class FilterUserSheet(
         filterStatus.clearFilter()
     }
 
-
     private fun updateBtnApplyInfo(value: Int) {
         binding.btnApply.text = context.getString(R.string.results, value.toString())
     }
-
 
     fun filter(country: String?): List<User> {
         var filtered = users
@@ -82,11 +78,8 @@ class FilterUserSheet(
         return filtered
     }
 
-
     interface FilterStatus {
         fun onFilter(filtered: List<User>)
         fun clearFilter()
     }
-
-
 }
