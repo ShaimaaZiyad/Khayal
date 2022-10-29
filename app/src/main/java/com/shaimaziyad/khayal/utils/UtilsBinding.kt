@@ -24,6 +24,14 @@ fun setImage(image: ImageView, uri: String?){
     }
 }
 
+@BindingAdapter("setImage")
+fun setImage(image: ImageView, uri: Int?){
+    if(uri != null) {
+        image.setImageResource(uri)
+    }
+}
+
+
 
 
 

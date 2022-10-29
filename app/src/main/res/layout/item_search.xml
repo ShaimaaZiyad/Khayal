@@ -19,7 +19,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_back_white"
-            app:tint="@color/black" />
+            app:tint="@color/gray02" />
 
         <androidx.legacy.widget.Space
             android:layout_width="20dp"

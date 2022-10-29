@@ -183,13 +183,13 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 //                _notifications.value = mNotifications
 
                 _notifyStatus.value = DataStatus.SUCCESS
-                resetStatus()
+//                resetStatus()
 
             }else if( res is Result.Error){
                 Log.d(TAG,"onUpdateNotify: update notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
+//                resetStatus()
             }
         }
     }
@@ -204,13 +204,13 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
             if (res is Result.Success) {
                 Log.d(TAG,"onRemoveNotify: remove notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
-                resetStatus()
+//                resetStatus()
 
             }else if( res is Result.Error){
                 Log.d(TAG,"onRemoveNotify: remove notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
+//                resetStatus()
             }
         }
     }

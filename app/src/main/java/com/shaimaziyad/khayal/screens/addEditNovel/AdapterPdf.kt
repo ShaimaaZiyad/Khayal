@@ -1,6 +1,7 @@
 package com.shaimaziyad.khayal.screens.addEditNovel
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -22,7 +23,10 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
 
 
         // update ui
+        @SuppressLint("SetTextI18n")
         fun onBind(data: String, clickListener: PdfClickListener) {
+
+            binding.badgeNumber.text = (adapterPosition + 1 ).toString()
 
             // when click on novel item
             binding.btnRemove.setOnClickListener {
@@ -59,6 +63,11 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
     }
 
 
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun deleteItem(index: Int){
+        notifyItemRemoved(index)
+    }
 
 
 

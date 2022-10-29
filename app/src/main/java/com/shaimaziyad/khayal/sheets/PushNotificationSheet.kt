@@ -10,11 +10,11 @@ import com.shaimaziyad.khayal.databinding.PushNotificationSheetBinding
 import com.shaimaziyad.khayal.utils.*
 import com.shaimaziyad.khayal.utils.getNovelId
 
-class PushNotificationSheet(private val context: Context,
-                            private val binding: PushNotificationSheetBinding,
+class PushNotificationSheet(private val binding: PushNotificationSheetBinding,
                             private val fragment: Fragment) {
 
     lateinit var notifyStatus: NotifyStatus
+    private val context = fragment.requireContext()
 
 //    var userToken: String? = null // this user token
     var userId: String? = null

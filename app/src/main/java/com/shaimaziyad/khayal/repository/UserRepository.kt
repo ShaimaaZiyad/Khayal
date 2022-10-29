@@ -7,6 +7,7 @@ import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.notification.getToken
 import com.shaimaziyad.khayal.remote.DataBase
@@ -28,16 +29,40 @@ class UserRepository(private val remote: DataBase,
         private const val TAG = "UserRepository"
     }
 
-
     val isLogged = sharePref.isLogged()
     val user = sharePref.loadUser()
 
-//    private val remote = DataBase()
+
+
+    // set like if not liked before or remove it if exist
+    suspend fun setLikeToNovel(novel: Novel): Result<Boolean> {
+        return supervisorScope {
+            val setLikeTask = async {
+                val user = remote.getUserById()
+                val likes = user.likes.toMutableList()
+                val isLiked = likes.contains(novel.novelId)
+                if (!isLiked){
+                    likes.add(novel.novelId)
+                }else {
+                    likes.remove(novel.novelId)
+                }
+                user.likes = likes
+                update(user)
+            }
+            try {
+                setLikeTask.await()
+                Success(true)
+            }catch (ex: Exception){
+                Error(ex)
+            }
+        }
+    }
 
     suspend fun update(user: User): Result<Boolean> {
         return supervisorScope {
             val task  = async {
                 remote.updateUser(user)
+                sharePref.saveUser(user)
 //                sharePref.saveUser(user,null)
             }
             try {
@@ -88,11 +113,12 @@ class UserRepository(private val remote: DataBase,
                 val loginUser = remote.signWithEmailAndPassword(email,password)?.user
                 val userId = loginUser?.uid
                 if (userId != null){
-                    val user = remote.getUserById(userId)
+                    val user = remote.getUserById()
                     mUser = user
                     getToken { newToken -> user.token = newToken }
-                    val sharePref = SharePrefManager(context)
-                    sharePref.saveUser(user,isRemOn)
+                    sharePref.saveUser(user, isRemOn)
+//                    val sharePref = SharePrefManager(context)
+//                    sharePref.saveUser(user,isRemOn)
                     Log.d(TAG,"user name: ${user.name}")
                     async {
                         delay(200)
@@ -105,8 +131,6 @@ class UserRepository(private val remote: DataBase,
             try {
                 loginTask.await()
                 Success(mUser!!)
-//                if (isVerified == true) Success(true) else Error(Exception("Email is not verified")) // we will use this after verification function
-
 
             }catch (ex: FirebaseAuthInvalidUserException) {
                 val message = "user is not exist"
@@ -155,10 +179,7 @@ class UserRepository(private val remote: DataBase,
     }
 
 
-//    suspend fun loadUser(userId: String) = remote.getUserById(userId)!!
-
-    suspend fun loadUser(userId: String) = remote.getUserById(userId)
-
+    suspend fun loadUser() = remote.getUserById()
 
     suspend fun loadUsers(): Result<List<User>> {
         return supervisorScope {

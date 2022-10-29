@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Notification
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.ProfileBinding
 import com.shaimaziyad.khayal.notification.sendNotification
+import com.shaimaziyad.khayal.screens.home.HomeViewModel
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
+import com.shaimaziyad.khayal.screens.search.SearchAdapter
 import com.shaimaziyad.khayal.sheets.EditProfileSheet
 import com.shaimaziyad.khayal.sheets.PushNotificationSheet
 import com.shaimaziyad.khayal.utils.*
@@ -26,10 +29,12 @@ class Profile : Fragment() {
     private lateinit var binding: ProfileBinding
 
     private val viewModel by sharedViewModel<ProfileViewModel>()
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
 
     private lateinit var profileSheet: EditProfileSheet
     private lateinit var pushNotifySheet: PushNotificationSheet
+    private val searchAdapter by lazy { SearchAdapter() }
 
     private var isUserNotify by Delegates.notNull<Boolean>()
     private var user: User? = null
@@ -41,7 +46,7 @@ class Profile : Fragment() {
         setData()
 
         profileSheet = EditProfileSheet(binding.profileSheet,this)
-        pushNotifySheet = PushNotificationSheet(requireContext(),binding.pushNotifySheet, this)
+        pushNotifySheet = PushNotificationSheet(binding.pushNotifySheet, this)
 
         setViews()
         setObserves()
@@ -49,10 +54,30 @@ class Profile : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val likedNovels = ArrayList<Novel>()
+        val liked = viewModel.user.value?.likes
+        liked?.forEach { novelId ->
+            val novel = homeViewModel.novels.value?.find { it.novelId == novelId }
+            if (novel != null){
+                likedNovels.add(novel)
+            }
+        }
+
+//        showMessage("liked: ${likedNovels.size}")
+        searchAdapter.submitList(likedNovels)
+//        searchAdapter.notifyDataSetChanged()
+
+    }
+
+    private fun refreshLikedNovels(){
+
+    }
 
     private fun setObserves() {
         viewModel.apply {
-
 
             /** isLoggedOut live data **/
             isLoggedOut.observe(viewLifecycleOwner) {
@@ -97,6 +122,7 @@ class Profile : Fragment() {
                         pushNotifySheet.hideSheet()
                     }
                     DataStatus.ERROR-> {
+                        viewModel.resetStatus()
                         pushNotifySheet.hideSheet()
                     }
                     else -> {}
@@ -109,18 +135,33 @@ class Profile : Fragment() {
         }
     }
 
+
+    private fun setFavoritesAdapter() {
+        searchAdapter.clickListener = object: SearchAdapter.ClickListener{
+            override fun onClick(novel: Novel, index: Int) {
+                val data = bundleOf(Constants.NOVEL_KEY to novel)
+                findNavController().navigate(R.id.action_profile_to_novelDetails,data)
+//                showMessage(novel.title)
+            }
+        }
+        binding.rvNovels.adapter = searchAdapter
+    }
+
+
     // todo: add option for remove image profile
 
     private fun setViews() {
         binding.apply {
 
+
 //            profileViewModel = viewModel
-            userModel = if (user != null){
-                user
-            }else{
-                viewModel.user.value
-            }
+            userModel = if (user != null){ user }
+            else{ viewModel.user.value }
+
+            profileViewModel = viewModel
             lifecycleOwner = this@Profile
+
+            setFavoritesAdapter()
 
             editProfileSheetStatus()
             notifySheetStatus()

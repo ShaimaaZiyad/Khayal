@@ -10,26 +10,29 @@
             type="com.shaimaziyad.khayal.data.Novel" />
 
 
-<!--        <variable-->
-<!--            name="onNovelClick"-->
-<!--            type="android.view.View.OnClickListener" />-->
 
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        app:cardCornerRadius="14dp"
-        app:cardUseCompatPadding="true">
 
 
-        <ImageView
-            android:id="@+id/btnItem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:src="@drawable/ic_cover_novel_test"
-            setImage="@{novel.cover}"/>
 
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="14dp">
+
+
+            <ImageView
+                android:id="@+id/btnItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@drawable/ic_cover_novel_test"
+                setImage="@{novel.cover}"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+
 
 </layout>

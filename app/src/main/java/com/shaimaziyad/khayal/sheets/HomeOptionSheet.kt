@@ -3,6 +3,7 @@ package com.shaimaziyad.khayal.sheets
 
 import android.app.AlertDialog
 import android.widget.EditText
+import androidx.core.view.marginBottom
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Notification
@@ -102,7 +103,6 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
     private fun setViews() {
         if (user?.userType == UserType.ADMIN.name){
             binding.apply {
-                btnNotifications.hide()
                 btnSettings.hide()
                 btnRateUs.hide()
                 btnReport.hide()

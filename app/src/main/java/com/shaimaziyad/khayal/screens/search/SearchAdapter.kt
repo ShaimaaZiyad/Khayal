@@ -2,19 +2,11 @@ package com.shaimaziyad.khayal.screens.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.shaimaziyad.khayal.data.Novel
-import com.shaimaziyad.khayal.databinding.ItemNovelBinding
 import com.shaimaziyad.khayal.databinding.ItemNovelCategoryBinding
-import com.shaimaziyad.khayal.utils.DisplayableHomeItem
-import com.shaimaziyad.khayal.utils.bannerTypeOneAdapterDelegate
-import com.shaimaziyad.khayal.utils.promotionsNovelsAdapterDelegate
-
 
 
 class SearchAdapter : ListAdapter<Novel, SearchAdapter.ViewHolder>(NovelDiffCallback) {

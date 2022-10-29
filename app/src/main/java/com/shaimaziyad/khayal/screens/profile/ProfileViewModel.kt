@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.core.net.toUri
 import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
+import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.*
@@ -17,12 +18,8 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
     private val localUser = userRepo.user
 
-
     private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
     val isCustomer: LiveData<Boolean?> = _isCustomer
-
-    private val _userStatus = MutableLiveData<DataStatus?>()
-    val userStatus: LiveData<DataStatus?> = _userStatus
 
     private val _updateUserState = MutableLiveData<DataStatus?>()
     val updateUserState: LiveData<DataStatus?> = _updateUserState
@@ -31,7 +28,6 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     private val _isLoggedOut= MutableLiveData<Boolean?>()
     val isLoggedOut: LiveData<Boolean?> = _isLoggedOut
 
-//    val user = MutableLiveData<User>()
 
     private val _user = MutableLiveData<User?>(localUser)
     val user: LiveData<User?> = _user
@@ -39,6 +35,9 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
+
+    private val _likeStatus = MutableLiveData<DataStatus?>()
+    val likeStatus: LiveData<DataStatus?> = _likeStatus
 
 
 
@@ -55,18 +54,54 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
     fun loadUser() {
         viewModelScope.launch {
-            val userId = FirebaseAuth.getInstance().currentUser?.uid!!
-            Log.d(TAG,"user name: ${localUser.name}")
-            _user.value = userRepo.loadUser(userId)
+            _user.value = userRepo.loadUser()
             _isCustomer.value = isCustomer(_user.value!!.userType)
         }
     }
 
 
+    fun isNovelLiked(novelId: String) = _user.value?.likes?.contains(novelId)
+
     fun refreshUser(user: User){
         _user.value = user
     }
 
+
+    fun setLikeToNovel(novel: Novel) {
+        Log.d(TAG,"onLoading.. setting like to novel..")
+        resetStatus()
+        _likeStatus.value = DataStatus.LOADING
+        viewModelScope.launch {
+
+            val res = userRepo.setLikeToNovel(novel)
+            if (res is Result.Success){
+                Log.d(TAG,"onSuccess: like status updated")
+                _likeStatus.value = DataStatus.SUCCESS
+                refreshLikes(novel)
+            }
+            else if(res is Result.Error) {
+                Log.d(TAG,"onError: error happen setting like due to ${res.exception.message}")
+                _likeStatus.value = DataStatus.ERROR
+                _error.value = res.exception.message
+
+            }
+        }
+    }
+
+
+    // update likes locally
+    private fun refreshLikes(novel: Novel){
+        val user = _user.value!!
+        val likes = _user.value?.likes?.toMutableList()
+        val isLiked = likes?.contains(novel.novelId)!!
+        if (!isLiked){
+            likes.add(novel.novelId)
+        }else{
+            likes.remove(novel.novelId)
+        }
+        user.likes = likes
+        refreshUser(user)
+    }
 
 
     fun update(oldUser: User) {
@@ -95,7 +130,6 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
 
     fun resetStatus() {
-        _userStatus.value = null
         _updateUserState.value = null
         _isLoggedOut.value = null
     }

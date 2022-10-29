@@ -7,5 +7,5 @@ data class Banner(
     val title: String = "",
     val subTitle: String = "",
     val description: String = "",
-    val cover: String = ""
+    val cover: Int = 0,
 ): DisplayableHomeItem

@@ -12,20 +12,23 @@
         android:layout_height="match_parent"
         tools:context=".screens.search.Search">
 
+        <include
+            android:id="@+id/search_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            layout="@layout/item_search"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
             android:orientation="vertical">
 
 
-            <include
-                android:id="@+id/search_Layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                layout="@layout/item_search"/>
 
 
             <FrameLayout
@@ -45,12 +48,10 @@
                 android:id="@+id/rvNovels"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                tools:listitem="@layout/item_novel_category"
+                android:layout_marginTop="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_anchor="@+id/frameLayout" />
-
-
+                app:layout_anchor="@+id/frameLayout"
+                tools:listitem="@layout/item_novel_category" />
 
 
         </LinearLayout>

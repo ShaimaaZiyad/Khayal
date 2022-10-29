@@ -9,9 +9,7 @@
             name="banner"
             type="com.shaimaziyad.khayal.data.Banner" />
 
-
     </data>
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/ad_card"

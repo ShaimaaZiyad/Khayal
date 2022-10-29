@@ -26,7 +26,6 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 
-
 object Notify{
 
     const val BASE_URL = "https://fcm.googleapis.com" // url for fcm ..
@@ -131,15 +130,9 @@ fun sendNotification(notification: Notification,token: String) {
 }
 
 fun notifyData(notify: Notification, to: String) : PushNotificationData {
-
-    if (notify.internalLink.isNullOrEmpty() && notify.externalLink.isNullOrEmpty()){
-//        val defaultDestination = R.id.home // home screen
-//        notify.internalLink = defaultDestination.toString()
-//        notify.externalLink = defaultDestination.toString()
-
-    }
    return  PushNotificationData( notify, to)
 }
+
 
 fun subscribeToTopic(topic: String) {
     FirebaseMessaging.getInstance().subscribeToTopic(topic)

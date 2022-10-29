@@ -19,6 +19,8 @@ enum class NotifyPattern {Message, Report, Alert}
 
 enum class SelectedSection {UnRead, Read, System}
 
+enum class AdType {Rotating, Banner}
+
 
 
 class NovelFilter(private val context: Context){

@@ -24,22 +24,28 @@
             android:orientation="horizontal">
 
 
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:layout_width="120dp"
                 android:layout_height="170dp"
-                app:cardCornerRadius="14dp"
-                app:cardUseCompatPadding="true">
+                android:padding="8dp">
 
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    setImage="@{novel.cover}"
-                    tools:src="@drawable/ic_cover_novel_test" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        setImage="@{novel.cover}"
+                        tools:src="@drawable/ic_cover_novel_test" />
+
+                </androidx.cardview.widget.CardView>
 
 
-            </androidx.cardview.widget.CardView>
 
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

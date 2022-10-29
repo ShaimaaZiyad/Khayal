@@ -51,6 +51,7 @@ class PdfViewerViewModel(private val pdfRepo: PdfRepository): ViewModel() {
 
     fun resetStatus() {
         _pdfStatus.value =  null
+        _pdf.value = null
     }
 
 

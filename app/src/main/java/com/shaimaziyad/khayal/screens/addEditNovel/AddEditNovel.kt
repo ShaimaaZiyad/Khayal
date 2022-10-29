@@ -52,6 +52,7 @@ class AddEditNovel : Fragment() {
     private var mCover = ""
     private var mPdfs = ArrayList<Uri>()
 
+
     private val pdfAdapter by lazy { AdapterPdf() }
     private var pdfFile: Uri? = null
     private lateinit var bottomSheetPdf: BottomSheetDialog
@@ -234,11 +235,15 @@ class AddEditNovel : Fragment() {
         pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
-                val pdfs = novel?.pdfs?.toMutableList()
+//                val pdfs = novel?.pdfs?.toMutableList()
+                val pdfs = mPdfs.toMutableList().map { it.toString() } as ArrayList
                 pdfs?.remove(pdf)
                 mPdfs = pdfs?.map { it.toUri() } as ArrayList
+
                 pdfAdapter.submitList(pdfs)
-                pdfAdapter.notifyItemRemoved(index)
+
+//                pdfAdapter.notifyDataSetChanged()
+
             }
 
         }
@@ -285,7 +290,7 @@ class AddEditNovel : Fragment() {
 
     private fun setImageToCover(uri: Uri) {
         novel?.cover = uri.toString()
-        binding.iconIv.setImageURI(uri)
+        binding.btnAddCover.setImageURI(uri)
     }
 
 

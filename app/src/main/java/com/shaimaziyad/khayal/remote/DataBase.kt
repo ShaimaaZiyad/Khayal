@@ -111,7 +111,7 @@ class DataBase() {
 
     suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
 
-    suspend fun getUserById(userId: String) = usersPath.document(userId).get().await().toObject(User::class.java) ?: User()
+    suspend fun getUserById() = usersPath.document(auth.currentUser?.uid!!).get().await().toObject(User::class.java) ?: User()
 
 
 
@@ -216,8 +216,8 @@ class DataBase() {
 
      suspend fun loadPdf(url: String): ByteArray = storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
 
-
-
+//
+//
 //    reference.addOnSuccessListener { bytes->
 //        Log.d(ContentValues.TAG, "loadNovelFromUrl: pdf got from url")
 //
@@ -244,7 +244,7 @@ class DataBase() {
 //        Log.d(ContentValues.TAG, "loadNovelFromUrl: Failed to get pdf due to ${e.message}")
 //        binding.progressBar.visibility = View.GONE
 //    }
-
+//
 
     suspend fun insertFiles(filesUri: List<Uri>,fileType: String): List<String> {
         var urlList = mutableListOf<String>()

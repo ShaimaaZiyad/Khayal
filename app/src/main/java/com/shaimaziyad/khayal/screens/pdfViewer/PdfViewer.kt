@@ -66,9 +66,9 @@ class PdfViewer : Fragment() {
             lifecycleOwner = this@PdfViewer
 
 
-
             /** button back **/
             btnBack.setOnClickListener{
+                viewModel.resetStatus()
                 findNavController().navigateUp()
             }
 

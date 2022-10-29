@@ -5,9 +5,9 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="profileViewModel"-->
-<!--            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />-->
+        <variable
+            name="profileViewModel"
+            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />
 
         <variable
             name="userModel"
@@ -204,6 +204,29 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    showViewIfCustomer="@{profileViewModel.isCustomer()}"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/favorite_books"
+                    android:layout_gravity="start"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNovels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:visibility="visible"
+                    tools:listitem="@layout/item_novel_category"/>
 
             </LinearLayout>
 

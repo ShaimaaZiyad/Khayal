@@ -41,8 +41,8 @@ class Users: Fragment() {
 
 
         binding = UsersBinding.inflate(layoutInflater)
-//        viewModel = ViewModelProvider(this)[UsersViewModel::class.java]
-        pushNotifySheet = PushNotificationSheet(requireContext(),binding.pushNotifySheet, this)
+
+        pushNotifySheet = PushNotificationSheet(binding.pushNotifySheet, this)
         filterUser = FilterUserSheet(requireContext(),binding.userFilterSheet,this)
 
         setViews()

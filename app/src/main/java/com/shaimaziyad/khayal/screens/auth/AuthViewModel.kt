@@ -56,13 +56,13 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
                 Log.d(TAG,"onRegister: Registration have been success...")
                 _registerStatus.value = DataStatus.SUCCESS
                 _isRegister.value = true
-                resetStatus()
+
             }else if( res is Result.Error){
                 Log.d(TAG,"onRegister: Registration Failed due to ${res.exception.message}")
                 _isRegister.value = null
                 _registerStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
+
             }
         }
     }
@@ -79,13 +79,13 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
             if (res is Result.Success) {
                 Log.d(TAG,"onResetPass: reset password have been success...")
                 _resetPasswordStatus.value = DataStatus.SUCCESS
-                resetStatus()
+
             }
             else if (res is Result.Error){
                 Log.d(TAG,"onResetPass: reset password failed due to ${res.exception.message}")
                 _resetPasswordStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
+
             }
         }
     }
@@ -102,14 +102,14 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
                 Log.d(TAG,"onLogin: Login have been success...")
                 _loginStatus.value = DataStatus.SUCCESS
                 _isLogged.value = res.data
-                resetStatus()
+
             }
             else if (res is Result.Error){
                 Log.d(TAG,"onLogin: Login Failed due to ${res.exception.message}")
                 _loginStatus.value = DataStatus.ERROR
                 _isLogged.value = null
                 _error.value = res.exception.message
-                resetStatus()
+
             }
         }
     }

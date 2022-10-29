@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Banner
 import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.NovelData
@@ -35,13 +36,12 @@ class HomeViewModel(
     private val _banners = MutableLiveData<List<Banner>?>()
     val banners: LiveData<List<Banner>?> = _banners
 
-
     private val _mixedData = MutableLiveData<List<DisplayableHomeItem>?>()
     val mixedData: LiveData<List<DisplayableHomeItem>?> = _mixedData
 
-
     private val _novelsStatus = MutableLiveData<DataStatus?>()
     val novelsStatus: LiveData<DataStatus?> = _novelsStatus
+
 
     private val _info = MutableLiveData<String?>()
     val info: LiveData<String?> = _info
@@ -49,8 +49,8 @@ class HomeViewModel(
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-    private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
-    val isCustomer: LiveData<Boolean?> = _isCustomer
+//    private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
+//    val isCustomer: LiveData<Boolean?> = _isCustomer
 
     private val _isDataExist = MutableLiveData<Boolean?>()
     val isDataExist: LiveData<Boolean?> = _isDataExist
@@ -61,6 +61,8 @@ class HomeViewModel(
         loadNovels()
     }
 
+
+    // todo: load the ads then load novels
 
     fun loadNovels() {
         Log.d(TAG,"onLoading.. Novels")
@@ -75,29 +77,59 @@ class HomeViewModel(
                 _novels.value = data.sortedBy { it.createDate }
                 _isDataExist.value = _novels.value.isNullOrEmpty()
                 setNovels()
+
             }
             else if(res is Error) {
                 Log.d(TAG,"onError: error happen during fetching novels due to ${res.exception.message}")
                 _novelsStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 _isDataExist.value = null
-                resetStatus()
+
             }
 
         }
     }
 
 
+
+
     private fun setNovels() {
         val list = ArrayList<DisplayableHomeItem>()
+        val novels = _novels.value!!
         val categories = _novels.value?.map { it.category }?.distinct()
-        list.add(Banner("1","Ad number one","hi this is sub title","welcome this is description")) // add data
+        val types = _novels.value?.map { it.type }?.distinct()
+
+        // set banner
+//        list.add(Banner("1","Ad number one","hi this is sub title","welcome this is description", R.drawable.ad_one)) // banner type one
+
+        // set novels by category
         categories?.forEach { category ->
-            val filteredNovels = filter(category)
-            Log.d(TAG,"category:${getNovelCategoryByKey(context,category.toInt())} , size: ${filteredNovels.size} ")
+            val filteredNovels = filterByCategory(category).shuffled()
+            Log.d(TAG,"category:${getNovelCategoryByKey(context,category.toInt())}")
             list.add(NovelData(getNovelCategoryByKey(context,category.toInt()),filteredNovels))
         }
-        _mixedData.value = list
+
+        // set novels by type
+        types?.forEach { type->
+            val filteredNovels = filterByType(type).shuffled()
+            Log.d(TAG,"category:${getNovelTypeKey(context,type.toInt())} ")
+            list.add(NovelData(getNovelTypeKey(context,type.toInt()),filteredNovels))
+        }
+
+//        // set liked novels
+//        val likedNovels = ArrayList<Novel>()
+//        val liked = localUser.likes
+//        liked.forEach { novelId ->
+//            val novel = novels.find { it.novelId == novelId }
+//            if (novel != null){
+//                likedNovels.add(novel)
+//            }
+//        }
+//        list.add(NovelData(context.getString(R.string.favorite_books),likedNovels))
+
+
+
+        _mixedData.value = list.shuffled()
     }
 
 
@@ -109,7 +141,7 @@ class HomeViewModel(
     }
 
 
-    fun filter(category: String): List<Novel> {
+    fun filterByCategory(category: String): List<Novel> {
         val result = if (category.isNotEmpty()) {
             _novels.value?.filter { it.category == category }
         }else {
@@ -117,6 +149,17 @@ class HomeViewModel(
         }
         return result!!
     }
+
+
+    fun filterByType(category: String): List<Novel> {
+        val result = if (category.isNotEmpty()) {
+            _novels.value?.filter { it.type == category }
+        }else {
+            _novels.value
+        }
+        return result!!
+    }
+
 
 
     fun searchByNovelTitle(query: String): List<Novel> { // return list of novels

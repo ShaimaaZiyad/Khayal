@@ -12,6 +12,7 @@ import com.shaimaziyad.khayal.screens.bannerManager.BannerManager
 import com.shaimaziyad.khayal.screens.bannerManager.BannerMangerViewModel
 import com.shaimaziyad.khayal.screens.home.HomeViewModel
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
+
 import com.shaimaziyad.khayal.screens.pdfViewer.PdfViewerViewModel
 import com.shaimaziyad.khayal.screens.profile.ProfileViewModel
 import com.shaimaziyad.khayal.screens.users.UsersViewModel
@@ -25,6 +26,7 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { HomeViewModel(context = androidContext(),userRepo = get(), novelRepo = get() ) }
     viewModel { AuthViewModel(userRepo = get())  }
+
     viewModel { BannerMangerViewModel() }
     viewModel { NotificationsViewModel(notifyRepo = get(), userRepo = get()) }
     viewModel { PdfViewerViewModel(pdfRepo = get()) }
