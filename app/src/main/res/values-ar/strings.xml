@@ -116,6 +116,11 @@
 
 
     <string name="reset_pass_info">ستصلك رسالة في بريدك الإلكتروني تحتوي على رابط ، اضغط عليه ثم قم بتعيين كلمة المرور</string>
+    <string name="category1">فئة 1</string>
+    <string name="category2">فئة2</string>
+    <string name="category3">فئة3</string>
+    <string name="category4">فئة4</string>
+    <string name="category5">فئة5</string>
 
 
 </resources>
