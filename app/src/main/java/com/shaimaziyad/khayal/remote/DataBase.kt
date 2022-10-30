@@ -136,7 +136,6 @@ class DataBase() {
     suspend fun removeNotify(data: Notification) = notificationsPath.document(data.id).delete()
 
 
-
     suspend fun getNovels():List<Novel> = novelsPath.get().await().toObjects(Novel::class.java)
 
     suspend fun addNovel(data: Novel) = novelsPath.document(data.novelId).set(data)
@@ -145,9 +144,6 @@ class DataBase() {
 
     // TODO: delete the pdf files before delete the novel data.
     suspend fun deleteNovel(novel: Novel)  = novelsPath.document(novel.novelId).delete()
-
-
-
 
 
 

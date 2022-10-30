@@ -32,8 +32,8 @@
             <ImageView
                 android:id="@+id/ad_image_view"
                 setImage="@{banner.cover}"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_width="413dp"
+                android:layout_height="147dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

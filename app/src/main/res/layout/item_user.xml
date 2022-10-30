@@ -44,44 +44,44 @@
                 android:orientation="vertical"
                 android:layout_toEndOf="@id/pdfRl"
                 android:layout_centerVertical="true">
-            <!--user name-->
-            <TextView
-                android:id="@+id/userNameTv"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{user.name}"
-                tools:text="Ahmed Mohamed" />
+                <!--user name-->
+                <TextView
+                    android:id="@+id/userNameTv"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{user.name}"
+                    tools:text="Ahmed Mohamed" />
 
-            <!--Email-->
-            <TextView
-                android:id="@+id/emailTv"
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                tools:text="ahemd@example.com"
-                android:text="@{user.email}"/>
+                <!--Email-->
+                <TextView
+                    android:id="@+id/emailTv"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    tools:text="ahemd@example.com"
+                    android:text="@{user.email}"/>
 
-            <!--create Data-->
-            <TextView
-                android:id="@+id/createDataTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:maxLines="1"
-                tools:text="20 / 10 / 2022"
-                joinedAt="@{user.createData}"/>
+                <!--create Data-->
+                <TextView
+                    android:id="@+id/createDataTv"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+                    tools:text="20 / 10 / 2022"
+                    joinedAt="@{user.createData}"/>
 
 
 

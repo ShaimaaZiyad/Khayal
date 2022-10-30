@@ -101,22 +101,22 @@ class Users: Fragment() {
         }
     }
 
-   private fun setUserOptions(){
-       val popupMenu = PopupMenu(requireContext(),binding.btnOptions)
-       popupMenu.menuInflater.inflate(R.menu.users_menu,popupMenu.menu)
+    private fun setUserOptions(){
+        val popupMenu = PopupMenu(requireContext(),binding.btnOptions)
+        popupMenu.menuInflater.inflate(R.menu.users_menu,popupMenu.menu)
 
-       popupMenu.setOnMenuItemClickListener { item ->
-           when (item.itemId) {
-               R.id.item_filter -> {
-                   filterUser.users = viewModel.users.value ?: emptyList()
-                   filterUser.showSheet()
-               }
-               R.id.item_pushNotification ->{ pushNotifySheet.showSheet() }
-           }
-           true
-       }
-       popupMenu.show()
-   }
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.item_filter -> {
+                    filterUser.users = viewModel.users.value ?: emptyList()
+                    filterUser.showSheet()
+                }
+                R.id.item_pushNotification ->{ pushNotifySheet.showSheet() }
+            }
+            true
+        }
+        popupMenu.show()
+    }
 
     private fun filterSheetStatus() {
 

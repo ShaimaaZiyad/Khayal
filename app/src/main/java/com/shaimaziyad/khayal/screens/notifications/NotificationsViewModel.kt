@@ -29,8 +29,6 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 
 
 
-    // todo: reads and unread and system is ready to user...
-
     private val _reads = MutableLiveData<List<Notification>?>()
     val reads: LiveData<List<Notification>?> = _reads
 
@@ -42,17 +40,12 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
     val system: LiveData<List<Notification>?> = _system
 
 
-
     private val _notifyStatus = MutableLiveData<DataStatus?>()
     val notifyStatus: LiveData<DataStatus?> = _notifyStatus
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-
-    init {
-//        loadNotifications()
-    }
 
 
     fun loadNotificationsByUserId() {
@@ -94,7 +87,7 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 
     private fun setReadNotify(userId: String) {
         Log.d(TAG,"222 onSuccess: user notifications size: ${_notifications.value?.size}")
-       _reads.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == true && it.targetUser == userId }
+        _reads.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == true && it.targetUser == userId }
         Log.d(TAG,"read: ${_reads.value?.size}")
     }
 
@@ -159,7 +152,6 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
             if (res is Result.Success) {
                 Log.d(TAG,"onUpdateNotify: update notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
-
             }else if( res is Result.Error){
                 Log.d(TAG,"onUpdateNotify: update notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
@@ -186,7 +178,6 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
             }
         }
     }
-
 
 
     fun resetStatus() {

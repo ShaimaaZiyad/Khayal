@@ -16,21 +16,21 @@
 
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="14dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="14dp">
 
 
-            <ImageView
-                android:id="@+id/btnItem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@drawable/ic_cover_novel_test"
-                setImage="@{novel.cover}"/>
+        <ImageView
+            android:id="@+id/btnItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:src="@drawable/ic_cover_novel_test"
+            setImage="@{novel.cover}"/>
 
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 

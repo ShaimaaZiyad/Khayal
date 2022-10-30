@@ -61,7 +61,6 @@
     <string name="member">Member</string>
     <string name="favorite_books">Favorite books</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="edit_banner">Edit banner</string>
     <string name="number_of_pdf">number of chapters</string>
     <string name="delete">Delete</string>
     <string name="sign_out">SignOut</string>
@@ -126,12 +125,7 @@
     <string name="hint_report">How we can help you?</string>
     <string name="success_report">Thanks for reporting</string>
     <string name="cover_size">Required\n(600 * 930)</string>
-
-    <string name="banner_size">Required\n(600 * 300)</string>
-
-    <string name="pdf_ready">Pdf is ready</string>
-
-
+    <string name="edit_banner">Edit Banner</string>
 
 
 </resources>

@@ -56,7 +56,7 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
 
         /** button apply **/
         binding.btnApply.setOnClickListener {
-           filter(category, type)
+            filter(category, type)
             hideSheet()
         }
 

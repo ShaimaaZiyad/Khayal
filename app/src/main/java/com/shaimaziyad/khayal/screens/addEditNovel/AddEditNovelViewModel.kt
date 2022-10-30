@@ -113,7 +113,7 @@ class AddEditNovelViewModel(private val novelRepo: NovelRepository,
         resetStatus()
         _novelStatus.value = DataStatus.LOADING
         viewModelScope.launch {
-           val res = novelRepo.deleteNovel(novel)
+            val res = novelRepo.deleteNovel(novel)
             if (res is Result.Success) {
                 Log.d(TAG,"onDeleteNovel: delete has been success")
                 _info.value = "Delete"

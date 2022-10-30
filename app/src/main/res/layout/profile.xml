@@ -15,236 +15,236 @@
 
     </data>
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".screens.profile.Profile">
-
-
-
-    <!--Toolbar-->
     <FrameLayout
-        android:background="@drawable/shape_toolbar02"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".screens.profile.Profile">
 
-        <!--Back button-->
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
+
+
+        <!--Toolbar-->
+        <FrameLayout
+            android:background="@drawable/shape_toolbar02"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <!--Back button-->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center|start"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:minWidth="35dp"
+                android:minHeight="35dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_back_white" />
+
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/toolbarTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="35dp"
+                android:minHeight="35dp"
+                android:padding="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_gravity="end|center"
+                android:src="@drawable/ic_more"
+                app:tint="@color/white" />
+
+
+
+        </FrameLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_gravity="center|start"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            android:minWidth="35dp"
-            android:minHeight="35dp"
-            android:padding="2dp"
-            android:src="@drawable/ic_back_white" />
+            android:gravity="center"
+            android:layout_marginTop="?actionBarSize"
+            android:orientation="vertical">
 
 
-        <!--Title-->
-        <TextView
-            android:id="@+id/toolbarTitleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/btnOptions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="35dp"
-            android:minHeight="35dp"
-            android:padding="2dp"
-            android:layout_marginEnd="5dp"
-            android:layout_gravity="end|center"
-            android:src="@drawable/ic_more"
-            app:tint="@color/white" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageProfile"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_person_gray"
+                android:layout_width="120dp"
+                tools:src="@drawable/ic_profile_test"
+                setImage="@{userModel.profileImage}"
+                app:shapeAppearanceOverlay="@style/styleRoundedCornersImage"
+                android:layout_height="120dp"/>
 
 
+            <!--Name-->
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_marginTop="8dp"
+                android:text="@{userModel.name}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Ahmed Mohamed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    </FrameLayout>
-
-
+            <!--Email-->
+            <TextView
+                android:layout_marginTop="5dp"
+                tools:text="test@gmail.com"
+                android:text="@{userModel.email}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
+                android:id="@+id/detailsLv"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="?actionBarSize"
-                android:orientation="vertical">
+                android:baselineAligned="false">
 
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageProfile"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/white"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_person_gray"
-                    android:layout_width="120dp"
-                    tools:src="@drawable/ic_profile_test"
-                    setImage="@{userModel.profileImage}"
-                    app:shapeAppearanceOverlay="@style/styleRoundedCornersImage"
-                    android:layout_height="120dp"/>
-
-
-                <!--Name-->
-                <TextView
-                    android:id="@+id/nameTv"
-                    android:layout_marginTop="8dp"
-                    android:text="@{userModel.name}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:text="Ahmed Mohamed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <!--Email-->
-                <TextView
-                    android:layout_marginTop="5dp"
-                    tools:text="test@gmail.com"
-                    android:text="@{userModel.email}"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                <!--Account-->
                 <LinearLayout
-                    android:id="@+id/detailsLv"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false">
 
-                    <!--Account-->
-                    <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
 
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:padding="5dp"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/account"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="@string/account"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/accountTypeTv"
+                        android:text="@{userModel.userType.toLowerCase()}"
+                        android:textColor="@color/black"
+                        tools:text="@string/sample_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:id="@+id/accountTypeTv"
-                            android:text="@{userModel.userType.toLowerCase()}"
-                            android:textColor="@color/black"
-                            tools:text="@string/sample_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <!--Member Since-->
-                    <LinearLayout
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:text="@string/member"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:textColor="@color/black"
-                            joinedAt="@{userModel.createData}"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="28/02/2022"/>
-
-                    </LinearLayout>
-
-                    <!--Favorite Books-->
-                    <LinearLayout
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="@string/favorite_books"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:id="@+id/favoriteBookCountTv"
-                            tools:text="@string/sample_text"
-                            android:text="@{String.valueOf(userModel.likes.size)}"
-                            android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:visibility="gone"
-                    tools:visibility="visible"
-                    showViewIfCustomer="@{profileViewModel.isCustomer()}"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/favorite_books"
-                    android:layout_gravity="start"/>
+                <!--Member Since-->
+                <LinearLayout
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvNovels"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:visibility="visible"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:visibility="visible"
-                    tools:listitem="@layout/item_novel_category"/>
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="@string/member"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        joinedAt="@{userModel.createData}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="28/02/2022"/>
+
+                </LinearLayout>
+
+                <!--Favorite Books-->
+                <LinearLayout
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/favorite_books"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/favoriteBookCountTv"
+                        tools:text="@string/sample_text"
+                        android:text="@{String.valueOf(userModel.likes.size)}"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                showViewIfCustomer="@{profileViewModel.isCustomer()}"
+                android:layout_marginStart="10dp"
+                android:text="@string/favorite_books"
+                android:layout_gravity="start"/>
 
-    <include
-        android:id="@+id/profileSheet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/edit_profile_sheet"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNovels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:visibility="visible"
+                tools:listitem="@layout/item_novel_category"/>
 
-    <include
-        android:id="@+id/pushNotifySheet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/push_notification_sheet"/>
+        </LinearLayout>
 
 
-</FrameLayout>
+        <include
+            android:id="@+id/profileSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/edit_profile_sheet"/>
+
+        <include
+            android:id="@+id/pushNotifySheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/push_notification_sheet"/>
+
+
+    </FrameLayout>
 
 
 </layout>

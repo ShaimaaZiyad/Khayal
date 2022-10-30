@@ -73,21 +73,21 @@
 
 
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:contentPadding="2dp">-->
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:contentPadding="2dp">-->
 
 
-<!--            <ImageView-->
-<!--                android:layout_width="80dp"-->
-<!--                android:layout_height="80dp"-->
-<!--                android:src="@drawable/ic_pdf_gray" />-->
+        <!--            <ImageView-->
+        <!--                android:layout_width="80dp"-->
+        <!--                android:layout_height="80dp"-->
+        <!--                android:src="@drawable/ic_pdf_gray" />-->
 
-<!--          -->
+        <!--          -->
 
 
-<!--        </androidx.cardview.widget.CardView>-->
+        <!--        </androidx.cardview.widget.CardView>-->
 
 
     </FrameLayout>

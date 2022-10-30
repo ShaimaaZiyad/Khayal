@@ -33,7 +33,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class AddEditNovel : Fragment() {
 
     companion object {
-       private const val TAG = "AddEditNovel"
+        const val TAG = "AddEditNovel"
     }
 
     private lateinit var binding: AddEditNovelBinding
@@ -63,6 +63,7 @@ class AddEditNovel : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = AddEditNovelBinding.inflate(layoutInflater)
+//        viewModel = ViewModelProvider(this)[AddEditNovelViewModel::class.java]
         imagePicker = ImagePicker(this)
         bottomSheetPdf = BottomSheetDialog(requireContext())
         novelFilter = NovelFilter(requireContext())
@@ -97,6 +98,7 @@ class AddEditNovel : Fragment() {
                     viewModel.navigateToHomeDone()
                 }
             }
+
 
 
 
@@ -147,7 +149,7 @@ class AddEditNovel : Fragment() {
                     showMessage("type required")
                 }
                 if (mCategory.isEmpty()) {
-                   showMessage("category required")
+                    showMessage("category required")
                 }
                 if (mCover.isEmpty()) {
                     showMessage("cover required")
@@ -233,10 +235,15 @@ class AddEditNovel : Fragment() {
         pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
+//                val pdfs = novel?.pdfs?.toMutableList()
                 val pdfs = mPdfs.toMutableList().map { it.toString() } as ArrayList
-                pdfs.remove(pdf)
-                mPdfs = pdfs.map { it.toUri() } as ArrayList
+                pdfs?.remove(pdf)
+                mPdfs = pdfs?.map { it.toUri() } as ArrayList
+
                 pdfAdapter.submitList(pdfs)
+
+//                pdfAdapter.notifyDataSetChanged()
+
             }
 
         }
@@ -272,7 +279,9 @@ class AddEditNovel : Fragment() {
             pdfFile = result.data!!.data
             mPdfs.add(pdfFile!!)
             pdfAdapter.submitList(mPdfs.map { it.toString() })
-            showMessage(getString(R.string.pdf_ready))
+
+//            pdfFiles.add(result.data!!.data!!)
+            showMessage("pdf is ready")
 
         } else {
             // cancel picked.
@@ -288,13 +297,13 @@ class AddEditNovel : Fragment() {
     private fun checkPermission() {
         Dexter.withContext(requireContext())
             .withPermissions(
-               Manifest.permission.CAMERA,
+                Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ).withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {}
                 override fun onPermissionRationaleShouldBeShown(list: MutableList<PermissionRequest>?,
-                    token: PermissionToken?) {
+                                                                token: PermissionToken?) {
                 }
             }).check()
     }
@@ -311,7 +320,11 @@ class AddEditNovel : Fragment() {
             mCover = novel!!.cover
             mPdfs = novel!!.pdfs.map { it.toUri() } as ArrayList
             pdfAdapter.submitList(novel!!.pdfs)
+
+
+
         }
+
     }
 
 

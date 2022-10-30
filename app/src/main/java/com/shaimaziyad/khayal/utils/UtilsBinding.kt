@@ -32,17 +32,6 @@ fun setImage(image: ImageView, uri: Int?){
 }
 
 
-
-
-
-
-@BindingAdapter("setSize")
-fun setSize(text: TextView, size: Int) {
-    text.text = ""
-}
-
-
-
 // todo: we can update this to translate any error at run time.
 @BindingAdapter("setError")
 fun setError(text: TextView, error: String?){
@@ -152,7 +141,7 @@ fun setPages(tv: TextView, v:Int){
 fun setNovelCategory(t: AutoCompleteTextView,value: String?){
     if (!value.isNullOrEmpty()){
         val v = value.toInt()
-        t.setText(getNovelCategoryByKey(t.context, v))
+        t.setText(getNovelCategoryKey(t.context, v))
     }
 }
 
@@ -169,7 +158,7 @@ fun setNovelType(t: AutoCompleteTextView,value: String?){
 fun setNovelCategory(t: TextView,value: String?){
     if (!value.isNullOrEmpty()){
         val v = value.toInt()
-        t.text = getNovelCategoryByKey(t.context, v)
+        t.text = getNovelCategoryKey(t.context, v)
     }
 }
 

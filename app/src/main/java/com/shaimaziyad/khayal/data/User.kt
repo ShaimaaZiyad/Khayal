@@ -34,8 +34,8 @@ data class User(
             "createData" to createData!!,
             "likes" to likes,
             "reads" to reads,
-            "token" to token!!,
-            "notifications" to notifications!!
+            "notifications" to notifications!!,
+            "token" to token!!
         )
     }
 }

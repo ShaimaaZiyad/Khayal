@@ -130,7 +130,7 @@ fun sendNotification(notification: Notification,token: String) {
 }
 
 fun notifyData(notify: Notification, to: String) : PushNotificationData {
-   return  PushNotificationData( notify, to)
+    return  PushNotificationData( notify, to)
 }
 
 fun subscribeToTopic(topic: String) {
