@@ -9,7 +9,7 @@ import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.ItemUserBinding
 
 
-class UserAdapter: ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
+class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
 
     lateinit var clickListener: UserClickListener
 
@@ -27,7 +27,7 @@ class UserAdapter: ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
 
             /** on item clicked **/
             binding.btnItem.setOnClickListener {
-                clickListener.onClick(data,adapterPosition)
+                clickListener.onClick(data, adapterPosition)
             }
 
             binding.executePendingBindings()
@@ -41,10 +41,10 @@ class UserAdapter: ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel,clickListener)
+        holder.onBind(novel, clickListener)
     }
 
-    companion object UserDiffUtil: DiffUtil.ItemCallback<User>(){
+    companion object UserDiffUtil : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem == newItem
         }

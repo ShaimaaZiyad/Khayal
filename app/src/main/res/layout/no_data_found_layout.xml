@@ -20,17 +20,17 @@
             <ImageView
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:src="@drawable/ic_no_data"/>
+                android:src="@drawable/ic_no_data" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
-                android:layout_height="5dp"/>
+                android:layout_height="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no_data_text"
-                android:fontFamily="@font/uthman_taha_regular"/>
+                android:fontFamily="@font/uthman_taha_regular"
+                android:text="@string/no_data_text" />
 
         </LinearLayout>
 

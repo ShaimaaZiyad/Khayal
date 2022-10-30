@@ -13,7 +13,8 @@ class NotifyAdapter : ListAdapter<Notification, NotifyAdapter.ViewHolder>(Notify
 
     lateinit var clickListener: NotifyClickListener
 
-    class ViewHolder(private val binding: ItemNotificationBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemNotificationBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -28,18 +29,17 @@ class NotifyAdapter : ListAdapter<Notification, NotifyAdapter.ViewHolder>(Notify
 
             /** onItem clicked **/
             binding.btnItem.setOnClickListener {
-                clickListener.onClick(data,adapterPosition)
+                clickListener.onClick(data, adapterPosition)
             }
 
             /** onLong Item clicked **/
             binding.btnItem.setOnLongClickListener {
-                clickListener.onLongClick(data,adapterPosition,binding.btnItem)
+                clickListener.onLongClick(data, adapterPosition, binding.btnItem)
                 true
             }
 
             binding.executePendingBindings()
         }
-
 
 
     }
@@ -51,12 +51,11 @@ class NotifyAdapter : ListAdapter<Notification, NotifyAdapter.ViewHolder>(Notify
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val notify = getItem(position)
-        holder.onBind(notify,clickListener)
+        holder.onBind(notify, clickListener)
     }
 
 
-
-    companion object NotifyDiffCallback: DiffUtil.ItemCallback<Notification>(){
+    companion object NotifyDiffCallback : DiffUtil.ItemCallback<Notification>() {
         override fun areItemsTheSame(oldItem: Notification, newItem: Notification): Boolean {
             return oldItem == newItem
         }
@@ -70,7 +69,7 @@ class NotifyAdapter : ListAdapter<Notification, NotifyAdapter.ViewHolder>(Notify
 
     interface NotifyClickListener {
         fun onClick(notify: Notification, index: Int)
-        fun onLongClick(notify: Notification, index: Int,v: View)
+        fun onLongClick(notify: Notification, index: Int, v: View)
     }
 
 
