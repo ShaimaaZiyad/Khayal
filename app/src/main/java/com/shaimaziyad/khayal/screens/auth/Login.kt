@@ -49,7 +49,6 @@ class Login: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
-//        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         resetPassSheet = ResetPasswordSheet(binding.resetSheet,this)
 
 

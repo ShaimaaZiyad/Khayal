@@ -16,26 +16,9 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
         const val TAG = "NotificationViewModel"
     }
 
-//    // todo: clear the list one the user signOut
-//    var allNotifications = notifyRepo.notifications()
-
 
     private val _notifications = MutableLiveData<List<Notification>?>()
     val notifications: LiveData<List<Notification>?> = _notifications
-
-
-//    private val localUser = userRepo.user
-//    private val userId = localUser.uid
-
-
-
-
-    init {
-
-    }
-
-//    notifyRepo.notifications()
-
 
 
     private val _filtered = MutableLiveData<List<Notification>?>()
@@ -175,21 +158,12 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
             val res = notifyRepo.updateNotify(notify)
             if (res is Result.Success) {
                 Log.d(TAG,"onUpdateNotify: update notify have been success...")
-
-//                val mNotifications = _notifications.value?.toMutableList()
-//                val oldNotify = mNotifications?.find { it.id == notify.id }
-//                mNotifications?.remove(oldNotify)
-//                mNotifications?.add(notify)
-//                _notifications.value = mNotifications
-
                 _notifyStatus.value = DataStatus.SUCCESS
-//                resetStatus()
 
             }else if( res is Result.Error){
                 Log.d(TAG,"onUpdateNotify: update notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-//                resetStatus()
             }
         }
     }
@@ -204,18 +178,14 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
             if (res is Result.Success) {
                 Log.d(TAG,"onRemoveNotify: remove notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
-//                resetStatus()
 
             }else if( res is Result.Error){
                 Log.d(TAG,"onRemoveNotify: remove notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-//                resetStatus()
             }
         }
     }
-
-
 
 
 

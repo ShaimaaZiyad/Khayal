@@ -142,6 +142,7 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
         }
 
         alert.setNegativeButton("cancel") { dialog, whichButton ->
+
             // what ever you want to do with No option.
             builder?.dismiss()
         }

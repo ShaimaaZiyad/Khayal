@@ -12,9 +12,6 @@ import com.shaimaziyad.khayal.utils.Result
 
 class NovelRepository(private val remote: DataBase) {
 
-//    private val remote = DataBase()
-
-
     suspend fun addNovel(novel: Novel): Result<Boolean> {
         return supervisorScope {
             val addTask = async {  remote.addNovel(novel) }
@@ -53,9 +50,7 @@ class NovelRepository(private val remote: DataBase) {
         }
     }
 
-
     suspend fun uploadCover(uri: Uri,fileName: String) = remote.uploadFile(uri,fileName,FileType.IMAGE.name)
-
 
     suspend fun loadNovels(): Result<List<Novel>> {
         return supervisorScope {

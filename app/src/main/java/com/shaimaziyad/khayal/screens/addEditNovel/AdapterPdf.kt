@@ -63,18 +63,9 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
     }
 
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(index: Int){
-        notifyItemRemoved(index)
-    }
-
-
-
     interface PdfClickListener {
         fun onRemove(pdf: String, index: Int)
     }
-
 
 
 }

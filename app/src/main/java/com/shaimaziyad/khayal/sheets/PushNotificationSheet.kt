@@ -1,7 +1,5 @@
 package com.shaimaziyad.khayal.sheets
 
-
-import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
@@ -15,9 +13,8 @@ class PushNotificationSheet(private val binding: PushNotificationSheetBinding,
 
     lateinit var notifyStatus: NotifyStatus
     private val context = fragment.requireContext()
-
-//    var userToken: String? = null // this user token
     var userId: String? = null
+
     private val sheet = BottomSheetBehavior.from(binding.sheet)
 
 

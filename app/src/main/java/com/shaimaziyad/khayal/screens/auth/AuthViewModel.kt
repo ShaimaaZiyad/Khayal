@@ -21,7 +21,6 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
         private const val TAG = "AuthViewModel"
     }
 
-//    private val userRepository = UserRepository()
 
     private val _registerStatus = MutableLiveData<DataStatus?>()
     val registerStatus: LiveData<DataStatus?> = _registerStatus
@@ -42,9 +41,6 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
     val error: LiveData<String?> = _error
 
 
-    init {
-//        resetStatus()
-    }
 
     fun register(user: User) {
         resetStatus()
@@ -116,11 +112,6 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
 
 
 
-    fun setError(message: String) {
-        _error.value = message
-    }
-
-
     fun resetStatus(){
         _registerStatus.value = null
         _loginStatus.value = null
@@ -133,7 +124,6 @@ class AuthViewModel(val userRepo: UserRepository): ViewModel(){
 
     override fun onCleared() {
         super.onCleared()
-
 
         viewModelScope.cancel()
     }

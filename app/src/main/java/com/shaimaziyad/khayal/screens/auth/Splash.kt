@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.databinding.SplashBinding
 import com.shaimaziyad.khayal.utils.SharePrefManager
@@ -26,14 +25,7 @@ class Splash : Fragment() {
         binding = SplashBinding.inflate(layoutInflater)
         sharePrefManager = SharePrefManager(requireContext())
 
-
-        Handler(Looper.myLooper()!!).postDelayed({
-//            findNavController().navigate(R.id.action_splash_to_Login)
-             isLogged()
-
-        } , 3000)
-
-
+        Handler(Looper.myLooper()!!).postDelayed({ isLogged() } , 3000)
 
 
         return binding.root
@@ -48,7 +40,6 @@ class Splash : Fragment() {
             findNavController().navigate(R.id.action_splash_to_Login)
         }
     }
-
 
 
 

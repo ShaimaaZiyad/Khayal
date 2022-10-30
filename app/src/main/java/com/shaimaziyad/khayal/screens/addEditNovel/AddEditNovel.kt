@@ -33,7 +33,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class AddEditNovel : Fragment() {
 
     companion object {
-        const val TAG = "AddEditNovel"
+       private const val TAG = "AddEditNovel"
     }
 
     private lateinit var binding: AddEditNovelBinding
@@ -63,7 +63,6 @@ class AddEditNovel : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = AddEditNovelBinding.inflate(layoutInflater)
-//        viewModel = ViewModelProvider(this)[AddEditNovelViewModel::class.java]
         imagePicker = ImagePicker(this)
         bottomSheetPdf = BottomSheetDialog(requireContext())
         novelFilter = NovelFilter(requireContext())
@@ -98,7 +97,6 @@ class AddEditNovel : Fragment() {
                     viewModel.navigateToHomeDone()
                 }
             }
-
 
 
 
@@ -235,15 +233,10 @@ class AddEditNovel : Fragment() {
         pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
-//                val pdfs = novel?.pdfs?.toMutableList()
                 val pdfs = mPdfs.toMutableList().map { it.toString() } as ArrayList
-                pdfs?.remove(pdf)
-                mPdfs = pdfs?.map { it.toUri() } as ArrayList
-
+                pdfs.remove(pdf)
+                mPdfs = pdfs.map { it.toUri() } as ArrayList
                 pdfAdapter.submitList(pdfs)
-
-//                pdfAdapter.notifyDataSetChanged()
-
             }
 
         }
@@ -279,9 +272,7 @@ class AddEditNovel : Fragment() {
             pdfFile = result.data!!.data
             mPdfs.add(pdfFile!!)
             pdfAdapter.submitList(mPdfs.map { it.toString() })
-
-//            pdfFiles.add(result.data!!.data!!)
-            showMessage("pdf is ready")
+            showMessage(getString(R.string.pdf_ready))
 
         } else {
             // cancel picked.
@@ -320,11 +311,7 @@ class AddEditNovel : Fragment() {
             mCover = novel!!.cover
             mPdfs = novel!!.pdfs.map { it.toUri() } as ArrayList
             pdfAdapter.submitList(novel!!.pdfs)
-
-
-
         }
-
     }
 
 

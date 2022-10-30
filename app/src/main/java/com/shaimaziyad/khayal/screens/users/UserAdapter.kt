@@ -21,11 +21,11 @@ class UserAdapter: ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
             }
         }
 
-        // update ui
+
         fun onBind(data: User, clickListener: UserClickListener) {
             binding.user = data
 
-            // when click on user item
+            /** on item clicked **/
             binding.btnItem.setOnClickListener {
                 clickListener.onClick(data,adapterPosition)
             }

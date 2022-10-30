@@ -9,7 +9,7 @@ import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.NovelDetailsData
 import com.shaimaziyad.khayal.databinding.ItemBannerTypeOneBinding
-import com.shaimaziyad.khayal.databinding.ItemBannerTypeTwoBinding
+//import com.shaimaziyad.khayal.databinding.ItemBannerTypeTwoBinding
 import com.shaimaziyad.khayal.databinding.ItemChapterBinding
 import com.shaimaziyad.khayal.databinding.ItemChapterNovelBinding
 import com.shaimaziyad.khayal.databinding.ItemNovelsWithCategoryBinding
@@ -30,14 +30,14 @@ fun bannerTypeOneAdapterDelegate() = adapterDelegateViewBinding<Banner, Displaya
 }
 
 
-// display single banner with cover only
-fun bannerTypeTwoAdapterDelegate() = adapterDelegateViewBinding<Banner, DisplayableHomeItem, ItemBannerTypeTwoBinding>(
-    { layoutInflater, root -> ItemBannerTypeTwoBinding.inflate(layoutInflater, root, false) }
-) {
-    bind {
-        binding.banner = item
-    }
-}
+//// display single banner with cover only
+//fun bannerTypeTwoAdapterDelegate() = adapterDelegateViewBinding<Banner, DisplayableHomeItem, ItemBannerTypeTwoBinding>(
+//    { layoutInflater, root -> ItemBannerTypeTwoBinding.inflate(layoutInflater, root, false) }
+//) {
+//    bind {
+//        binding.banner = item
+//    }
+//}
 
 
 

@@ -33,7 +33,6 @@ class UserRepository(private val remote: DataBase,
     val user = sharePref.loadUser()
 
 
-
     // set like if not liked before or remove it if exist
     suspend fun setLikeToNovel(novel: Novel): Result<Boolean> {
         return supervisorScope {
@@ -63,7 +62,6 @@ class UserRepository(private val remote: DataBase,
             val task  = async {
                 remote.updateUser(user)
                 sharePref.saveUser(user)
-//                sharePref.saveUser(user,null)
             }
             try {
                 task.await()
@@ -105,7 +103,6 @@ class UserRepository(private val remote: DataBase,
 
 
 
-
     suspend fun loginWithEmail(email: String, password: String, isRemOn: Boolean, context: Context): Result<User> {
         var mUser: User? = null
         return supervisorScope {
@@ -117,8 +114,6 @@ class UserRepository(private val remote: DataBase,
                     mUser = user
                     getToken { newToken -> user.token = newToken }
                     sharePref.saveUser(user, isRemOn)
-//                    val sharePref = SharePrefManager(context)
-//                    sharePref.saveUser(user,isRemOn)
                     Log.d(TAG,"user name: ${user.name}")
                     async {
                         delay(200)

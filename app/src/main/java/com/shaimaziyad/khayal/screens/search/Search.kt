@@ -76,8 +76,6 @@ class Search : Fragment() {
                 }else{
                     navigateToAddEditNovel(isEdit = true,novel)
                 }
-
-//                showMessage(novel.title)
             }
         }
         binding.rvNovels.adapter = searchAdapter
@@ -157,8 +155,6 @@ class Search : Fragment() {
                 binding.searchLayout.filter.badgeNumber.show()
                 binding.searchLayout.filter.badgeNumber.text = filtered.size.toString()
                 searchAdapter.submitList(filtered)
-
-
             }
 
             override fun clearFilter() {

@@ -32,7 +32,6 @@ class NovelDetails: Fragment() {
     private lateinit var novelDetailsAdapter: NovelDetailsAdapter
     private val homeViewModel by sharedViewModel<HomeViewModel>()
     private val profileViewModel by sharedViewModel<ProfileViewModel>()
-//    private val viewModel by sharedViewModel<NovelDetailsViewModel>()
 
     private val novelAdapter by lazy { NovelAdapter() }
     private val chapterAdapter by lazy { ChapterAdapter() }

@@ -28,7 +28,6 @@ class HomeViewModel(
         private const val TAG = "HomeViewModel"
     }
 
-    private val localUser = userRepo.user
 
     private val _novels = MutableLiveData<List<Novel>?>()
     val novels: LiveData<List<Novel>?> = _novels
@@ -49,8 +48,6 @@ class HomeViewModel(
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-//    private val _isCustomer = MutableLiveData<Boolean?>(isCustomer(localUser.userType))
-//    val isCustomer: LiveData<Boolean?> = _isCustomer
 
     private val _isDataExist = MutableLiveData<Boolean?>()
     val isDataExist: LiveData<Boolean?> = _isDataExist
@@ -116,18 +113,6 @@ class HomeViewModel(
             list.add(NovelData(getNovelTypeKey(context,type.toInt()),filteredNovels))
         }
 
-//        // set liked novels
-//        val likedNovels = ArrayList<Novel>()
-//        val liked = localUser.likes
-//        liked.forEach { novelId ->
-//            val novel = novels.find { it.novelId == novelId }
-//            if (novel != null){
-//                likedNovels.add(novel)
-//            }
-//        }
-//        list.add(NovelData(context.getString(R.string.favorite_books),likedNovels))
-
-
 
         _mixedData.value = list.shuffled()
     }
@@ -151,7 +136,7 @@ class HomeViewModel(
     }
 
 
-    fun filterByType(category: String): List<Novel> {
+    private fun filterByType(category: String): List<Novel> {
         val result = if (category.isNotEmpty()) {
             _novels.value?.filter { it.type == category }
         }else {

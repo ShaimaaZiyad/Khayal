@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.ItemChapterBinding
 
 
@@ -35,9 +34,6 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
             }
 
 
-
-
-
             binding.executePendingBindings()
         }
 
@@ -53,10 +49,6 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
         val novel = getItem(position)
         holder.onBind(novel,clickListener)
     }
-
-
-
-
 
 
     companion object ChapterDiffCallback: DiffUtil.ItemCallback<String>() {

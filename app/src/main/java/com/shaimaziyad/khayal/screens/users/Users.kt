@@ -3,21 +3,16 @@ package com.shaimaziyad.khayal.screens.users
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.UsersBinding
-import com.shaimaziyad.khayal.notification.notifyData
-import com.shaimaziyad.khayal.notification.sendNotification
-import com.shaimaziyad.khayal.screens.home.Home
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal.sheets.FilterUserSheet
 import com.shaimaziyad.khayal.sheets.PushNotificationSheet
@@ -28,7 +23,6 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class Users: Fragment() {
 
     private lateinit var binding : UsersBinding
-//    private lateinit var viewModel : UsersViewModel
     private val viewModel by sharedViewModel<UsersViewModel>()
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
 

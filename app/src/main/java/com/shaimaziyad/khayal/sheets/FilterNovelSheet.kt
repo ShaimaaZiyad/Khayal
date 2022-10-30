@@ -1,6 +1,5 @@
 package com.shaimaziyad.khayal.sheets
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shaimaziyad.khayal.R
@@ -58,7 +57,6 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
         /** button apply **/
         binding.btnApply.setOnClickListener {
            filter(category, type)
-//            filterStatus.onFilter(filtered)
             hideSheet()
         }
 

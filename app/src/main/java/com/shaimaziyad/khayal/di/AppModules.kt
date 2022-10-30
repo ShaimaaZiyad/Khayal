@@ -26,7 +26,6 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { HomeViewModel(context = androidContext(),userRepo = get(), novelRepo = get() ) }
     viewModel { AuthViewModel(userRepo = get())  }
-
     viewModel { BannerMangerViewModel() }
     viewModel { NotificationsViewModel(notifyRepo = get(), userRepo = get()) }
     viewModel { PdfViewerViewModel(pdfRepo = get()) }

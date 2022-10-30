@@ -16,8 +16,6 @@ class PdfViewerViewModel(private val pdfRepo: PdfRepository): ViewModel() {
         private const val TAG = "PdfViewerViewModel"
     }
 
-//    private val pdfRepository = PdfRepository()
-
     private val _pdf = MutableLiveData<ByteArray?>()
     val pdf: LiveData<ByteArray?> = _pdf
 

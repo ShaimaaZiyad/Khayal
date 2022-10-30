@@ -133,19 +133,15 @@ fun notifyData(notify: Notification, to: String) : PushNotificationData {
    return  PushNotificationData( notify, to)
 }
 
-
 fun subscribeToTopic(topic: String) {
     FirebaseMessaging.getInstance().subscribeToTopic(topic)
 }
 
 fun getToken(token:(String)->Unit) {
-
     FirebaseMessaging.getInstance().token.addOnCompleteListener {
         if (it.isComplete){
             val t = it.result.toString()
             token(t)
         }
-
     }
-
 }

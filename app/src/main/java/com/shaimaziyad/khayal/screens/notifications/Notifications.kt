@@ -21,7 +21,6 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 @SuppressLint("ResourceAsColor")
 class Notifications: Fragment() {
 
-
     private val viewModel by sharedViewModel<NotificationsViewModel>()
     private lateinit var binding: NotificationsBinding
     private val notifyAdapter by lazy { NotifyAdapter() }
@@ -49,10 +48,6 @@ class Notifications: Fragment() {
         binding.apply {
 
             setAdapter()
-
-
-
-
 
 
             /** back button **/
@@ -98,7 +93,6 @@ class Notifications: Fragment() {
                 }
 
             }
-
 
         }
 

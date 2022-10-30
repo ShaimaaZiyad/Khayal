@@ -36,6 +36,7 @@
     <string name="member">عضو منذ</string>
     <string name="favorite_books">الكتب المفضلة</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="edit_banner">تعديل الإعلان</string>
     <string name="number_of_pdf">عدد الفصول</string>
     <string name="login_welcome_text">سجل دخولك واستمتع بقراءة أفضل الروايات</string>
     <string name="remember_text">تذكرني</string>
@@ -130,7 +131,9 @@
     <string name="success_report">شكرا على الإبلاغ</string>
 
     <string name="cover_size">(600 * 930)\nمطلوب</string>
+    <string name="banner_size">(600 * 300)\nمطلوب</string>
 
+    <string name="pdf_ready">ملف الpdf جاهز</string>
 
 
 

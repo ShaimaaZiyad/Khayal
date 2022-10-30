@@ -16,7 +16,6 @@ class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
         private const val TAG = "UsersScreenViewModel"
     }
 
-//    private val userRepository = UserRepository()
 
     private val _users = MutableLiveData<List<User>?>()
     val users: LiveData<List<User>?> = _users
@@ -61,7 +60,6 @@ class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
         }
 
     }
-
 
 
     private fun resetStatus(){

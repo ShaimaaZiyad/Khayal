@@ -11,15 +11,7 @@ class NotifyRepository(private val remote: DataBase,
                        private val userRepo: UserRepository) {
 
 
-//    private val user = userRepo.user
-//    private val remote = DataBase()
-
-
-
-
     fun notifications() = remote.observeNotification
-
-
 
 
     suspend fun loadNotifications(): Result<List<Notification>> {
@@ -70,7 +62,6 @@ class NotifyRepository(private val remote: DataBase,
             }
         }
     }
-
 
 
 

@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.RecyclerView
 import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.Novel
@@ -44,9 +42,6 @@ class Home: Fragment() {
 
         setViews()
         setObserves()
-
-
-        // todo: you can call the home view model in splash screen to reduce the time of loading data
 
 
         return binding.root
@@ -86,8 +81,6 @@ class Home: Fragment() {
         binding.novelsRv.apply {
             itemAnimator = DefaultItemAnimator()
             adapter = homeAdapter
-//            homeAdapter.items = emptyList()
-
         }
     }
 
@@ -158,7 +151,6 @@ class Home: Fragment() {
                 binding.searchLayout.root.hide()
                 optionSheet.showSheet()
 
-//                navigateToProfile()
             }
 
 
@@ -173,6 +165,7 @@ class Home: Fragment() {
             }
 
 
+            /** let this here maybe we need it **/
 //            /** button search **/
 //            btnSearch.setOnEditorActionListener { textView, actionId, _ ->
 //                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -182,6 +175,7 @@ class Home: Fragment() {
 //                    true
 //                } else { false }
 //            }
+
 
 
         }
@@ -206,8 +200,6 @@ class Home: Fragment() {
     fun navigateToNotification() {
         findNavController().navigate(R.id.action_home_to_notifications)
     }
-
-
 
 
 

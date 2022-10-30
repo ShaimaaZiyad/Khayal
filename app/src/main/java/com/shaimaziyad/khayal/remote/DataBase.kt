@@ -44,9 +44,7 @@ class DataBase() {
     private val novelsPath = fireStore.collection(NOVELS_COLLECTION)
     private val notificationsPath = fireStore.collection(NOTIFICATION_COLLECTION)
 
-//    private val userId = auth.currentUser?.uid!! // use this variable only after user login to firebase.
 
-    // you can get the live data from here once the class is init
     private val _observeUsers = MutableLiveData<List<User>?>()
     val users: LiveData<List<User>?> = _observeUsers
 
@@ -63,18 +61,6 @@ class DataBase() {
         /** get the live data of folders data from firebase **/
 //        observeUsers ()
 //        observeNovels ()
-    }
-
-
-    private fun observeUsers() {
-        usersPath.addSnapshotListener { value, error ->
-            if (error == null){
-                if (value != null){
-                    val userData = value.toObjects(User::class.java)
-                    _observeUsers.value = userData
-                }
-            }
-        }
     }
 
 
@@ -109,11 +95,7 @@ class DataBase() {
 
     fun addUser(user: User) = usersPath.document(user.uid).set(user)
 
-    suspend fun setEmailVerify() = auth.currentUser?.sendEmailVerification()
-
     suspend fun getUserById() = usersPath.document(auth.currentUser?.uid!!).get().await().toObject(User::class.java) ?: User()
-
-
 
     suspend fun updateUser(user: User) = usersPath.document(user.uid).update(user.toHashMap())
 
@@ -145,9 +127,6 @@ class DataBase() {
     }
 
 
-
-
-
     suspend fun getNotifications(): List<Notification> = notificationsPath.get().await().toObjects(Notification::class.java)
 
     suspend fun addNotify(data : Notification) = notificationsPath.document(data.id).set(data)
@@ -170,31 +149,6 @@ class DataBase() {
 
 
 
-    suspend fun addPdf(novel: Novel, pdfId: String) = novelsPath.document(pdfId).update(PDFS_FILED, FieldValue.arrayUnion(pdfId)).addOnSuccessListener {
-                // update pdf count
-                novelsPath.document(pdfId).get().addOnSuccessListener {
-                    val pdfsCount = it.toObject(Novel::class.java)?.pdfsCount!!
-                    novelsPath.document(pdfId).update(PDFS_COUNT,pdfsCount + 1)
-                }
-            }
-
-    suspend fun deletePdf(pdfId: String) {
-        val ref = novelsPath.document(pdfId).get().await()
-        if (ref != null){
-            val folder = ref.toObject(Novel::class.java)
-
-            // delete pdf
-            novelsPath.document(pdfId)
-                .update(PDFS_FILED, FieldValue.arrayRemove(pdfId))
-
-            // update total pdfs count in folder
-            if (folder != null) {
-                folder.pdfsCount.plus(-1)
-                updateNovel(folder)
-            }
-
-        }
-    }
 
 
     // you can upload file or image (category could be image or file)
@@ -213,38 +167,7 @@ class DataBase() {
         }
     }
 
-
-     suspend fun loadPdf(url: String): ByteArray = storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
-
-//
-//
-//    reference.addOnSuccessListener { bytes->
-//        Log.d(ContentValues.TAG, "loadNovelFromUrl: pdf got from url")
-//
-//        //load pdf
-//        binding.pdfView.fromBytes(bytes)
-//            .swipeHorizontal(false)//set false to scroll vertical, set tru to scroll horizontal
-//            .onPageChange { page, pageCount ->
-//                //set current and total pages in toolbar subtitle
-//                val currentPage = page+1 //page starts from 0 so do +1 to start from 1
-//                binding.toolbarSubTitleTv.text = "$currentPage/$pageCount"
-//                Log.d(ContentValues.TAG, "loadNovelFromUrl: $currentPage/$pageCount")
-//            }
-//            .onError { t->
-//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
-//            }
-//            .onPageError { page, t ->
-//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
-//            }
-//            .load()
-//        binding.progressBar.visibility = View.GONE
-//
-//    }
-//    .addOnFailureListener { e->
-//        Log.d(ContentValues.TAG, "loadNovelFromUrl: Failed to get pdf due to ${e.message}")
-//        binding.progressBar.visibility = View.GONE
-//    }
-//
+    suspend fun loadPdf(url: String): ByteArray = storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
 
     suspend fun insertFiles(filesUri: List<Uri>,fileType: String): List<String> {
         var urlList = mutableListOf<String>()

@@ -32,20 +32,10 @@ class NotifyService() : FirebaseMessagingService() {
         val notificationManager = ContextCompat
             .getSystemService(applicationContext, NotificationManager::class.java) as NotificationManager
 
-        message.let {
-            // cast the notification data
-            val title = it.data["title"]
-            val body = it.data["body"]
-//           /
-////
-////            Log.d(TAG,message.toString())
 
-            notificationManager.createNotification(message, applicationContext)
+        // you can set the notifications type here as you want
 
-
-        }
-
-
+        notificationManager.createNotification(message, applicationContext)
 
 
     }

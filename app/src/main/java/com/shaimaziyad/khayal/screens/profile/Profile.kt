@@ -66,15 +66,10 @@ class Profile : Fragment() {
             }
         }
 
-//        showMessage("liked: ${likedNovels.size}")
         searchAdapter.submitList(likedNovels)
-//        searchAdapter.notifyDataSetChanged()
 
     }
 
-    private fun refreshLikedNovels(){
-
-    }
 
     private fun setObserves() {
         viewModel.apply {
@@ -141,7 +136,6 @@ class Profile : Fragment() {
             override fun onClick(novel: Novel, index: Int) {
                 val data = bundleOf(Constants.NOVEL_KEY to novel)
                 findNavController().navigate(R.id.action_profile_to_novelDetails,data)
-//                showMessage(novel.title)
             }
         }
         binding.rvNovels.adapter = searchAdapter
@@ -153,8 +147,6 @@ class Profile : Fragment() {
     private fun setViews() {
         binding.apply {
 
-
-//            profileViewModel = viewModel
             userModel = if (user != null){ user }
             else{ viewModel.user.value }
 
