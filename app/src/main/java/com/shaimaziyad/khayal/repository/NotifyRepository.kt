@@ -1,16 +1,15 @@
 package com.shaimaziyad.khayal.repository
 
-
 import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.remote.DataBase
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 
-class NotifyRepository(
-    private val remote: DataBase,
-    private val userRepo: UserRepository
-) {
+
+class NotifyRepository(private val remote: DataBase,
+                       private val userRepo: UserRepository) {
+
 
     fun notifications() = remote.observeNotification
 
@@ -20,7 +19,7 @@ class NotifyRepository(
             val loadTask = async { remote.getNotifications() }
             try {
                 Result.Success(loadTask.await())
-            } catch (ex: Exception) {
+            }catch (ex: Exception){
                 Result.Error(ex)
             }
         }
@@ -28,11 +27,11 @@ class NotifyRepository(
 
     suspend fun pushNotify(notify: Notification): Result<Boolean> {
         return supervisorScope {
-            val addTask = async { remote.addNotify(notify) }
+            val addTask = async {  remote.addNotify(notify) }
             try {
                 addTask.await()
                 Result.Success(true)
-            } catch (ex: Exception) {
+            }catch (ex: Exception){
                 Result.Error(ex)
             }
         }
@@ -63,6 +62,7 @@ class NotifyRepository(
             }
         }
     }
+
 
 
 }

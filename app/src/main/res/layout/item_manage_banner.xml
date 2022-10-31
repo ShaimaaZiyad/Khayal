@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/primaryDarkColor"
+            android:textStyle="bold"
+            tools:text="Banner Title"/>
+
+        <include
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            layout="@layout/item_banner_type_one"/>
+
+
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/shape_button03"
+            android:text="@string/edit_banner"
+            android:textColor="@color/white" />
+
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/cover_size" />-->
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

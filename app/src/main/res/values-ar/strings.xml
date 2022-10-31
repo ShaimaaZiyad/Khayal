@@ -81,6 +81,7 @@
     <string name="novella">نوفيلا</string>
 
 
+    <string name="error_require_report">التقرير مطلوب</string>
     <string name="error_require_title">العنوان مطلوب</string>
     <string name="error_require_description">الوصف مطلوب</string>
     <string name="error_require_external_link">الرابط مطلوب</string>
@@ -114,13 +115,28 @@
 
     <string name="home">الواجهة الرئيسية</string>
 
-
     <string name="reset_pass_info">ستصلك رسالة في بريدك الإلكتروني تحتوي على رابط ، اضغط عليه ثم قم بتعيين كلمة المرور</string>
     <string name="category1">فئة 1</string>
     <string name="category2">فئة2</string>
     <string name="category3">فئة3</string>
     <string name="category4">فئة4</string>
     <string name="category5">فئة5</string>
+
+    <string name="settings">الإعدادات</string>
+    <string name="report">ابلاغ</string>
+    <string name="help_feedback">المساعدة</string>
+    <string name="rate_us">قيمنا</string>
+
+    <string name="reviews">المراجعات %s</string>
+
+    <string name="count">العدد %s</string>
+    <string name="banners_manager">مدير الإعلانات</string>
+    <string name="hint_report">كيف يمكن ان نساعدك؟</string>
+    <string name="success_report">شكرا على الإبلاغ</string>
+
+    <string name="cover_size">(600 * 930)\nمطلوب</string>
+
+    <string name="edit_banner">تعديل الإعلان</string>
 
 
 </resources>

@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -15,6 +16,7 @@ import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.utils.Constants
 import com.shaimaziyad.khayal.utils.ERR_UPLOAD
+import com.shaimaziyad.khayal.utils.NotifyType
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
@@ -193,6 +195,7 @@ class DataBase() {
         }
     }
 
+
     // you can upload file or image (category could be image or file)
     suspend fun uploadFile(uri: Uri, fileName: String, fileType: String): String {
         val filePath = storage.reference.child("$fileType/$fileName")
@@ -212,6 +215,34 @@ class DataBase() {
 
     suspend fun loadPdf(url: String): ByteArray =
         storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
+
+
+//    reference.addOnSuccessListener { bytes->
+//        Log.d(ContentValues.TAG, "loadNovelFromUrl: pdf got from url")
+//
+//        //load pdf
+//        binding.pdfView.fromBytes(bytes)
+//            .swipeHorizontal(false)//set false to scroll vertical, set tru to scroll horizontal
+//            .onPageChange { page, pageCount ->
+//                //set current and total pages in toolbar subtitle
+//                val currentPage = page+1 //page starts from 0 so do +1 to start from 1
+//                binding.toolbarSubTitleTv.text = "$currentPage/$pageCount"
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: $currentPage/$pageCount")
+//            }
+//            .onError { t->
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
+//            }
+//            .onPageError { page, t ->
+//                Log.d(ContentValues.TAG, "loadNovelFromUrl: Bug ne ${t.message}")
+//            }
+//            .load()
+//        binding.progressBar.visibility = View.GONE
+//
+//    }
+//    .addOnFailureListener { e->
+//        Log.d(ContentValues.TAG, "loadNovelFromUrl: Failed to get pdf due to ${e.message}")
+//        binding.progressBar.visibility = View.GONE
+//    }
 
 
     suspend fun insertFiles(filesUri: List<Uri>, fileType: String): List<String> {

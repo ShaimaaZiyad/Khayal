@@ -75,6 +75,7 @@
     <string name="results">Results: %s</string>
 
 
+
     <string name="fosha">Fosha</string>
     <string name="slang">Slang</string>
     <string name="gulf">Gulf</string>
@@ -113,11 +114,18 @@
     <string name="reset_pass_info">You will receive a message in your E-Mail containing a link, click on it and then set the password</string>
 
     <string name="home">Home</string>
-    <string name="category1">category1</string>
-    <string name="category2">category2</string>
-    <string name="category3">category3</string>
-    <string name="category4">category4</string>
-    <string name="category5">category5</string>
+    <string name="settings">Settings</string>
+    <string name="report">Report</string>
+    <string name="help_feedback"><![CDATA[Help & feedback]]></string>
+    <string name="rate_us">Rate us</string>
+    <string name="reviews">Reviews %s</string>
+    <string name="count">Count %s</string>
+    <string name="banners_manager">Banners Manager</string>
+    <string name="error_require_report">Report required</string>
+    <string name="hint_report">How we can help you?</string>
+    <string name="success_report">Thanks for reporting</string>
+    <string name="cover_size">Required\n(600 * 930)</string>
+    <string name="edit_banner">Edit Banner</string>
 
 
 </resources>

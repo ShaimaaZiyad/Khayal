@@ -2,9 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="user"
             type="com.shaimaziyad.khayal.data.User" />
@@ -43,9 +41,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:orientation="vertical"
                 android:layout_toEndOf="@id/pdfRl"
-                android:orientation="vertical">
+                android:layout_centerVertical="true">
                 <!--user name-->
                 <TextView
                     android:id="@+id/userNameTv"
@@ -69,47 +67,25 @@
                     android:layout_marginBottom="5dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{user.email}"
-                    tools:text="ahemd@example.com" />
+                    tools:text="ahemd@example.com"
+                    android:text="@{user.email}"/>
 
                 <!--create Data-->
                 <TextView
                     android:id="@+id/createDataTv"
                     style="@style/TextAppearance.MaterialComponents.Caption"
-                    joinedAt="@{user.createData}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    tools:text="20 / 10 / 2022" />
+                    tools:text="20 / 10 / 2022"
+                    joinedAt="@{user.createData}"/>
 
-                <!--likes-->
-                <TextView
-                    android:id="@+id/likesTv"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    setLikes="@{user.likes.size()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    tools:text="Likes: 20" />
 
-                <!--reads-->
-                <TextView
-                    android:id="@+id/readsTv"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    setReads="@{user.reads.size()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    tools:text="Reads: 50" />
+
+
 
             </LinearLayout>
 

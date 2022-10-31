@@ -9,32 +9,16 @@ import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.*
 import kotlinx.coroutines.launch
 
-class NotificationsViewModel(
-    private val notifyRepo: NotifyRepository,
-    private val userRepo: UserRepository
-) : ViewModel() {
+class NotificationsViewModel(private val notifyRepo: NotifyRepository,
+                             private val userRepo: UserRepository) : ViewModel() {
 
-    companion object {
+    companion object{
         const val TAG = "NotificationViewModel"
     }
-
-//    // todo: clear the list one the user signOut
-//    var allNotifications = notifyRepo.notifications()
 
 
     private val _notifications = MutableLiveData<List<Notification>?>()
     val notifications: LiveData<List<Notification>?> = _notifications
-
-
-//    private val localUser = userRepo.user
-//    private val userId = localUser.uid
-
-
-    init {
-
-    }
-
-//    notifyRepo.notifications()
 
 
     private val _filtered = MutableLiveData<List<Notification>?>()
@@ -44,7 +28,6 @@ class NotificationsViewModel(
     val tap: LiveData<SelectedSection> = _tap
 
 
-    // todo: reads and unread and system is ready to user...
 
     private val _reads = MutableLiveData<List<Notification>?>()
     val reads: LiveData<List<Notification>?> = _reads
@@ -64,20 +47,16 @@ class NotificationsViewModel(
     val error: LiveData<String?> = _error
 
 
-    init {
-//        loadNotifications()
-    }
-
 
     fun loadNotificationsByUserId() {
-        Log.d(TAG, "onLoading.. Loading notifications")
+        Log.d(TAG,"onLoading.. Loading notifications")
         resetStatus()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         _notifyStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = notifyRepo.loadNotifications()
             if (res is Result.Success) {
-                Log.d(TAG, "onSuccess: user notifications size: ${res.data.size}")
+                Log.d(TAG,"onSuccess: user notifications size: ${res.data.size}")
                 _notifyStatus.value = DataStatus.SUCCESS
                 val data = res.data
                 _notifications.value = data.sortedBy { it.createDate }.reversed() ?: emptyList()
@@ -85,11 +64,9 @@ class NotificationsViewModel(
                 setReadNotify(userId)
                 setSystemNotify()
                 resetStatus()
-            } else if (res is Result.Error) {
-                Log.d(
-                    TAG,
-                    "onError: error happen during fetching user notifications due to ${res.exception.message}"
-                )
+            }
+            else if(res is Result.Error) {
+                Log.d(TAG,"onError: error happen during fetching user notifications due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 resetStatus()
@@ -101,35 +78,34 @@ class NotificationsViewModel(
 
 
     private fun setUnReadsNotify(userId: String) {
-        Log.d(TAG, "111 onSuccess: user notifications size: ${_notifications.value?.size}")
-        _unRead.value =
-            _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == false && it.targetUser == userId }
-        Log.d(TAG, "unRead: ${_unRead.value?.size}")
+        Log.d(TAG,"111 onSuccess: user notifications size: ${_notifications.value?.size}")
+        _unRead.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == false && it.targetUser == userId }
+        Log.d(TAG,"unRead: ${_unRead.value?.size}")
     }
+
 
 
     private fun setReadNotify(userId: String) {
-        Log.d(TAG, "222 onSuccess: user notifications size: ${_notifications.value?.size}")
-        _reads.value =
-            _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == true && it.targetUser == userId }
-        Log.d(TAG, "read: ${_reads.value?.size}")
+        Log.d(TAG,"222 onSuccess: user notifications size: ${_notifications.value?.size}")
+        _reads.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == true && it.targetUser == userId }
+        Log.d(TAG,"read: ${_reads.value?.size}")
     }
 
     private fun setSystemNotify() {
-        Log.d(TAG, "333 onSuccess: user notifications size: ${_notifications.value?.size}")
+        Log.d(TAG,"333 onSuccess: user notifications size: ${_notifications.value?.size}")
         _system.value = _notifications.value?.filter { it.type == NotifyType.System.name }
-        Log.d(TAG, "system: ${_system.value?.size}")
+        Log.d(TAG,"system: ${_system.value?.size}")
     }
 
 
-    fun filter(type: String, isRead: Boolean?): List<Notification> {
+    fun filter(type: String,isRead: Boolean?): List<Notification> {
         viewModelScope.launch {
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
             if (type == NotifyType.Direct.name) {
                 _filtered.value = if (isRead == true) {
                     _tap.value = SelectedSection.Read
                     _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == true && it.targetUser == userId }
-                } else {
+                }else{
                     _tap.value = SelectedSection.UnRead
                     _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == false && it.targetUser == userId }
                 }
@@ -144,20 +120,21 @@ class NotificationsViewModel(
     }
 
 
-    fun pushNotify(notify: Notification, notifyType: String) {
+
+
+    fun pushNotify(notify: Notification) {
         resetStatus()
         _notifyStatus.value = DataStatus.LOADING
-        Log.d(TAG, "onPushNotify: Loading...")
+        Log.d(TAG,"onPushNotify: Loading...")
         viewModelScope.launch {
-            notify.type = notifyType
             val res = notifyRepo.pushNotify(notify)
             if (res is Result.Success) {
-                Log.d(TAG, "onPushNotify: push notify have been success...")
+                Log.d(TAG,"onPushNotify: push notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
                 resetStatus()
 
-            } else if (res is Result.Error) {
-                Log.d(TAG, "onPushNotify: push notify Failed due to ${res.exception.message}")
+            }else if( res is Result.Error){
+                Log.d(TAG,"onPushNotify: push notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 resetStatus()
@@ -169,26 +146,16 @@ class NotificationsViewModel(
     fun updateNotify(notify: Notification) {
         resetStatus()
         _notifyStatus.value = DataStatus.LOADING
-        Log.d(TAG, "onUpdateNotify: Loading...")
+        Log.d(TAG,"onUpdateNotify: Loading...")
         viewModelScope.launch {
             val res = notifyRepo.updateNotify(notify)
             if (res is Result.Success) {
-                Log.d(TAG, "onUpdateNotify: update notify have been success...")
-
-//                val mNotifications = _notifications.value?.toMutableList()
-//                val oldNotify = mNotifications?.find { it.id == notify.id }
-//                mNotifications?.remove(oldNotify)
-//                mNotifications?.add(notify)
-//                _notifications.value = mNotifications
-
+                Log.d(TAG,"onUpdateNotify: update notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
-                resetStatus()
-
-            } else if (res is Result.Error) {
-                Log.d(TAG, "onUpdateNotify: update notify Failed due to ${res.exception.message}")
+            }else if( res is Result.Error){
+                Log.d(TAG,"onUpdateNotify: update notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
             }
         }
     }
@@ -197,19 +164,17 @@ class NotificationsViewModel(
     fun removeNotify(notify: Notification) {
         resetStatus()
         _notifyStatus.value = DataStatus.LOADING
-        Log.d(TAG, "onRemoveNotify: Loading...")
+        Log.d(TAG,"onRemoveNotify: Loading...")
         viewModelScope.launch {
             val res = notifyRepo.removeNotify(notify)
             if (res is Result.Success) {
-                Log.d(TAG, "onRemoveNotify: remove notify have been success...")
+                Log.d(TAG,"onRemoveNotify: remove notify have been success...")
                 _notifyStatus.value = DataStatus.SUCCESS
-                resetStatus()
 
-            } else if (res is Result.Error) {
-                Log.d(TAG, "onRemoveNotify: remove notify Failed due to ${res.exception.message}")
+            }else if( res is Result.Error){
+                Log.d(TAG,"onRemoveNotify: remove notify Failed due to ${res.exception.message}")
                 _notifyStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
-                resetStatus()
             }
         }
     }

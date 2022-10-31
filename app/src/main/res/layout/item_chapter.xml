@@ -1,71 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="chapterNumber"
+            name="cover"
             type="String" />
-
-
-        <variable
-            name="onChapterClick"
-            type="android.view.View.OnClickListener" />
 
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="14dp">
 
-        <!--        &lt;!&ndash;Button: Read book&ndash;&gt;-->
-        <!--        <Button-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:onClick="@{onChapterClick}"-->
-        <!--            android:background="@drawable/shape_button01"-->
-        <!--            android:drawableTop="@drawable/ic_book_white"-->
-        <!--            android:text="@string/go_chapters"-->
-        <!--            android:textColor="@color/white" />-->
-
-
-        <TextView
-            android:id="@+id/chapterNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:onClick="@{onChapterClick}"
-            android:text="@{chapterNumber}"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="Part 1" />
-
-        <ImageView
-            android:id="@+id/download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_download_gray" />
-
-        <View
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/chapterNumber"
-            android:layout_marginTop="5dp"
-            android:background="@color/gray03" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btnItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@drawable/ic_cover_novel_test"
+                setImage="@{cover}"/>
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/badgeNumber"
+                android:layout_width="wrap_content"
+                android:textAlignment="center"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:layout_gravity="bottom|end"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/item_count_filter"
+                tools:text="41"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+        </FrameLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
 </layout>

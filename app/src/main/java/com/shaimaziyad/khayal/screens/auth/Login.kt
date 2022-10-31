@@ -25,7 +25,7 @@ import com.shaimaziyad.khayal.sheets.ResetPasswordSheet
 import com.shaimaziyad.khayal.utils.DataStatus
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class Login : Fragment() {
+class Login: Fragment() {
 
     private lateinit var binding: LoginBinding
 
@@ -47,14 +47,9 @@ class Login : Fragment() {
     private var mPassword = ""
     private var mIsRememberMe = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
-//        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-        resetPassSheet = ResetPasswordSheet(binding.resetSheet, this)
+        resetPassSheet = ResetPasswordSheet(binding.resetSheet,this)
 
 
         // Configure Google Sign In
@@ -77,7 +72,7 @@ class Login : Fragment() {
 
 
             /** isLogged live data **/
-            isLogged.observe(viewLifecycleOwner) { user ->
+            isLogged.observe(viewLifecycleOwner){ user ->
                 if (user != null) {
                     profileViewModel.refreshUser(user)
                     findNavController().navigate(R.id.action_login_to_home)
@@ -85,11 +80,13 @@ class Login : Fragment() {
                 }
             }
 
+
+
             /** reset password **/
-            resetPasswordStatus.observe(viewLifecycleOwner) { status ->
-                if (status != null) {
-                    when (status) {
-                        DataStatus.LOADING -> {
+            resetPasswordStatus.observe(viewLifecycleOwner){ status ->
+                if (status != null){
+                    when(status){
+                        DataStatus.LOADING->{
 
                         }
                         DataStatus.SUCCESS -> {
@@ -101,6 +98,7 @@ class Login : Fragment() {
                     }
                 }
             }
+
 
 
         }
@@ -143,8 +141,9 @@ class Login : Fragment() {
                     password.error = getString(R.string.password_is_less_error)
                     password.requestFocus()
                     return@setOnClickListener
-                } else {
-                    viewModel.login(mEmail, mPassword, mIsRememberMe, requireContext())
+                }
+                else {
+                    viewModel.login(mEmail,mPassword,mIsRememberMe,requireContext())
                 }
 
             }
@@ -169,21 +168,23 @@ class Login : Fragment() {
     }
 
 
-    private fun resetPassSheetStatus() {
-        resetPassSheet.resetPassStatus = object : ResetPasswordSheet.ResetPasswordStatus {
+    private fun resetPassSheetStatus(){
+        resetPassSheet.resetPassStatus = object: ResetPasswordSheet.ResetPasswordStatus{
             override fun onSend(email: String) {
                 viewModel.resetPassword(email)
             }
         }
     }
 
-    private fun loginByGoogle() {
+    private fun loginByGoogle(){
 
         // begin google sign in
         Log.d(TAG, "onCreate : begin Google SignIn")
         val intent = googleSignInClient.signInIntent
         startActivityForResult(intent, RC_SIGN_IN)
     }
+
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

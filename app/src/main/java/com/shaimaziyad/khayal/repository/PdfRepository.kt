@@ -9,18 +9,19 @@ import com.shaimaziyad.khayal.utils.Result.Success
 import com.shaimaziyad.khayal.utils.Result.Error
 import com.shaimaziyad.khayal.utils.Result
 
-class PdfRepository(private val remote: DataBase) {
+class PdfRepository(private val remote: DataBase){
 
-    suspend fun uploadPdfs(filesUri: List<Uri>) = remote.insertFiles(filesUri, FileType.PDF.name)
+    suspend fun uploadPdfs(filesUri: List<Uri>) = remote.insertFiles(filesUri,FileType.PDF.name)
 
     suspend fun loadPdf(uri: String): Result<ByteArray> {
         return supervisorScope {
             val loadTask = async { remote.loadPdf(uri) }
             try {
                 Success(loadTask.await())
-            } catch (ex: Exception) {
+            }catch (ex: Exception) {
                 Error(Exception(ex))
             }
         }
     }
+
 }

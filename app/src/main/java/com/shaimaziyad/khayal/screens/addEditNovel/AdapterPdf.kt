@@ -1,6 +1,7 @@
 package com.shaimaziyad.khayal.screens.addEditNovel
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -12,7 +13,7 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
 
     lateinit var clickListener: PdfClickListener
 
-    class ViewHolder(private val binding: ItemPdfBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding:  ItemPdfBinding) : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -22,11 +23,14 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
 
 
         // update ui
+        @SuppressLint("SetTextI18n")
         fun onBind(data: String, clickListener: PdfClickListener) {
+
+            binding.badgeNumber.text = (adapterPosition + 1 ).toString()
 
             // when click on novel item
             binding.btnRemove.setOnClickListener {
-                clickListener.onRemove(data, adapterPosition)
+                clickListener.onRemove(data,adapterPosition)
             }
 
             binding.executePendingBindings()
@@ -42,11 +46,12 @@ class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel, clickListener)
+        holder.onBind(novel,clickListener)
     }
 
 
-    companion object PdfDiffCallback : DiffUtil.ItemCallback<String>() {
+
+    companion object PdfDiffCallback: DiffUtil.ItemCallback<String>(){
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }

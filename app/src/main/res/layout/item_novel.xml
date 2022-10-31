@@ -7,61 +7,32 @@
 
         <variable
             name="novel"
-            type="com.shaimaziyad.khayal.data.NovelData" />
+            type="com.shaimaziyad.khayal.data.Novel" />
+
+
 
     </data>
 
 
+
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/btnItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="0dp">
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="14dp">
 
-        <LinearLayout
+
+        <ImageView
+            android:id="@+id/btnItem"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp">
-
-                <ImageView
-                    android:id="@+id/cover"
-                    setImage="@{novel.cover}"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/icon"
-                    tools:src="@drawable/ic_cover_novel_test" />
-
-            </androidx.cardview.widget.CardView>
-
-
-            <TextView
-                android:id="@+id/titleTv"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{novel.title}"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="@string/novel_title" />
-
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            tools:src="@drawable/ic_cover_novel_test"
+            setImage="@{novel.cover}"/>
 
     </androidx.cardview.widget.CardView>
+
+
+
 
 </layout>

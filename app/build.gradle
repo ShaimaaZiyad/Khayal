@@ -14,7 +14,7 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 8
-        versionName "1.0.7"
+        versionName "1.0.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
 
     buildFeatures{
         dataBinding true
@@ -116,12 +115,15 @@ dependencies {
     // country picker
     implementation "com.hbb20:ccp:2.6.1"
 
-
     // koin
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation "org.koin:koin-android-ext:$koin_version"
+
+    // adapter delegates
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
 
 
 }

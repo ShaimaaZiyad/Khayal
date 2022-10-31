@@ -10,13 +10,11 @@ import com.shaimaziyad.khayal.utils.DataStatus
 import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.launch
 
-class PdfViewerViewModel(private val pdfRepo: PdfRepository) : ViewModel() {
+class PdfViewerViewModel(private val pdfRepo: PdfRepository): ViewModel() {
 
     companion object {
         private const val TAG = "PdfViewerViewModel"
     }
-
-//    private val pdfRepository = PdfRepository()
 
     private val _pdf = MutableLiveData<ByteArray?>()
     val pdf: LiveData<ByteArray?> = _pdf
@@ -29,17 +27,18 @@ class PdfViewerViewModel(private val pdfRepo: PdfRepository) : ViewModel() {
 
 
     fun loadPdf(uri: String) {
-        Log.d(TAG, "onLoadPdf: Loading")
+        Log.d(TAG,"onLoadPdf: Loading")
         resetStatus()
         _pdfStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = pdfRepo.loadPdf(uri)
             if (res is Result.Success) {
-                Log.d(TAG, "onLoadPdf: load pdf success")
+                Log.d(TAG,"onLoadPdf: load pdf success")
                 _pdfStatus.value = DataStatus.SUCCESS
                 _pdf.value = res.data
-            } else if (res is Result.Error) {
-                Log.d(TAG, "onLoadPdf: load pdf Failed due to ${res.exception.message}")
+            }
+            else if(res is Result.Error) {
+                Log.d(TAG,"onLoadPdf: load pdf Failed due to ${res.exception.message}")
                 _pdfStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
@@ -47,8 +46,10 @@ class PdfViewerViewModel(private val pdfRepo: PdfRepository) : ViewModel() {
     }
 
 
+
     fun resetStatus() {
-        _pdfStatus.value = null
+        _pdfStatus.value =  null
+        _pdf.value = null
     }
 
 

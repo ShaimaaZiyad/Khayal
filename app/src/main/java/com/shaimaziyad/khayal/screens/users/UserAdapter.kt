@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.shaimaziyad.khayal.data.NovelData
 import com.shaimaziyad.khayal.data.User
 import com.shaimaziyad.khayal.databinding.ItemUserBinding
 
@@ -22,11 +21,11 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffUtil) {
             }
         }
 
-        // update ui
+
         fun onBind(data: User, clickListener: UserClickListener) {
             binding.user = data
 
-            // when click on user item
+            /** on item clicked **/
             binding.btnItem.setOnClickListener {
                 clickListener.onClick(data, adapterPosition)
             }

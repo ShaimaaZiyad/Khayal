@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_filter"
+                app:tint="@color/gray01" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/badgeNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btnFilter"
+            android:layout_alignEnd="@id/btnFilter"
+            android:background="@drawable/item_count_filter"
+            tools:text="41"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:textColor="#FFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</layout>

@@ -10,7 +10,7 @@
         android:id="@+id/splash"
         android:name="com.shaimaziyad.khayal.screens.auth.Splash"
         android:label="fragment_splash"
-        tools:layout="@layout/splash">
+        tools:layout="@layout/splash" >
 
         <action
             android:id="@+id/action_splash_to_home"
@@ -28,10 +28,10 @@
 
 
     <fragment
-        android:id="@+id/viewPdf"
+        android:id="@+id/pdfViewer"
         android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
         android:label="fragment_view_novel"
-        tools:layout="@layout/pdf_viewer">
+        tools:layout="@layout/pdf_viewer" >
 
         <argument android:name="novelId" />
     </fragment>
@@ -40,7 +40,7 @@
         android:id="@+id/Login"
         android:name="com.shaimaziyad.khayal.screens.auth.Login"
         android:label="login"
-        tools:layout="@layout/login">
+        tools:layout="@layout/login" >
 
         <action
             android:id="@+id/action_login_to_home"
@@ -55,7 +55,7 @@
         android:id="@+id/register"
         android:name="com.shaimaziyad.khayal.screens.auth.Register"
         android:label="register"
-        tools:layout="@layout/register">
+        tools:layout="@layout/register" >
 
         <action
             android:id="@+id/action_register_to_login"
@@ -83,46 +83,46 @@
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/search" />
 
     </fragment>
     <fragment
         android:id="@+id/novelDetails"
         android:name="com.shaimaziyad.khayal.screens.novelDetails.NovelDetails"
         android:label="novel_details"
-        tools:layout="@layout/novel_details">
+        tools:layout="@layout/novel_details" >
         <action
             android:id="@+id/action_novelDetails_to_novelPdf"
             app:destination="@id/pdfViewer" />
         <action
-            android:id="@+id/action_novelDetails_to_viewPdf"
-            app:destination="@id/viewPdf" />
+            android:id="@+id/action_novelDetails_to_pdfViewer"
+            app:destination="@id/pdfViewer" />
+        <action
+            android:id="@+id/action_novelDetails_self"
+            app:destination="@id/novelDetails" />
     </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.shaimaziyad.khayal.screens.profile.Profile"
         android:label="profile"
-        tools:layout="@layout/profile">
+        tools:layout="@layout/profile" >
         <action
             android:id="@+id/action_profile_to_Login"
             app:destination="@id/Login"
             app:popUpTo="@id/profile"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profile_to_novelDetails"
+            app:destination="@id/novelDetails" />
     </fragment>
 
-    <fragment
-        android:id="@+id/pdfViewer"
-        android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
-        android:label="novel_pdf"
-        tools:layout="@layout/pdf_viewer">
-        <action
-            android:id="@+id/action_novelPdf_to_viewPdf"
-            app:destination="@id/viewPdf" />
-    </fragment>
     <fragment
         android:id="@+id/addEditNovel"
         android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
         android:label="add_edit_novel"
-        tools:layout="@layout/add_edit_novel">
+        tools:layout="@layout/add_edit_novel" >
         <action
             android:id="@+id/action_addEditNovel_to_home"
             app:destination="@id/home"
@@ -143,6 +143,18 @@
         android:id="@+id/notifications"
         android:name="com.shaimaziyad.khayal.screens.notifications.Notifications"
         android:label="Notifications"
-        tools:layout="@layout/notifications" />
+        tools:layout="@layout/notifications"/>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.shaimaziyad.khayal.screens.search.Search"
+        android:label="Search"
+        tools:layout="@layout/search">
+        <action
+            android:id="@+id/action_search_to_novelDetails"
+            app:destination="@id/novelDetails" />
+        <action
+            android:id="@+id/action_search_to_addEditNovel"
+            app:destination="@id/addEditNovel" />
+    </fragment>
 
 </navigation>
