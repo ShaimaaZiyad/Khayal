@@ -10,6 +10,7 @@ object Constants {
     const val MAX_BYTES_PDF: Long = 5000000 //50MB,
 
     const val IS_EDIT_KEY = "isEdit"
+    const val BANNER_KEY = "Banner"
     const val NOVEL_KEY = "NovelKey"
     const val IS_USER_NOTIFY = "isUserNotify"
 

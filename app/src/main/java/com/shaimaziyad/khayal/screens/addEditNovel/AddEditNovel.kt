@@ -53,7 +53,7 @@ class AddEditNovel : Fragment() {
     private var mPdfs = ArrayList<Uri>()
 
 
-    private val pdfAdapter by lazy { AdapterPdf() }
+    private val pdfAdapter by lazy { PdfAdapter() }
     private var pdfFile: Uri? = null
     private lateinit var bottomSheetPdf: BottomSheetDialog
     private lateinit var imagePicker: ImagePicker
@@ -232,7 +232,7 @@ class AddEditNovel : Fragment() {
     private fun setAdapter() {
 
         /** click listener **/
-        pdfAdapter.clickListener = object: AdapterPdf.PdfClickListener {
+        pdfAdapter.clickListener = object: PdfAdapter.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
 //                val pdfs = novel?.pdfs?.toMutableList()

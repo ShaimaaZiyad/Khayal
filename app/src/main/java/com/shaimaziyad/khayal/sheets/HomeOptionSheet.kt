@@ -55,14 +55,15 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
             hideSheet()
         }
 
-        /** button  notifications **/
+        /** button show users **/
         binding.btnUsers.setOnClickListener {
             fragment.navigateToUsers()
             hideSheet()
         }
 
+        /** button show banner manager **/
         binding.btnBannerManager.setOnClickListener {
-
+            fragment.navigateToBannerManager()
         }
 
         /** button  notifications **/

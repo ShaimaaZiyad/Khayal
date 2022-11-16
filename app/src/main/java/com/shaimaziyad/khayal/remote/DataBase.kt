@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.shaimaziyad.khayal.data.Banner
 import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.data.User
@@ -28,6 +28,7 @@ class DataBase() {
 
         private const val USERS_COLLECTION = "Users"
         private const val NOTIFICATION_COLLECTION = "Notifications"
+        private const val BANNERS_COLLECTIONS = "Banners"
 
         private const val FIELD_TARGET_USER = "targetUser"
         private const val FIELD_EMAIL = "email"
@@ -43,6 +44,7 @@ class DataBase() {
     private val usersPath = fireStore.collection(USERS_COLLECTION)
     private val novelsPath = fireStore.collection(NOVELS_COLLECTION)
     private val notificationsPath = fireStore.collection(NOTIFICATION_COLLECTION)
+    private val bannersPath = fireStore.collection(BANNERS_COLLECTIONS)
 
 
     private val _observeUsers = MutableLiveData<List<User>?>()
@@ -127,21 +129,21 @@ class DataBase() {
     }
 
 
+    suspend fun getBanners(): List<Banner> = bannersPath.get().await().toObjects(Banner::class.java)
+    suspend fun addBanner(data: Banner) = bannersPath.document(data.id).set(data)
+    suspend fun updateBanner(data: Banner) = bannersPath.document(data.id).update(data.toHashMap())
+    suspend fun deleteBanner(data: Banner) = bannersPath.document(data.id).delete()
+
+
     suspend fun getNotifications(): List<Notification> = notificationsPath.get().await().toObjects(Notification::class.java)
-
-    suspend fun addNotify(data : Notification) = notificationsPath.document(data.id).set(data)
-
+    suspend fun addNotify(data: Notification) = notificationsPath.document(data.id).set(data)
     suspend fun updateNotify(data: Notification) = notificationsPath.document(data.id).update(data.toHashMap())
-
-    suspend fun removeNotify(data: Notification) = notificationsPath.document(data.id).delete()
+    suspend fun deleteNotify(data: Notification) = notificationsPath.document(data.id).delete()
 
 
     suspend fun getNovels():List<Novel> = novelsPath.get().await().toObjects(Novel::class.java)
-
     suspend fun addNovel(data: Novel) = novelsPath.document(data.novelId).set(data)
-
     suspend fun updateNovel(data: Novel) = novelsPath.document(data.novelId).update(data.toHashMap())
-
     // TODO: delete the pdf files before delete the novel data.
     suspend fun deleteNovel(novel: Novel)  = novelsPath.document(novel.novelId).delete()
 

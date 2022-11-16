@@ -62,6 +62,8 @@ class HomeViewModel(
 
     // todo: load the ads then load novels
 
+
+
     fun loadNovels() {
         Log.d(TAG,"onLoading.. Novels")
         resetStatus()
@@ -87,6 +89,8 @@ class HomeViewModel(
 
         }
     }
+
+
 
 
 

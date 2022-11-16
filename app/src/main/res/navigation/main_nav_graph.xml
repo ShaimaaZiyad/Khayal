@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_home_to_search"
             app:destination="@id/search" />
+        <action
+            android:id="@+id/action_home_to_bannerManager"
+            app:destination="@id/bannerManager" />
 
     </fragment>
     <fragment
@@ -156,5 +159,19 @@
             android:id="@+id/action_search_to_addEditNovel"
             app:destination="@id/addEditNovel" />
     </fragment>
+    <fragment
+        android:id="@+id/bannerManager"
+        android:name="com.shaimaziyad.khayal.screens.bannerManager.BannerManager"
+        android:label="BannerManager"
+        tools:layout="@layout/banner_manager">
+        <action
+            android:id="@+id/action_bannerManager_to_addEditBanner"
+            app:destination="@id/addEditBanner" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditBanner"
+        android:name="com.shaimaziyad.khayal.screens.addEditBanner.AddEditBanner"
+        android:label="AddEditBanner"
+        tools:layout="@layout/add_edit_banner"/>
 
 </navigation>

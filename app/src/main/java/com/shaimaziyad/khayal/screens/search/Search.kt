@@ -114,7 +114,7 @@ class Search : Fragment() {
             }
 
             /** button clear search **/
-            btnClear.setOnClickListener {
+            btnClearSearch.setOnClickListener {
                 search.setText("")
                 filterSheet.clearFilter()
             }
@@ -124,7 +124,7 @@ class Search : Fragment() {
             search.doAfterTextChanged {
                 val query = it?.trim().toString()
                 if (query.isNotEmpty()){
-                    btnClear.show()
+                    btnClearSearch.show()
                     binding.noDataLayout.hide()
                     if (filteredCategory.isNotEmpty()){
                         val search = filteredCategory.filter { it.title.lowercase().contains(query.lowercase()) }
@@ -134,7 +134,7 @@ class Search : Fragment() {
                         searchAdapter.submitList(search)
                     }
                 }else{
-                    btnClear.hide()
+                    btnClearSearch.hide()
                     if (filteredCategory.isNotEmpty()){
                         searchAdapter.submitList(filteredCategory)
                     }else{

@@ -1,10 +1,7 @@
 package com.shaimaziyad.khayal.di
 
 import com.shaimaziyad.khayal.remote.DataBase
-import com.shaimaziyad.khayal.repository.NotifyRepository
-import com.shaimaziyad.khayal.repository.NovelRepository
-import com.shaimaziyad.khayal.repository.PdfRepository
-import com.shaimaziyad.khayal.repository.UserRepository
+import com.shaimaziyad.khayal.repository.*
 import com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovelViewModel
 import com.shaimaziyad.khayal.screens.auth.AuthViewModel
 import com.shaimaziyad.khayal.screens.bannerManager.BannerManagerViewModel
@@ -22,7 +19,7 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { HomeViewModel(context = androidContext(),userRepo = get(), novelRepo = get() ) }
     viewModel { AuthViewModel(userRepo = get())  }
-    viewModel { BannerManagerViewModel() }
+    viewModel { BannerManagerViewModel(bannerRepo = get()) }
     viewModel { NotificationsViewModel(notifyRepo = get(), userRepo = get()) }
     viewModel { PdfViewerViewModel(pdfRepo = get()) }
     viewModel { ProfileViewModel(userRepo = get()) }
@@ -32,6 +29,7 @@ val viewModelModules = module {
 
 
 val repoModules = module {
+    single { BannerRepository(remote = get()) }
     single { UserRepository(remote = get(), sharePref = get()) }
     single { NovelRepository(remote = get()) }
     single { NotifyRepository(remote = get() , userRepo = get()) }

@@ -1,6 +1,5 @@
 package com.shaimaziyad.khayal.screens.addEditNovel
 
-
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.shaimaziyad.khayal.databinding.ItemPdfBinding
 
-class AdapterPdf : ListAdapter<String, AdapterPdf.ViewHolder>(PdfDiffCallback) {
+class PdfAdapter: ListAdapter<String, PdfAdapter.ViewHolder>(PdfDiffCallback) {
 
     lateinit var clickListener: PdfClickListener
 
