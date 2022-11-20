@@ -29,14 +29,14 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 
 
 
-    private val _reads = MutableLiveData<List<Notification>?>()
+    private val _reads = MutableLiveData<List<Notification>?>(emptyList())
     val reads: LiveData<List<Notification>?> = _reads
 
-    private val _unRead = MutableLiveData<List<Notification>?>()
+    private val _unRead = MutableLiveData<List<Notification>?>(emptyList())
     val unRead: LiveData<List<Notification>?> = _unRead
 
 
-    private val _system = MutableLiveData<List<Notification>?>()
+    private val _system = MutableLiveData<List<Notification>?>(emptyList())
     val system: LiveData<List<Notification>?> = _system
 
 
@@ -79,7 +79,7 @@ class NotificationsViewModel(private val notifyRepo: NotifyRepository,
 
     private fun setUnReadsNotify(userId: String) {
         Log.d(TAG,"111 onSuccess: user notifications size: ${_notifications.value?.size}")
-        _unRead.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == false && it.targetUser == userId }
+        _unRead.value = _notifications.value?.filter { it.type == NotifyType.Direct.name && it.isRead == false && it.targetUser == userId } ?: emptyList()
         Log.d(TAG,"unRead: ${_unRead.value?.size}")
     }
 

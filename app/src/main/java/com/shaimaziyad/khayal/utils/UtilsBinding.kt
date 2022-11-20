@@ -24,6 +24,15 @@ fun setImage(image: ImageView, uri: String?){
     }
 }
 
+@BindingAdapter("setImageBanner")
+fun setImageBanner(image: ImageView, uri: String?){
+    if(!uri.isNullOrBlank()) {
+        Glide.with(image.context)
+            .load(uri.toUri())
+            .into(image)
+    }
+}
+
 @BindingAdapter("setImage")
 fun setImage(image: ImageView, uri: Int?){
     if(uri != null) {

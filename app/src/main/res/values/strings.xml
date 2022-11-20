@@ -75,7 +75,6 @@
     <string name="results">Results: %s</string>
 
 
-
     <string name="fosha">Fosha</string>
     <string name="slang">Slang</string>
     <string name="gulf">Gulf</string>
@@ -89,6 +88,7 @@
     <string name="error_require_description">Required Description</string>
     <string name="error_require_external_link">Required Link</string>
     <string name="error_require_internal_link">Required User Destination</string>
+
 
     <string name="notifications">Notifications</string>
     <string name="description">Description</string>
@@ -126,6 +126,18 @@
     <string name="success_report">Thanks for reporting</string>
     <string name="cover_size">Required\n(600 * 930)</string>
     <string name="edit_banner">Edit Banner</string>
+    <string name="banner_title">Banner Title</string>
+    <string name="banner_size">Required (600 * 300)</string>
+    <string name="add_Banner">Add Banner</string>
+    <string name="remove_banner">Remove Banner</string>
+    <string name="choose_ad_type">Choose the ad type</string>
+    <string name="rotating">Rotating</string>
+    <string name="banner">Banner</string>
+    <string name="select_image">Select image +</string>
+    <string name="error_require_image">Required image</string>
+    <string name="error_require_type">Required  type</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

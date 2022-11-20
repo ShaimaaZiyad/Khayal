@@ -13,6 +13,7 @@ import com.shaimaziyad.khayal.R
 import com.shaimaziyad.khayal.data.Notification
 import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.HomeBinding
+import com.shaimaziyad.khayal.screens.bannerManager.BannerManagerViewModel
 import com.shaimaziyad.khayal.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal.screens.profile.ProfileViewModel
 import com.shaimaziyad.khayal.sheets.HomeOptionSheet
@@ -28,6 +29,7 @@ class Home: Fragment() {
     private val viewModel by sharedViewModel<HomeViewModel>()
     private val profileViewModel by sharedViewModel<ProfileViewModel>()
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
+    private val bannerViewModel by sharedViewModel<BannerManagerViewModel>()
 
     private lateinit var homeAdapter: HomeAdapter
 
@@ -52,6 +54,7 @@ class Home: Fragment() {
         super.onResume()
         profileViewModel.loadUser()
         notifyViewModel.loadNotificationsByUserId()
+        bannerViewModel.loadAds()
     }
 
 
@@ -111,6 +114,15 @@ class Home: Fragment() {
             }
 
 
+            /** banners **/
+            bannerViewModel.banners.observe(viewLifecycleOwner){
+                if (!it.isNullOrEmpty()){
+
+                }
+            }
+
+
+
 
         }
     }
@@ -145,6 +157,7 @@ class Home: Fragment() {
             btnProfile.setOnClickListener {
                 val unRead  = notifyViewModel.unRead.value!!.size
                 val user = profileViewModel.user.value!!
+
                 optionSheet.notifyCounts = unRead
                 optionSheet.user = user
                 binding.btnAddNovel.hide()
@@ -202,6 +215,9 @@ class Home: Fragment() {
     }
 
 
+    fun navigateToBannerManager(){
+        findNavController().navigate(R.id.action_home_to_bannerManager)
+    }
 
     fun navigateToAddEditNovel(isEdit: Boolean, novel: Novel?) {
 

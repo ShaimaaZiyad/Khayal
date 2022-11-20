@@ -11,7 +11,7 @@ enum class UserType { USER, ADMIN }
 
 enum class DataStatus { LOADING, ERROR, SUCCESS }
 
-enum class FileType {PDF, IMAGE,IMAGE_PROFILE, IMAGE_NOTIFICATION}
+enum class FileType {PDF, IMAGE,IMAGE_PROFILE, IMAGE_NOTIFICATION,IMAGE_BANNER}
 
 enum class NotifyType {System, Direct}
 
@@ -63,3 +63,4 @@ fun getCurrentTime(): Date = Calendar.getInstance().time
 internal fun getNovelId() = "novId" + UUID.randomUUID().toString()
 internal fun getPdfId() = "pdfId" + UUID.randomUUID().toString()
 internal fun getNotifyId() = "notify" + UUID.randomUUID().toString()
+internal fun getBannerId() = "banner" + UUID.randomUUID().toString()
