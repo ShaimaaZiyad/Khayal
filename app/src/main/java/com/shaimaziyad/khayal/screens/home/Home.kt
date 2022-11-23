@@ -120,13 +120,8 @@ class Home: Fragment() {
 
                 }
             }
-
-
-
-
         }
     }
-
 
 
     private fun setHomeOptionSheetStatus(){

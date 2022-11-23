@@ -13,7 +13,8 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
     lateinit var clickListener: ClickListener
     lateinit var novelCover: String
 
-    class ViewHolder(private val binding:  ItemChapterBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemChapterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -24,7 +25,7 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
         fun onBind(data: String, clickListener: ClickListener) {
 
             binding.cover = data
-            val chapterNumber =  adapterPosition + 1
+            val chapterNumber = adapterPosition + 1
 
             binding.badgeNumber.text = chapterNumber.toString()
 
@@ -47,11 +48,11 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel,clickListener)
+        holder.onBind(novel, clickListener)
     }
 
 
-    companion object ChapterDiffCallback: DiffUtil.ItemCallback<String>() {
+    companion object ChapterDiffCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
@@ -66,7 +67,6 @@ class ChapterAdapter : ListAdapter<String, ChapterAdapter.ViewHolder>(ChapterDif
     interface ClickListener {
         fun onClick(uri: String)
     }
-
 
 
 }

@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="user"
             type="com.shaimaziyad.khayal.data.User" />
@@ -41,9 +43,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/pdfRl"
-                android:layout_centerVertical="true">
+                android:orientation="vertical">
                 <!--user name-->
                 <TextView
                     android:id="@+id/userNameTv"
@@ -67,24 +69,35 @@
                     android:layout_marginBottom="5dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    tools:text="ahemd@example.com"
-                    android:text="@{user.email}"/>
+                    android:text="@{user.email}"
+                    tools:text="ahemd@example.com" />
 
                 <!--create Data-->
                 <TextView
                     android:id="@+id/createDataTv"
                     style="@style/TextAppearance.MaterialComponents.Caption"
+                    joinedAt="@{user.createData}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    tools:text="20 / 10 / 2022"
-                    joinedAt="@{user.createData}"/>
+                    tools:text="20 / 10 / 2022" />
 
-
-
+                <!--country-->
+                <TextView
+                    android:id="@+id/countryTv"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{user.country}"
+                    tools:text="palestine" />
 
 
             </LinearLayout>

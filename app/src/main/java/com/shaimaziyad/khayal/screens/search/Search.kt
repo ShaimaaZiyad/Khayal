@@ -29,9 +29,13 @@ class Search : Fragment() {
     private lateinit var filteredCategory: List<Novel>
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = SearchBinding.inflate(inflater,container,false)
-        filterSheet = FilterNovelSheet(binding.filterSheet,this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = SearchBinding.inflate(inflater, container, false)
+        filterSheet = FilterNovelSheet(binding.filterSheet, this)
 
         setData()
         setViews()
@@ -42,8 +46,11 @@ class Search : Fragment() {
     }
 
     private fun setData() {
-        filteredCategory = try { arguments?.getSerializable(Constants.CATEGORY_KEY) as List<Novel> }
-        catch (ex: Exception){ emptyList() }
+        filteredCategory = try {
+            arguments?.getSerializable(Constants.CATEGORY_KEY) as List<Novel>
+        } catch (ex: Exception) {
+            emptyList()
+        }
     }
 
     private fun setViews() {
@@ -54,13 +61,13 @@ class Search : Fragment() {
 
     private fun setObserves() {
         val novels = homeViewModel.novels.value
-        if (filteredCategory.isNotEmpty()){
+        if (filteredCategory.isNotEmpty()) {
             searchAdapter.submitList(filteredCategory)
-        }else{
-            if (!novels.isNullOrEmpty()){
+        } else {
+            if (!novels.isNullOrEmpty()) {
                 binding.noDataLayout.hide()
                 searchAdapter.submitList(novels)
-            }else{
+            } else {
                 binding.noDataLayout.show()
             }
         }
@@ -68,13 +75,13 @@ class Search : Fragment() {
 
 
     private fun setAdapter() {
-        searchAdapter.clickListener = object: SearchAdapter.ClickListener{
+        searchAdapter.clickListener = object : SearchAdapter.ClickListener {
             override fun onClick(novel: Novel, index: Int) {
                 val userType = profileViewModel.user.value?.userType
-                if (userType == UserType.USER.name){
+                if (userType == UserType.USER.name) {
                     navigateToNovelDetails(novel)
-                }else{
-                    navigateToAddEditNovel(isEdit = true,novel)
+                } else {
+                    navigateToAddEditNovel(isEdit = true, novel)
                 }
             }
         }
@@ -82,14 +89,14 @@ class Search : Fragment() {
     }
 
 
-    private fun navigateToNovelDetails(novel: Novel){
+    private fun navigateToNovelDetails(novel: Novel) {
         val data = bundleOf(Constants.NOVEL_KEY to novel)
-        findNavController().navigate(R.id.action_search_to_novelDetails,data)
+        findNavController().navigate(R.id.action_search_to_novelDetails, data)
     }
 
-    private fun navigateToAddEditNovel(isEdit: Boolean,novel: Novel){
+    private fun navigateToAddEditNovel(isEdit: Boolean, novel: Novel) {
         val data = bundleOf(Constants.NOVEL_KEY to novel, Constants.IS_EDIT_KEY to isEdit)
-        findNavController().navigate(R.id.action_search_to_addEditNovel,data)
+        findNavController().navigate(R.id.action_search_to_addEditNovel, data)
     }
 
 
@@ -105,9 +112,9 @@ class Search : Fragment() {
 
             /** button filter **/
             filter.btnFilter.setOnClickListener {
-                if (filteredCategory.isNotEmpty()){
+                if (filteredCategory.isNotEmpty()) {
                     filterSheet.novels = filteredCategory
-                }else{
+                } else {
                     filterSheet.novels = homeViewModel.novels.value!!
                 }
                 filterSheet.showSheet()
@@ -123,21 +130,23 @@ class Search : Fragment() {
             /** search listener **/
             search.doAfterTextChanged {
                 val query = it?.trim().toString()
-                if (query.isNotEmpty()){
+                if (query.isNotEmpty()) {
                     btnClearSearch.show()
                     binding.noDataLayout.hide()
-                    if (filteredCategory.isNotEmpty()){
-                        val search = filteredCategory.filter { it.title.lowercase().contains(query.lowercase()) }
+                    if (filteredCategory.isNotEmpty()) {
+                        val search = filteredCategory.filter {
+                            it.title.lowercase().contains(query.lowercase())
+                        }
                         searchAdapter.submitList(search)
-                    }else{
+                    } else {
                         val search = homeViewModel.searchByNovelTitle(query)
                         searchAdapter.submitList(search)
                     }
-                }else{
+                } else {
                     btnClearSearch.hide()
-                    if (filteredCategory.isNotEmpty()){
+                    if (filteredCategory.isNotEmpty()) {
                         searchAdapter.submitList(filteredCategory)
-                    }else{
+                    } else {
                         val search = homeViewModel.novels.value!!
                         searchAdapter.submitList(search)
                     }
@@ -147,9 +156,8 @@ class Search : Fragment() {
     }
 
 
-
-    private fun setFilterStatus(){
-        filterSheet.filterStatus = object: FilterNovelSheet.FilterStatus {
+    private fun setFilterStatus() {
+        filterSheet.filterStatus = object : FilterNovelSheet.FilterStatus {
 
             override fun onFilter(filtered: List<Novel>) {
                 binding.searchLayout.filter.badgeNumber.show()
@@ -159,9 +167,9 @@ class Search : Fragment() {
 
             override fun clearFilter() {
                 binding.searchLayout.filter.badgeNumber.hide()
-                if (filteredCategory.isNotEmpty()){
+                if (filteredCategory.isNotEmpty()) {
                     searchAdapter.submitList(filteredCategory)
-                }else{
+                } else {
                     searchAdapter.submitList(homeViewModel.novels.value ?: emptyList())
                 }
 
@@ -170,7 +178,6 @@ class Search : Fragment() {
 
         }
     }
-
 
 
 }

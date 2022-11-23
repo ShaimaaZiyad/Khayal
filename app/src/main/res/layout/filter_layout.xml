@@ -33,12 +33,12 @@
             android:layout_alignTop="@+id/btnFilter"
             android:layout_alignEnd="@id/btnFilter"
             android:background="@drawable/item_count_filter"
-            tools:text="41"
-            android:visibility="gone"
-            tools:visibility="visible"
             android:textColor="#FFF"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="41"
+            tools:visibility="visible" />
 
 
     </RelativeLayout>

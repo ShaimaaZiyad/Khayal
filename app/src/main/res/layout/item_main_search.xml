@@ -14,10 +14,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/searchCard"
         android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
         android:layout_margin="5dp"
-        app:cardCornerRadius="25dp"
         android:background="@drawable/bg_item_search"
-        android:layout_height="?actionBarSize">
+        app:cardCornerRadius="25dp">
 
 
         <LinearLayout
@@ -26,17 +26,17 @@
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/btnProfile"
+                setImage="@{user.profileImage}"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.4"
                 android:layout_gravity="center"
-                setImage="@{user.profileImage}"
+                android:layout_weight="1.4"
                 tools:src="@drawable/ic_profile_test" />
 
 
@@ -45,26 +45,26 @@
                 android:layout_height="wrap_content" />
 
 
-<!--            <include-->
-<!--                android:id="@+id/filter"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_weight="1.4"-->
-<!--                android:layout_marginTop="2dp"-->
-<!--                android:layout_marginBottom="4dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                layout="@layout/filter_layout" />-->
+            <!--            <include-->
+            <!--                android:id="@+id/filter"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_weight="1.4"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginBottom="4dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                layout="@layout/filter_layout" />-->
 
 
             <include
                 android:id="@+id/notify"
-                android:layout_height="wrap_content"
+                layout="@layout/notify_layout"
                 android:layout_width="0dp"
-                android:layout_weight="1.4"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="4dp"
-                android:layout_gravity="center"
-                layout="@layout/notify_layout" />
+                android:layout_weight="1.4" />
 
 
             <androidx.legacy.widget.Space
@@ -74,20 +74,20 @@
             <LinearLayout
                 android:id="@+id/btnSearch"
                 android:layout_width="0dp"
-                android:layout_weight="7"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="7">
 
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="6"
                     android:background="@null"
-                    android:hint="@string/search"
-                    android:textSize="18sp"
-                    android:textAlignment="center"
                     android:gravity="center"
+                    android:hint="@string/search"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray01"
-                    android:layout_height="match_parent" />
+                    android:textSize="18sp" />
 
                 <androidx.legacy.widget.Space
                     android:layout_width="10dp"
@@ -95,13 +95,12 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:src="@drawable/ic_search_gray" />
 
 
             </LinearLayout>
-
 
 
         </LinearLayout>

@@ -15,9 +15,9 @@
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="35dp"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:src="@drawable/ic_back_white"
             app:tint="@color/gray02" />
 
@@ -29,12 +29,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/searchCard"
             android:layout_width="0dp"
-            android:layout_weight="9"
-            android:layout_marginTop="10dp"
+            android:layout_height="?actionBarSize"
             android:layout_margin="2dp"
-            app:cardCornerRadius="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="9"
             android:background="@drawable/bg_item_search"
-            android:layout_height="?actionBarSize">
+            app:cardCornerRadius="25dp">
 
 
             <LinearLayout
@@ -43,18 +43,18 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <include
                     android:id="@+id/filter"
-                    android:layout_height="wrap_content"
+                    layout="@layout/filter_layout"
                     android:layout_width="0dp"
-                    android:layout_weight="1.4"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="visible"
-                    layout="@layout/filter_layout" />
+                    android:layout_weight="1.4"
+                    android:visibility="visible" />
 
 
                 <androidx.legacy.widget.Space
@@ -63,20 +63,20 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="7"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="7">
 
                     <EditText
                         android:id="@+id/search"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="6"
                         android:background="@null"
-                        android:hint="@string/search"
-                        android:textSize="18sp"
                         android:gravity="center|start"
+                        android:hint="@string/search"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray01"
-                        android:layout_height="match_parent" />
+                        android:textSize="18sp" />
 
                     <androidx.legacy.widget.Space
                         android:layout_width="10dp"
@@ -85,10 +85,10 @@
                     <ImageView
                         android:id="@+id/btnClearSearch"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:visibility="gone"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:src="@drawable/ic_cancel"
+                        android:visibility="gone"
                         app:tint="@color/primaryDarkColor" />
 
                     <androidx.legacy.widget.Space
@@ -99,8 +99,8 @@
                     <ImageView
                         android:id="@+id/btnSearch"
                         android:layout_width="0dp"
-                        android:layout_weight="1.4"
                         android:layout_height="match_parent"
+                        android:layout_weight="1.4"
                         android:src="@drawable/ic_search_gray" />
 
 

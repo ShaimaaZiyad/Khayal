@@ -66,24 +66,20 @@ class DataBase() {
     }
 
 
-
-
     private fun observeNotification() {
         notificationsPath.addSnapshotListener { value, error ->
             if (error == null) {
                 if (value != null) {
                     val notifications = value.toObjects(Notification::class.java)
                     _observeNotification.value = notifications
-                }else {
+                } else {
                     _observeNotification.value = emptyList()
                 }
-            }else {
+            } else {
                 _observeNotification.value = emptyList()
             }
         }
     }
-
-
 
 
     suspend fun signWithEmailAndPassword(email: String, password: String): AuthResult? {
@@ -91,17 +87,20 @@ class DataBase() {
     }
 
 
-
-    suspend fun createUserAccount(user: User) = auth.createUserWithEmailAndPassword(user.email,user.password)
+    suspend fun createUserAccount(user: User) =
+        auth.createUserWithEmailAndPassword(user.email, user.password)
 
 
     fun addUser(user: User) = usersPath.document(user.uid).set(user)
 
-    suspend fun getUserById() = usersPath.document(auth.currentUser?.uid!!).get().await().toObject(User::class.java) ?: User()
+    suspend fun getUserById() =
+        usersPath.document(auth.currentUser?.uid!!).get().await().toObject(User::class.java)
+            ?: User()
 
     suspend fun updateUser(user: User) = usersPath.document(user.uid).update(user.toHashMap())
 
-    suspend fun getUsers(): List<User> = usersPath.get().await().toObjects(User::class.java).filter { it.uid != Constants.ADMIN_ID }
+    suspend fun getUsers(): List<User> =
+        usersPath.get().await().toObjects(User::class.java).filter { it.uid != Constants.ADMIN_ID }
 
     suspend fun signOut(): Result<Boolean> {
         return supervisorScope {
@@ -109,7 +108,7 @@ class DataBase() {
             try {
                 remoteRes.await()
                 Result.Success(true)
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Result.Error(ex)
             }
         }
@@ -119,8 +118,8 @@ class DataBase() {
 
     private fun observeNovels() {
         novelsPath.addSnapshotListener { value, error ->
-            if (error == null){
-                if (value != null){
+            if (error == null) {
+                if (value != null) {
                     val novelData = value.toObjects(Novel::class.java)
                     _observeNovels.value = novelData
                 }
@@ -135,18 +134,23 @@ class DataBase() {
     suspend fun deleteBanner(data: Banner) = bannersPath.document(data.id).delete()
 
 
-    suspend fun getNotifications(): List<Notification> = notificationsPath.get().await().toObjects(Notification::class.java)
+    suspend fun getNotifications(): List<Notification> =
+        notificationsPath.get().await().toObjects(Notification::class.java)
+
     suspend fun addNotify(data: Notification) = notificationsPath.document(data.id).set(data)
-    suspend fun updateNotify(data: Notification) = notificationsPath.document(data.id).update(data.toHashMap())
+    suspend fun updateNotify(data: Notification) =
+        notificationsPath.document(data.id).update(data.toHashMap())
+
     suspend fun deleteNotify(data: Notification) = notificationsPath.document(data.id).delete()
 
 
-    suspend fun getNovels():List<Novel> = novelsPath.get().await().toObjects(Novel::class.java)
+    suspend fun getNovels(): List<Novel> = novelsPath.get().await().toObjects(Novel::class.java)
     suspend fun addNovel(data: Novel) = novelsPath.document(data.novelId).set(data)
-    suspend fun updateNovel(data: Novel) = novelsPath.document(data.novelId).update(data.toHashMap())
-    // TODO: delete the pdf files before delete the novel data.
-    suspend fun deleteNovel(novel: Novel)  = novelsPath.document(novel.novelId).delete()
+    suspend fun updateNovel(data: Novel) =
+        novelsPath.document(data.novelId).update(data.toHashMap())
 
+    // TODO: delete the pdf files before delete the novel data.
+    suspend fun deleteNovel(novel: Novel) = novelsPath.document(novel.novelId).delete()
 
 
     // you can upload file or image (category could be image or file)
@@ -160,20 +164,21 @@ class DataBase() {
                 filePath.downloadUrl
             }
             uriRef.await().toString()
-        }else{ // keep the old file as it is
+        } else { // keep the old file as it is
             uri.toString()
         }
     }
 
-    suspend fun loadPdf(url: String): ByteArray = storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
+    suspend fun loadPdf(url: String): ByteArray =
+        storage.getReferenceFromUrl(url).getBytes(Constants.MAX_BYTES_PDF).await()
 
-    suspend fun insertFiles(filesUri: List<Uri>,fileType: String): List<String> {
+    suspend fun insertFiles(filesUri: List<Uri>, fileType: String): List<String> {
         var urlList = mutableListOf<String>()
         filesUri.forEach label@{ uri ->
             val uniId = UUID.randomUUID().toString()
             val fileName = uniId + uri.lastPathSegment?.split("/")?.last()
             try {
-                val downloadUrl = uploadFile(uri, fileName,fileType)
+                val downloadUrl = uploadFile(uri, fileName, fileType)
                 urlList.add(downloadUrl)
             } catch (e: Exception) {
                 Log.d(TAG, "Upload file error due to: $e")
@@ -187,6 +192,6 @@ class DataBase() {
     }
 
 
-    suspend fun getPdf( pdfUrl : String) =
+    suspend fun getPdf(pdfUrl: String) =
         storage.getReferenceFromUrl(pdfUrl).getBytes(Constants.MAX_BYTES_PDF)
 }

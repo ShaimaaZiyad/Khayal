@@ -10,9 +10,9 @@ import com.shaimaziyad.khayal.utils.Result
 import kotlinx.coroutines.launch
 
 
-class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
+class UsersViewModel(private val userRepo: UserRepository) : ViewModel() {
 
-    companion object{
+    companion object {
         private const val TAG = "UsersScreenViewModel"
     }
 
@@ -37,22 +37,23 @@ class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
     }
 
 
-
     fun loadUsers() {
-        Log.d(TAG,"onLoading.. Users")
+        Log.d(TAG, "onLoading.. Users")
         resetStatus()
         _usersStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = userRepo.loadUsers()
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: users size: ${res.data.size}")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: users size: ${res.data.size}")
                 val data = res.data
                 _users.value = data
                 _usersStatus.value = DataStatus.SUCCESS
                 _isDataExist.value = _users.value.isNullOrEmpty()
-            }
-            else if (res is Result.Error){
-                Log.d(TAG,"onError: error happen during fetching users due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during fetching users due to ${res.exception.message}"
+                )
                 _usersStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
                 _isDataExist.value = null
@@ -62,7 +63,7 @@ class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
     }
 
 
-    private fun resetStatus(){
+    private fun resetStatus() {
         _usersStatus.value = null
     }
 
@@ -70,7 +71,7 @@ class UsersViewModel (private val userRepo: UserRepository): ViewModel() {
     fun searchByUserName(query: String): List<User> {  // return list of users
         val result = if (query.isNotEmpty()) {
             _users.value?.filter { it.name.lowercase().contains(query.lowercase()) }
-        }else {
+        } else {
             _users.value
         }
         return result!!

@@ -137,6 +137,8 @@
     <string name="cover_size">(600 * 930)\nمطلوب</string>
 
     <string name="edit_banner">تعديل الإعلان</string>
+    <string name="your_country">الدولة</string>
+    <string name="country_empty_error">الدولة مطلوبة</string>
 
     <string name="select_image">اختر صورة +</string>
 

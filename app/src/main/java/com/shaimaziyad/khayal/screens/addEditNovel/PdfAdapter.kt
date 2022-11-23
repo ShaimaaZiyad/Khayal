@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.shaimaziyad.khayal.databinding.ItemPdfBinding
 
-class PdfAdapter: ListAdapter<String, PdfAdapter.ViewHolder>(PdfDiffCallback) {
+class PdfAdapter : ListAdapter<String, PdfAdapter.ViewHolder>(PdfDiffCallback) {
 
     lateinit var clickListener: PdfClickListener
 
-    class ViewHolder(private val binding:  ItemPdfBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemPdfBinding) : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -25,11 +25,11 @@ class PdfAdapter: ListAdapter<String, PdfAdapter.ViewHolder>(PdfDiffCallback) {
         @SuppressLint("SetTextI18n")
         fun onBind(data: String, clickListener: PdfClickListener) {
 
-            binding.badgeNumber.text = (adapterPosition + 1 ).toString()
+            binding.badgeNumber.text = (adapterPosition + 1).toString()
 
             // when click on novel item
             binding.btnRemove.setOnClickListener {
-                clickListener.onRemove(data,adapterPosition)
+                clickListener.onRemove(data, adapterPosition)
             }
 
             binding.executePendingBindings()
@@ -45,12 +45,11 @@ class PdfAdapter: ListAdapter<String, PdfAdapter.ViewHolder>(PdfDiffCallback) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel,clickListener)
+        holder.onBind(novel, clickListener)
     }
 
 
-
-    companion object PdfDiffCallback: DiffUtil.ItemCallback<String>(){
+    companion object PdfDiffCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }

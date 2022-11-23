@@ -7,8 +7,10 @@ import com.shaimaziyad.khayal.data.Novel
 import com.shaimaziyad.khayal.databinding.FilterNovelSheetBinding
 import com.shaimaziyad.khayal.utils.*
 
-class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
-                       private val fragment: Fragment) {
+class FilterNovelSheet(
+    private val binding: FilterNovelSheetBinding,
+    private val fragment: Fragment
+) {
 
     lateinit var filterStatus: FilterStatus
     lateinit var novels: List<Novel>
@@ -70,8 +72,16 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
 
     private fun setFilters() {
         binding.sheet.apply {
-            setListToAutoComplete(context,novelFilter.novelCategories,binding.btnSelectCategory) // set category list
-            setListToAutoComplete(context,novelFilter.novelType,binding.btnSelectType) // set novel list
+            setListToAutoComplete(
+                context,
+                novelFilter.novelCategories,
+                binding.btnSelectCategory
+            ) // set category list
+            setListToAutoComplete(
+                context,
+                novelFilter.novelType,
+                binding.btnSelectType
+            ) // set novel list
         }
     }
 
@@ -87,8 +97,9 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
     }
 
 
-    private fun updateBtnApplyInfo(value: Int){
-        binding.btnApply.text = fragment.requireContext().getString(R.string.results,value.toString())
+    private fun updateBtnApplyInfo(value: Int) {
+        binding.btnApply.text =
+            fragment.requireContext().getString(R.string.results, value.toString())
     }
 
 
@@ -99,11 +110,11 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
             filtered = novels.filter { it.category == category }
             filterStatus.onFilter(filtered)
         }
-        if (type != null){
+        if (type != null) {
             filtered = novels.filter { it.type == type }
             filterStatus.onFilter(filtered)
         }
-        if (category == null && type == null){
+        if (category == null && type == null) {
             clearFilter()
         }
         return filtered
@@ -113,10 +124,9 @@ class FilterNovelSheet(private val binding: FilterNovelSheetBinding,
     interface FilterStatus {
         fun onFilter(filtered: List<Novel>)
         fun clearFilter()
-        fun onSheetOpen(){}
-        fun onSheetClose(){}
+        fun onSheetOpen() {}
+        fun onSheetClose() {}
     }
-
 
 
 }

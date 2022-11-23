@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:orientation="horizontal"
-            tools:listitem="@layout/item_chapter"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_chapter">
 
         </androidx.recyclerview.widget.RecyclerView>
 

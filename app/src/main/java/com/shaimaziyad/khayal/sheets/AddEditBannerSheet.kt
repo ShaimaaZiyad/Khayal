@@ -12,8 +12,10 @@ import com.shaimaziyad.khayal.utils.*
 import dev.ronnie.github.imagepicker.ImagePicker
 import dev.ronnie.github.imagepicker.ImageResult
 
-class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
-                       private val fragment: Fragment) {
+class AddEditBannerSheet(
+    private val binding: AddEditBannerSheetBinding,
+    private val fragment: Fragment
+) {
 
     lateinit var bannerStatus: BannerStatus
     private val context = fragment.requireContext()
@@ -24,7 +26,7 @@ class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
     private var type = AdType.Rotating.name // by default
 
 
-    private fun resetSheet(){
+    private fun resetSheet() {
         binding.apply {
             btnBannerState.isChecked = false
             title.setText("")
@@ -52,7 +54,7 @@ class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
         sheet.state = BottomSheetBehavior.STATE_EXPANDED
         binding.isEdit = isEdit
 
-        if (banner != null){ // isEdit
+        if (banner != null) { // isEdit
             binding.data = banner
             binding.btnBannerState.isChecked = banner.isActive
             imgBanner = banner.cover.toUri()
@@ -60,18 +62,17 @@ class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
 
             setLabel(context.getString(R.string.edit_banner))
             setBannerType(banner)
-        }else{ // add new
+        } else { // add new
             resetSheet()
             setLabel(context.getString(R.string.add_Banner))
         }
-
 
 
         /** radio buttons **/
         binding.radioGroupAdType.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.typeBanner -> {
-                   type = AdType.Banner.name
+                    type = AdType.Banner.name
                 }
                 R.id.typeRotating -> {
                     type = AdType.Rotating.name
@@ -87,34 +88,41 @@ class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
             val description = binding.description.text?.trim().toString()
             val isActive = binding.btnBannerState.isChecked // status of banner
 
-            if (title.isEmpty()){
+            if (title.isEmpty()) {
                 binding.title.error = context.getString(R.string.error_require_title)
                 binding.title.requestFocus()
                 return@setOnClickListener
             }
-            if (description.isEmpty()){
+            if (description.isEmpty()) {
                 binding.description.error = context.getString(R.string.error_require_description)
                 binding.description.requestFocus()
                 return@setOnClickListener
             }
-            if (type.isEmpty()){
+            if (type.isEmpty()) {
                 fragment.showMessage(context.getString(R.string.error_require_type))
             }
-            if (imgBanner == null){
+            if (imgBanner == null) {
                 fragment.showMessage(context.getString(R.string.error_require_image))
             }
 
-            if (type.isNotEmpty() && imgBanner != null){
+            if (type.isNotEmpty() && imgBanner != null) {
                 banner?.cover = imgBanner.toString()
                 banner?.isActive = isActive
                 banner?.type = type
 
-                if (isEdit){ // update old banner
+                if (isEdit) { // update old banner
                     showProgress()
                     bannerStatus.update(banner!!)
-                }else{ // add new banner
+                } else { // add new banner
                     showProgress()
-                    val newBanner = Banner(getBannerId(),title, description,imgBanner.toString(),type, isActive)
+                    val newBanner = Banner(
+                        getBannerId(),
+                        title,
+                        description,
+                        imgBanner.toString(),
+                        type,
+                        isActive
+                    )
                     bannerStatus.add(newBanner)
                 }
 
@@ -141,17 +149,17 @@ class AddEditBannerSheet(private val binding: AddEditBannerSheetBinding,
 
     }
 
-    private fun setLabel(t: String){
+    private fun setLabel(t: String) {
         binding.tvLabel.text = t
     }
 
     private fun setBannerType(banner: Banner) {
-        when(banner.type){
-            AdType.Banner.name ->{
+        when (banner.type) {
+            AdType.Banner.name -> {
                 binding.typeBanner.isChecked = true
                 binding.typeRotating.isChecked = false
             }
-            AdType.Rotating.name ->{
+            AdType.Rotating.name -> {
                 binding.typeBanner.isChecked = false
                 binding.typeRotating.isChecked = true
             }

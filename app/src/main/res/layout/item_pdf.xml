@@ -6,7 +6,6 @@
     <data>
 
 
-
     </data>
 
     <FrameLayout
@@ -17,8 +16,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="14dp">
+            app:cardCornerRadius="14dp"
+            app:cardUseCompatPadding="true">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -46,31 +45,24 @@
                 <TextView
                     android:id="@+id/badgeNumber"
                     android:layout_width="wrap_content"
-                    android:textAlignment="center"
-                    android:paddingEnd="5dp"
-                    android:paddingStart="5dp"
-                    android:layout_gravity="bottom|end"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="bottom|end"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/item_count_filter"
-                    tools:text="41"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:textAlignment="center"
                     android:textColor="#FFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:ignore="RtlCompat" />
+                    tools:ignore="RtlCompat"
+                    tools:text="41" />
 
             </FrameLayout>
 
 
-
-
         </androidx.cardview.widget.CardView>
-
-
-
-
-
 
 
         <!--        <androidx.cardview.widget.CardView-->

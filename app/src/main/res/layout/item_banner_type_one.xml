@@ -19,25 +19,24 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         android:focusable="true"
-        app:cardElevation="0dp"
         app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
         app:strokeColor="#CCCCCC"
         app:strokeWidth="1dp">
 
 
-            <ImageView
-                android:id="@+id/ad_image_view"
-                setImage="@{banner.cover}"
+        <ImageView
+            android:id="@+id/ad_image_view"
+            setImage="@{banner.cover}"
 
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ad_one" />
-
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ad_one" />
 
 
     </com.google.android.material.card.MaterialCardView>

@@ -10,5 +10,5 @@ import com.shaimaziyad.khayal.utils.itemNovelWithCategoryAdapterDelegate
 // this adapter will display mixed data in home fragment
 class HomeAdapter(private val fragment: Home) : ListDelegationAdapter<List<DisplayableHomeItem>>(
     bannerTypeOneAdapterDelegate(),
-    itemNovelWithCategoryAdapterDelegate(fragment,GridLayoutManager.HORIZONTAL)
+    itemNovelWithCategoryAdapterDelegate(fragment, GridLayoutManager.HORIZONTAL)
 )

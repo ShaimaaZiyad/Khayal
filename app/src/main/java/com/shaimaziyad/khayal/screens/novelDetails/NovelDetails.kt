@@ -24,7 +24,7 @@ import com.shaimaziyad.khayal.utils.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 @SuppressLint("NotifyDataSetChanged")
-class NovelDetails: Fragment() {
+class NovelDetails : Fragment() {
 
     private lateinit var binding: NovelDetailsBinding
 
@@ -37,7 +37,11 @@ class NovelDetails: Fragment() {
     private val chapterAdapter by lazy { ChapterAdapter() }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = NovelDetailsBinding.inflate(layoutInflater)
         novelDetailsAdapter = NovelDetailsAdapter(this)
@@ -66,7 +70,7 @@ class NovelDetails: Fragment() {
             }
 
             /** button back **/
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 findNavController().navigateUp()
             }
 
@@ -76,7 +80,6 @@ class NovelDetails: Fragment() {
                 // todo add share feature
                 showMessage("share")
             }
-
 
 
         }
@@ -89,9 +92,10 @@ class NovelDetails: Fragment() {
 
                 /** novels live data **/
                 novels.observe(viewLifecycleOwner) {
-                    if (!it.isNullOrEmpty()){
-                        val suggestions = it.filter { it.category == novel?.category && it.novelId != novel!!.novelId }
-                        if (suggestions.isEmpty()){
+                    if (!it.isNullOrEmpty()) {
+                        val suggestions =
+                            it.filter { it.category == novel?.category && it.novelId != novel!!.novelId }
+                        if (suggestions.isEmpty()) {
                             binding.suggestionsLayout.root.hide()
                         }
                         novelAdapter.submitList(suggestions)
@@ -99,21 +103,20 @@ class NovelDetails: Fragment() {
                 }
 
                 /** like status **/
-                likeStatus.observe(viewLifecycleOwner){
-                    when(it){
-                        DataStatus.LOADING->{
+                likeStatus.observe(viewLifecycleOwner) {
+                    when (it) {
+                        DataStatus.LOADING -> {
                             binding.btnLike.isClickable = false
                         }
-                        DataStatus.SUCCESS->{
+                        DataStatus.SUCCESS -> {
                             binding.btnLike.isClickable = true
                         }
-                        DataStatus.ERROR ->{
+                        DataStatus.ERROR -> {
                             binding.btnLike.isClickable = true
                         }
-                        else->{}
+                        else -> {}
                     }
                 }
-
 
 
             }
@@ -126,16 +129,18 @@ class NovelDetails: Fragment() {
     }
 
     private fun setData() {
-        novel = try { arguments?.get(Constants.NOVEL_KEY) as Novel }
-        catch (ex: Exception) { null }
+        novel = try {
+            arguments?.get(Constants.NOVEL_KEY) as Novel
+        } catch (ex: Exception) {
+            null
+        }
     }
 
 
-
-    private fun setChapterAdapter(){
+    private fun setChapterAdapter() {
         val data = novel?.pdfs
         chapterAdapter.novelCover = novel!!.cover
-        chapterAdapter.clickListener = object: ChapterAdapter.ClickListener{
+        chapterAdapter.clickListener = object : ChapterAdapter.ClickListener {
             override fun onClick(uri: String) {
                 navigateToPdfViewer(uri)
             }
@@ -144,12 +149,17 @@ class NovelDetails: Fragment() {
         binding.rvChapters.apply {
             adapter = chapterAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = GridLayoutManager(binding.rvChapters.context,1, GridLayoutManager.HORIZONTAL,false)
+            layoutManager = GridLayoutManager(
+                binding.rvChapters.context,
+                1,
+                GridLayoutManager.HORIZONTAL,
+                false
+            )
         }
 
     }
 
-    private fun setNovelAdapter(){
+    private fun setNovelAdapter() {
         binding.suggestionsLayout.tvCategory.text = "Suggestions"
 
         /** button show suggestions **/
@@ -158,7 +168,7 @@ class NovelDetails: Fragment() {
         }
 
         /** click listener adapter **/
-        novelAdapter.clickListener = object: NovelAdapter.ClickListener{
+        novelAdapter.clickListener = object : NovelAdapter.ClickListener {
             override fun onClick(novel: Novel, index: Int) {
                 navigateToSelf(novel)
             }
@@ -168,31 +178,31 @@ class NovelDetails: Fragment() {
         binding.suggestionsLayout.rvNovels.apply {
             adapter = novelAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = GridLayoutManager(binding.suggestionsLayout.rvNovels.context,1, GridLayoutManager.HORIZONTAL,false)
+            layoutManager = GridLayoutManager(
+                binding.suggestionsLayout.rvNovels.context,
+                1,
+                GridLayoutManager.HORIZONTAL,
+                false
+            )
         }
 
 
     }
 
 
-
-
-
     private fun setNovelDetails() {
         binding.novelDetailsLayout.novel = novel
     }
 
-    fun navigateToSelf(novel: Novel){
+    fun navigateToSelf(novel: Novel) {
         val data = bundleOf(Constants.NOVEL_KEY to novel)
-        findNavController().navigate(R.id.action_novelDetails_self,data)
+        findNavController().navigate(R.id.action_novelDetails_self, data)
     }
 
-    fun navigateToPdfViewer(pdf: String){
+    fun navigateToPdfViewer(pdf: String) {
         val data = bundleOf(Constants.PDF_KEY to pdf)
-        findNavController().navigate(R.id.action_novelDetails_to_pdfViewer,data)
+        findNavController().navigate(R.id.action_novelDetails_to_pdfViewer, data)
     }
-
-
 
 
 }

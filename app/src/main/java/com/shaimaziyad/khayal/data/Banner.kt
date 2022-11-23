@@ -17,7 +17,7 @@ data class Banner(
     @field:JvmField
     var isActive: Boolean = false,
     val date: Date = getCurrentTime()
-): DisplayableHomeItem,Parcelable{
+) : DisplayableHomeItem, Parcelable {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "id" to id,

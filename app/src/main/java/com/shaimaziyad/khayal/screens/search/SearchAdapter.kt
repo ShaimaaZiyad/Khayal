@@ -13,7 +13,8 @@ class SearchAdapter : ListAdapter<Novel, SearchAdapter.ViewHolder>(NovelDiffCall
 
     lateinit var clickListener: ClickListener
 
-    class ViewHolder(private val binding: ItemNovelCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemNovelCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun binding(parent: ViewGroup): ViewHolder {
@@ -26,7 +27,7 @@ class SearchAdapter : ListAdapter<Novel, SearchAdapter.ViewHolder>(NovelDiffCall
 
             /** on item clicked **/
             binding.btnItem.setOnClickListener {
-                clickListener.onClick(data,adapterPosition)
+                clickListener.onClick(data, adapterPosition)
             }
             binding.executePendingBindings()
         }
@@ -41,12 +42,11 @@ class SearchAdapter : ListAdapter<Novel, SearchAdapter.ViewHolder>(NovelDiffCall
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val novel = getItem(position)
-        holder.onBind(novel,clickListener)
+        holder.onBind(novel, clickListener)
     }
 
 
-
-    companion object NovelDiffCallback: DiffUtil.ItemCallback<Novel>() {
+    companion object NovelDiffCallback : DiffUtil.ItemCallback<Novel>() {
         override fun areItemsTheSame(oldItem: Novel, newItem: Novel): Boolean {
             return oldItem == newItem
         }

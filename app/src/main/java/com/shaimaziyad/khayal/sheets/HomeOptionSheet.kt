@@ -13,8 +13,10 @@ import com.shaimaziyad.khayal.screens.home.Home
 import com.shaimaziyad.khayal.utils.*
 
 
-class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
-                      private val fragment: Home) {
+class HomeOptionSheet(
+    private val binding: HomeOptionSheetBinding,
+    private val fragment: Home
+) {
 
     private val sheet = BottomSheetBehavior.from(binding.sheet)
     lateinit var sheetStatus: SheetStatus
@@ -25,11 +27,11 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
     var user: User? = null
 
 
-    private fun setNotifyCount(){
-        if (notifyCounts > 0){
+    private fun setNotifyCount() {
+        if (notifyCounts > 0) {
             binding.notify.badgeNumber.show()
             binding.notify.badgeNumber.text = notifyCounts.toString()
-        }else{
+        } else {
             binding.notify.badgeNumber.hide()
         }
     }
@@ -73,7 +75,7 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
         }
 
         /** button settings **/
-        binding.btnSettings.setOnClickListener{
+        binding.btnSettings.setOnClickListener {
             fragment.showMessage("settings")
         }
 
@@ -100,23 +102,22 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
     }
 
 
-
     private fun setViews() {
-        if (user?.userType == UserType.ADMIN.name){
+        if (user?.userType == UserType.ADMIN.name) {
             binding.apply {
                 btnSettings.hide()
                 btnRateUs.hide()
                 btnReport.hide()
                 btnHelp.hide()
             }
-        }else{
+        } else {
             binding.btnUsers.hide()
             binding.btnBannerManager.hide()
         }
     }
 
 
-    private fun showReportDialog(){
+    private fun showReportDialog() {
 
         val title = fragment.context?.getString(R.string.report)
         var builder: AlertDialog? = null
@@ -132,8 +133,8 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
 
         alert.setPositiveButton(fragment.context?.getString(R.string.send)) { dialog, whichButton ->
             val report = edittext.text.trim().toString()
-            if (report.isNotEmpty()){
-                val notify = Notification(getNotifyId(),title!!,report,"","","","")
+            if (report.isNotEmpty()) {
+                val notify = Notification(getNotifyId(), title!!, report, "", "", "", "")
                 notify.pattern = NotifyPattern.Report.name
                 notify.type = NotifyType.Direct.name
                 notify.targetUser = Constants.ADMIN_ID
@@ -152,7 +153,6 @@ class HomeOptionSheet(private val binding: HomeOptionSheetBinding,
         builder.show()
 
     }
-
 
 
     interface SheetStatus {

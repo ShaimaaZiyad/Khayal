@@ -23,6 +23,9 @@
     <string name="SignUp">Sign Up</string>
     <string name="name_empty_error">Name Required</string>
     <string name="email_empty_error">Email Required</string>
+
+    <string name="country_empty_error">Country Required</string>
+
     <string name="password_empty_error">Password Required</string>
     <string name="password_is_less_error">Require 6 characters at least</string>
     <string name="password_mismatch_error">Password mismatch</string>
@@ -75,6 +78,7 @@
     <string name="results">Results: %s</string>
 
 
+
     <string name="fosha">Fosha</string>
     <string name="slang">Slang</string>
     <string name="gulf">Gulf</string>
@@ -88,7 +92,6 @@
     <string name="error_require_description">Required Description</string>
     <string name="error_require_external_link">Required Link</string>
     <string name="error_require_internal_link">Required User Destination</string>
-
 
     <string name="notifications">Notifications</string>
     <string name="description">Description</string>
@@ -126,6 +129,13 @@
     <string name="success_report">Thanks for reporting</string>
     <string name="cover_size">Required\n(600 * 930)</string>
     <string name="edit_banner">Edit Banner</string>
+    <string name="your_country">Your Country</string>
+    <string name="category1">category1</string>
+    <string name="category2">category2</string>
+    <string name="category3">category3</string>
+    <string name="category4">category4</string>
+    <string name="category5">category5</string>
+
     <string name="banner_title">Banner Title</string>
     <string name="banner_size">Required (600 * 300)</string>
     <string name="add_Banner">Add Banner</string>
@@ -138,6 +148,10 @@
     <string name="error_require_type">Required  type</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="the_account_has_been_created">The account has been created</string>
+    <string name="login_succeeded">Login succeeded</string>
+    <string name="login_failed">Login failed</string>
 
 
 </resources>

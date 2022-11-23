@@ -30,8 +30,6 @@
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -83,7 +81,6 @@
                             android:orientation="vertical">
 
 
-
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -91,11 +88,11 @@
 
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/btnProfile"
+                                    setImage="@{user.profileImage}"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="2"
                                     android:layout_gravity="center"
-                                    setImage="@{user.profileImage}"
+                                    android:layout_weight="2"
                                     tools:src="@drawable/ic_profile_test" />
 
                                 <LinearLayout
@@ -107,21 +104,20 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textColor="@color/black"
-                                        android:textStyle="bold"
-                                        android:textSize="20sp"
                                         android:text="@{user.name}"
-                                        tools:text="Ahmed Mohamed"/>
+                                        android:textColor="@color/black"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        tools:text="Ahmed Mohamed" />
 
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text="@{user.email}"
                                         android:textColor="@color/black"
                                         android:textSize="18sp"
-                                        android:text="@{user.email}"
-                                        tools:text="example@gmail.com"/>
-
+                                        tools:text="example@gmail.com" />
 
 
                                 </LinearLayout>
@@ -132,16 +128,16 @@
 
                             <androidx.legacy.widget.Space
                                 android:layout_width="wrap_content"
-                                android:layout_height="50dp"/>
+                                android:layout_height="50dp" />
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/primaryDarkColor"/>
+                                android:background="@color/primaryDarkColor" />
 
                             <androidx.legacy.widget.Space
                                 android:layout_width="wrap_content"
-                                android:layout_height="50dp"/>
+                                android:layout_height="50dp" />
 
 
                             <LinearLayout
@@ -154,18 +150,18 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_groups"/>
+                                    android:src="@drawable/ic_groups"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/users"
                                     android:textColor="@color/black"
-                                    android:text="@string/users"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -180,18 +176,18 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_ad_manager"/>
+                                    android:src="@drawable/ic_ad_manager"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/banners_manager"
                                     android:textColor="@color/black"
-                                    android:text="@string/banners_manager"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -205,10 +201,10 @@
 
                                 <include
                                     android:id="@+id/notify"
-                                    android:layout_gravity="center"
-                                    android:layout_height="wrap_content"
+                                    layout="@layout/notify_layout"
                                     android:layout_width="wrap_content"
-                                    layout="@layout/notify_layout" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center" />
 
 
                                 <TextView
@@ -216,10 +212,10 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/notifications"
                                     android:textColor="@color/black"
-                                    android:text="@string/notifications"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -234,18 +230,18 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_settings"/>
+                                    android:src="@drawable/ic_settings"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/settings"
                                     android:textColor="@color/black"
-                                    android:text="@string/settings"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -260,18 +256,18 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_rate"/>
+                                    android:src="@drawable/ic_rate"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/rate_us"
                                     android:textColor="@color/black"
-                                    android:text="@string/rate_us"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -286,22 +282,21 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_report"/>
+                                    android:src="@drawable/ic_report"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/report"
                                     android:textColor="@color/black"
-                                    android:text="@string/report"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
-
 
 
                             <LinearLayout
@@ -314,27 +309,24 @@
                                 <ImageView
                                     android:layout_width="38dp"
                                     android:layout_height="50dp"
-                                    app:tint="@color/gray01"
-                                    android:src="@drawable/ic_help"/>
+                                    android:src="@drawable/ic_help"
+                                    app:tint="@color/gray01" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="20dp"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
+                                    android:text="@string/help_feedback"
                                     android:textColor="@color/black"
-                                    android:text="@string/help_feedback"/>
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
 
 
-
-
                         </LinearLayout>
-
 
 
                     </ScrollView>
@@ -343,9 +335,7 @@
                 </LinearLayout>
 
 
-
             </FrameLayout>
-
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

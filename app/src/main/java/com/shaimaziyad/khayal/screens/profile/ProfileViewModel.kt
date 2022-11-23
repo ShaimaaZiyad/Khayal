@@ -10,7 +10,7 @@ import com.shaimaziyad.khayal.repository.UserRepository
 import com.shaimaziyad.khayal.utils.*
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
+class ProfileViewModel(private val userRepo: UserRepository) : ViewModel() {
 
     companion object {
         private const val TAG = "ProfileViewModel"
@@ -25,7 +25,7 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     val updateUserState: LiveData<DataStatus?> = _updateUserState
 
 
-    private val _isLoggedOut= MutableLiveData<Boolean?>()
+    private val _isLoggedOut = MutableLiveData<Boolean?>()
     val isLoggedOut: LiveData<Boolean?> = _isLoggedOut
 
 
@@ -40,11 +40,10 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
     val likeStatus: LiveData<DataStatus?> = _likeStatus
 
 
-
     fun signOut() {
         viewModelScope.launch {
             val res = userRepo.signOut()
-            if (res is Result.Success){
+            if (res is Result.Success) {
                 _isLoggedOut.value = true
                 _user.value = null
             }
@@ -62,25 +61,24 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
     fun isNovelLiked(novelId: String) = _user.value?.likes?.contains(novelId)
 
-    fun refreshUser(user: User){
+    fun refreshUser(user: User) {
         _user.value = user
     }
 
 
     fun setLikeToNovel(novel: Novel) {
-        Log.d(TAG,"onLoading.. setting like to novel..")
+        Log.d(TAG, "onLoading.. setting like to novel..")
         resetStatus()
         _likeStatus.value = DataStatus.LOADING
         viewModelScope.launch {
 
             val res = userRepo.setLikeToNovel(novel)
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: like status updated")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: like status updated")
                 _likeStatus.value = DataStatus.SUCCESS
                 refreshLikes(novel)
-            }
-            else if(res is Result.Error) {
-                Log.d(TAG,"onError: error happen setting like due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(TAG, "onError: error happen setting like due to ${res.exception.message}")
                 _likeStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
 
@@ -90,13 +88,13 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
 
     // update likes locally
-    private fun refreshLikes(novel: Novel){
+    private fun refreshLikes(novel: Novel) {
         val user = _user.value!!
         val likes = _user.value?.likes?.toMutableList()
         val isLiked = likes?.contains(novel.novelId)!!
-        if (!isLiked){
+        if (!isLiked) {
             likes.add(novel.novelId)
-        }else{
+        } else {
             likes.remove(novel.novelId)
         }
         user.likes = likes
@@ -105,28 +103,27 @@ class ProfileViewModel(private val userRepo: UserRepository): ViewModel() {
 
 
     fun update(oldUser: User) {
-        Log.d(TAG,"onUpdating..")
+        Log.d(TAG, "onUpdating..")
         resetStatus()
         _updateUserState.value = DataStatus.LOADING
         viewModelScope.launch {
             val image = oldUser.profileImage.toUri()
             val fileName = getCurrentTime().toString()
-            val imageProfile = userRepo.uploadProfile(image,fileName)
+            val imageProfile = userRepo.uploadProfile(image, fileName)
             oldUser.profileImage = imageProfile
             val res = userRepo.update(oldUser)
             if (res is Result.Success) {
-                Log.d(TAG,"onUpdating: user has been updated")
+                Log.d(TAG, "onUpdating: user has been updated")
                 _updateUserState.value = DataStatus.SUCCESS
                 _user.value = oldUser
 
-            }else if (res is Result.Error) {
-                Log.d(TAG,"onUpdating: faild to update due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(TAG, "onUpdating: faild to update due to ${res.exception.message}")
                 _updateUserState.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
         }
     }
-
 
 
     fun resetStatus() {

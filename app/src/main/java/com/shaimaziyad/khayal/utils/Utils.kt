@@ -11,19 +11,18 @@ enum class UserType { USER, ADMIN }
 
 enum class DataStatus { LOADING, ERROR, SUCCESS }
 
-enum class FileType {PDF, IMAGE,IMAGE_PROFILE, IMAGE_NOTIFICATION,IMAGE_BANNER}
+enum class FileType { PDF, IMAGE, IMAGE_PROFILE, IMAGE_NOTIFICATION, IMAGE_BANNER }
 
-enum class NotifyType {System, Direct}
+enum class NotifyType { System, Direct }
 
-enum class NotifyPattern {Message, Report, Alert}
+enum class NotifyPattern { Message, Report, Alert }
 
-enum class SelectedSection {UnRead, Read, System}
+enum class SelectedSection { UnRead, Read, System }
 
-enum class AdType {Rotating, Banner}
+enum class AdType { Rotating, Banner }
 
 
-
-class NovelFilter(private val context: Context){
+class NovelFilter(private val context: Context) {
 
     private fun getString(res: Int) = context.getString(res)
 
@@ -52,12 +51,7 @@ fun getInternalLinks(context: Context): HashMap<String, Int> {
 }
 
 
-
-
-
 fun getCurrentTime(): Date = Calendar.getInstance().time
-
-
 
 
 internal fun getNovelId() = "novId" + UUID.randomUUID().toString()

@@ -11,7 +11,8 @@ import kotlinx.coroutines.supervisorScope
 class BannerRepository(private val remote: DataBase) {
 
 
-    suspend fun uploadBannerCover(uri: Uri, fileName: String) = remote.uploadFile(uri,fileName, FileType.IMAGE_BANNER.name)
+    suspend fun uploadBannerCover(uri: Uri, fileName: String) =
+        remote.uploadFile(uri, fileName, FileType.IMAGE_BANNER.name)
 
 
     suspend fun loadBanners(): Result<List<Banner>> {
@@ -19,7 +20,7 @@ class BannerRepository(private val remote: DataBase) {
             val loadTask = async { remote.getBanners() }
             try {
                 Result.Success(loadTask.await())
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Result.Error(ex)
             }
         }
@@ -27,11 +28,11 @@ class BannerRepository(private val remote: DataBase) {
 
     suspend fun submitBanner(banner: Banner): Result<Boolean> {
         return supervisorScope {
-            val addTask = async {  remote.addBanner(banner) }
+            val addTask = async { remote.addBanner(banner) }
             try {
                 addTask.await()
                 Result.Success(true)
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 Result.Error(ex)
             }
         }

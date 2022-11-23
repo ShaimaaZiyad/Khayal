@@ -60,7 +60,11 @@ class AddEditNovel : Fragment() {
     private lateinit var novelFilter: NovelFilter
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = AddEditNovelBinding.inflate(layoutInflater)
 //        viewModel = ViewModelProvider(this)[AddEditNovelViewModel::class.java]
@@ -81,8 +85,16 @@ class AddEditNovel : Fragment() {
         super.onResume()
 
         // set the lists
-        setListToAutoComplete(requireContext(),novelFilter.novelCategories,binding.btnSelectCategory) // set categories list
-        setListToAutoComplete(requireContext(),novelFilter.novelType,binding.btnSelectType) // set types list
+        setListToAutoComplete(
+            requireContext(),
+            novelFilter.novelCategories,
+            binding.btnSelectCategory
+        ) // set categories list
+        setListToAutoComplete(
+            requireContext(),
+            novelFilter.novelType,
+            binding.btnSelectType
+        ) // set types list
 
     }
 
@@ -92,7 +104,7 @@ class AddEditNovel : Fragment() {
 
             /** navigate to home live data **/
             navigateToHome.observe(viewLifecycleOwner) {
-                if (it == true){
+                if (it == true) {
                     findNavController().navigate(R.id.action_addEditNovel_to_home)
                     homeViewModel.loadNovels()
                     viewModel.navigateToHomeDone()
@@ -100,11 +112,9 @@ class AddEditNovel : Fragment() {
             }
 
 
-
-
             /** info live data **/
-            info.observe(viewLifecycleOwner){ info ->
-                if (info != null){
+            info.observe(viewLifecycleOwner) { info ->
+                if (info != null) {
                     showMessage(info)
                     viewModel.resetStatus()
                 }
@@ -130,17 +140,17 @@ class AddEditNovel : Fragment() {
                 mWriter = writerName.text?.trim().toString()
 
 
-                if (mtitle.isEmpty()){
+                if (mtitle.isEmpty()) {
                     title.error = "title required"
                     title.requestFocus()
                     return@setOnClickListener
                 }
-                if (mDescription.isEmpty()){
+                if (mDescription.isEmpty()) {
                     description.error = "description required"
                     description.requestFocus()
                     return@setOnClickListener
                 }
-                if (mWriter.isEmpty()){
+                if (mWriter.isEmpty()) {
                     writerName.error = "writer required"
                     writerName.requestFocus()
                     return@setOnClickListener
@@ -153,11 +163,9 @@ class AddEditNovel : Fragment() {
                 }
                 if (mCover.isEmpty()) {
                     showMessage("cover required")
-                }
-                else if(mPdfs.isEmpty()) {
+                } else if (mPdfs.isEmpty()) {
                     showMessage("please select at lest one pdf file")
-                }
-                else {
+                } else {
                     submit()
                 }
 
@@ -199,7 +207,6 @@ class AddEditNovel : Fragment() {
             }
 
 
-
         }
     }
 
@@ -209,21 +216,20 @@ class AddEditNovel : Fragment() {
     }
 
 
-
     private fun submit() {
-        if (!isEdit){ // add new novel
-            val novel = Novel(getNovelId(),mtitle,mDescription,mType,mCategory,mWriter,mCover)
-            viewModel.uploadNovel(novel,mPdfs)
-            Log.d(TAG,"newUri: $mCover")
-        }else { // update old novel
+        if (!isEdit) { // add new novel
+            val novel = Novel(getNovelId(), mtitle, mDescription, mType, mCategory, mWriter, mCover)
+            viewModel.uploadNovel(novel, mPdfs)
+            Log.d(TAG, "newUri: $mCover")
+        } else { // update old novel
             novel?.title = mtitle
             novel?.description = mDescription
             novel?.type = mType
             novel?.category = mCategory
             novel?.writer = mWriter
             novel?.cover = mCover
-            Log.d(TAG,"oldUri: $mCover")
-            viewModel.updateNovel(novel!!,mPdfs)
+            Log.d(TAG, "oldUri: $mCover")
+            viewModel.updateNovel(novel!!, mPdfs)
 
         }
     }
@@ -232,13 +238,13 @@ class AddEditNovel : Fragment() {
     private fun setAdapter() {
 
         /** click listener **/
-        pdfAdapter.clickListener = object: PdfAdapter.PdfClickListener {
+        pdfAdapter.clickListener = object : PdfAdapter.PdfClickListener {
 
             override fun onRemove(pdf: String, index: Int) {
 //                val pdfs = novel?.pdfs?.toMutableList()
                 val pdfs = mPdfs.toMutableList().map { it.toString() } as ArrayList
-                pdfs?.remove(pdf)
-                mPdfs = pdfs?.map { it.toUri() } as ArrayList
+                pdfs.remove(pdf)
+                mPdfs = pdfs.map { it.toUri() } as ArrayList
 
                 pdfAdapter.submitList(pdfs)
 
@@ -249,7 +255,6 @@ class AddEditNovel : Fragment() {
         }
         binding.rvPdfs.adapter = pdfAdapter
     }
-
 
 
     private fun imageCallBack(imageResult: ImageResult<Uri>) {
@@ -266,15 +271,16 @@ class AddEditNovel : Fragment() {
     }
 
     private fun pdfPickIntent() {
-        val intent= Intent()
-        intent.type="application/pdf"
-        intent.action= Intent.ACTION_GET_CONTENT
+        val intent = Intent()
+        intent.type = "application/pdf"
+        intent.action = Intent.ACTION_GET_CONTENT
         pdfActivityResultLauncher.launch(intent)
     }
 
 
     private val pdfActivityResultLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) { result ->
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             pdfFile = result.data!!.data
             mPdfs.add(pdfFile!!)
@@ -302,8 +308,10 @@ class AddEditNovel : Fragment() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ).withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {}
-                override fun onPermissionRationaleShouldBeShown(list: MutableList<PermissionRequest>?,
-                                                                token: PermissionToken?) {
+                override fun onPermissionRationaleShouldBeShown(
+                    list: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
                 }
             }).check()
     }
@@ -311,22 +319,19 @@ class AddEditNovel : Fragment() {
 
     private fun setData() {
         isEdit = arguments?.get(Constants.IS_EDIT_KEY) as Boolean
-        novel = try { arguments?.get(Constants.NOVEL_KEY) as Novel } catch (ex: Exception){ null }
+        novel = try {
+            arguments?.get(Constants.NOVEL_KEY) as Novel
+        } catch (ex: Exception) {
+            null
+        }
         viewModel.novel.value = novel
         viewModel.isEdit.value = isEdit
-        if (novel != null){
+        if (novel != null) {
             mCategory = novel!!.category
             mType = novel!!.type
             mCover = novel!!.cover
             mPdfs = novel!!.pdfs.map { it.toUri() } as ArrayList
             pdfAdapter.submitList(novel!!.pdfs)
-
-
-
         }
-
     }
-
-
-
 }

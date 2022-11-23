@@ -15,8 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("setImage")
-fun setImage(image: ImageView, uri: String?){
-    if(!uri.isNullOrBlank()) {
+fun setImage(image: ImageView, uri: String?) {
+    if (!uri.isNullOrBlank()) {
         Glide.with(image.context)
             .load(uri.toUri())
             .placeholder(R.drawable.icon)
@@ -25,8 +25,8 @@ fun setImage(image: ImageView, uri: String?){
 }
 
 @BindingAdapter("setImageBanner")
-fun setImageBanner(image: ImageView, uri: String?){
-    if(!uri.isNullOrBlank()) {
+fun setImageBanner(image: ImageView, uri: String?) {
+    if (!uri.isNullOrBlank()) {
         Glide.with(image.context)
             .load(uri.toUri())
             .into(image)
@@ -34,8 +34,8 @@ fun setImageBanner(image: ImageView, uri: String?){
 }
 
 @BindingAdapter("setImage")
-fun setImage(image: ImageView, uri: Int?){
-    if(uri != null) {
+fun setImage(image: ImageView, uri: Int?) {
+    if (uri != null) {
         image.setImageResource(uri)
     }
 }
@@ -43,11 +43,11 @@ fun setImage(image: ImageView, uri: Int?){
 
 // todo: we can update this to translate any error at run time.
 @BindingAdapter("setError")
-fun setError(text: TextView, error: String?){
-    if (!error.isNullOrBlank()){
+fun setError(text: TextView, error: String?) {
+    if (!error.isNullOrBlank()) {
         text.show()
         text.text = error
-    }else {
+    } else {
         text.hide()
     }
 }
@@ -55,11 +55,17 @@ fun setError(text: TextView, error: String?){
 
 @BindingAdapter("showLoading")
 fun showLoading(v: View, status: DataStatus?) {
-    if (status != null){
-        when(status){
-            DataStatus.LOADING ->{v.show()}
-            DataStatus.SUCCESS ->{v.hide()}
-            DataStatus.ERROR ->{v.hide()}
+    if (status != null) {
+        when (status) {
+            DataStatus.LOADING -> {
+                v.show()
+            }
+            DataStatus.SUCCESS -> {
+                v.hide()
+            }
+            DataStatus.ERROR -> {
+                v.hide()
+            }
 
         }
     }
@@ -67,57 +73,60 @@ fun showLoading(v: View, status: DataStatus?) {
 
 @BindingAdapter("showIfDataNotExist")
 fun showIfDataNotExist(v: View, b: Boolean?) {
-    if (b == true){ //data is not found
+    if (b == true) { //data is not found
         v.show()
-    }else { // data is exist
+    } else { // data is exist
         v.hide()
     }
 }
 
 
-
 @BindingAdapter("hideViewIfCustomer")
 fun hideViewIfCustomer(v: View, b: Boolean?) {
-    if (b == true){
+    if (b == true) {
         v.hide()
 
-    }else{
+    } else {
         v.show()
     }
 }
 
 @BindingAdapter("showViewIfCustomer")
 fun showViewIfCustomer(v: View, b: Boolean?) {
-    if (b != true){
+    if (b != true) {
         v.hide()
-    }else{
+    } else {
         v.show()
     }
 }
 
 @BindingAdapter("updateSubmitStatus")
 fun updateSubmitStatus(button: Button, isEdit: Boolean?) {
-    if (isEdit == true){
+    if (isEdit == true) {
         button.setText(R.string.update)
-    }else{
+    } else {
         button.setText(R.string.send)
     }
 }
 
 @BindingAdapter("swipeToRefresh")
 fun swipeToRefresh(refreshLayout: SwipeRefreshLayout, status: DataStatus?) {
-    if (status != null){
-        when(status){
-            DataStatus.LOADING ->{ } // do nothing
-            DataStatus.SUCCESS ->{ refreshLayout.isRefreshing = false}
-            DataStatus.ERROR ->{ refreshLayout.isRefreshing = false}
+    if (status != null) {
+        when (status) {
+            DataStatus.LOADING -> {} // do nothing
+            DataStatus.SUCCESS -> {
+                refreshLayout.isRefreshing = false
+            }
+            DataStatus.ERROR -> {
+                refreshLayout.isRefreshing = false
+            }
         }
     }
 }
 
 @BindingAdapter("notifyFormat")
 fun notifyFormat(tv: TextView, date: Date?) {
-    if (date != null){
+    if (date != null) {
         val date = SimpleDateFormat("h:mm:aa").format(date)
         tv.text = date.toString()
     }
@@ -126,29 +135,29 @@ fun notifyFormat(tv: TextView, date: Date?) {
 
 @BindingAdapter("joinedAt")
 fun joinedAt(tv: TextView, date: Date?) {
-    if (date != null){
+    if (date != null) {
         val date = SimpleDateFormat("dd/MM/yyyy").format(date)
         tv.text = date.toString()
     }
 }
 
 @BindingAdapter("setCount")
-fun setCount(tv: TextView, v: Int){
-    tv.text = tv.context.getString(R.string.count,v.toString())
+fun setCount(tv: TextView, v: Int) {
+    tv.text = tv.context.getString(R.string.count, v.toString())
 }
 
 @BindingAdapter("setReviews")
-fun setReviews(tv: TextView, v: Int){
-    tv.text = tv.context.getString(R.string.reviews,v.toString())
+fun setReviews(tv: TextView, v: Int) {
+    tv.text = tv.context.getString(R.string.reviews, v.toString())
 }
 
-fun setPages(tv: TextView, v:Int){
+fun setPages(tv: TextView, v: Int) {
 
 }
 
 @BindingAdapter("setNovelCategory")
-fun setNovelCategory(t: AutoCompleteTextView,value: String?){
-    if (!value.isNullOrEmpty()){
+fun setNovelCategory(t: AutoCompleteTextView, value: String?) {
+    if (!value.isNullOrEmpty()) {
         val v = value.toInt()
         t.setText(getNovelCategoryKey(t.context, v))
     }
@@ -156,46 +165,47 @@ fun setNovelCategory(t: AutoCompleteTextView,value: String?){
 
 
 @BindingAdapter("setNovelType")
-fun setNovelType(t: AutoCompleteTextView,value: String?){
-    if (!value.isNullOrEmpty()){
+fun setNovelType(t: AutoCompleteTextView, value: String?) {
+    if (!value.isNullOrEmpty()) {
         val v = value.toInt()
         t.setText(getNovelTypeKey(t.context, v))
     }
 }
 
 @BindingAdapter("setNovelCategory")
-fun setNovelCategory(t: TextView,value: String?){
-    if (!value.isNullOrEmpty()){
+fun setNovelCategory(t: TextView, value: String?) {
+    if (!value.isNullOrEmpty()) {
         val v = value.toInt()
         t.text = getNovelCategoryKey(t.context, v)
     }
 }
 
 
-
 @BindingAdapter("setNovelType")
-fun setNovelType(t: TextView,value: String?){
-    if (!value.isNullOrEmpty()){
+fun setNovelType(t: TextView, value: String?) {
+    if (!value.isNullOrEmpty()) {
         val v = value.toInt()
         t.text = getNovelTypeKey(t.context, v)
     }
 }
 
 
-
-
-
-
 // todo: dis enable send button during uploading novel data
 
 
 @BindingAdapter("setButtonStatus")
-fun buttonStatus(button: Button, status: DataStatus?){
-    if (status != null){
-        when(status){
-            DataStatus.LOADING -> { button.isEnabled = false }
-            DataStatus.SUCCESS -> {button.isEnabled = true }
-            DataStatus.ERROR -> { button.isEnabled = true}
+fun buttonStatus(button: Button, status: DataStatus?) {
+    if (status != null) {
+        when (status) {
+            DataStatus.LOADING -> {
+                button.isEnabled = false
+            }
+            DataStatus.SUCCESS -> {
+                button.isEnabled = true
+            }
+            DataStatus.ERROR -> {
+                button.isEnabled = true
+            }
         }
     }
 }

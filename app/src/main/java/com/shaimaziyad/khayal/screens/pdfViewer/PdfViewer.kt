@@ -13,12 +13,16 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class PdfViewer : Fragment() {
 
-    private lateinit var binding : PdfViewerBinding
+    private lateinit var binding: PdfViewerBinding
     private val viewModel by sharedViewModel<PdfViewerViewModel>()
 
     private var novelUri = ""
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = PdfViewerBinding.inflate(layoutInflater)
 
@@ -36,7 +40,7 @@ class PdfViewer : Fragment() {
         viewModel.apply {
 
             /** pdf data **/
-            pdf.observe(viewLifecycleOwner){ data ->
+            pdf.observe(viewLifecycleOwner) { data ->
                 if (data != null) {
                     binding.pdfView.fromBytes(data)
                         .swipeHorizontal(false)//set false to scroll vertical, set tru to scroll horizontal
@@ -65,28 +69,27 @@ class PdfViewer : Fragment() {
 
 
             /** button back **/
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 viewModel.resetStatus()
                 findNavController().navigateUp()
             }
-
-
 
 
         }
     }
 
 
-
     private fun setData() {
-        novelUri = try {arguments?.get(Constants.PDF_KEY).toString() }
-        catch (ex: Exception){""}
+        novelUri = try {
+            arguments?.get(Constants.PDF_KEY).toString()
+        } catch (ex: Exception) {
+            ""
+        }
 
         viewModel.loadPdf(novelUri)
 
 
     }
-
 
 
 //    private fun showMInterstitialAd() {

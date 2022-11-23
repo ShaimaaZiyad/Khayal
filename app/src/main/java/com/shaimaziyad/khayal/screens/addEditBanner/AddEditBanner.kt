@@ -34,13 +34,20 @@ class AddEditBanner : Fragment() {
     private var mCover: String = ""
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-        binding = AddEditBannerBinding.inflate(inflater,container,false)
+        binding = AddEditBannerBinding.inflate(inflater, container, false)
 
         imagePicker = ImagePicker(this)
-        banner = try{arguments?.get(Constants.BANNER_KEY) as Banner}
-        catch (ex: Exception){null}
+        banner = try {
+            arguments?.get(Constants.BANNER_KEY) as Banner
+        } catch (ex: Exception) {
+            null
+        }
 
 
         setViews()
@@ -56,14 +63,13 @@ class AddEditBanner : Fragment() {
         binding.apply {
 
 
-
             setDataToViews()
 
             /** button add update banner **/
             btnAddUpdate.setOnClickListener {
-                 mTitle = binding.title.text?.trim().toString()
-                 mDescription = binding.description.text?.trim().toString()
-                 isActive = binding.btnBannerState.isChecked // status of banner
+                mTitle = binding.title.text?.trim().toString()
+                mDescription = binding.description.text?.trim().toString()
+                isActive = binding.btnBannerState.isChecked // status of banner
 //                if (mTitle.isEmpty()) {
 //                    binding.title.error = getString(R.string.error_require_title)
 //                    binding.title.requestFocus()
@@ -80,8 +86,7 @@ class AddEditBanner : Fragment() {
                 }
                 if (mCover.isEmpty()) {
                     showMessage(getString(R.string.error_require_image))
-                }
-                else{
+                } else {
                     subMit()
                 }
 
@@ -112,11 +117,10 @@ class AddEditBanner : Fragment() {
             /** radio buttons **/
             binding.radioGroupAdType.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
-                    R.id.typeBanner ->  mType = AdType.Banner.name
-                    R.id.typeRotating ->  mType = AdType.Rotating.name
+                    R.id.typeBanner -> mType = AdType.Banner.name
+                    R.id.typeRotating -> mType = AdType.Rotating.name
                 }
             }
-
 
 
         }
@@ -127,71 +131,70 @@ class AddEditBanner : Fragment() {
         viewModel.apply {
 
             /** upload status **/
-            viewModel.uploadStatus.observe(viewLifecycleOwner){
-                when(it){
-                    DataStatus.LOADING ->{
+            viewModel.uploadStatus.observe(viewLifecycleOwner) {
+                when (it) {
+                    DataStatus.LOADING -> {
                         binding.loader.root.show()
                     }
-                    DataStatus.SUCCESS ->{
+                    DataStatus.SUCCESS -> {
                         binding.loader.root.hide()
                         showMessage("uploaded")
                         resetStatus()
                         findNavController().navigateUp()
                     }
-                    DataStatus.ERROR ->{
+                    DataStatus.ERROR -> {
                         binding.loader.root.hide()
                         resetStatus()
                     }
-                    else ->{}
+                    else -> {}
                 }
             }
 
             /** update status **/
-            viewModel.updateStatus.observe(viewLifecycleOwner){
-                when(it){
-                    DataStatus.LOADING ->{
+            viewModel.updateStatus.observe(viewLifecycleOwner) {
+                when (it) {
+                    DataStatus.LOADING -> {
                         binding.loader.root.show()
                     }
-                    DataStatus.SUCCESS ->{
+                    DataStatus.SUCCESS -> {
                         showMessage("updated")
                         binding.loader.root.hide()
                         resetStatus()
                         findNavController().navigateUp()
                     }
-                    DataStatus.ERROR ->{
+                    DataStatus.ERROR -> {
                         binding.loader.root.hide()
                         resetStatus()
                     }
-                    else ->{}
+                    else -> {}
                 }
             }
 
             /** delete status **/
-            viewModel.deleteStatus.observe(viewLifecycleOwner){
-                when(it){
-                    DataStatus.LOADING ->{
+            viewModel.deleteStatus.observe(viewLifecycleOwner) {
+                when (it) {
+                    DataStatus.LOADING -> {
                         binding.loader.root.show()
                     }
-                    DataStatus.SUCCESS ->{
+                    DataStatus.SUCCESS -> {
                         showMessage("deleted")
                         binding.loader.root.hide()
                         resetStatus()
                         findNavController().navigateUp()
                     }
-                    DataStatus.ERROR ->{
+                    DataStatus.ERROR -> {
                         binding.loader.root.hide()
                         resetStatus()
                     }
-                    else ->{}
+                    else -> {}
                 }
             }
-
 
 
         }
     }
 
-    private fun subMit(){
+    private fun subMit() {
         if (banner != null) { // update old banner
             banner!!.title = mTitle
             banner!!.description = mDescription
@@ -200,7 +203,7 @@ class AddEditBanner : Fragment() {
             banner!!.cover = mCover
             viewModel.updateBanner(banner!!)
         } else { // add new banner
-            val newBanner = Banner(getBannerId(), mTitle, mDescription, mCover,mType,isActive)
+            val newBanner = Banner(getBannerId(), mTitle, mDescription, mCover, mType, isActive)
             viewModel.uploadBanner(newBanner)
         }
     }
@@ -218,9 +221,9 @@ class AddEditBanner : Fragment() {
         }
     }
 
-    private fun setDataToViews(){
+    private fun setDataToViews() {
         binding.apply {
-            if (banner != null){
+            if (banner != null) {
 
                 binding.data = banner
                 binding.btnBannerState.isChecked = banner!!.isActive
@@ -231,13 +234,13 @@ class AddEditBanner : Fragment() {
                 btnAddUpdate.text = getString(R.string.update)
                 setLabel(getString(R.string.edit_banner))
 
-                if (banner!!.type == AdType.Rotating.name){
+                if (banner!!.type == AdType.Rotating.name) {
                     binding.typeRotating.isChecked = true
-                }else{
+                } else {
                     binding.typeBanner.isChecked = true
                 }
 
-            }else{
+            } else {
                 binding.typeRotating.isChecked = true
                 btnAddUpdate.text = getString(R.string.add_Banner)
                 setLabel(getString(R.string.add_Banner))
@@ -247,7 +250,7 @@ class AddEditBanner : Fragment() {
     }
 
 
-    private fun setLabel(t: String){
+    private fun setLabel(t: String) {
         binding.tvLabel.text = t
     }
 

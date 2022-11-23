@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,12 +14,12 @@
 
         <include
             android:id="@+id/search_Layout"
+            layout="@layout/item_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            layout="@layout/item_search"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp" />
 
 
         <LinearLayout
@@ -27,8 +27,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="80dp"
             android:orientation="vertical">
-
-
 
 
             <FrameLayout
@@ -57,13 +55,11 @@
         </LinearLayout>
 
 
-
         <include
             android:id="@+id/filterSheet"
+            layout="@layout/filter_novel_sheet"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/filter_novel_sheet"/>
-
+            android:layout_height="match_parent" />
 
 
     </FrameLayout>

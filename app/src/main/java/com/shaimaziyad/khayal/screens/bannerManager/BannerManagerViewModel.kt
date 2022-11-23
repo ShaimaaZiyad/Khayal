@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewModel() {
 
-    companion object{
+    companion object {
         private const val TAG = "BannerManagerViewModel"
     }
 
@@ -45,27 +45,28 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
     val isDataExist: LiveData<Boolean?> = _isDataExist
 
 
-
     init {
         loadAds()
     }
 
 
     fun loadAds() {
-        Log.d(TAG,"onLoading.. banners")
+        Log.d(TAG, "onLoading.. banners")
         resetStatus()
         _loadStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = bannerRepo.loadBanners()
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: banners: ${res.data.size}")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: banners: ${res.data.size}")
                 _loadStatus.value = DataStatus.SUCCESS
                 val data = res.data
                 _banners.value = data
                 _isDataExist.value = data.isEmpty()
-            }
-            else if(res is Result.Error) {
-                Log.d(TAG,"onError: error happen during fetching banners due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during fetching banners due to ${res.exception.message}"
+                )
                 _loadStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
@@ -73,18 +74,18 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
     }
 
 
-    fun uploadBanner(banner: Banner){
+    fun uploadBanner(banner: Banner) {
         resetStatus()
-        Log.d(TAG,"onLoading: adding banner")
+        Log.d(TAG, "onLoading: adding banner")
         _uploadStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val image = banner.cover.toUri()
             val fileName = getCurrentTime().toString()
-            val imageCover = bannerRepo.uploadBannerCover(image,fileName)
+            val imageCover = bannerRepo.uploadBannerCover(image, fileName)
             banner.cover = imageCover
             val res = bannerRepo.submitBanner(banner)
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: banner has been added success")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: banner has been added success")
                 _uploadStatus.value = DataStatus.SUCCESS
 
                 // update local banners
@@ -92,28 +93,30 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
                 banners?.add(banner)
                 _banners.value = banners
 
-            }
-            else if(res is Result.Error) {
-                Log.d(TAG,"onError: error happen during adding banner due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during adding banner due to ${res.exception.message}"
+                )
                 _uploadStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
         }
     }
 
-    fun updateBanner(banner: Banner){
+    fun updateBanner(banner: Banner) {
         resetStatus()
-        Log.d(TAG,"onLoading: update banner")
+        Log.d(TAG, "onLoading: update banner")
         _updateStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val image = banner.cover.toUri()
             val fileName = getCurrentTime().toString()
-            val imageCover = bannerRepo.uploadBannerCover(image,fileName)
+            val imageCover = bannerRepo.uploadBannerCover(image, fileName)
             banner.cover = imageCover
 
             val res = bannerRepo.updateBanner(banner)
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: banner has been updated success")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: banner has been updated success")
                 _updateStatus.value = DataStatus.SUCCESS
 
                 // update local banner
@@ -123,23 +126,25 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
                 banners.add(banner)
                 _banners.value = banners
 
-            }
-            else if(res is Result.Error) {
-                Log.d(TAG,"onError: error happen during updating banner due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during updating banner due to ${res.exception.message}"
+                )
                 _updateStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
         }
     }
 
-    fun deleteBanner(banner: Banner){
+    fun deleteBanner(banner: Banner) {
         resetStatus()
-        Log.d(TAG,"onLoading: deleting banner")
+        Log.d(TAG, "onLoading: deleting banner")
         _deleteStatus.value = DataStatus.LOADING
         viewModelScope.launch {
             val res = bannerRepo.deleteBanner(banner)
-            if (res is Result.Success){
-                Log.d(TAG,"onSuccess: banner has been deleted success")
+            if (res is Result.Success) {
+                Log.d(TAG, "onSuccess: banner has been deleted success")
                 _deleteStatus.value = DataStatus.SUCCESS
 
                 // remove local banners
@@ -147,9 +152,11 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
                 banners?.remove(banner)
                 _banners.value = banners
 
-            }
-            else if(res is Result.Error) {
-                Log.d(TAG,"onError: error happen during deleting banner due to ${res.exception.message}")
+            } else if (res is Result.Error) {
+                Log.d(
+                    TAG,
+                    "onError: error happen during deleting banner due to ${res.exception.message}"
+                )
                 _deleteStatus.value = DataStatus.ERROR
                 _error.value = res.exception.message
             }
@@ -157,13 +164,12 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
     }
 
 
-
-    fun updateBannersSettings(){
+    fun updateBannersSettings() {
 
     }
 
 
-    fun resetStatus(){
+    fun resetStatus() {
         _loadStatus.value = null
         _uploadStatus.value = null
         _updateStatus.value = null
@@ -172,7 +178,6 @@ class BannerManagerViewModel(private val bannerRepo: BannerRepository) : ViewMod
         _error.value = null
         _isDataExist.value = null
     }
-
 
 
 }

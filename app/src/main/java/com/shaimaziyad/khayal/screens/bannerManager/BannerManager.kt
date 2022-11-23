@@ -21,12 +21,17 @@ class BannerManager : Fragment() {
     private val viewModel by sharedViewModel<BannerManagerViewModel>()
 
     private lateinit var binding: BannerManagerBinding
-//    private lateinit var addEditBannerSheet: AddEditBannerSheet
+
+    //    private lateinit var addEditBannerSheet: AddEditBannerSheet
     private val bannerAdapter by lazy { BannerAdapter() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        binding = BannerManagerBinding.inflate(inflater,container,false)
+        binding = BannerManagerBinding.inflate(inflater, container, false)
 //        addEditBannerSheet = AddEditBannerSheet(binding.bannerSheet,this)
 
         setViews()
@@ -45,8 +50,8 @@ class BannerManager : Fragment() {
 
 
         /** banners **/
-        viewModel.banners.observe(viewLifecycleOwner){ data ->
-            if (!data.isNullOrEmpty()){
+        viewModel.banners.observe(viewLifecycleOwner) { data ->
+            if (!data.isNullOrEmpty()) {
                 bannerAdapter.submitList(data)
 //                showMessage("banners: ${data.size}")
             }
@@ -54,22 +59,21 @@ class BannerManager : Fragment() {
 
 
         /** banner status **/
-        viewModel.loadStatus.observe(viewLifecycleOwner){
-            when(it){
-                DataStatus.LOADING->{}
-                DataStatus.SUCCESS->{
+        viewModel.loadStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                DataStatus.LOADING -> {}
+                DataStatus.SUCCESS -> {
 
                 }
-                DataStatus.ERROR->{
+                DataStatus.ERROR -> {
 
                 }
-                else->{}
+                else -> {}
 
             }
         }
 
     }
-
 
 
     private fun setViews() {
@@ -100,9 +104,9 @@ class BannerManager : Fragment() {
     }
 
 
-    private fun setAdapter(){
+    private fun setAdapter() {
         /** on banner clicked **/
-        bannerAdapter.clickListener = object: BannerAdapter.BannerClickListener{
+        bannerAdapter.clickListener = object : BannerAdapter.BannerClickListener {
             override fun onEditBanner(banner: Banner) {
                 navigateToAddEditBanner(banner, isEdit = true)
 //                addEditBannerSheet.showSheet(banner, isEdit = true)
@@ -112,8 +116,8 @@ class BannerManager : Fragment() {
     }
 
 
-    private fun navigateToAddEditBanner(banner: Banner?, isEdit: Boolean){
-        val data = bundleOf(Constants.BANNER_KEY to banner , Constants.IS_EDIT_KEY to isEdit)
+    private fun navigateToAddEditBanner(banner: Banner?, isEdit: Boolean) {
+        val data = bundleOf(Constants.BANNER_KEY to banner, Constants.IS_EDIT_KEY to isEdit)
         findNavController().navigate(R.id.action_bannerManager_to_addEditBanner, data)
     }
 
