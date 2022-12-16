@@ -7,7 +7,7 @@
 
         <variable
             name="banner"
-            type="com.shaimaziyad.khayal.data.Banner" />
+            type="com.shaimaziyad.khayal1.data.Banner" />
 
     </data>
 

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splash"
-        android:name="com.shaimaziyad.khayal.screens.auth.Splash"
+        android:name="com.shaimaziyad.khayal1.screens.auth.Splash"
         android:label="fragment_splash"
         tools:layout="@layout/splash">
 
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/pdfViewer"
-        android:name="com.shaimaziyad.khayal.screens.pdfViewer.PdfViewer"
+        android:name="com.shaimaziyad.khayal1.screens.pdfViewer.PdfViewer"
         android:label="fragment_view_novel"
         tools:layout="@layout/pdf_viewer">
 
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/Login"
-        android:name="com.shaimaziyad.khayal.screens.auth.Login"
+        android:name="com.shaimaziyad.khayal1.screens.auth.Login"
         android:label="login"
         tools:layout="@layout/login">
 
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.shaimaziyad.khayal.screens.auth.Register"
+        android:name="com.shaimaziyad.khayal1.screens.auth.Register"
         android:label="register"
         tools:layout="@layout/register">
 
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/home"
-        android:name="com.shaimaziyad.khayal.screens.home.Home"
+        android:name="com.shaimaziyad.khayal1.screens.home.Home"
         android:label="Home"
         tools:layout="@layout/home">
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/novelDetails"
-        android:name="com.shaimaziyad.khayal.screens.novelDetails.NovelDetails"
+        android:name="com.shaimaziyad.khayal1.screens.novelDetails.NovelDetails"
         android:label="novel_details"
         tools:layout="@layout/novel_details">
         <action
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.shaimaziyad.khayal.screens.profile.Profile"
+        android:name="com.shaimaziyad.khayal1.screens.profile.Profile"
         android:label="profile"
         tools:layout="@layout/profile">
         <action
@@ -123,7 +123,7 @@
 
     <fragment
         android:id="@+id/addEditNovel"
-        android:name="com.shaimaziyad.khayal.screens.addEditNovel.AddEditNovel"
+        android:name="com.shaimaziyad.khayal1.screens.addEditNovel.AddEditNovel"
         android:label="add_edit_novel"
         tools:layout="@layout/add_edit_novel">
         <action
@@ -134,7 +134,7 @@
     </fragment>
     <fragment
         android:id="@+id/users"
-        android:name="com.shaimaziyad.khayal.screens.users.Users"
+        android:name="com.shaimaziyad.khayal1.screens.users.Users"
         android:label="Users"
         tools:layout="@layout/users">
         <action
@@ -144,12 +144,12 @@
 
     <fragment
         android:id="@+id/notifications"
-        android:name="com.shaimaziyad.khayal.screens.notifications.Notifications"
+        android:name="com.shaimaziyad.khayal1.screens.notifications.Notifications"
         android:label="Notifications"
         tools:layout="@layout/notifications" />
     <fragment
         android:id="@+id/search"
-        android:name="com.shaimaziyad.khayal.screens.search.Search"
+        android:name="com.shaimaziyad.khayal1.screens.search.Search"
         android:label="Search"
         tools:layout="@layout/search">
         <action
@@ -161,7 +161,7 @@
     </fragment>
     <fragment
         android:id="@+id/bannerManager"
-        android:name="com.shaimaziyad.khayal.screens.bannerManager.BannerManager"
+        android:name="com.shaimaziyad.khayal1.screens.bannerManager.BannerManager"
         android:label="BannerManager"
         tools:layout="@layout/banner_manager">
         <action
@@ -170,7 +170,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditBanner"
-        android:name="com.shaimaziyad.khayal.screens.addEditBanner.AddEditBanner"
+        android:name="com.shaimaziyad.khayal1.screens.addEditBanner.AddEditBanner"
         android:label="AddEditBanner"
         tools:layout="@layout/add_edit_banner" />
 

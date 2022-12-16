@@ -2,9 +2,13 @@
     <string name="app_name">Khayal</string>
     <string name="size_text">File size</string>
     <string name="sample_text">N/N</string>
-    <string name="adUnitId_home" translatable="false">ca-app-pub-8366065026867038/5227383433</string>
-    <string name="adUnitId_viewNovel" translatable="false">ca-app-pub-8366065026867038/7139230909</string>
-    <string name="ID_Interstitial" translatable="false">ca-app-pub-8366065026867038/5581810496</string>
+    <string name="appId" translatable="false">ca-app-pub-4032648664730667~3521836284</string>
+    <string name="adUnitId_test" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="adUnitId_home" translatable="false">ca-app-pub-4032648664730667/8401508310</string>
+    <string name="adUnitId_viewNovel" translatable="false">ca-app-pub-4032648664730667/8071417393</string>
+    <string name="adUnitId_details" translatable="false">ca-app-pub-4032648664730667/1506009042</string>
+    <string name="ID_Interstitial_test" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="ID_Interstitial" translatable="false">ca-app-pub-4032648664730667/2627519024</string>
     <string name="search">Search</string>
     <string name="login">Login</string>
     <string name="login_welcome_text">Welcome back</string>

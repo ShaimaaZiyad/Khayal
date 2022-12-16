@@ -7,7 +7,7 @@
 
         <variable
             name="bannerManagerViewModel"
-            type="com.shaimaziyad.khayal.screens.bannerManager.BannerManagerViewModel" />
+            type="com.shaimaziyad.khayal1.screens.bannerManager.BannerManagerViewModel" />
     </data>
 
     <FrameLayout

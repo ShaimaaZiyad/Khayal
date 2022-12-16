@@ -7,7 +7,7 @@
 
         <variable
             name="usersViewModel"
-            type="com.shaimaziyad.khayal.screens.users.UsersViewModel" />
+            type="com.shaimaziyad.khayal1.screens.users.UsersViewModel" />
 
     </data>
 

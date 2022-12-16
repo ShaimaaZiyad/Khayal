@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                app:behavior_peekHeight="1000dp"
+                app:behavior_peekHeight="0dp"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
@@ -94,7 +94,6 @@
                                 android:layout_height="wrap_content"
                                 android:hint="@string/category_title"
                                 android:textColorHint="@color/gray02"
-
                                 app:boxStrokeColor="@color/primaryDarkColor">
 
                                 <AutoCompleteTextView

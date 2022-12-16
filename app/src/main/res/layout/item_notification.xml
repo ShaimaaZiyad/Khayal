@@ -7,7 +7,7 @@
 
         <variable
             name="notification"
-            type="com.shaimaziyad.khayal.data.Notification" />
+            type="com.shaimaziyad.khayal1.data.Notification" />
 
 
     </data>

@@ -7,7 +7,7 @@
 
         <variable
             name="authViewModel"
-            type="com.shaimaziyad.khayal.screens.auth.AuthViewModel" />
+            type="com.shaimaziyad.khayal1.screens.auth.AuthViewModel" />
 
     </data>
 

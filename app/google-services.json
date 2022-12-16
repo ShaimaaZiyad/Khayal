@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:963905573090:android:439717742271676bd9cebb",
+        "mobilesdk_app_id": "1:963905573090:android:cc99148dd96c251fd9cebb",
         "android_client_info": {
-          "package_name": "com.shaimaziyad.khayal"
+          "package_name": "com.shaimaziyad.khayal1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "963905573090-3vgi5q773rhctpuqkge3addllgip69e5.apps.googleusercontent.com",
+          "client_id": "963905573090-309fju08jns2is1p1prfer7t46k1bnph.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.shaimaziyad.khayal",
-            "certificate_hash": "6618debc4a0d4213a841287f23e0ad9daa120457"
+            "package_name": "com.shaimaziyad.khayal1",
+            "certificate_hash": "88e64b0b561b081f0a7eefdc1de7c768d3e3d43e"
           }
         },
         {
@@ -41,7 +41,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4032648664730667~3521836284"
     }
   ],
   "configuration_version": "1"

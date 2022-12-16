@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.shaimaziyad.khayal.data.Banner" />
+            type="com.shaimaziyad.khayal1.data.Banner" />
 
         <variable
             name="isEdit"

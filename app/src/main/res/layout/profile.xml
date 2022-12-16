@@ -7,11 +7,11 @@
 
         <variable
             name="profileViewModel"
-            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />
+            type="com.shaimaziyad.khayal1.screens.profile.ProfileViewModel" />
 
         <variable
             name="userModel"
-            type="com.shaimaziyad.khayal.data.User" />
+            type="com.shaimaziyad.khayal1.data.User" />
 
     </data>
 

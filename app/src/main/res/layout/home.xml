@@ -7,11 +7,11 @@
 
         <variable
             name="homeViewModel"
-            type="com.shaimaziyad.khayal.screens.home.HomeViewModel" />
+            type="com.shaimaziyad.khayal1.screens.home.HomeViewModel" />
 
         <variable
             name="profileModel"
-            type="com.shaimaziyad.khayal.screens.profile.ProfileViewModel" />
+            type="com.shaimaziyad.khayal1.screens.profile.ProfileViewModel" />
 
 
     </data>
@@ -100,6 +100,15 @@
 
         </FrameLayout>
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_gravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/adUnitId_home">
+
+        </com.google.android.gms.ads.AdView>
 
     </FrameLayout>
 
