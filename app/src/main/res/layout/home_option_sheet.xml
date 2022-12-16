@@ -82,23 +82,27 @@
 
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/btnProfile"
                                     setImage="@{user.profileImage}"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
                                     android:layout_gravity="center"
-                                    android:layout_weight="2"
+                                    android:src="@drawable/ic_account"
                                     tools:src="@drawable/ic_profile_test" />
 
+                                <androidx.legacy.widget.Space
+                                    android:layout_width="15dp"
+                                    android:layout_height="wrap_content"/>
+
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="5"
+                                    android:layout_gravity="center"
                                     android:orientation="vertical">
 
                                     <TextView
@@ -106,7 +110,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="@{user.name}"
                                         android:textColor="@color/black"
-                                        android:textSize="20sp"
+                                        android:textSize="18sp"
                                         android:textStyle="bold"
                                         tools:text="Ahmed Mohamed" />
 
@@ -116,7 +120,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="@{user.email}"
                                         android:textColor="@color/black"
-                                        android:textSize="18sp"
+                                        android:textSize="16sp"
                                         tools:text="example@gmail.com" />
 
 

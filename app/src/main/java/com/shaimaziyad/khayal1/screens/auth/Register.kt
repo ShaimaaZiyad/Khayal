@@ -118,6 +118,7 @@ class Register : Fragment() {
             /** button have account **/
             btnHaveAccount.setOnClickListener {
                 findNavController().navigate(R.id.action_register_to_login)
+                viewModel.resetStatus()
             }
 
             /** button back **/

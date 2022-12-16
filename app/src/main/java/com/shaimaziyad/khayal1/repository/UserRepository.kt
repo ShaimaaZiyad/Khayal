@@ -107,7 +107,6 @@ class UserRepository(
         email: String,
         password: String,
         isRemOn: Boolean,
-        context: Context
     ): Result<User> {
         var mUser: User? = null
         return supervisorScope {
@@ -117,13 +116,13 @@ class UserRepository(
                 if (userId != null) {
                     val user = remote.getUserById()
                     mUser = user
-                    getToken { newToken -> user.token = newToken }
+//                    getToken { newToken -> user.token = newToken }
                     sharePref.saveUser(user, isRemOn)
                     Log.d(TAG, "user name: ${user.name}")
-                    async {
-                        delay(200)
-                        remote.updateUser(user)
-                    }
+//                    async {
+//                        delay(200)
+//                        remote.updateUser(user)
+//                    }
 
                 }
 

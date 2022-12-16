@@ -1,6 +1,7 @@
 package com.shaimaziyad.khayal1.repository
 
 import android.net.Uri
+import com.google.firebase.FirebaseNetworkException
 import com.shaimaziyad.khayal1.data.Novel
 import com.shaimaziyad.khayal1.remote.DataBase
 import com.shaimaziyad.khayal1.utils.FileType
@@ -58,7 +59,11 @@ class NovelRepository(private val remote: DataBase) {
             val loadTask = async { remote.getNovels() }
             try {
                 Success(loadTask.await())
-            } catch (ex: Exception) {
+            }
+            catch (ex: FirebaseNetworkException){
+                Error(ex)
+            }
+            catch (ex: Exception) {
                 Error(ex)
             }
         }

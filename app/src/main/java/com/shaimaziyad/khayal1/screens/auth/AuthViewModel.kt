@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shaimaziyad.khayal1.data.User
+import com.shaimaziyad.khayal1.notification.getToken
 import com.shaimaziyad.khayal1.repository.UserRepository
 import com.shaimaziyad.khayal1.utils.DataStatus
 import com.shaimaziyad.khayal1.utils.Result
@@ -37,6 +38,8 @@ class AuthViewModel(val userRepo: UserRepository) : ViewModel() {
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
+
+
 
 
     fun register(user: User) {
@@ -81,12 +84,12 @@ class AuthViewModel(val userRepo: UserRepository) : ViewModel() {
     }
 
 
-    fun login(email: String, password: String, isRemOn: Boolean, context: Context) {
+    fun login(email: String, password: String, isRemOn: Boolean) {
         resetStatus()
         _loginStatus.value = DataStatus.LOADING
         Log.d(TAG, "onLogin: Loading...")
         viewModelScope.launch {
-            val res = userRepo.loginWithEmail(email, password, isRemOn, context)
+            val res = userRepo.loginWithEmail(email, password, isRemOn)
             if (res is Result.Success) {
                 Log.d(TAG, "onLogin: Login have been success...")
                 _loginStatus.value = DataStatus.SUCCESS
@@ -101,6 +104,21 @@ class AuthViewModel(val userRepo: UserRepository) : ViewModel() {
             }
         }
     }
+
+
+    // todo: enhance this
+    fun refreshToken(user: User?) {
+        if (user != null){
+            getToken {
+                viewModelScope.launch {
+                    Log.d(TAG,"refresh user token")
+                    user.token = it
+                    userRepo.update(user)
+                }
+            }
+        }
+    }
+
 
 
     fun resetStatus() {

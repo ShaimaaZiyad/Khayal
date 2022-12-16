@@ -91,7 +91,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_person_gray"
+                            android:src="@drawable/ic_account"
                             tools:src="@drawable/ic_profile_test" />
 
                         <androidx.legacy.widget.Space

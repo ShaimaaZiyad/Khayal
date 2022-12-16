@@ -143,7 +143,7 @@ class Login : Fragment() {
                     password.requestFocus()
                     return@setOnClickListener
                 } else {
-                    viewModel.login(mEmail, mPassword, mIsRememberMe, requireContext())
+                    viewModel.login(mEmail, mPassword, mIsRememberMe)
                 }
 
             }
@@ -151,6 +151,7 @@ class Login : Fragment() {
             /** button sign up **/
             btnSignup.setOnClickListener {
                 findNavController().navigate(R.id.action_login_to_register)
+                viewModel.resetStatus()
             }
 
             /** button forgot password **/

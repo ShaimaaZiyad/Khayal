@@ -15,6 +15,7 @@ import com.shaimaziyad.khayal1.R
 import com.shaimaziyad.khayal1.data.Notification
 import com.shaimaziyad.khayal1.data.Novel
 import com.shaimaziyad.khayal1.databinding.HomeBinding
+import com.shaimaziyad.khayal1.screens.auth.AuthViewModel
 import com.shaimaziyad.khayal1.screens.bannerManager.BannerManagerViewModel
 import com.shaimaziyad.khayal1.screens.notifications.NotificationsViewModel
 import com.shaimaziyad.khayal1.screens.profile.ProfileViewModel
@@ -32,6 +33,7 @@ class Home : Fragment() {
     private val profileViewModel by sharedViewModel<ProfileViewModel>()
     private val notifyViewModel by sharedViewModel<NotificationsViewModel>()
     private val bannerViewModel by sharedViewModel<BannerManagerViewModel>()
+    private val authViewModel by sharedViewModel<AuthViewModel>()
 
     private lateinit var homeAdapter: HomeAdapter
 
@@ -53,6 +55,8 @@ class Home : Fragment() {
         setViews()
         setObserves()
 
+        // for refresh token
+        authViewModel.refreshToken(profileViewModel.user.value)
 
         return binding.root
     }

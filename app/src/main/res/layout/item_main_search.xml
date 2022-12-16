@@ -37,6 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1.4"
+                android:src="@drawable/ic_account"
                 tools:src="@drawable/ic_profile_test" />
 
 
